@@ -1,0 +1,7 @@
+.App {
+  background: linear-gradient(180deg, #000000, #4300e0 80%, #8dbeff );
+  background-attachment: fixed;
+  text-align: center;
+  /* width: calc(100vw - var(--scrollbar-width)); */
+  height: 100vh;
+}
