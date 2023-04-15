@@ -1,5 +1,13 @@
 .header {
-    background: pink;
+    background: rgba(0, 0, 70, .3);
     width: 100%;
     height: 1rem;
+}
+
+.headerText a:link, a:hover, a:visited {
+    color: rgba(90, 90, 90, .7);
+    text-decoration: none;
+    float: right;
+    margin-inline-end: 1rem;
+    font-weight: bold;
 }

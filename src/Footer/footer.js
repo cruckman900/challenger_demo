@@ -3,8 +3,8 @@ import classes from './footer.module.css';
 
 export default function footer() {
     return (
-        <React.Fragment>
-            <div className={classes.footer} />
-        </React.Fragment>
+        <footer className={classes.footer}>
+            <i>&copy;{new Date().getFullYear()} Challenger Learning Center</i>
+        </footer>
     );
 }
