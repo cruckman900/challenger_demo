@@ -5,9 +5,13 @@
 }
 
 .headerText a:link, a:hover, a:visited {
-    color: rgba(170, 170, 170, .8);
+    color: rgba(255, 69, 0, .4);
     text-decoration: none;
     float: right;
     margin-inline-end: 1rem;
     font-weight: bold;
+}
+
+.headerText a:hover {
+    color: rgba(255, 69, 0, 1);
 }

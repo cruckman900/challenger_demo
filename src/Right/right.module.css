@@ -2,7 +2,7 @@
     position: absolute;
     top: 4rem;
     right: 0;
-    margin-left: 1rem;
+    margin-left: .1rem;
     background: rgba(0, 0, 70, .2);
     width: 20rem;
     height: calc(100vh - 5.4rem);

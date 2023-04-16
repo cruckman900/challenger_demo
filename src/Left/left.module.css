@@ -8,16 +8,17 @@
     margin-top: 1rem;
     font-size: 2rem;
     background: none;
-    color: rgba(170, 170, 170, .8)
+    color: rgba(255, 69, 0, .4)
 }
 
 .menuButtonBox {
     padding-top: 1rem;
     border-radius: 8px;
-    background: none;
+    background: green;
+    width: 4rem;
 }
 
 .menuButton:hover, .menuButton:active {
     background: transparent;
-    color: rgba(190, 150, 0, .8)
+    color: orangered;
 }
