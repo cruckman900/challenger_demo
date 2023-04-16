@@ -1,5 +1,23 @@
 .left {
     background: rgba(0, 0, 70, .2);
-    width: 6rem;
-    height: calc(100vh - 5.1rem);
+    width: 4rem;
+    height: calc(100vh - 5.4rem);
+}
+
+.menuButton {
+    font-size: 2rem;
+    background: none;
+    color: rgba(170, 170, 170, .8)
+}
+
+.menuButtonBox {
+    display: block;
+    margin: 1rem;
+    border-radius: 8px;
+    background: none;
+}
+
+.menuButton:hover, .menuButton:active {
+    background: transparent;
+    color: rgba(190, 150, 0, .8)
 }

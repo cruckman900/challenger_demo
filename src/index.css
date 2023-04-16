@@ -1,5 +1,11 @@
+@font-face {
+  font-family: 'Kochire';
+  src: url(/src/assets/fonts/KochireRegularl.otf);
+}
+
 body {
   margin: 0;
+  
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
@@ -10,4 +16,10 @@ body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+a:hover, a:focus {
+  /* margin-top: 1rem; */
+  /* background: transparent; */
+  color: rgba(190, 150, 0, .8)
 }

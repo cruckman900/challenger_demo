@@ -1,5 +1,13 @@
 .top {
-    background: rgba(0, 0, 70, .2);
+    background: rgba(0, 0, 70, .1);
     height:3rem;
     width: 100%;
+}
+
+.topText {
+    float: left;
+    margin-left: 1rem;
+    font-family: "Kochire";
+    font-size: 2rem;
+    color: rgba(255, 255, 255, .75);
 }
