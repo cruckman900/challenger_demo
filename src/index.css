@@ -17,9 +17,3 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
-
-a:hover, a:focus {
-  /* margin-top: 1rem; */
-  /* background: transparent; */
-  color: rgba(190, 150, 0, .8)
-}

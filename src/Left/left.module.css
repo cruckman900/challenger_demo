@@ -5,14 +5,14 @@
 }
 
 .menuButton {
-    font-size: 2rem;
+    margin-top: 1rem;
+    font-size: 2.5rem;
     background: none;
     color: rgba(170, 170, 170, .8)
 }
 
 .menuButtonBox {
-    display: block;
-    margin: 1rem;
+    padding-top: 1rem;
     border-radius: 8px;
     background: none;
 }
