@@ -9,6 +9,7 @@ import classes from './left.module.css';
 
 const Left = () => {
     const location = useLocation();
+    console.log(location);
 
     const myIcons = {
         house: faHouse,
@@ -23,10 +24,10 @@ const Left = () => {
                 <Nav.Link as={Link} to={"/"} eventKey="/" href="#">
                     <FontAwesomeIcon className={classes.menuButton} icon={myIcons['house']}></FontAwesomeIcon>
                 </Nav.Link>
-                <Nav.Link as={Link} to={"/userSettings"} eventKey="/userSettings" href="/UserSettings">
+                <Nav.Link as={Link} to={"/userSettings"} eventKey="/userSettings" href="#UserSettings">
                     <FontAwesomeIcon className={classes.menuButton} icon={myIcons['userGear']}></FontAwesomeIcon>
                 </Nav.Link>
-                <Nav.Link as={Link} to={"/friendSettings"} eventKey="/friendSettings" href="/FriendSettings">
+                <Nav.Link as={Link} to={"/friendSettings"} eventKey="/friendSettings" href="/friendSettings">
                     <FontAwesomeIcon className={classes.menuButton} icon={myIcons['usersGear']}></FontAwesomeIcon>
                 </Nav.Link>
                 <Nav.Link as={Link} to={"/groupSettings"} eventKey="/groupSettings" href="/GroupSettings">
