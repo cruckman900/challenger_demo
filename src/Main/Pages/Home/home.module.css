@@ -3,5 +3,7 @@
 }
 
 .updateDate {
-    font-size: 1.1rem;
+    color: rgba(255, 69, 0 .5);
+    text-shadow: 2px 2px 2px black;
+    font-size: .85rem;
 }
