@@ -2,6 +2,8 @@
     margin-left: .1rem;
     background: rgba(0, 0, 70, .2);
     /* width: 77.75rem; */
+    color: rgba(255, 69, 0, 1);
+    font-size: 1.2rem;
     width: calc(100vw - 24.2rem);
     height: calc(100vh - 5.4rem);
 }

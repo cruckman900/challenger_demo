@@ -7,8 +7,6 @@
 .topText {
     float: left;
     margin-left: 1rem;
-    font-family: "Kochire";
     font-size: 2rem;
-    /* color: rgba(255, 255, 255, .75); */
     color: orangered;
 }

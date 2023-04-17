@@ -1,0 +1,33 @@
+.defaultPage {
+    margin: 1rem;
+}
+
+.header {
+    background: rgba(255, 69, 0, .4);
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+}
+
+.headerText {
+    text-align: start;
+    padding: .5rem;
+    margin-left: .5rem;
+    font-family: 'ShackleItalic';
+    font-size: 1.2rem;
+    font-weight: 400;
+    color: rgba(255, 69, 0, 1);
+}
+
+.body {
+    text-align: start;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+    padding-top: .5rem;
+    padding-bottom: .5rem;
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+    font-family: 'ShackleRegular';
+    font-size: 1rem;
+    background: rgba(255, 69, 0, .2);
+    color: rgba(255, 69, 0, .8)
+}

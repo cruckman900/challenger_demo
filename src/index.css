@@ -2,6 +2,34 @@
   font-family: 'Kochire';
   src: url(/src/assets/fonts/KochireRegularl.otf);
 }
+@font-face {
+  font-family: 'MechaGXPg';
+  src: url(/src/assets/fonts/Mecha-GXPg.ttf);
+}
+@font-face {
+  font-family: 'MechaBold';
+  src: url(/src/assets/fonts/MechaBold-j7X0.ttf);
+}
+@font-face {
+  font-family: 'MechaCondensed';
+  src: url(/src/assets/fonts/MechaCondensed-zmn4.ttf);
+}
+@font-face {
+  font-family: 'MechaCondensedBold';
+  src: url(/src/assets/fonts/MechaCondensedBold-5mpV.ttf);
+}
+@font-face {
+  font-family: 'HandmadeSig';
+  src: url(/src/assets/fonts/HandmadeSignature-axXEJ.otf);
+}
+@font-face {
+  font-family: 'ShackleItalic';
+  src: url(/src/assets/fonts/ShackleItalic-DOml1.ttf);
+}
+@font-face {
+  font-family: 'ShackleRegular';
+  src: url(/src/assets/fonts/ShackleRegular-ALvV7.ttf);
+}
 
 body {
   margin: 0;
