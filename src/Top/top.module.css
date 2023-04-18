@@ -1,5 +1,4 @@
 .top {
-    background: rgba(0, 0, 70, .1);
     height:3rem;
     width: 100%;
 }
@@ -9,4 +8,14 @@
     margin-left: 1rem;
     font-size: 2rem;
     color: orangered;
+}
+
+.logo {
+    float: left;
+    margin-left: .25rem;
+}
+
+.logo img {
+    height: 2.7rem;
+    width: 2.8rem;
 }

@@ -11,10 +11,12 @@ class Main extends Component {
         return (
             <React.Fragment>
                 <div className={`${classes.main} ${classes.scrollable} ${classes.noScrollbars}`}>
-                <Routes><Route exact path="/" element={ <Home /> } /></Routes>
-                <Routes><Route path="/userSettings" element={ <UserSettings /> } /></Routes>
-                <Routes><Route path="/friendSettings" element={ <FriendSettings /> } /></Routes>
-                <Routes><Route path="/groupSettings" element={ <GroupSettings /> } /></Routes>
+                    <Routes>
+                        <Route exact path="/" element={ <Home /> } />
+                        <Route path="/UserSettings/userSettings" element={ <UserSettings /> } />
+                        <Route path="/FriendSettings/friendSettings" element={ <FriendSettings /> } />
+                        <Route path="/GroupSettings/groupSettings" element={ <GroupSettings /> } />
+                    </Routes>
                 </div>
             </React.Fragment>
         );

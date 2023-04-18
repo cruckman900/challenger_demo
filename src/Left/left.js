@@ -24,13 +24,13 @@ const Left = () => {
                 <Nav.Link as={Link} to={"/"} eventKey="/" href="#">
                     <FontAwesomeIcon className={classes.menuButton} icon={myIcons['house']}></FontAwesomeIcon>
                 </Nav.Link>
-                <Nav.Link as={Link} to={"/userSettings"} eventKey="/userSettings" href="#UserSettings">
+                <Nav.Link as={Link} to={"/UserSettings/userSettings"} eventKey="/UserSettings/userSettings" href="#userSettings">
                     <FontAwesomeIcon className={classes.menuButton} icon={myIcons['userGear']}></FontAwesomeIcon>
                 </Nav.Link>
-                <Nav.Link as={Link} to={"/friendSettings"} eventKey="/friendSettings" href="/friendSettings">
+                <Nav.Link as={Link} to={"/FriendSettings/friendSettings"} eventKey="/FriendSettings/friendSettings" href="#friendSettings">
                     <FontAwesomeIcon className={classes.menuButton} icon={myIcons['usersGear']}></FontAwesomeIcon>
                 </Nav.Link>
-                <Nav.Link as={Link} to={"/groupSettings"} eventKey="/groupSettings" href="/GroupSettings">
+                <Nav.Link as={Link} to={"/GroupSettings/groupSettings"} eventKey="/GroupSettings/groupSettings" href="#groupSettings">
                     <FontAwesomeIcon className={classes.menuButton} icon={myIcons['peopleRoof']}></FontAwesomeIcon>
                 </Nav.Link>
             </Nav>
