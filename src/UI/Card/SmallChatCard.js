@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 
 import { Row, Col, Container } from 'react-bootstrap';
 import classes from './SmallChatCard.module.css';
+import fonts from '../../fonts.module.css';
 
 function SmallChatCard(props) {
     const [isOpened, setIsOpened] = useState('none');
@@ -16,7 +17,7 @@ function SmallChatCard(props) {
 
     return (
         <Container className={`${classes.card} ${isOpened === 'none' && classes.minified}`}>
-            <Row className={`${classes.header} ${classes.newMessage}`} onClick={() => toggleIsOpened()}><Col>{props.header}</Col></Row>
+            <Row className={`${classes.header} ${fonts.ShackleItalic}`} onClick={() => toggleIsOpened()}><Col>{props.header}</Col></Row>
             <Row style={{display: isOpened}}><Col>{props.children}</Col></Row>
         </Container>
     );

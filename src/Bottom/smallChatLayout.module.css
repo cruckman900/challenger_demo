@@ -4,7 +4,7 @@
 
 .chatterImage {
     padding: 8px;
-    background: rgba(255, 255, 255, .25);
+    background: rgba(255, 69, 0, .1);
     border-radius: 8px;
     width: 3rem;
 }
@@ -16,5 +16,6 @@
 }
 
 .infoText {
+    font-family: 'ShackleRegular';
     font-weight: 400;
 }
