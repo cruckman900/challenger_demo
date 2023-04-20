@@ -45,3 +45,16 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.nav-link, .nav-link.hover {
+  display: inline-block;
+  height: 4rem;
+  width: 4rem;
+  background: transparent;
+}
+
+.nav-link.active {
+  border-radius: 12px;
+  background: rgba(255, 69, 0, .2);
+  text-decoration: none;
+}

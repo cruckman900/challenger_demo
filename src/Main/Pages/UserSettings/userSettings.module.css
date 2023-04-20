@@ -1,3 +1,18 @@
-.userSettings {
-    color: orangered;
+.body {
+    display: inline-block;
+}
+
+.formRow {
+    clear: both;
+    display: block;
+}
+
+.labelText {
+    width: 5rem;
+}
+
+.label {
+    float: left;
+    margin: .25rem;    
+    width: 5rem;
 }

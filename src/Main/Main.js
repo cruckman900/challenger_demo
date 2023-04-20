@@ -9,16 +9,14 @@ import classes from './main.module.css';
 class Main extends Component {
     render() {
         return (
-            <React.Fragment>
-                <div className={`${classes.main} ${classes.scrollable} ${classes.noScrollbars}`}>
-                    <Routes>
-                        <Route exact path="/" element={ <Home /> } />
-                        <Route path="/UserSettings/userSettings" element={ <UserSettings /> } />
-                        <Route path="/FriendSettings/friendSettings" element={ <FriendSettings /> } />
-                        <Route path="/GroupSettings/groupSettings" element={ <GroupSettings /> } />
-                    </Routes>
-                </div>
-            </React.Fragment>
+            <div className={`${classes.main} ${classes.scrollable} ${classes.noScrollbars}`}>
+                <Routes>
+                    <Route exact path="/" element={ <Home /> } />
+                    <Route path="/userSettings" element={ <UserSettings /> } />
+                    <Route path="/friendSettings" element={ <FriendSettings /> } />
+                    <Route path="/groupSettings" element={ <GroupSettings /> } />
+                </Routes>
+            </div>
         );
     }
 }

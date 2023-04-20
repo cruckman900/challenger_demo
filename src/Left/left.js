@@ -1,5 +1,5 @@
 import React from "react";
-import { Nav } from "react-bootstrap";
+import { Navbar, Nav } from "react-bootstrap";
 import { Link, useLocation } from 'react-router-dom';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { 
@@ -20,20 +20,22 @@ const Left = () => {
     
     return (
         <React.Fragment>
-            <Nav className={classes.left} defaultActiveKey="#" activeKey={location.pathname} justify>
-                <Nav.Link as={Link} to={"/"} eventKey="/" href="#">
-                    <FontAwesomeIcon className={classes.menuButton} icon={myIcons['house']}></FontAwesomeIcon>
-                </Nav.Link>
-                <Nav.Link as={Link} to={"/UserSettings/userSettings"} eventKey="/UserSettings/userSettings" href="#userSettings">
-                    <FontAwesomeIcon className={classes.menuButton} icon={myIcons['userGear']}></FontAwesomeIcon>
-                </Nav.Link>
-                <Nav.Link as={Link} to={"/FriendSettings/friendSettings"} eventKey="/FriendSettings/friendSettings" href="#friendSettings">
-                    <FontAwesomeIcon className={classes.menuButton} icon={myIcons['usersGear']}></FontAwesomeIcon>
-                </Nav.Link>
-                <Nav.Link as={Link} to={"/GroupSettings/groupSettings"} eventKey="/GroupSettings/groupSettings" href="#groupSettings">
-                    <FontAwesomeIcon className={classes.menuButton} icon={myIcons['peopleRoof']}></FontAwesomeIcon>
-                </Nav.Link>
-            </Nav>
+            <Navbar key="left">
+                <Nav className={classes.left} defaultActiveKey="#" activeKey={location.pathname}>
+                    <Nav.Link as={Link} to={"/"} eventKey="/" href="#">
+                        <p className={classes.menuButtonBackground}><FontAwesomeIcon className={classes.menuButton} icon={myIcons['house']} /></p>
+                    </Nav.Link>
+                    <Nav.Link as={Link} to={"/userSettings"} eventKey="/userSettings" href="#userSettings">
+                        <p className={classes.menuButtonBackground}><FontAwesomeIcon className={classes.menuButton} icon={myIcons['userGear']} /></p>
+                    </Nav.Link>
+                    <Nav.Link as={Link} to={"/friendSettings"} eventKey="/friendSettings" href="#friendSettings">
+                        <p className={classes.menuButtonBackground}><FontAwesomeIcon className={classes.menuButton} icon={myIcons['usersGear']} /></p>
+                    </Nav.Link>
+                    <Nav.Link as={Link} to={"/groupSettings"} eventKey="/groupSettings" href="#groupSettings">
+                        <p className={classes.menuButtonBackground}><FontAwesomeIcon className={classes.menuButton} icon={myIcons['peopleRoof']} /></p>
+                    </Nav.Link>
+                </Nav>
+            </Navbar>
         </React.Fragment>
     );
 }
