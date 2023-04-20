@@ -16,7 +16,7 @@ export default function userSettings(props) {
                     <LeftLabelInput labelClassName={classes.labelText} inputClassName={classes.inputStyle} labelText="Last Name" inputType="text">{props.lastName}</LeftLabelInput>
                 </div>
                 <div className={classes.formRow}>
-                    <Label className={classes.label} text="Age" />
+                    <Label className={classes.label} text="Age Range" />
                     <LeftLabelInput labelClassName={classes.labelTextShort} labelText="Under 18" inputType="radio" name="age" value="under18" checked="checked"></LeftLabelInput>
                     <LeftLabelInput labelClassName={classes.labelTextShort} labelText="18 or Older" inputType="radio" name="age" value="18orOlder"></LeftLabelInput>
                 </div>
