@@ -21,7 +21,7 @@ function App() {
           <Col><Main /></Col>
           <Col><Right /></Col>
         </Row>
-        <Row><Col><Bottom /></Col></Row>
+        {/* <Row><Col><Bottom /></Col></Row> */}
         <Row><Col><Footer /></Col></Row>
       </div>
       <div className={classes.Portrait}>
