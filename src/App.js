@@ -7,6 +7,7 @@ import Main from './Main/Main';
 import Right from './Right/right';
 import Bottom from './Bottom/bottom';
 import Footer from './Footer/footer';
+import Portrait from './Portrait/Portrait';
 import classes from './App.module.css';
 
 function App() {
@@ -23,10 +24,12 @@ function App() {
         <Row><Col><Bottom /></Col></Row>
         <Row><Col><Footer /></Col></Row>
       </div>
-      {/* <div className={classes.Portrait}>
+      <div className={classes.Portrait}>
         <Row><Col><Header /></Col></Row>
         <Row><Col><Top /></Col></Row>
-      </div> */}
+        <Row><Col><Portrait /></Col></Row>
+        <Row><Col><Footer /></Col></Row>
+      </div>
     </Fragment>
   );
 }

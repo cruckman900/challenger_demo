@@ -10,7 +10,7 @@
   display: flex;
 }
 
-@media screen and (max-width: 767px) and (orientation: portrait) {
+/* @media screen and (max-width: 767px) and (orientation: portrait) {
   .App {
     transform: rotate(-90deg);
     transform-origin: left top;
@@ -21,9 +21,9 @@
     top: 100%;
     left: 0;
   }
-}
+} */
 
-/* @media only screen and (orientation:portrait) {
+@media only screen and (orientation:portrait) {
   .App {
     display: none;
   }
@@ -33,4 +33,4 @@
     display: block;
     height: 100vh;
   }
-} */
+}
