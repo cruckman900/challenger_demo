@@ -8,13 +8,17 @@
 }
 
 .labelText {
-    width: 5rem;
+    width: 8rem;
+}
+
+.labelTextShort {
+    width: 3rem;
 }
 
 .label {
     float: left;
     margin: .25rem;    
-    width: 5rem;
+    width: 8rem;
 }
 
 .inputStyle {

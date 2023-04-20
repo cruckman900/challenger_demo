@@ -1,5 +1,6 @@
 import React from "react";
 import DefaultPage from "../../../UI/DefaultPage/DefaultPage";
+import BodyHeader from "../../../UI/BodyHeader/BodyHeader";
 import classes from './home.module.css';
 import fonts from '../../../fonts.module.css';
 
@@ -14,7 +15,15 @@ export default function home() {
                 </div>
             </DefaultPage>
             <DefaultPage headerText="New Features">
-                <div className={`${classes.updateDate} ${fonts.ShackleRegular}`}>4/17/2023</div>
+                <BodyHeader>4/20/2023 (just 'cuz it's 4/20?)</BodyHeader>
+                <div>
+                    Added a cheap looking logo and navigation buttons on the left side are now hilighting when active.
+                </div>
+                <div>
+                    Beginning to work on the User Settings section of the site.  I'm not wiring them up to any kind of service or implementing any kind of
+                    handling for the inputs &mdash; Just Layout!
+                </div>
+                <BodyHeader>4/17/2023</BodyHeader>
                 <div>
                     Not very many features here yet.  I am in the process of creating a skeleton of features that will currently not be connected to any kind of 
                     backend service.  So, while I am building, you will be able to see what things will look like when it is all finished, you just won't be 
