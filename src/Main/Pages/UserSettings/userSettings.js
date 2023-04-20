@@ -10,8 +10,8 @@ export default function userSettings(props) {
         <DefaultPage headerText="User Settings">
             <Container className={classes.body}>
                 <div className={classes.formRow}>
-                    <LeftLabelInput labelClassName={classes.labelText} labelText="First Name" inputType="text">{props.firstName}</LeftLabelInput>
-                    <LeftLabelInput labelText="Last Name" inputType="text">{props.lastName}</LeftLabelInput>
+                    <LeftLabelInput labelClassName={classes.labelText} inputClassName={classes.inputStyle} labelText="First Name" inputType="text">{props.firstName}</LeftLabelInput>
+                    <LeftLabelInput labelClassName={classes.labelText} inputClassName={classes.inputStyle} labelText="Last Name" inputType="text">{props.lastName}</LeftLabelInput>
                 </div>
                 <div className={classes.formRow}>
                     <Label className={classes.label} text="Age" />
@@ -19,10 +19,10 @@ export default function userSettings(props) {
                     <LeftLabelInput labelClassName={classes.labelText} labelText="18 or Older" inputType="radio" name="age" value="18orOlder"></LeftLabelInput>
                 </div>
                 <div className={classes.formRow}>
-                    <LeftLabelInput labelClassName={classes.labelText} labelText="Username" inputType="text">{props.username}</LeftLabelInput>
+                    <LeftLabelInput labelClassName={classes.labelText} inputClassName={classes.inputStyle} labelText="Username" inputType="text">{props.username}</LeftLabelInput>
                 </div>
                 <div className={classes.formRow}>
-                    <LeftLabelInput labelClassName={classes.labelText} labelText="Password" inputType="password">{props.password}</LeftLabelInput>
+                    <LeftLabelInput labelClassName={classes.labelText} inputClassName={classes.inputStyle} labelText="Password" inputType="password">{props.password}</LeftLabelInput>
                 </div>
             </Container>
         </DefaultPage>
