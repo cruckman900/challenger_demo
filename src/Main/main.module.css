@@ -19,3 +19,14 @@
 .noScrollbars::-webkit-scrollbar {
     display: none;
 }
+
+@media screen and (max-width: 767px) and (orientation: portrait) {
+    .main {
+        position: absolute;
+        overflow-x: hidden;
+        top: 4.2rem;
+        left: 4rem;
+        width: calc(100% - 24rem);
+        height: 100vw;
+    }
+}

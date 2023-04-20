@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import { Row, Col } from 'react-bootstrap';
 import Header from './Header/header';
 import Top from './Top/top';
@@ -11,17 +11,23 @@ import classes from './App.module.css';
 
 function App() {
   return (
-    <div className={classes.App}>
-      <Row><Col><Header /></Col></Row>
-      <Row><Col><Top /></Col></Row>
-      <Row className={classes.horizRowContainer}>
-        <Col><Left /></Col>
-        <Col><Main /></Col>
-        <Col><Right /></Col>
-      </Row>
-      <Row><Col><Bottom /></Col></Row>
-      <Row><Col><Footer /></Col></Row>
-    </div>
+    <Fragment>
+      <div className={classes.App}>
+        <Row><Col><Header /></Col></Row>
+        <Row><Col><Top /></Col></Row>
+        <Row className={classes.horizRowContainer}>
+          <Col><Left /></Col>
+          <Col><Main /></Col>
+          <Col><Right /></Col>
+        </Row>
+        <Row><Col><Bottom /></Col></Row>
+        <Row><Col><Footer /></Col></Row>
+      </div>
+      {/* <div className={classes.Portrait}>
+        <Row><Col><Header /></Col></Row>
+        <Row><Col><Top /></Col></Row>
+      </div> */}
+    </Fragment>
   );
 }
 

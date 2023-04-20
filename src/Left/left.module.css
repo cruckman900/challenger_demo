@@ -5,11 +5,6 @@
     height: calc(100vh - 5.4rem);
 }
 
-/* .menuButtonBackground {
-    display: inline-block;
-    width: 4rem;
-} */
-
 .menuButton {
     position: -webkit-sticky;
     position: sticky;

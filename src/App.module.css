@@ -10,9 +10,27 @@
   display: flex;
 }
 
-@media only screen and (orientation:portrait) {
-  body {
-    height: 100vw;
-    transform: rotate(90deg);
+@media screen and (max-width: 767px) and (orientation: portrait) {
+  .App {
+    transform: rotate(-90deg);
+    transform-origin: left top;
+    width: 100vh;
+    height: calc(100% - 14.5rem);
+    overflow-x: hidden;
+    position: absolute;
+    top: 100%;
+    left: 0;
   }
 }
+
+/* @media only screen and (orientation:portrait) {
+  .App {
+    display: none;
+  }
+
+  .Portrait {
+    background: linear-gradient(180deg, #000000, #4300e0 80%, #000000 );
+    display: block;
+    height: 100vh;
+  }
+} */
