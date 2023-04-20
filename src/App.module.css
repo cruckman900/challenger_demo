@@ -25,6 +25,16 @@
 
 @media only screen and (orientation:portrait) {
   .App {
+    display: block;
+  }
+
+  .Portrait {
+    display: none;
+  }
+}
+
+@media only screen and (orientation:portrait) {
+  .App {
     display: none;
   }
 
