@@ -2,3 +2,21 @@
     float: left;
     margin: .25rem;
 }
+
+.Input {
+    border: none;
+    padding: .25rem;
+    background: rgba(255, 255, 255, .9);
+}
+
+.Input:focus {
+    background: rgba(200, 200, 255, 1);
+}
+
+.InputError {
+    background: rgba(255, 175, 175, .8);
+}
+
+.InputValid {
+    background: rgba(175, 255, 175, .8);
+}
