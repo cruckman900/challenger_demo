@@ -21,8 +21,8 @@ const Left = () => {
     
     return (
         <React.Fragment>
-            <Navbar key="left">
-                <Nav className={classes.left} defaultActiveKey="#" activeKey={location.pathname}>
+            <Navbar key="left" className={`${classes.left} ${classes.scrollable} ${classes.noScrollbars}`}>
+                <Nav defaultActiveKey="#" activeKey={location.pathname}>
                     <Nav.Link as={Link} to={"/"} eventKey="/" href="#">
                         <p className={classes.menuButtonBackground}><FontAwesomeIcon className={classes.menuButton} icon={myIcons['house']} /></p>
                     </Nav.Link>

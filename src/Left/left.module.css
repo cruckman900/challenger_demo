@@ -19,3 +19,16 @@
     background: transparent;
     color: rgba(255, 69, 0, 1);
 }
+
+.scrollable {
+    display: inline-block;
+    overflow: scroll;
+}
+
+.noScrollbars {
+    -ms-overflow-style: none;
+}
+
+.noScrollbars::-webkit-scrollbar {
+    display: none;
+}
