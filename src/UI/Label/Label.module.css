@@ -1,5 +1,6 @@
 .label {
     /* font-weight: bold; */
+    font-family: "ShackleRegular";
     font-size: .8rem;
     padding: 4px;
 }
