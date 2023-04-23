@@ -3,7 +3,7 @@ import { Navbar, Nav } from "react-bootstrap";
 import { Link, useLocation } from 'react-router-dom';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { 
-    faHouse, faUserGear, faUsersGear, faPeopleRoof,
+    faHouse, faUserGear, faUsersGear, faPeopleGroup, faPeopleRoof,
 } from '@fortawesome/free-solid-svg-icons';
 import classes from './left.module.css';
 
@@ -15,6 +15,7 @@ const Left = () => {
         house: faHouse,
         userGear: faUserGear,
         usersGear: faUsersGear,
+        peopleGroup: faPeopleGroup,
         peopleRoof: faPeopleRoof,
     }
     
@@ -32,6 +33,9 @@ const Left = () => {
                         <p className={classes.menuButtonBackground}><FontAwesomeIcon className={classes.menuButton} icon={myIcons['usersGear']} /></p>
                     </Nav.Link>
                     <Nav.Link as={Link} to={"/groupSettings"} eventKey="/groupSettings" href="#groupSettings">
+                        <p className={classes.menuButtonBackground}><FontAwesomeIcon className={classes.menuButton} icon={myIcons['peopleGroup']} /></p>
+                    </Nav.Link>
+                    <Nav.Link as={Link} to={"/communitySettings"} eventKey="/communitySettings" href="#communitySettings">
                         <p className={classes.menuButtonBackground}><FontAwesomeIcon className={classes.menuButton} icon={myIcons['peopleRoof']} /></p>
                     </Nav.Link>
                 </Nav>

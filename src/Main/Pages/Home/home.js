@@ -16,6 +16,10 @@ export default function home() {
             </DefaultPage>
             <DefaultPage headerText="New Features and Bug Fixes Log">
                 <Card headerText="April 2023">
+                    <BodyHeader>4/23/2023</BodyHeader>
+                    <div className={classes.updateBody}>
+                        Changed the background color for Card and Default Page to a black color.  Added CommunitySettings stub.
+                    </div>
                     <BodyHeader>4/22/2023</BodyHeader>
                     <div className={classes.updateBody}>
                         Added an accordion view on the right for friends, groups and communities.  Can't get the accordion to work properly yet.  Changed from
