@@ -3,26 +3,6 @@
   src: url(/src/assets/fonts/KochireRegularl.otf);
 }
 @font-face {
-  font-family: 'MechaGXPg';
-  src: url(/src/assets/fonts/Mecha-GXPg.ttf);
-}
-@font-face {
-  font-family: 'MechaBold';
-  src: url(/src/assets/fonts/MechaBold-j7X0.ttf);
-}
-@font-face {
-  font-family: 'MechaCondensed';
-  src: url(/src/assets/fonts/MechaCondensed-zmn4.ttf);
-}
-@font-face {
-  font-family: 'MechaCondensedBold';
-  src: url(/src/assets/fonts/MechaCondensedBold-5mpV.ttf);
-}
-@font-face {
-  font-family: 'HandmadeSig';
-  src: url(/src/assets/fonts/HandmadeSignature-axXEJ.otf);
-}
-@font-face {
   font-family: 'ShackleItalic';
   src: url(/src/assets/fonts/ShackleItalic-DOml1.ttf);
 }
@@ -48,13 +28,13 @@ code {
 
 .nav-link, .nav-link.hover {
   display: inline-block;
-  height: 4rem;
-  width: 4rem;
+  height: 3rem;
+  width: 3rem;
   background: transparent;
 }
 
 .nav-link.active {
-  border-radius: 12px;
+  border-radius: 8px;
   background: rgba(255, 69, 0, .2);
   text-decoration: none;
 }

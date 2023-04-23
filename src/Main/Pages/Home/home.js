@@ -18,7 +18,8 @@ export default function home() {
                 <Card headerText="April 2023">
                     <BodyHeader>4/23/2023</BodyHeader>
                     <div className={classes.updateBody}>
-                        Changed the background color for Card and Default Page to a black color.  Added CommunitySettings stub.
+                        Changed the background color for Card and Default Page to a black color.  Added CommunitySettings stub.  Added bgcolor for inputs - normal,
+                        focused, valid, and error states.
                     </div>
                     <BodyHeader>4/22/2023</BodyHeader>
                     <div className={classes.updateBody}>
