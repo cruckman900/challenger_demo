@@ -131,6 +131,75 @@ export default function userSettings(props) {
                         <Label className={classes.label} text="Describe Yourself" />
                         <textarea name="txtDesc" className={classes.textarea} rows={5} cols={40} readOnly={false} disabled={false}>{props.userDesc}</textarea>
                     </div>
+                    <BodyHeader>Favorite Types of Food</BodyHeader>
+                    <div className={classes.formRow}>
+                        <LeftLabelInput name="chkCuisineType" inputType="checkbox"
+                            required={false}
+                            labelClassName={classes.labelText}
+                            inputClassName={classes.smallInput}
+                            labelText="American?"
+                        >
+                            {props.chkAmerican}
+                        </LeftLabelInput>
+                        <LeftLabelInput name="chkCuisineType" inputType="checkbox"
+                            required={false}
+                            labelClassName={classes.labelText}
+                            inputClassName={classes.smallInput}
+                            labelText="Latin/Mexican"
+                        >
+                            {props.chkMexican}
+                        </LeftLabelInput>
+                        <LeftLabelInput name="chkCuisineType" inputType="checkbox"
+                            required={false}
+                            labelClassName={classes.labelText}
+                            inputClassName={classes.smallInput}
+                            labelText="Slavic"
+                        >
+                            {props.chkSlavic}
+                        </LeftLabelInput>
+                        <LeftLabelInput name="chkCuisineType" inputType="checkbox"
+                            required={false}
+                            labelClassName={classes.labelText}
+                            inputClassName={classes.smallInput}
+                            labelText="Mediterranian"
+                        >
+                            {props.chkMediterranian}
+                        </LeftLabelInput>
+                    </div>
+                    <div className={classes.formRow}>
+                        <LeftLabelInput name="chkCuisineType" inputType="checkbox"
+                            required={false}
+                            labelClassName={classes.labelText}
+                            inputClassName={classes.smallInput}
+                            labelText="Asian"
+                        >
+                            {props.chkAsian}
+                        </LeftLabelInput>
+                        <LeftLabelInput name="chkCuisineType" inputType="checkbox"
+                            required={false}
+                            labelClassName={classes.labelText}
+                            inputClassName={classes.smallInput}
+                            labelText="European"
+                        >
+                            {props.chkEuropean}
+                        </LeftLabelInput>
+                        <LeftLabelInput name="chkCuisineType" inputType="checkbox"
+                            required={false}
+                            labelClassName={classes.labelText}
+                            inputClassName={classes.smallInput}
+                            labelText="I only like cookies"
+                        >
+                            {props.chkCookies}
+                        </LeftLabelInput>
+                        <LeftLabelInput name="chkCuisineType" inputType="checkbox"
+                            required={false}
+                            labelClassName={classes.labelText}
+                            inputClassName={classes.smallInput}
+                            labelText="Other"
+                        >
+                            {props.chkFoodOther}
+                        </LeftLabelInput>
+                    </div>
                     <BodyHeader>Favorite Movie/TV/Literature Types</BodyHeader>
                     <div className={classes.formRow}>
                         <LeftLabelInput name="chkLiteratureType" inputType="checkbox"
@@ -165,6 +234,8 @@ export default function userSettings(props) {
                         >
                             {props.chkMystery}
                         </LeftLabelInput>
+                    </div>
+                    <div className={classes.formRow}>
                         <LeftLabelInput name="chkLiteratureType" inputType="checkbox"
                             required={false}
                             labelClassName={classes.labelText}
@@ -173,8 +244,6 @@ export default function userSettings(props) {
                             >
                             {props.chkSciFi}
                         </LeftLabelInput>
-                    </div>
-                    <div className={classes.formRow}>
                         <LeftLabelInput name="chkLiteratureType" inputType="checkbox"
                             required={false}
                             labelClassName={classes.labelText}
@@ -199,6 +268,8 @@ export default function userSettings(props) {
                         >
                             {props.chkRomance}
                         </LeftLabelInput>
+                    </div>
+                    <div className={classes.formRow}>
                         <LeftLabelInput name="chkLiteratureType" inputType="checkbox"
                             required={false}
                             labelClassName={classes.labelText}
@@ -215,8 +286,6 @@ export default function userSettings(props) {
                         >
                             {props.chkNature}
                         </LeftLabelInput>
-                    </div>
-                    <div className={classes.formRow}>
                         <LeftLabelInput name="chkLiteratureType" inputType="checkbox"
                             required={false}
                             labelClassName={classes.labelText}
@@ -287,6 +356,8 @@ export default function userSettings(props) {
                         >
                             {props.chkRegae}
                         </LeftLabelInput>
+                    </div>
+                    <div className={classes.formRow}>
                         <LeftLabelInput name="chkMusicType" inputType="checkbox"
                             required={false}
                             labelClassName={classes.labelText}
@@ -295,8 +366,6 @@ export default function userSettings(props) {
                             >
                             {props.chkRock}
                         </LeftLabelInput>
-                    </div>
-                    <div className={classes.formRow}>
                         <LeftLabelInput name="chkMusicType" inputType="checkbox"
                             required={false}
                             labelClassName={classes.labelText}
@@ -321,6 +390,8 @@ export default function userSettings(props) {
                         >
                             {props.chkRap}
                         </LeftLabelInput>
+                    </div>
+                    <div className={classes.formRow}>
                         <LeftLabelInput name="chkMusicType" inputType="checkbox"
                             required={false}
                             labelClassName={classes.labelText}
@@ -375,6 +446,8 @@ export default function userSettings(props) {
                         >
                             {props.chkMusicalInst}
                         </LeftLabelInput>
+                    </div>
+                    <div className={classes.formRow}>
                         <LeftLabelInput name="chkActivities" inputType="checkbox"
                             required={false}
                             labelClassName={classes.labelText}
@@ -383,9 +456,7 @@ export default function userSettings(props) {
                         >
                             {props.chkBarGames}
                         </LeftLabelInput>
-                    </div>
-                    <div className={classes.formRow}>
-                    <LeftLabelInput name="chkActivities" inputType="checkbox"
+                        <LeftLabelInput name="chkActivities" inputType="checkbox"
                             required={false}
                             labelClassName={classes.labelText}
                             inputClassName={classes.smallInput}
@@ -409,6 +480,8 @@ export default function userSettings(props) {
                         >
                             {props.chkWalkJog}
                         </LeftLabelInput>
+                    </div>
+                    <div className={classes.formRow}>
                         <LeftLabelInput name="chkActivities" inputType="checkbox"
                             required={false}
                             labelClassName={classes.labelText}
@@ -425,9 +498,7 @@ export default function userSettings(props) {
                         >
                             {props.chkArcheryGuns}
                         </LeftLabelInput>
-                    </div>
-                    <div className={classes.formRow}>
-                    <LeftLabelInput name="chkActivities" inputType="checkbox"
+                        <LeftLabelInput name="chkActivities" inputType="checkbox"
                             required={false}
                             labelClassName={classes.labelText}
                             inputClassName={classes.smallInput}
@@ -443,6 +514,8 @@ export default function userSettings(props) {
                         >
                             {props.chkBarsClubs}
                         </LeftLabelInput>
+                    </div>
+                    <div className={classes.formRow}>
                         <LeftLabelInput name="chkActivities" inputType="checkbox"
                             required={false}
                             labelClassName={classes.labelText}
@@ -459,8 +532,6 @@ export default function userSettings(props) {
                         >
                             {props.chkMartialArts}
                         </LeftLabelInput>
-                    </div>
-                    <div className={classes.formRow}>
                         <LeftLabelInput name="chkActivities" inputType="checkbox"
                             required={false}
                             labelClassName={classes.labelText}
@@ -469,7 +540,6 @@ export default function userSettings(props) {
                         >
                             {props.chkActivityOther}
                         </LeftLabelInput>
-
                     </div>
 
                     <BodyHeader>&nbsp;</BodyHeader>
