@@ -29,3 +29,7 @@
 .smallInput {
     width: 2rem;
 }
+
+.textarea {
+    margin: .25rem;
+}

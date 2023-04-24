@@ -129,7 +129,7 @@ export default function userSettings(props) {
                 <Container className={classes.body}>
                     <div className={classes.formRow}>
                         <Label className={classes.label} text="Describe Yourself" />
-                        <textarea name="txtDesc" rows={5} cols={40} readOnly={false} disabled={false}>{props.userDesc}</textarea>
+                        <textarea name="txtDesc" className={classes.textarea} rows={5} cols={40} readOnly={false} disabled={false}>{props.userDesc}</textarea>
                     </div>
                     <BodyHeader>Favorite Movie/TV/Literature Types</BodyHeader>
                     <div className={classes.formRow}>
