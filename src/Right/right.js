@@ -13,7 +13,7 @@ function Right() {
                     You can set up a group of friends for communications amongst each other.
                 </Card>
                 <Card headerText="People">
-                    Here will be your individuals (friends, family members, etc.) that you can talk to 1-on-1.
+                    Here will be individuals (friends, family members, etc.) that you can message privately.
                 </Card>
             </div>
         </React.Fragment>

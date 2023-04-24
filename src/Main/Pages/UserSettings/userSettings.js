@@ -478,15 +478,15 @@ export default function userSettings(props) {
                             required={false}
                             labelClassName={classes.labelText}
                             inputClassName={classes.smallInput}
-                            labelText="Bar Games"
+                            labelText="Video Games"
                         >
-                            {props.chkBarGames}
+                            {props.chkVideoGames}
                         </LeftLabelInput>
                         <LeftLabelInput name="chkActivities" inputType="checkbox"
                             required={false}
                             labelClassName={classes.labelText}
                             inputClassName={classes.smallInput}
-                            labelText="Bar Games"
+                            labelText="Billiards or Darts"
                         >
                             {props.chkBarGames}
                         </LeftLabelInput>
