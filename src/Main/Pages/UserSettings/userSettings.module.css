@@ -23,8 +23,7 @@
 }
 
 .inputStyle {
-    min-width: 12rem !important;
-    width: auto !important;
+    width: 12rem;
 }
 
 .smallInput {
@@ -33,4 +32,10 @@
 
 .textarea {
     margin: .25rem;
+}
+
+@media screen and (min-width: 800px) {
+    .inputStyle {
+        width: 20rem;
+    }
 }
