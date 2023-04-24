@@ -129,7 +129,7 @@ export default function userSettings(props) {
                 <Container className={classes.body}>
                     <div className={classes.formRow}>
                         <Label className={classes.label} text="Describe Yourself" />
-                        <textarea name="txtDesc" className={classes.textarea} rows={5} cols={30} readOnly={false} disabled={false}>{props.userDesc}</textarea>
+                        <textarea name="txtDesc" className={classes.textarea} readOnly={false} disabled={false}>{props.userDesc}</textarea>
                     </div>
                     <BodyHeader>Favorite Types of Food</BodyHeader>
                         <div className={classes.formRow}>
@@ -468,7 +468,7 @@ export default function userSettings(props) {
                             required={false}
                             labelClassName={classes.labelText}
                             inputClassName={classes.smallInput}
-                            labelText="Musical Instruments"
+                            labelText="Music Instruments"
                         >
                             {props.chkMusicalInst}
                         </LeftLabelInput>
