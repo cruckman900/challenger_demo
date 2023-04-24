@@ -132,7 +132,7 @@ export default function userSettings(props) {
                         <textarea name="txtDesc" className={classes.textarea} rows={5} cols={40} readOnly={false} disabled={false}>{props.userDesc}</textarea>
                     </div>
                     <BodyHeader>Favorite Types of Food</BodyHeader>
-                    <div className={classes.formRow}>
+                        <div className={classes.formRow}>
                         <LeftLabelInput name="chkCuisineType" inputType="checkbox"
                             required={false}
                             labelClassName={classes.labelText}
@@ -164,6 +164,40 @@ export default function userSettings(props) {
                             labelText="Mediterranian"
                         >
                             {props.chkMediterranian}
+                        </LeftLabelInput>
+                    </div>
+                    <div className={classes.formRow}>
+                        <LeftLabelInput name="chkCuisineType" inputType="checkbox"
+                            required={false}
+                            labelClassName={classes.labelText}
+                            inputClassName={classes.smallInput}
+                            labelText="Italian"
+                        >
+                            {props.chkItalian}
+                        </LeftLabelInput>
+                        <LeftLabelInput name="chkCuisineType" inputType="checkbox"
+                            required={false}
+                            labelClassName={classes.labelText}
+                            inputClassName={classes.smallInput}
+                            labelText="French"
+                        >
+                            {props.chkFrench}
+                        </LeftLabelInput>
+                        <LeftLabelInput name="chkCuisineType" inputType="checkbox"
+                            required={false}
+                            labelClassName={classes.labelText}
+                            inputClassName={classes.smallInput}
+                            labelText="Russian"
+                        >
+                            {props.chkSlavic}
+                        </LeftLabelInput>
+                        <LeftLabelInput name="chkCuisineType" inputType="checkbox"
+                            required={false}
+                            labelClassName={classes.labelText}
+                            inputClassName={classes.smallInput}
+                            labelText="Cajun"
+                        >
+                            {props.chkCajun}
                         </LeftLabelInput>
                     </div>
                     <div className={classes.formRow}>
