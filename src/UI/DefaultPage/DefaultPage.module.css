@@ -16,7 +16,7 @@
     margin-left: .5rem;
     margin-right: .5rem;
     font-family: 'ShackleItalic';
-    font-size: 1.25rem;
+    font-size: 1.5rem;
     font-weight: 400;
     color: rgba(255, 69, 0, 1);
     text-shadow: 3px 3px 3px black;
@@ -29,7 +29,7 @@
     border-bottom-left-radius: 8px;
     border-bottom-right-radius: 8px;
     font-family: 'ShackleRegular';
-    font-size: 1rem;
+    font-size: 1.2rem;
     background: rgba(0, 0, 0, .75);
     color: rgba(255, 69, 0, .8)
 }
