@@ -1,7 +1,3 @@
-.leftLabelInput {
-    white-space: nowrap !important;
-}
-
 .Label, .Input {
     float: left;
     margin: .25rem;

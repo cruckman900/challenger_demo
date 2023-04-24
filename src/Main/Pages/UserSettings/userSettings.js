@@ -568,6 +568,42 @@ export default function userSettings(props) {
                         </LeftLabelInput>
                     </div>
 
+                    <BodyHeader>Technical Aptitude</BodyHeader>
+                    <div className={classes.formRow}>
+                        <LeftLabelInput name="chkTechAptitude" inputType="checkbox"
+                            required={false}
+                            labelClassName={classes.labelText}
+                            inputClassName={classes.smallInput}
+                            labelText="Digital Art/Media or 3D Modelling"
+                        >
+                            {props.chkDigitalMedia}
+                        </LeftLabelInput>
+                        <LeftLabelInput name="chkTechAptitude" inputType="checkbox"
+                            required={false}
+                            labelClassName={classes.labelText}
+                            inputClassName={classes.smallInput}
+                            labelText="Web/Mobile Development"
+                        >
+                            {props.chkSoftwareDevelopment}
+                        </LeftLabelInput>
+                        <LeftLabelInput name="chkTechAptitude" inputType="checkbox"
+                            required={false}
+                            labelClassName={classes.labelText}
+                            inputClassName={classes.smallInput}
+                            labelText="Game Development"
+                        >
+                            {props.chkGameDevelopment}
+                        </LeftLabelInput>
+                        <LeftLabelInput name="chkTechAptitude" inputType="checkbox"
+                            required={false}
+                            labelClassName={classes.labelText}
+                            inputClassName={classes.smallInput}
+                            labelText="Office Software Skills"
+                        >
+                            {props.chkSoftwareSkills}
+                        </LeftLabelInput>
+                    </div>
+
                     <BodyHeader>&nbsp;</BodyHeader>
                     <div className={classes.formRow}>
                         <Button type="submit" name="btnSubmit" value="Submit" />
