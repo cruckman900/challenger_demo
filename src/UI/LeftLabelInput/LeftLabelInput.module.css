@@ -1,3 +1,7 @@
+.leftLabelInput {
+    white-space: nowrap !important;
+}
+
 .Label, .Input {
     float: left;
     margin: .25rem;
@@ -12,6 +16,7 @@
 .Input {
     border: none;
     padding: .25rem;
+    /* width: 95%; */
     margin-right: 1rem;
     background: rgba(255, 255, 255, .9);
 }

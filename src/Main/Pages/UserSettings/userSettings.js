@@ -15,7 +15,7 @@ export default function userSettings(props) {
                 <Container className={classes.body}>
                     <BodyHeader>Account Information</BodyHeader>
                     <div className={classes.formRow}>
-                        <LeftLabelInput name="txtFirstName" inputType="text"
+                        <LeftLabelInput name="txtFirstName" inputType="text" className={classes.leftLabelInput}
                             required={true}
                             labelClassName={classes.labelText}
                             inputClassName={classes.inputStyle}
@@ -23,7 +23,7 @@ export default function userSettings(props) {
                         >
                             {props.firstName}
                         </LeftLabelInput>
-                        <LeftLabelInput name="txtLastName" inputType="text"
+                        <LeftLabelInput name="txtLastName" inputType="text" className={classes.LeftLabelInput}
                             required={true}
                             labelClassName={classes.labelText}
                             inputClassName={classes.inputStyle}
@@ -34,7 +34,7 @@ export default function userSettings(props) {
                     </div>
                     <div className={classes.formRow}>
                         <Label className={classes.label} text="Age Range" />
-                        <LeftLabelInput name="age" inputType="radio"
+                        <LeftLabelInput name="age" inputType="radio" className={classes.LeftLabelInput}
                             required={true}
                             labelClassName={classes.labelTextShort}
                             inputClassName={classes.smallInput}
@@ -42,7 +42,7 @@ export default function userSettings(props) {
                             value="under18"
                             checked="checked"
                         />
-                        <LeftLabelInput name="age" inputType="radio"
+                        <LeftLabelInput name="age" inputType="radio" className={classes.LeftLabelInput}
                             required={true}
                             labelClassName={classes.labelTextShort}
                             inputClassName={classes.smallInput}
@@ -51,7 +51,7 @@ export default function userSettings(props) {
                         />
                     </div>
                     <div className={classes.formRow}>
-                        <LeftLabelInput name="txtEmail" inputType="email"
+                        <LeftLabelInput name="txtEmail" inputType="email" className={classes.LeftLabelInput}
                             required={false}
                             labelClassName={classes.labelText}
                             inputClassName={classes.inputStyle}
@@ -61,17 +61,17 @@ export default function userSettings(props) {
                         </LeftLabelInput>
                     </div>
                     <div className={classes.formRow}>
-                        <LeftLabelInput name="txtUsername" inputType="text"
+                        <LeftLabelInput name="txtUsername" inputType="text" className={classes.LeftLabelInput}
                             required={true}
                             labelClassName={classes.labelText}
                             inputClassName={classes.inputStyle}
-                            labelText="User/Display Name"
+                            labelText="Display/Username"
                         >
                             {props.username}
                         </LeftLabelInput>
                     </div>
                     <div className={classes.formRow}>
-                        <LeftLabelInput name="txtPassword" inputType="password"
+                        <LeftLabelInput name="txtPassword" inputType="password" className={classes.LeftLabelInput}
                             required={true}
                             labelClassName={classes.labelText}
                             inputClassName={classes.inputStyle}
@@ -79,7 +79,7 @@ export default function userSettings(props) {
                         >
                             {props.password}
                         </LeftLabelInput>
-                        <LeftLabelInput name="txtConfirmPassword" inputType="password"
+                        <LeftLabelInput name="txtConfirmPassword" inputType="password" className={classes.LeftLabelInput}
                             required={true}
                             labelClassName={classes.labelText}
                             inputClassName={classes.inputStyle}
@@ -129,11 +129,11 @@ export default function userSettings(props) {
                 <Container className={classes.body}>
                     <div className={classes.formRow}>
                         <Label className={classes.label} text="Describe Yourself" />
-                        <textarea name="txtDesc" className={classes.textarea} rows={5} cols={40} readOnly={false} disabled={false}>{props.userDesc}</textarea>
+                        <textarea name="txtDesc" className={classes.textarea} rows={5} cols={30} readOnly={false} disabled={false}>{props.userDesc}</textarea>
                     </div>
                     <BodyHeader>Favorite Types of Food</BodyHeader>
                         <div className={classes.formRow}>
-                        <LeftLabelInput name="chkCuisineType" inputType="checkbox"
+                        <LeftLabelInput name="chkCuisineType" inputType="checkbox" className={classes.LeftLabelInput}
                             required={false}
                             labelClassName={classes.labelText}
                             inputClassName={classes.smallInput}
@@ -141,7 +141,7 @@ export default function userSettings(props) {
                         >
                             {props.chkAmerican}
                         </LeftLabelInput>
-                        <LeftLabelInput name="chkCuisineType" inputType="checkbox"
+                        <LeftLabelInput name="chkCuisineType" inputType="checkbox" className={classes.LeftLabelInput}
                             required={false}
                             labelClassName={classes.labelText}
                             inputClassName={classes.smallInput}
@@ -149,7 +149,7 @@ export default function userSettings(props) {
                         >
                             {props.chkMexican}
                         </LeftLabelInput>
-                        <LeftLabelInput name="chkCuisineType" inputType="checkbox"
+                        <LeftLabelInput name="chkCuisineType" inputType="checkbox" className={classes.LeftLabelInput}
                             required={false}
                             labelClassName={classes.labelText}
                             inputClassName={classes.smallInput}
@@ -157,7 +157,7 @@ export default function userSettings(props) {
                         >
                             {props.chkSlavic}
                         </LeftLabelInput>
-                        <LeftLabelInput name="chkCuisineType" inputType="checkbox"
+                        <LeftLabelInput name="chkCuisineType" inputType="checkbox" className={classes.LeftLabelInput}
                             required={false}
                             labelClassName={classes.labelText}
                             inputClassName={classes.smallInput}
@@ -167,7 +167,7 @@ export default function userSettings(props) {
                         </LeftLabelInput>
                     </div>
                     <div className={classes.formRow}>
-                        <LeftLabelInput name="chkCuisineType" inputType="checkbox"
+                        <LeftLabelInput name="chkCuisineType" inputType="checkbox" className={classes.LeftLabelInput}
                             required={false}
                             labelClassName={classes.labelText}
                             inputClassName={classes.smallInput}
@@ -342,7 +342,7 @@ export default function userSettings(props) {
                             required={false}
                             labelClassName={classes.labelText}
                             inputClassName={classes.inputStyle}
-                            labelText="Favorite Movie/TV"
+                            labelText="Favorite Video"
                         >
                             {props.txtFavMovieTV}
                         </LeftLabelInput>

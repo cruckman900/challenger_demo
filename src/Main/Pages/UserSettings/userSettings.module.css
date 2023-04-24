@@ -9,7 +9,7 @@
 }
 
 .labelText {
-    width: 8rem;
+    width: 10rem;
 }
 
 .labelTextShort {
@@ -23,7 +23,8 @@
 }
 
 .inputStyle {
-    width: 20rem;
+    min-width: 12rem !important;
+    width: auto !important;
 }
 
 .smallInput {
