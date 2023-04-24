@@ -11,7 +11,7 @@ import { Container } from "react-bootstrap";
 export default function userSettings(props) {
     return (
         <Fragment>
-            <DefaultPage headerText="User Information (required fields are in bold text.)">
+            <DefaultPage headerText="User Information (required fields are in bold.)">
                 <Container className={classes.body}>
                     <BodyHeader>Account Information</BodyHeader>
                     <div className={classes.formRow}>
@@ -52,10 +52,10 @@ export default function userSettings(props) {
                     </div>
                     <div className={classes.formRow}>
                         <LeftLabelInput name="txtEmail" inputType="email"
-                            required={true}
+                            required={false}
                             labelClassName={classes.labelText}
                             inputClassName={classes.inputStyle}
-                            labelText="Email (optional)"
+                            labelText="Email"
                         >
                             {props.email}
                         </LeftLabelInput>
@@ -65,7 +65,7 @@ export default function userSettings(props) {
                             required={true}
                             labelClassName={classes.labelText}
                             inputClassName={classes.inputStyle}
-                            labelText="Username"
+                            labelText="User/Display Name"
                         >
                             {props.username}
                         </LeftLabelInput>
@@ -90,6 +90,7 @@ export default function userSettings(props) {
                     <BodyHeader>Location Information (optional)</BodyHeader>
                     <div className={classes.formRow}>
                         <LeftLabelInput name="txtCity" inputType="text"
+                            required={false}
                             labelClassName={classes.labelText}
                             inputClassName={classes.inputStyle}
                             labelText="City"
@@ -97,6 +98,7 @@ export default function userSettings(props) {
                             {props.city}
                         </LeftLabelInput>
                         <LeftLabelInput name="txtState" inputType="text"
+                            required={false}
                             labelClassName={classes.labelText}
                             inputClassName={classes.inputStyle}
                             labelText="State/Province"
@@ -106,6 +108,7 @@ export default function userSettings(props) {
                     </div>
                     <div className={classes.formRow}>
                         <LeftLabelInput name="txtCountry" inputType="text"
+                            required={false}
                             labelClassName={classes.labelText}
                             inputClassName={classes.inputStyle}
                             labelText="Country"
@@ -123,190 +126,358 @@ export default function userSettings(props) {
             </DefaultPage>
 
             <DefaultPage headerText="User Interests (Optional &mdash; Friend Suggestions will be based on these values.)">
-            <BodyHeader>Favorite Movie/TV/Literature Types</BodyHeader>
-                <div className={classes.formRow}>
-                    <LeftLabelInput name="chkLiteratureType" inputType="checkbox"
-                        labelClassName={classes.labelText}
-                        inputClassName={classes.smallInput}
-                        labelText="History"
-                    >
-                        {props.chkHistory}
-                    </LeftLabelInput>
-                    <LeftLabelInput name="chkLiteratureType" inputType="checkbox"
-                        labelClassName={classes.labelText}
-                        inputClassName={classes.smallInput}
-                        labelText="Religion"
-                    >
-                        {props.chkReligion}
-                    </LeftLabelInput>
-                    <LeftLabelInput name="chkLiteratureType" inputType="checkbox"
-                        labelClassName={classes.labelText}
-                        inputClassName={classes.smallInput}
-                        labelText="Drama"
-                    >
-                        {props.chkDrama}
-                    </LeftLabelInput>
-                    <LeftLabelInput name="chkLiteratureType" inputType="checkbox"
-                        labelClassName={classes.labelText}
-                        inputClassName={classes.smallInput}
-                        labelText="Mystery"
-                    >
-                        {props.chkMystery}
-                    </LeftLabelInput>
-                    <LeftLabelInput name="chkLiteratureType" inputType="checkbox"
-                        labelClassName={classes.labelText}
-                        inputClassName={classes.smallInput}
-                        labelText="Sci-Fi"
+                <Container className={classes.body}>
+                    <BodyHeader>Describe Yourself</BodyHeader>
+                    <div className={classes.formRow}>
+                        <textarea name="txtDesc" rows={5} cols={43} readOnly={false} disabled={false}>{props.userDesc}</textarea>
+                    </div>
+                    <BodyHeader>Favorite Movie/TV/Literature Types</BodyHeader>
+                    <div className={classes.formRow}>
+                        <LeftLabelInput name="chkLiteratureType" inputType="checkbox"
+                            required={false}
+                            labelClassName={classes.labelText}
+                            inputClassName={classes.smallInput}
+                            labelText="History"
                         >
-                        {props.chkSciFi}
-                    </LeftLabelInput>
-                </div>
-                <div className={classes.formRow}>
-                    <LeftLabelInput name="chkLiteratureType" inputType="checkbox"
-                        labelClassName={classes.labelText}
-                        inputClassName={classes.smallInput}
-                        labelText="Suspense/Thriller"
-                    >
-                        {props.chkThriller}
-                    </LeftLabelInput>
-                    <LeftLabelInput name="chkLiteratureType" inputType="checkbox"
-                        labelClassName={classes.labelText}
-                        inputClassName={classes.smallInput}
-                        labelText="Comedy"
-                    >
-                        {props.chkComedy}
-                    </LeftLabelInput>
-                    <LeftLabelInput name="chkLiteratureType" inputType="checkbox"
-                        labelClassName={classes.labelText}
-                        inputClassName={classes.smallInput}
-                        labelText="Romance"
-                    >
-                        {props.chkRomance}
-                    </LeftLabelInput>
-                    <LeftLabelInput name="chkLiteratureType" inputType="checkbox"
-                        labelClassName={classes.labelText}
-                        inputClassName={classes.smallInput}
-                        labelText="Action"
-                    >
-                        {props.chkAction}
-                    </LeftLabelInput>
-                    <LeftLabelInput name="chkLiteratureType" inputType="checkbox"
-                        labelClassName={classes.labelText}
-                        inputClassName={classes.smallInput}
-                        labelText="Nature"
-                    >
-                        {props.chkNature}
-                    </LeftLabelInput>
-                </div>
-                <div className={classes.formRow}>
-                    <LeftLabelInput name="chkLiteratureType" inputType="checkbox"
-                        labelClassName={classes.labelText}
-                        inputClassName={classes.smallInput}
-                        labelText="Other"
-                    >
-                        {props.chkLitOther}
-                    </LeftLabelInput>
-                </div>
-                <div className={classes.formRow}>
-                    <LeftLabelInput name="txtFavBook" inputType="text"
-                        labelClassName={classes.labelText}
-                        inputClassName={classes.inputStyle}
-                        labelText="Favorite Book"
-                    >
-                        {props.txtFavBook}
-                    </LeftLabelInput>
-                    <LeftLabelInput name="txtFavMovieTV" inputType="text"
-                        labelClassName={classes.labelText}
-                        inputClassName={classes.inputStyle}
-                        labelText="Favorite Movie/TV"
-                    >
-                        {props.txtFavMovieTV}
-                    </LeftLabelInput>
-                </div>
-                
-                <BodyHeader>Favorite Music Types</BodyHeader>
-                <div className={classes.formRow}>
-                    <LeftLabelInput name="chkMusicType" inputType="checkbox"
-                        labelClassName={classes.labelText}
-                        inputClassName={classes.smallInput}
-                        labelText="Country"
-                    >
-                        {props.chkCountry}
-                    </LeftLabelInput>
-                    <LeftLabelInput name="chkMusicType" inputType="checkbox"
-                        labelClassName={classes.labelText}
-                        inputClassName={classes.smallInput}
-                        labelText="Jazz"
-                    >
-                        {props.chkJazz}
-                    </LeftLabelInput>
-                    <LeftLabelInput name="chkMusicType" inputType="checkbox"
-                        labelClassName={classes.labelText}
-                        inputClassName={classes.smallInput}
-                        labelText="Pop"
-                    >
-                        {props.chkPop}
-                    </LeftLabelInput>
-                    <LeftLabelInput name="chkMusicType" inputType="checkbox"
-                        labelClassName={classes.labelText}
-                        inputClassName={classes.smallInput}
-                        labelText="Regae"
-                    >
-                        {props.chkRegae}
-                    </LeftLabelInput>
-                    <LeftLabelInput name="chkMusicType" inputType="checkbox"
-                        labelClassName={classes.labelText}
-                        inputClassName={classes.smallInput}
-                        labelText="Rock"
+                            {props.chkHistory}
+                        </LeftLabelInput>
+                        <LeftLabelInput name="chkLiteratureType" inputType="checkbox"
+                            required={false}
+                            labelClassName={classes.labelText}
+                            inputClassName={classes.smallInput}
+                            labelText="Religion"
                         >
-                        {props.chkRock}
-                    </LeftLabelInput>
-                </div>
-                <div className={classes.formRow}>
-                    <LeftLabelInput name="chkMusicType" inputType="checkbox"
-                        labelClassName={classes.labelText}
-                        inputClassName={classes.smallInput}
-                        labelText="Metal"
-                    >
-                        {props.chkMetal}
-                    </LeftLabelInput>
-                    <LeftLabelInput name="chkMusicType" inputType="checkbox"
-                        labelClassName={classes.labelText}
-                        inputClassName={classes.smallInput}
-                        labelText="Folk/Classical"
-                    >
-                        {props.chkClassical}
-                    </LeftLabelInput>
-                    <LeftLabelInput name="chkMusicType" inputType="checkbox"
-                        labelClassName={classes.labelText}
-                        inputClassName={classes.smallInput}
-                        labelText="Rap"
-                    >
-                        {props.chkRap}
-                    </LeftLabelInput>
-                    <LeftLabelInput name="chkMusicType" inputType="checkbox"
-                        labelClassName={classes.labelText}
-                        inputClassName={classes.smallInput}
-                        labelText="Other"
-                    >
-                        {props.chkMusicOther}
-                    </LeftLabelInput>
-                </div>
-                <div className={classes.formRow}>
-                    <LeftLabelInput name="txtFavSong" inputType="text"
-                        labelClassName={classes.labelText}
-                        inputClassName={classes.inputStyle}
-                        labelText="Favorite Song"
-                    >
-                        {props.txtFavSong}
-                    </LeftLabelInput>
-                </div>
+                            {props.chkReligion}
+                        </LeftLabelInput>
+                        <LeftLabelInput name="chkLiteratureType" inputType="checkbox"
+                            required={false}
+                            labelClassName={classes.labelText}
+                            inputClassName={classes.smallInput}
+                            labelText="Drama"
+                        >
+                            {props.chkDrama}
+                        </LeftLabelInput>
+                        <LeftLabelInput name="chkLiteratureType" inputType="checkbox"
+                            required={false}
+                            labelClassName={classes.labelText}
+                            inputClassName={classes.smallInput}
+                            labelText="Mystery"
+                        >
+                            {props.chkMystery}
+                        </LeftLabelInput>
+                        <LeftLabelInput name="chkLiteratureType" inputType="checkbox"
+                            required={false}
+                            labelClassName={classes.labelText}
+                            inputClassName={classes.smallInput}
+                            labelText="Sci-Fi"
+                            >
+                            {props.chkSciFi}
+                        </LeftLabelInput>
+                    </div>
+                    <div className={classes.formRow}>
+                        <LeftLabelInput name="chkLiteratureType" inputType="checkbox"
+                            required={false}
+                            labelClassName={classes.labelText}
+                            inputClassName={classes.smallInput}
+                            labelText="Suspense/Thriller"
+                        >
+                            {props.chkThriller}
+                        </LeftLabelInput>
+                        <LeftLabelInput name="chkLiteratureType" inputType="checkbox"
+                            required={false}
+                            labelClassName={classes.labelText}
+                            inputClassName={classes.smallInput}
+                            labelText="Comedy"
+                        >
+                            {props.chkComedy}
+                        </LeftLabelInput>
+                        <LeftLabelInput name="chkLiteratureType" inputType="checkbox"
+                            required={false}
+                            labelClassName={classes.labelText}
+                            inputClassName={classes.smallInput}
+                            labelText="Romance"
+                        >
+                            {props.chkRomance}
+                        </LeftLabelInput>
+                        <LeftLabelInput name="chkLiteratureType" inputType="checkbox"
+                            required={false}
+                            labelClassName={classes.labelText}
+                            inputClassName={classes.smallInput}
+                            labelText="Action"
+                        >
+                            {props.chkAction}
+                        </LeftLabelInput>
+                        <LeftLabelInput name="chkLiteratureType" inputType="checkbox"
+                            required={false}
+                            labelClassName={classes.labelText}
+                            inputClassName={classes.smallInput}
+                            labelText="Nature"
+                        >
+                            {props.chkNature}
+                        </LeftLabelInput>
+                    </div>
+                    <div className={classes.formRow}>
+                        <LeftLabelInput name="chkLiteratureType" inputType="checkbox"
+                            required={false}
+                            labelClassName={classes.labelText}
+                            inputClassName={classes.smallInput}
+                            labelText="Sports"
+                        >
+                            {props.chkLitSports}
+                        </LeftLabelInput>
+                        <LeftLabelInput name="chkLiteratureType" inputType="checkbox"
+                            required={false}
+                            labelClassName={classes.labelText}
+                            inputClassName={classes.smallInput}
+                            labelText="Other"
+                        >
+                            {props.chkLitOther}
+                        </LeftLabelInput>
+                    </div>
+                    <div className={classes.formRow}>
+                        <LeftLabelInput name="txtFavBook" inputType="text"
+                            required={false}
+                            labelClassName={classes.labelText}
+                            inputClassName={classes.inputStyle}
+                            labelText="Favorite Book"
+                        >
+                            {props.txtFavBook}
+                        </LeftLabelInput>
+                        <LeftLabelInput name="txtFavMovieTV" inputType="text"
+                            required={false}
+                            labelClassName={classes.labelText}
+                            inputClassName={classes.inputStyle}
+                            labelText="Favorite Movie/TV"
+                        >
+                            {props.txtFavMovieTV}
+                        </LeftLabelInput>
+                    </div>
+                    
+                    <BodyHeader>Favorite Music Types</BodyHeader>
+                    <div className={classes.formRow}>
+                        <LeftLabelInput name="chkMusicType" inputType="checkbox"
+                            required={false}
+                            labelClassName={classes.labelText}
+                            inputClassName={classes.smallInput}
+                            labelText="Country"
+                        >
+                            {props.chkCountry}
+                        </LeftLabelInput>
+                        <LeftLabelInput name="chkMusicType" inputType="checkbox"
+                            required={false}
+                            labelClassName={classes.labelText}
+                            inputClassName={classes.smallInput}
+                            labelText="Jazz"
+                        >
+                            {props.chkJazz}
+                        </LeftLabelInput>
+                        <LeftLabelInput name="chkMusicType" inputType="checkbox"
+                            required={false}
+                            labelClassName={classes.labelText}
+                            inputClassName={classes.smallInput}
+                            labelText="Pop"
+                        >
+                            {props.chkPop}
+                        </LeftLabelInput>
+                        <LeftLabelInput name="chkMusicType" inputType="checkbox"
+                            required={false}
+                            labelClassName={classes.labelText}
+                            inputClassName={classes.smallInput}
+                            labelText="Regae"
+                        >
+                            {props.chkRegae}
+                        </LeftLabelInput>
+                        <LeftLabelInput name="chkMusicType" inputType="checkbox"
+                            required={false}
+                            labelClassName={classes.labelText}
+                            inputClassName={classes.smallInput}
+                            labelText="Rock"
+                            >
+                            {props.chkRock}
+                        </LeftLabelInput>
+                    </div>
+                    <div className={classes.formRow}>
+                        <LeftLabelInput name="chkMusicType" inputType="checkbox"
+                            required={false}
+                            labelClassName={classes.labelText}
+                            inputClassName={classes.smallInput}
+                            labelText="Metal"
+                        >
+                            {props.chkMetal}
+                        </LeftLabelInput>
+                        <LeftLabelInput name="chkMusicType" inputType="checkbox"
+                            required={false}
+                            labelClassName={classes.labelText}
+                            inputClassName={classes.smallInput}
+                            labelText="Folk/Classical"
+                        >
+                            {props.chkClassical}
+                        </LeftLabelInput>
+                        <LeftLabelInput name="chkMusicType" inputType="checkbox"
+                            required={false}
+                            labelClassName={classes.labelText}
+                            inputClassName={classes.smallInput}
+                            labelText="Rap"
+                        >
+                            {props.chkRap}
+                        </LeftLabelInput>
+                        <LeftLabelInput name="chkMusicType" inputType="checkbox"
+                            required={false}
+                            labelClassName={classes.labelText}
+                            inputClassName={classes.smallInput}
+                            labelText="Other"
+                        >
+                            {props.chkMusicOther}
+                        </LeftLabelInput>
+                    </div>
+                    <div className={classes.formRow}>
+                        <LeftLabelInput name="txtFavSong" inputType="text"
+                            required={false}
+                            labelClassName={classes.labelText}
+                            inputClassName={classes.inputStyle}
+                            labelText="Favorite Song"
+                        >
+                            {props.txtFavSong}
+                        </LeftLabelInput>
+                    </div>
 
-                <BodyHeader>&nbsp;</BodyHeader>
-                <div className={classes.formRow}>
-                    <Button type="submit" name="btnSubmit" value="Submit" />
-                    <Button type="button" name="btnClear" value="Clear" />
-                </div>
+                    <BodyHeader>Favorite Activities</BodyHeader>
+                    <div className={classes.formRow}>
+                        <LeftLabelInput name="chkActivities" inputType="checkbox"
+                            required={false}
+                            labelClassName={classes.labelText}
+                            inputClassName={classes.smallInput}
+                            labelText="Classic Sports"
+                        >
+                            {props.chkClsSports}
+                        </LeftLabelInput>
+                        <LeftLabelInput name="chkActivities" inputType="checkbox"
+                            required={false}
+                            labelClassName={classes.labelText}
+                            inputClassName={classes.smallInput}
+                            labelText="Boating/Camping"
+                        >
+                            {props.chkBoatCamp}
+                        </LeftLabelInput>
+                        <LeftLabelInput name="chkActivities" inputType="checkbox"
+                            required={false}
+                            labelClassName={classes.labelText}
+                            inputClassName={classes.smallInput}
+                            labelText="Hiking/Climbing"
+                        >
+                            {props.chkHikeClimb}
+                        </LeftLabelInput>
+                        <LeftLabelInput name="chkActivities" inputType="checkbox"
+                            required={false}
+                            labelClassName={classes.labelText}
+                            inputClassName={classes.smallInput}
+                            labelText="Musical Instruments"
+                        >
+                            {props.chkMusicalInst}
+                        </LeftLabelInput>
+                        <LeftLabelInput name="chkActivities" inputType="checkbox"
+                            required={false}
+                            labelClassName={classes.labelText}
+                            inputClassName={classes.smallInput}
+                            labelText="Bar Games"
+                        >
+                            {props.chkBarGames}
+                        </LeftLabelInput>
+                    </div>
+                    <div className={classes.formRow}>
+                    <LeftLabelInput name="chkActivities" inputType="checkbox"
+                            required={false}
+                            labelClassName={classes.labelText}
+                            inputClassName={classes.smallInput}
+                            labelText="Bar Games"
+                        >
+                            {props.chkBarGames}
+                        </LeftLabelInput>
+                        <LeftLabelInput name="chkActivities" inputType="checkbox"
+                            required={false}
+                            labelClassName={classes.labelText}
+                            inputClassName={classes.smallInput}
+                            labelText="Swimming"
+                        >
+                            {props.chkSwimming}
+                        </LeftLabelInput>
+                        <LeftLabelInput name="chkActivities" inputType="checkbox"
+                            required={false}
+                            labelClassName={classes.labelText}
+                            inputClassName={classes.smallInput}
+                            labelText="Walking/Jogging"
+                        >
+                            {props.chkWalkJog}
+                        </LeftLabelInput>
+                        <LeftLabelInput name="chkActivities" inputType="checkbox"
+                            required={false}
+                            labelClassName={classes.labelText}
+                            inputClassName={classes.smallInput}
+                            labelText="Fishing/Hunting"
+                        >
+                            {props.chkFishHunt}
+                        </LeftLabelInput>
+                        <LeftLabelInput name="chkActivities" inputType="checkbox"
+                            required={false}
+                            labelClassName={classes.labelText}
+                            inputClassName={classes.smallInput}
+                            labelText="Archery/Guns"
+                        >
+                            {props.chkArcheryGuns}
+                        </LeftLabelInput>
+                    </div>
+                    <div className={classes.formRow}>
+                    <LeftLabelInput name="chkActivities" inputType="checkbox"
+                            required={false}
+                            labelClassName={classes.labelText}
+                            inputClassName={classes.smallInput}
+                            labelText="Reading/Writing"
+                        >
+                            {props.chkReadingWriting}
+                        </LeftLabelInput>
+                        <LeftLabelInput name="chkActivities" inputType="checkbox"
+                            required={false}
+                            labelClassName={classes.labelText}
+                            inputClassName={classes.smallInput}
+                            labelText="Bars/Clubs"
+                        >
+                            {props.chkBarsClubs}
+                        </LeftLabelInput>
+                        <LeftLabelInput name="chkActivities" inputType="checkbox"
+                            required={false}
+                            labelClassName={classes.labelText}
+                            inputClassName={classes.smallInput}
+                            labelText="Singing/Dancing"
+                        >
+                            {props.chkSingDance}
+                        </LeftLabelInput>
+                        <LeftLabelInput name="chkActivities" inputType="checkbox"
+                            required={false}
+                            labelClassName={classes.labelText}
+                            inputClassName={classes.smallInput}
+                            labelText="Martial Arts"
+                        >
+                            {props.chkMartialArts}
+                        </LeftLabelInput>
+                    </div>
+                    <div className={classes.formRow}>
+                        <LeftLabelInput name="chkActivities" inputType="checkbox"
+                            required={false}
+                            labelClassName={classes.labelText}
+                            inputClassName={classes.smallInput}
+                            labelText="Other"
+                        >
+                            {props.chkActivityOther}
+                        </LeftLabelInput>
+
+                    </div>
+
+                    <BodyHeader>&nbsp;</BodyHeader>
+                    <div className={classes.formRow}>
+                        <Button type="submit" name="btnSubmit" value="Submit" />
+                        <Button type="button" name="btnClear" value="Clear" />
+                    </div>
+                </Container>
            </DefaultPage>
         </Fragment>
     );
