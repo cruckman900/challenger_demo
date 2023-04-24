@@ -127,9 +127,9 @@ export default function userSettings(props) {
 
             <DefaultPage headerText="User Interests (Optional &mdash; Friend Suggestions will be based on these values.)">
                 <Container className={classes.body}>
-                    <BodyHeader>Describe Yourself</BodyHeader>
                     <div className={classes.formRow}>
-                        <textarea name="txtDesc" rows={5} cols={43} readOnly={false} disabled={false}>{props.userDesc}</textarea>
+                        <Label className={classes.label} text="Describe Yourself" />
+                        <textarea name="txtDesc" rows={5} cols={40} readOnly={false} disabled={false}>{props.userDesc}</textarea>
                     </div>
                     <BodyHeader>Favorite Movie/TV/Literature Types</BodyHeader>
                     <div className={classes.formRow}>
