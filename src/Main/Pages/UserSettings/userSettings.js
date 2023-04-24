@@ -11,7 +11,7 @@ import { Container } from "react-bootstrap";
 export default function userSettings(props) {
     return (
         <Fragment>
-            <DefaultPage headerText="User Information (required fields are in bold text.">
+            <DefaultPage headerText="User Information (required fields are in bold text.)">
                 <Container className={classes.body}>
                     <BodyHeader>Account Information</BodyHeader>
                     <div className={classes.formRow}>
@@ -120,17 +120,17 @@ export default function userSettings(props) {
                 </Container>
             </DefaultPage>
 
-            <DefaultPage headerText="User Interests">
+            <DefaultPage headerText="User Interests (Optional &mdash; Friend Suggestions will be based on these values.)">
                 <BodyHeader>Favorite Music Types</BodyHeader>
                 <div className={classes.formRow}>
-                    <LeftLabelInput name="chkMusic" inputType="checkbox"
+                    <LeftLabelInput name="chkMusicType" inputType="checkbox"
                         labelClassName={classes.labelText}
                         inputClassName={classes.inputStyle}
                         labelText="Country"
                     >
                         {props.chkCountry}
                     </LeftLabelInput>
-                    <LeftLabelInput name="chkMusic" inputType="checkbox"
+                    <LeftLabelInput name="chkMusicType" inputType="checkbox"
                         labelClassName={classes.labelText}
                         inputClassName={classes.inputStyle}
                         labelText="Jazz"
@@ -139,14 +139,14 @@ export default function userSettings(props) {
                     </LeftLabelInput>
                 </div>
                 <div className={classes.formRow}>
-                    <LeftLabelInput name="chkMusic" inputType="checkbox"
+                    <LeftLabelInput name="chkMusicType" inputType="checkbox"
                         labelClassName={classes.labelText}
                         inputClassName={classes.inputStyle}
                         labelText="Pop"
                     >
                         {props.chkPop}
                     </LeftLabelInput>
-                    <LeftLabelInput name="chkMusic" inputType="checkbox"
+                    <LeftLabelInput name="chkMusicType" inputType="checkbox"
                         labelClassName={classes.labelText}
                         inputClassName={classes.inputStyle}
                         labelText="Regae"
@@ -155,14 +155,14 @@ export default function userSettings(props) {
                     </LeftLabelInput>
                 </div>
                 <div className={classes.formRow}>
-                    <LeftLabelInput name="chkMusic" inputType="checkbox"
+                    <LeftLabelInput name="chkMusicType" inputType="checkbox"
                         labelClassName={classes.labelText}
                         inputClassName={classes.inputStyle}
                         labelText="Rock"
                     >
                         {props.chkRock}
                     </LeftLabelInput>
-                    <LeftLabelInput name="chkMusic" inputType="checkbox"
+                    <LeftLabelInput name="chkMusicType" inputType="checkbox"
                         labelClassName={classes.labelText}
                         inputClassName={classes.inputStyle}
                         labelText="Metal"
@@ -171,19 +171,28 @@ export default function userSettings(props) {
                     </LeftLabelInput>
                 </div>
                 <div className={classes.formRow}>
-                    <LeftLabelInput name="chkMusic" inputType="checkbox"
+                    <LeftLabelInput name="chkMusicType" inputType="checkbox"
                         labelClassName={classes.labelText}
                         inputClassName={classes.inputStyle}
                         labelText="Folk/Classical"
                     >
                         {props.chkClassical}
                     </LeftLabelInput>
-                    <LeftLabelInput name="chkMusic" inputType="checkbox"
+                    <LeftLabelInput name="chkMusicType" inputType="checkbox"
+                        labelClassName={classes.labelText}
+                        inputClassName={classes.inputStyle}
+                        labelText="Rap"
+                    >
+                        {props.chkRap}
+                    </LeftLabelInput>
+                </div>
+                <div className={classes.formRow}>
+                    <LeftLabelInput name="chkMusicType" inputType="checkbox"
                         labelClassName={classes.labelText}
                         inputClassName={classes.inputStyle}
                         labelText="Other"
                     >
-                        {props.chkRegae}
+                        {props.chkMusicOther}
                     </LeftLabelInput>
                 </div>
                 <div className={classes.formRow}>
@@ -195,7 +204,18 @@ export default function userSettings(props) {
                         {props.txtFavSong}
                     </LeftLabelInput>
                 </div>
-            </DefaultPage>
+
+                <BodyHeader>Favorite Literature Types</BodyHeader>
+                <div className={classes.formRow}>
+                    <LeftLabelInput name="chkLiteratureType" inputType="checkbox"
+                        labelClassName={classes.labelText}
+                        inputClassName={classes.inputStyle}
+                        labelText="Favorite Song"
+                    >
+                        {props.txtFavSong}
+                    </LeftLabelInput>
+                </div>
+           </DefaultPage>
         </Fragment>
     );
 }
