@@ -5,7 +5,7 @@
 .formRow {
     clear: both;
     min-height: 1.5rem;
-    /* display: block; */
+    display: block;
 }
 
 .labelText {
@@ -24,4 +24,8 @@
 
 .inputStyle {
     width: 20rem;
+}
+
+.smallInput {
+    width: 2rem;
 }
