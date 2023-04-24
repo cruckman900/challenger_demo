@@ -4,6 +4,7 @@
 }
 
 .headerText a:link, a:hover, a:visited {
+    font-family: "ShackleRegular";
     color: rgba(255, 69, 0, .8);
     text-decoration: none;
     float: right;
