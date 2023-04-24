@@ -205,14 +205,101 @@ export default function userSettings(props) {
                     </LeftLabelInput>
                 </div>
 
-                <BodyHeader>Favorite Literature Types</BodyHeader>
+                <BodyHeader>Favorite Movie/TV/Literature Types</BodyHeader>
                 <div className={classes.formRow}>
                     <LeftLabelInput name="chkLiteratureType" inputType="checkbox"
                         labelClassName={classes.labelText}
                         inputClassName={classes.inputStyle}
-                        labelText="Favorite Song"
+                        labelText="History"
                     >
-                        {props.txtFavSong}
+                        {props.chkHistory}
+                    </LeftLabelInput>
+                    <LeftLabelInput name="chkLiteratureType" inputType="checkbox"
+                        labelClassName={classes.labelText}
+                        inputClassName={classes.inputStyle}
+                        labelText="Religion"
+                    >
+                        {props.chkReligion}
+                    </LeftLabelInput>
+                </div>
+                <div className={classes.formRow}>
+                    <LeftLabelInput name="chkLiteratureType" inputType="checkbox"
+                        labelClassName={classes.labelText}
+                        inputClassName={classes.inputStyle}
+                        labelText="Drama"
+                    >
+                        {props.chkDrama}
+                    </LeftLabelInput>
+                    <LeftLabelInput name="chkLiteratureType" inputType="checkbox"
+                        labelClassName={classes.labelText}
+                        inputClassName={classes.inputStyle}
+                        labelText="Mystery"
+                    >
+                        {props.chkMystery}
+                    </LeftLabelInput>
+                </div>
+                <div className={classes.formRow}>
+                    <LeftLabelInput name="chkLiteratureType" inputType="checkbox"
+                        labelClassName={classes.labelText}
+                        inputClassName={classes.inputStyle}
+                        labelText="Sci-Fi"
+                    >
+                        {props.chkSciFi}
+                    </LeftLabelInput>
+                    <LeftLabelInput name="chkLiteratureType" inputType="checkbox"
+                        labelClassName={classes.labelText}
+                        inputClassName={classes.inputStyle}
+                        labelText="Suspense/Thriller"
+                    >
+                        {props.chkThriller}
+                    </LeftLabelInput>
+                </div>
+                <div className={classes.formRow}>
+                    <LeftLabelInput name="chkLiteratureType" inputType="checkbox"
+                        labelClassName={classes.labelText}
+                        inputClassName={classes.inputStyle}
+                        labelText="Comedy"
+                    >
+                        {props.chkComedy}
+                    </LeftLabelInput>
+                    <LeftLabelInput name="chkLiteratureType" inputType="checkbox"
+                        labelClassName={classes.labelText}
+                        inputClassName={classes.inputStyle}
+                        labelText="Romance"
+                    >
+                        {props.chkRomance}
+                    </LeftLabelInput>
+                </div>
+                <div className={classes.formRow}>
+                    <LeftLabelInput name="chkLiteratureType" inputType="checkbox"
+                        labelClassName={classes.labelText}
+                        inputClassName={classes.inputStyle}
+                        labelText="Action"
+                    >
+                        {props.chkAction}
+                    </LeftLabelInput>
+                    <LeftLabelInput name="chkLiteratureType" inputType="checkbox"
+                        labelClassName={classes.labelText}
+                        inputClassName={classes.inputStyle}
+                        labelText="Nature"
+                    >
+                        {props.chkNature}
+                    </LeftLabelInput>
+                </div>
+                <div className={classes.formRow}>
+                    <LeftLabelInput name="txtFavBook" inputType="text"
+                        labelClassName={classes.labelText}
+                        inputClassName={classes.inputStyle}
+                        labelText="Favorite Book"
+                    >
+                        {props.txtFavBook}
+                    </LeftLabelInput>
+                    <LeftLabelInput name="txtFavMovieTV" inputType="text"
+                        labelClassName={classes.labelText}
+                        inputClassName={classes.inputStyle}
+                        labelText="Favorite Movie/TV"
+                    >
+                        {props.txtFavMovieTV}
                     </LeftLabelInput>
                 </div>
            </DefaultPage>

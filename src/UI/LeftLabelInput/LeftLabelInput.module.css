@@ -1,6 +1,7 @@
 .Label, .Input {
     float: left;
     margin: .25rem;
+    vertical-align: middle;
 }
 
 .required {
@@ -9,6 +10,7 @@
 }
 
 .Input {
+    float: left;
     border: none;
     padding: .25rem;
     background: rgba(255, 255, 255, .9);
