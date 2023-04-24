@@ -213,14 +213,6 @@ export default function userSettings(props) {
                             required={false}
                             labelClassName={classes.labelText}
                             inputClassName={classes.smallInput}
-                            labelText="European"
-                        >
-                            {props.chkEuropean}
-                        </LeftLabelInput>
-                        <LeftLabelInput name="chkCuisineType" inputType="checkbox"
-                            required={false}
-                            labelClassName={classes.labelText}
-                            inputClassName={classes.smallInput}
                             labelText="I only like cookies"
                         >
                             {props.chkCookies}
