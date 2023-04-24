@@ -4,7 +4,8 @@
 
 .formRow {
     clear: both;
-    display: block;
+    min-height: 1.5rem;
+    /* display: block; */
 }
 
 .labelText {

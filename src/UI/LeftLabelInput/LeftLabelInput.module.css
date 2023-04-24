@@ -3,6 +3,11 @@
     margin: .25rem;
 }
 
+.required {
+    font-weight: bold;
+    color: rgba(255, 69, 0, 1);
+}
+
 .Input {
     border: none;
     padding: .25rem;
