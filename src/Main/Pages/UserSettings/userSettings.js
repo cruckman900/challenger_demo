@@ -11,7 +11,7 @@ import { Container, Form } from "react-bootstrap";
 export default function userSettings(props) {
     return (
         <Fragment>
-            <DefaultPage headerText="User Information (required fields are in bold.)">
+            <DefaultPage headerText="User Information">
                 <Container className={classes.body}>
                     <FormPart>
                         <BodyHeader>Account Information</BodyHeader>
