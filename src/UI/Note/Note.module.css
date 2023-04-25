@@ -1,8 +1,5 @@
 .note {
-    margin: 1rem;
-    margin-left: .25rem;
-    margin-right: .25rem;
-    width: 100%;
+    margin: .5rem 0;
 }
 
 .noteHeader {
@@ -12,6 +9,8 @@
     color: rgba(255, 120, 70, 1);
     border-top-left-radius: 8px;
     border-top-right-radius: 8px;
+    border: solid 1px rgba(255, 120, 70, 1);
+    border-bottom: none;
     padding: .25rem;
     padding-left: .5rem;
     padding-right: .5rem;
@@ -25,5 +24,7 @@
     color: rgba(0, 0, 0, .8);
     border-bottom-left-radius: 8px;
     border-bottom-right-radius: 8px;
+    border: solid 1px rgba(255, 120, 70, 1);
+    border-top: none;
     padding: .25rem;
 }
