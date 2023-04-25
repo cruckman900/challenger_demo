@@ -1,10 +1,8 @@
 .main {
-    margin-left: .0rem;
-    background: rgba(0, 0, 0, .3);
     color: rgba(255, 69, 0, 1);
     font-size: 1.2rem;
-    width: calc(100vw - 21.5rem);
-    height: calc(100vh - 5.4rem);
+    width: calc(100vw - 22rem);
+    height: calc(100vh - 4.5rem);
 }
 
 .scrollable {
@@ -19,14 +17,3 @@
 .noScrollbars::-webkit-scrollbar {
     display: none;
 }
-
-/* @media screen and (max-width: 767px) and (orientation: portrait) {
-    .main {
-        position: absolute;
-        overflow-x: hidden;
-        top: 4.2rem;
-        left: 4rem;
-        width: calc(100% - 24rem);
-        height: 100vw;
-    }
-} */

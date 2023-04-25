@@ -1,7 +1,6 @@
 .left {
     padding-top: 1rem;
     padding-left: .25rem;
-    background: rgba(0, 0, 0, .3);
     width: 4rem;
     height: calc(100vh - 5.4rem);
 }

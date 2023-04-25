@@ -1,28 +1,18 @@
 .App {
-  background: linear-gradient(180deg, #000000, #4300e0 80%, #000000 );
+  background: linear-gradient(180deg, #000000, #140083 80%, #000000 );
   background-attachment: fixed;
   text-align: center;
-  width: calc(100vw - var(--scrollbar-width));
+  /* width: calc(100vw - var(--scrollbar-width)); */
+  width: 100vw;
   height: 100vh;
+
+  display: block;
+  -ms-overflow-style: none;
 }
 
 .horizRowContainer {
   display: flex;
 }
-
-/* @media screen and (max-width: 767px) and (orientation: portrait) {
-  .App {
-    transform: rotate(-90deg);
-    transform-origin: left top;
-    width: 100vh;
-    height: calc(100% - 14.5rem);
-    overflow-x: hidden;
-    position: absolute;
-    top: 100%;
-    left: 0;
-  }
-} */
-
 @media only screen and (orientation:landscape) {
   .App {
     display: block;
@@ -39,7 +29,7 @@
   }
 
   .Portrait {
-    background: linear-gradient(180deg, #000000, #4300e0 80%, #000000 );
+    background: linear-gradient(180deg, #000000, #140083 80%, #000000 );
     display: block;
     height: 100vh;
   }

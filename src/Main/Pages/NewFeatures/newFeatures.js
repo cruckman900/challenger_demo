@@ -6,7 +6,7 @@ import classes from './newFeatures.module.css';
 
 export default function NewFeatures() {
     return (
-        <DefaultPage headerText="New Features and Bug Fixes Log">
+        <DefaultPage headerText="Features & Updates Log">
             <Card headerText="April 2023">
                 <BodyHeader>4/24/2023</BodyHeader>
                 <div className={classes.updateBody}>

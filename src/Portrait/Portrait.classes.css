@@ -1,0 +1,11 @@
+.header {
+    font-family: "ShackleItalic";
+    font-size: 1.2rem;
+    color: rgba(255, 69, 0, 1);
+}
+
+.body {
+    font-family: "ShackleRegular";
+    font-size: 1rem;
+    color: rgba(255, 120, 50, .8);
+}
