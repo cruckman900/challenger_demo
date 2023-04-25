@@ -65,7 +65,7 @@ export default function userSettings(props) {
                             required={true}
                             labelClassName={classes.labelText}
                             inputClassName={classes.inputStyle}
-                            labelText="Display/Username"
+                            labelText="Username"
                         >
                             {props.username}
                         </LeftLabelInput>

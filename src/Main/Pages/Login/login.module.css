@@ -1,0 +1,13 @@
+.labelText {
+    width: 10rem;
+}
+
+.inputStyle {
+    width: 12rem;
+}
+
+@media screen and (min-width: 800px) {
+    .inputStyle {
+        width: 20rem;
+    }
+}

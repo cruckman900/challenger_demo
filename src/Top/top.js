@@ -16,7 +16,7 @@ export default function Top() {
                 <Navbar key="top" className={classes.navbar}>
                     <Nav activeKey={location.pathname}>
                         <Nav.Link as={Link} to={"/login"} eventKey="/login" href="#login" className={classes.topNav}>Login</Nav.Link>
-                        <Nav.Link as={Link} to={"/donate"} eventKey="/donate" href="#donate" className={classes.topNav}>Donate</Nav.Link>
+                        <Nav.Link as={Link} to={"/donations"} eventKey="/donations" href="#donations" className={classes.topNav}>Donations</Nav.Link>
                         <Nav.Link as={Link} to={"/suggestions"} eventKey="/suggestions" href="#suggestions" className={classes.topNav}>Suggestions</Nav.Link>
                     </Nav>
                 </Navbar>
