@@ -1,0 +1,27 @@
+.headerText {
+    font-family: "ShackleItalic";
+    font-size: 1.2rem;
+    color: rgba(255, 69, 0, 1);
+    padding: 1rem;
+    padding-bottom: .25rem;
+}
+
+.bodyText {
+    font-family: "ShackleRegular";
+    font-size: 1rem;
+    color: rgba(255, 120, 50, .8);
+    padding: 1rem;
+    padding-top: .25rem;
+}
+
+.goRotate {
+    height: 100vh;
+    margin: auto;
+    margin-top: 1.5rem;
+    text-align: center;
+}
+
+.iconRotate {
+    color: rgba(255, 120, 50, .1);
+    font-size: 150pt;
+}
