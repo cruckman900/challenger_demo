@@ -14,7 +14,7 @@ export default function home() {
                     so that your encounters are a little more personal than reading text on a screen.
                 </div>
                 <div>
-                    Be aware that many parts of this site move.  If you are on a phone, for instance, the icon bar to the left scroll up and down, as well as items that 
+                    NOTE:  Be aware that many parts of this site move.  If you are on a phone, for instance, the icon bar to the left scroll up and down, as well as items that 
                     will appear in this area and to the right.  Perhaps take some time to navigate around and get familiar with the interface.
                 </div>
             </DefaultPage>
