@@ -34,4 +34,62 @@
     background: rgba(0, 0, 0, .75);
     color: rgba(255, 120, 50, .8);
     letter-spacing: .1rem;
+
+    display: block;
+    overflow: scroll;
+    -ms-overflow-style: none;
+}
+
+@media screen and (min-height: 801px) {
+    .body {
+        height: 100%
+    }
+}
+
+@media screen and (max-height: 800px) {
+    .body {
+        height: 40rem;
+    }
+}
+
+@media screen and (max-height: 768px) {
+    .body {
+        height: 38rem;
+    }
+}
+
+@media screen and (max-height: 600px) {
+    .body {
+        height: 27rem;
+    }
+}
+
+@media screen and (max-height: 540px) {
+    .body {
+        height: 22rem;
+    }
+}
+
+@media screen and (max-height: 420px) {
+    .body {
+        height: 16rem;
+    }
+}
+
+@media screen and (max-height: 395px) {
+    .body {
+        height: 14rem;
+    }
+}
+
+@media screen and (max-height: 375px) {
+    .body {
+        height: 12rem;
+    }
+}
+
+@media screen and (max-height: 280px) {
+    .body {
+        height: 6rem;
+    }
 }

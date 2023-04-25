@@ -3,7 +3,7 @@ import { Navbar, Nav } from "react-bootstrap";
 import { Link, useLocation } from 'react-router-dom';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { 
-    faHouse, faUserGear, faUsersGear, faPeopleGroup, faPeopleRoof,
+    faHouse, faUserGear, faUsersGear, faPeopleGroup, faPeopleRoof, faNewspaper,
 } from '@fortawesome/free-solid-svg-icons';
 import classes from './left.module.css';
 
@@ -13,6 +13,7 @@ const Left = () => {
 
     const myIcons = {
         house: faHouse,
+        newspaper: faNewspaper,
         userGear: faUserGear,
         usersGear: faUsersGear,
         peopleGroup: faPeopleGroup,
@@ -25,6 +26,9 @@ const Left = () => {
                 <Nav defaultActiveKey="#" activeKey={location.pathname}>
                     <Nav.Link as={Link} to={"/"} eventKey="/" href="#">
                         <p className={classes.menuButtonBackground}><FontAwesomeIcon className={classes.menuButton} icon={myIcons['house']} /></p>
+                    </Nav.Link>
+                    <Nav.Link as={Link} to={"/newFeatures"} eventKey="/newFeatures" href="#newFeatures">
+                        <p className={classes.menuButtonBackground}><FontAwesomeIcon className={classes.menuButton} icon={myIcons['newspaper']} /></p>
                     </Nav.Link>
                     <Nav.Link as={Link} to={"/userSettings"} eventKey="/userSettings" href="#userSettings">
                         <p className={classes.menuButtonBackground}><FontAwesomeIcon className={classes.menuButton} icon={myIcons['userGear']} /></p>
