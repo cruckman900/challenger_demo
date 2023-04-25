@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import classes from './top.module.css';
 import font from '../fonts.module.css';
 import logo from '../assets/images/logo.png';
@@ -7,7 +7,7 @@ import { useLocation, Link } from 'react-router-dom';
 
 export default function Top() {
     const location = useLocation();
-
+  
     return (
         <React.Fragment>
             <div className={classes.top}>
