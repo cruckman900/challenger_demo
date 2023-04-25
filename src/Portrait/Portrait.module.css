@@ -22,9 +22,9 @@
 }
 
 .iconRotate {
-    color: rgba(255, 120, 50, .05);
-    stroke: rgba(255, 120, 50, .055);
-    stroke-width: .5rem;
+    color: transparent;
+    stroke: rgba(255, 120, 50, .075);
+    stroke-width: .25rem;
     font-size: 15rem;
 }
 
