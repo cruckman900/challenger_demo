@@ -18,7 +18,7 @@ const Left = () => {
         usersGear: faUsersGear,
         peopleGroup: faPeopleGroup,
         peopleRoof: faPeopleRoof,
-        gear, faGear,
+        gear: faGear,
     }
     
     return (
