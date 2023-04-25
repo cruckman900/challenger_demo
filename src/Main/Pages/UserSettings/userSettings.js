@@ -125,7 +125,7 @@ export default function userSettings(props) {
                 </Container>
             </DefaultPage>
 
-            <DefaultPage headerText="User Interests (Optional &mdash; Friend Suggestions will be based on these values.)">
+            <DefaultPage headerText="User Interests (Optional &mdash; People and Community Suggestions will be based on these values.)">
                 <Container className={classes.body}>
                     <div className={classes.formRow}>
                         <Label className={classes.label} text="Describe Yourself" />
