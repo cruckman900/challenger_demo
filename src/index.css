@@ -26,15 +26,16 @@ code {
     monospace;
 }
 
-.nav-link, .nav-link.hover {
-  display: inline-block;
+.nav-link {
+  border-radius: 8px;
+  display: block;
+  float: right;
   height: 4rem;
   width: 4rem;
   background: transparent;
+  text-decoration: none;
 }
 
 .nav-link.active {
-  border-radius: 8px;
   background: rgba(255, 69, 0, .2);
-  text-decoration: none;
 }
