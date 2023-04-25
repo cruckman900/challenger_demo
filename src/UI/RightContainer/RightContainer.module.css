@@ -5,7 +5,7 @@
     right: 0;
     width: 16.75rem;
     height: calc(100vh - 6rem);
-    overflow: scroll;
+    overflow: auto;
     -ms-overflow-style: none;
     padding-right: .25rem;
 }

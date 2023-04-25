@@ -9,6 +9,7 @@ import FriendSettings from './Pages/FriendSettings/friendSettings';
 import GroupSettings from './Pages/GroupSettings/groupSettings';
 import CommunitySettings from './Pages/CommunitySettings/communitySettings';
 import NewFeatures from './Pages/NewFeatures/newFeatures';
+import SystemSettings from './Pages/SystemSettings/systemSettings';
 import classes from './main.module.css';
 
 class Main extends Component {
@@ -25,6 +26,7 @@ class Main extends Component {
                     <Route path="/groupSettings" element={ <GroupSettings /> } />
                     <Route path="/communitySettings" element={ <CommunitySettings /> } />
                     <Route path="/newFeatures" element={ <NewFeatures /> } />
+                    <Route path="/systemSettings" element={ <SystemSettings /> } />
                 </Routes>
             </div>
         );
