@@ -36,6 +36,9 @@ code {
   text-decoration: none;
 }
 
-.nav-link.active {
-  background: rgba(255, 69, 0, .2);
+.nav-link, .nav-link:hover, .nav-link:visited {
+  -webkit-margin-start: 1rem;
+  margin-inline-start: 1rem;
+  -webkit-margin-end: 1rem;
+  margin-inline-end: 1rem;
 }

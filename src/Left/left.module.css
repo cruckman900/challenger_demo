@@ -11,7 +11,7 @@
     top: 1rem;
     font-size: 2rem;
     background: transparent;
-    color: rgba(255, 69, 0, .75)
+    color: rgba(255, 69, 0, .5)
 }
 
 .menuButton:hover, .menuButton:active {
