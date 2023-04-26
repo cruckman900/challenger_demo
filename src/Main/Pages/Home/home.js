@@ -14,7 +14,6 @@ export default function home() {
                 <Note headerText="NOTE: Many parts of this site move.">
                     If you are on a phone, for instance, the icon bar to the left scrolls up and down, as well as items that 
                     will appear in this area and in the right column.  There are collapsable/expandable items such as those in the right column.
-                    Perhaps take some time to navigate around and get familiar with the interface if you need to.
                 </Note>
             </DefaultPage>
         </Fragment>
