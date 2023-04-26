@@ -5,17 +5,11 @@
 }
 
 .menuButton {
-    position: -webkit-sticky;
-    position: sticky;
-    left: .25rem;
-    top: 1rem;
     font-size: 2rem;
-    background: transparent;
     color: rgba(255, 69, 0, .5)
 }
 
 .menuButton:hover, .menuButton:active {
-    background: transparent;
     color: rgba(255, 69, 0, 1);
 }
 
