@@ -31,13 +31,14 @@
     padding: .25rem;
     float: right;
     font-family: "ShackleRegular";
-    color: rgba(255, 69, 0, .5);
+    color: rgba(255, 69, 0, 1);
     height: 1rem;
     width: 5rem;
 }
 
 .topNav:hover, .topNav:active {
     color: rgba(255, 69, 0, 1);
+    width: 5rem;
 }
 
 @media screen and (max-width: 550px) {

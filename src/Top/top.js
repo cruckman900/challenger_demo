@@ -7,7 +7,7 @@ import { useLocation, Link } from 'react-router-dom';
 
 export default function Top() {
     const location = useLocation();
-  
+
     return (
         <React.Fragment>
             <div className={classes.top}>
@@ -16,8 +16,8 @@ export default function Top() {
                 <Navbar key="top" className={classes.navbar}>
                     <Nav activeKey={location.pathname}>
                         <Nav.Link as={Link} to={"/login"} eventKey="/login" href="#login" className={classes.topNav}>Login</Nav.Link>
-                        <Nav.Link as={Link} to={"/donations"} eventKey="/donations" href="#donations" className={classes.topNav}>Donations</Nav.Link>
-                        <Nav.Link as={Link} to={"/suggestions"} eventKey="/suggestions" href="#suggestions" className={classes.topNav}>Suggestions</Nav.Link>
+                        <Nav.Link as={Link} to={"/donations"} eventKey="/donations" href="#donations" className={classes.topNav}>Donate</Nav.Link>
+                        <Nav.Link as={Link} to={"/suggestions"} eventKey="/suggestions" href="#suggestions" className={classes.topNav}>Suggest</Nav.Link>
                     </Nav>
                 </Navbar>
             </div>

@@ -6,7 +6,7 @@
 
 .menuButton {
     font-size: 2rem;
-    color: rgba(255, 69, 0, .5)
+    color: rgba(255, 69, 0, .8);
 }
 
 .menuButton:hover, .menuButton:active {

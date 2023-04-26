@@ -33,9 +33,16 @@ code {
   text-decoration: none;
 }
 
-.nav-link, .nav-link:hover, .nav-link:visited {
+.nav-link, .nav-link:hover {
   -webkit-margin-start: 1rem;
   margin-inline-start: 1rem;
   -webkit-margin-end: 1rem;
   margin-inline-end: 1rem;
+}
+
+.active {
+  position: relative;
+  left: 1rem;
+  width: 100%;
+  background: rgba(255, 69, 0, .5);
 }
