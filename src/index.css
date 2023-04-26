@@ -40,6 +40,10 @@ code {
   margin-inline-end: 1rem;
 }
 
+.nav-link:hover {
+  color: rgba(255, 69, 0, 1)
+}
+
 .active {
   position: relative;
   left: 1rem;
