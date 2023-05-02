@@ -8,6 +8,11 @@ export default function NewFeatures() {
     return (
         <DefaultPage headerText="Features & Updates Log">
             <Card headerText="April 2023">
+            <BodyHeader>5/01/2023</BodyHeader>
+                <div className={classes.updateBody}>
+                    Implemented a context for login.  Hiding and showing elements based on login status.  Changing Login menu link to Log Out once user is logged in.
+                    Still need to work on database connectivity and api calls, but all in due time.
+                </div>
                 <BodyHeader>4/24/2023</BodyHeader>
                 <div className={classes.updateBody}>
                     Massive styles overhaul: font spacing, color, sizing.  Created a top navigation bar.  Added all pages belonging to the navigation system.  
