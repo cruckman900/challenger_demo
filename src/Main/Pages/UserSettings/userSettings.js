@@ -1,4 +1,4 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useState } from "react";
 import DefaultPage from '../../../UI/DefaultPage/DefaultPage';
 import BodyHeader from "../../../UI/BodyHeader/BodyHeader";
 import LeftLabelInput from "../../../UI/LeftLabelInput/LeftLabelInput";
@@ -7,7 +7,13 @@ import Button from "../../../UI/Button/Button";
 import classes from './userSettings.module.css';
 import { Container } from "react-bootstrap";
 
-export default function userSettings(props) {
+export default function UserSettings(props) {
+    const [ageSelected, setAgeSelected] = useState('under18');
+    
+    const ageCheckChangedHandler = (event) => {
+        setAgeSelected(event.target.value)
+    }
+
     return (
         <Fragment>
             <DefaultPage headerText="User Information">
@@ -40,7 +46,8 @@ export default function userSettings(props) {
                                 inputClassName={classes.smallInput}
                                 labelText="Under 18"
                                 value="under18"
-                                checked="checked"
+                                checked={ageSelected === 'under18'}
+                                onChange={ageCheckChangedHandler}
                             />
                             <LeftLabelInput name="age" inputType="radio" className={classes.LeftLabelInput}
                                 required={true}
@@ -48,6 +55,8 @@ export default function userSettings(props) {
                                 inputClassName={classes.smallInput}
                                 labelText="18 or Older"
                                 value="18orOlder"
+                                checked={ageSelected === '18orOlder'}
+                                onChange={ageCheckChangedHandler}
                             />
                         </div>
                         <div className={classes.formRow}>
