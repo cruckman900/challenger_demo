@@ -12,6 +12,7 @@ export default function NewFeatures() {
                 <div className={classes.updateBody}>
                     Implemented a context for login.  Hiding and showing elements based on login status.  Changing Login menu link to Log Out once user is logged in.
                     Still need to work on database connectivity and api calls, but all in due time.  Changed animation on Portrait mode to include brightness/contrast.
+                    Added onChange handler for Age in UserSettings.js.
                 </div>
             </Card>
             <Card headerText="April 2023">
