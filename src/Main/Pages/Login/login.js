@@ -98,6 +98,8 @@ export default function Login() {
                         <div>
                             <LeftLabelInput
                                 name="txtUsername"
+                                title="Username"
+                                placeholder="Username"
                                 inputType="text"
                                 className={classes.LeftLabelInput}
                                 required={true}
@@ -114,6 +116,8 @@ export default function Login() {
                         <div>
                             <LeftLabelInput
                                 name="txtPassword"
+                                title="Password"
+                                placeholder="Password"
                                 inputType="password"
                                 className={classes.LeftLabelInput}
                                 required={true}

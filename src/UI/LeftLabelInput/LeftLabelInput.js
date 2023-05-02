@@ -14,6 +14,8 @@ export default function LeftLabelInput(props) {
                 className={`${classes.Input} ${props.inputClassName} ${props.Valid && classes.InputValid} ${props.Error && classes.InputError}`}
                 type={props.inputType}
                 name={props.name}
+                title={props.title}
+                placeholder={props.placeholder}
                 value={props.value}
                 checked={props.checked}
                 onChange={props.onChange}
