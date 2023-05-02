@@ -11,7 +11,7 @@ export default function NewFeatures() {
                 <BodyHeader>5/01/2023</BodyHeader>
                 <div className={classes.updateBody}>
                     Implemented a context for login.  Hiding and showing elements based on login status.  Changing Login menu link to Log Out once user is logged in.
-                    Still need to work on database connectivity and api calls, but all in due time.
+                    Still need to work on database connectivity and api calls, but all in due time.  Changed animation on Portrait mode to include brightness/contrast.
                 </div>
             </Card>
             <Card headerText="April 2023">
