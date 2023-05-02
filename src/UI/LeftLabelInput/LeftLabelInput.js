@@ -18,7 +18,6 @@ export default function LeftLabelInput(props) {
                 checked={props.checked}
                 onChange={props.onChange}
                 onBlur={props.onBlur}
-                onFocusOut={props.onFocusOut}
             />
         </div>
     );
