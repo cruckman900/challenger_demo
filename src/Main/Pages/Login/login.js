@@ -97,7 +97,10 @@ export default function Login() {
                 {!authCtx.isLoggedIn &&
                     <form onSubmit={submitHandler}>
                         <div>
-                            <LeftLabelInput name="txtUsername" inputType="text" className={classes.LeftLabelInput}
+                            <LeftLabelInput
+                                name="txtUsername"
+                                inputType="text"
+                                className={classes.LeftLabelInput}
                                 required={true}
                                 labelClassName={classes.labelText}
                                 inputClassName={classes.inputStyle}
@@ -110,7 +113,10 @@ export default function Login() {
                             ></LeftLabelInput>
                         </div>
                         <div>
-                            <LeftLabelInput name="txtPassword" inputType="password" className={classes.LeftLabelInput}
+                            <LeftLabelInput
+                                name="txtPassword"
+                                inputType="password"
+                                className={classes.LeftLabelInput}
                                 required={true}
                                 labelClassName={classes.labelText}
                                 inputClassName={classes.inputStyle}
