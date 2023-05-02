@@ -8,7 +8,7 @@ export default function LeftLabelInput(props) {
             <Label
                 className={`${classes.Label} ${props.labelClassName} ${props.required && classes.required}`}
                 text={props.labelText}
-                for={props.for}
+                htmlFor={props.htmlFor}
             />
             <input
                 className={`${classes.Input} ${props.inputClassName} ${props.Valid && classes.InputValid} ${props.Error && classes.InputError}`}
