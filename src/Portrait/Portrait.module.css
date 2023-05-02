@@ -37,10 +37,10 @@
         filter: contrast(1);
     }
     50% {
-        -webkit-filter: brightness(0.2);
-        filter: brightness(0.2);
-        -webkit-filter: contrast(0.2);
-        filter: contrast(0.2);
+        -webkit-filter: brightness(0);
+        filter: brightness(0);
+        -webkit-filter: contrast(0);
+        filter: contrast(0);
     }
     100% {
         transform: rotate(360deg);
