@@ -86,7 +86,6 @@ export default function Login() {
     }
 
     const clearFields = () => {
-        console.log('hello?');
         dispatchUsername({type: 'CLEAR'});
         dispatchPassword({type: 'CLEAR'});
     }
