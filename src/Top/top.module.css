@@ -32,6 +32,7 @@
     float: right;
     font-family: "ShackleRegular";
     color: rgba(255, 69, 0, 1);
+    text-decoration: none;
     height: 1rem;
     width: 5rem;
 }

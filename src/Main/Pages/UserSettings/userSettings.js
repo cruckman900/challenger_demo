@@ -1,19 +1,18 @@
 import React, { Fragment } from "react";
 import DefaultPage from '../../../UI/DefaultPage/DefaultPage';
 import BodyHeader from "../../../UI/BodyHeader/BodyHeader";
-import FormPart from "../../../UI/FormPart/FormPart";
 import LeftLabelInput from "../../../UI/LeftLabelInput/LeftLabelInput";
 import Label from "../../../UI/Label/Label";
 import Button from "../../../UI/Button/Button";
 import classes from './userSettings.module.css';
-import { Container, Form } from "react-bootstrap";
+import { Container } from "react-bootstrap";
 
 export default function userSettings(props) {
     return (
         <Fragment>
             <DefaultPage headerText="User Information">
                 <Container className={classes.body}>
-                    <FormPart>
+                    <form>
                         <BodyHeader>Account Information</BodyHeader>
                         <div className={classes.formRow}>
                             <LeftLabelInput name="txtFirstName" inputType="text" className={classes.leftLabelInput}
@@ -123,9 +122,9 @@ export default function userSettings(props) {
                             <Button type="submit" name="btnSubmit" value="Submit" />
                             <Button type="button" name="btnClear" value="Clear" />
                         </div>
-                    </FormPart>
+                    </form>
 
-                    <FormPart>
+                    <form>
                         <div className={classes.formRow}>
                             <Label className={classes.label} text="Describe Yourself" />
                             <textarea name="txtDesc" className={classes.textarea} readOnly={false} disabled={false}>{props.userDesc}</textarea>
@@ -608,7 +607,7 @@ export default function userSettings(props) {
                             <Button type="submit" name="btnSubmit" value="Submit" />
                             <Button type="button" name="btnClear" value="Clear" />
                         </div>
-                    </FormPart>
+                    </form>
                 </Container>
             </DefaultPage>
         </Fragment>

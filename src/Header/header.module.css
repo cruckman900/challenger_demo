@@ -8,7 +8,7 @@
     color: rgba(255, 69, 0, .8);
     text-decoration: none;
     float: right;
-    margin-top: .25rem;
+    /* margin-top: .25rem; */
     margin-inline-end: 1rem;
     font-weight: bold;
 }
