@@ -25,21 +25,21 @@
     top: 1.5rem;
 }
 
-.topNav, .topNav:hover {
+.topNav {
     display: block;
     margin-top: .5rem;
     padding: .25rem;
     float: right;
     font-family: "ShackleRegular";
-    color: rgba(255, 69, 0, 1);
+    color: rgba(255, 69, 0, .8);
     text-decoration: none;
     height: 1rem;
-    width: 5rem;
+    width: 4rem;
 }
 
 .topNav:hover, .topNav:active {
     color: rgba(255, 69, 0, 1);
-    width: 5rem;
+    width: 4rem;
 }
 
 @media screen and (max-width: 550px) {

@@ -47,6 +47,6 @@ code {
 .active {
   position: relative;
   left: 1rem;
-  width: 100%;
+  width: 4rem;
   background: rgba(255, 69, 0, .5);
 }
