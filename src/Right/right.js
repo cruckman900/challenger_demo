@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useState } from "react";
+import classes from './right.module.css';
 import RightContainer from "../UI/RightContainer/RightContainer";
 import Card from "../UI/Card/Card";
 
