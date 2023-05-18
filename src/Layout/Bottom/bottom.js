@@ -4,12 +4,12 @@ import classes from './bottom.module.css';
 
 import SmallChatLayout from "./smallChatLayout";
 
-import female1 from '../assets/images/female1.png';
-import female2 from '../assets/images/female2.png';
-import female3 from '../assets/images/female3.png';
-import male1 from '../assets/images/male1.png';
-import male2 from '../assets/images/male2.png';
-import male3 from '../assets/images/male3.png';
+import female1 from '../../assets/images/female1.png';
+import female2 from '../../assets/images/female2.png';
+import female3 from '../../assets/images/female3.png';
+import male1 from '../../assets/images/male1.png';
+import male2 from '../../assets/images/male2.png';
+import male3 from '../../assets/images/male3.png';
 
 export default function bottom() {
     const chatters = [

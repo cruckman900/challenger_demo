@@ -1,8 +1,8 @@
 import React, { useContext } from "react";
 import AuthContext from "../../store/auth-context";
 import classes from './top.module.css';
-import font from '../fonts.module.css';
-import logo from '../assets/images/logo.png';
+import font from '../../fonts.module.css';
+import logo from '../../assets/images/logo.png';
 import { Nav, Navbar } from 'react-bootstrap';
 import { useLocation, Link } from 'react-router-dom';
 
