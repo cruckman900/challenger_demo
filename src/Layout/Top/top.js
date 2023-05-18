@@ -29,9 +29,7 @@ export default function Top() {
                 <span className={classes.logo}><img src={logo} alt="logo" /></span>
                 <Navbar key="top" className={classes.navbar}>
                     <Nav activeKey={location.pathname}>
-                        {/* {!ctx.isLoggedIn && <Nav.Link as={Link} to={"/login"} eventKey="/login" href="#login" className={classes.topNav}>Login</Nav.Link> }
-                        {ctx.isLoggedIn && <Nav.Link as={Link} to={"/login"} eventKey="/login" href="#login" className={classes.topNav} onClick={ctx.onLogout}>Log Out</Nav.Link>} */}
-                        {!ctx.isLoggedIn && <a href="#" className={classes.topNav} onClick={showLoginHandler}>Login</a> }
+                        {!ctx.isLoggedIn && <a href="#" className={classes.topNav} onClick={showLoginHandler}>Log In</a> }
                         {ctx.isLoggedIn && <a href="#" className={classes.topNav} onClick={ctx.onLogout}>Log Out</a>}
                         <Nav.Link as={Link} to={"/donations"} eventKey="/donations" href="#donations" className={classes.topNav}>Donate</Nav.Link>
                         <Nav.Link as={Link} to={"/suggestions"} eventKey="/suggestions" href="#suggestions" className={classes.topNav}>Suggest</Nav.Link>

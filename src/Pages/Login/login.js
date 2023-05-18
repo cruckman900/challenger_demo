@@ -88,7 +88,7 @@ export default function Login(props) {
                             <LeftLabelInput
                                 name="txtUsername"
                                 title="Username"
-                                placeholder="Username"
+                                placeholder="12 or more chars"
                                 inputType="text"
                                 className={classes.LeftLabelInput}
                                 required={true}
@@ -106,7 +106,7 @@ export default function Login(props) {
                             <LeftLabelInput
                                 name="txtPassword"
                                 title="Password"
-                                placeholder="Password"
+                                placeholder="8+ chars / 1+ numbers"
                                 inputType="password"
                                 className={classes.LeftLabelInput}
                                 required={true}
