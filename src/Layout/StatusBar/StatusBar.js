@@ -1,28 +1,22 @@
+import { Fragment, useContext } from 'react';
+import AuthContext from "../../store/auth-context";
+import Status from './Status';
 import classes from './StatusBar.module.css';
 
 const StatusBar = () => {
+    const ctx = useContext(AuthContext);
+
     return (
         <div className={classes.statusBar}>
-            <div className={classes.statusContainer}>
-                <span className={classes.statusLabel}>Version:</span>
-                <span className={classes.status}>0.1.0a</span>
-            </div>
-            <div className={classes.statusContainer}>
-                <span className={classes.statusLabel}># Users:</span>
-                <span className={classes.status}>0</span>
-            </div>
-            <div className={classes.statusContainer}>
-                <span className={classes.statusLabel}># Online:</span>
-                <span className={classes.status}>0</span>
-            </div>
-            <div className={classes.statusContainer}>
-                <span className={classes.statusLabel}># New DMs:</span>
-                <span className={classes.status}>0</span>
-            </div>
-            <div className={classes.statusContainer}>
-                <span className={classes.statusLabel}># New Mentions:</span>
-                <span className={classes.status}>0</span>
-            </div>
+            <Status label="Version" value={process.env.REACT_APP_VERSION} />
+            <Status label="# Users" value="0" />
+            <Status label="# Online" value="0" />
+            {ctx.isLoggedIn && (
+                <Fragment>
+                    <Status label="# New DMs" value="0" />
+                    <Status label="# New Mentions" value="0" />
+                </Fragment>
+            )}
         </div>
     );
 }
