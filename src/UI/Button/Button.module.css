@@ -8,6 +8,7 @@
     color: rgba(255, 120, 50, .8);
     font-family: "ShackleRegular";
     font-size: .9rem;
+    letter-spacing: .065rem;
     cursor: pointer;
 }
 
