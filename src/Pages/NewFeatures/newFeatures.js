@@ -8,6 +8,10 @@ export default function NewFeatures() {
     return (
         <DefaultPage headerText="Features & Updates Log">
             <Card headerText="May 2023">
+                <BodyHeader>5/17/2023</BodyHeader>
+                <div className={classes.updateBody}>
+                    Changed Login/Logout from a full page screen to a newly added Modal component.  Changed letter spacings.  Added a prop to Card for isOpened.
+                </div>
                 <BodyHeader>5/01/2023</BodyHeader>
                 <div className={classes.updateBody}>
                     Implemented a context for login.  Hiding and showing elements based on login status.  Changing Login menu link to Log Out once user is logged in.
