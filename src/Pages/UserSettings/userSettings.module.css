@@ -14,7 +14,7 @@
     margin: 0 .5rem;
 }
 
-.activeTab {
+.selectedTab {
     background: rgba(255, 69, 0, 0.5);
     color: rgba(255, 120, 0, 1);
     border-top-left-radius: 8px;

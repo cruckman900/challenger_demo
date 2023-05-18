@@ -38,19 +38,19 @@ export default function UserSettings(props) {
     return (
         <Fragment>
             <DefaultPage headerText="User Information">
-                <Tabs>
+                <Tabs selectedTabClassName={classes.selectedTab}>
                     <TabList className={classes.tabList}>
-                        <Tab selectedClassName={classes.activeTab}><FontAwesomeIcon className={classes.tabIcon} icon={myIcons['userPlus']} /></Tab>
+                        <Tab><FontAwesomeIcon className={classes.tabIcon} icon={myIcons['userPlus']} /></Tab>
                         {
                             ageSelected !== 'under18' && (
-                                <Tab selectedClassName={classes.activeTab}><FontAwesomeIcon className={classes.tabIcon} icon={myIcons['locationDot']} /></Tab>
+                                <Tab><FontAwesomeIcon className={classes.tabIcon} icon={myIcons['locationDot']} /></Tab>
                             )
                         }
-                        <Tab selectedClassName={classes.activeTab}><FontAwesomeIcon className={classes.tabIcon} icon={myIcons['utensils']} /></Tab>
-                        <Tab selectedClassName={classes.activeTab}><FontAwesomeIcon className={classes.tabIcon} icon={myIcons['television']} /></Tab>
-                        <Tab selectedClassName={classes.activeTab}><FontAwesomeIcon className={classes.tabIcon} icon={myIcons['radio']} /></Tab>
-                        <Tab selectedClassName={classes.activeTab}><FontAwesomeIcon className={classes.tabIcon} icon={myIcons['football']} /></Tab>
-                        <Tab selectedClassName={classes.activeTab}><FontAwesomeIcon className={classes.tabIcon} icon={myIcons['computer']} /></Tab>
+                        <Tab><FontAwesomeIcon className={classes.tabIcon} icon={myIcons['utensils']} /></Tab>
+                        <Tab><FontAwesomeIcon className={classes.tabIcon} icon={myIcons['television']} /></Tab>
+                        <Tab><FontAwesomeIcon className={classes.tabIcon} icon={myIcons['radio']} /></Tab>
+                        <Tab><FontAwesomeIcon className={classes.tabIcon} icon={myIcons['football']} /></Tab>
+                        <Tab><FontAwesomeIcon className={classes.tabIcon} icon={myIcons['computer']} /></Tab>
                     </TabList>
 
                     <TabPanel>

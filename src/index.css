@@ -28,6 +28,8 @@ code {
 }
 
 .nav-link {
+  position: relative;
+  left: .5rem;
   border-radius: 8px;
   display: block;
   float: right;
@@ -48,6 +50,6 @@ code {
 .active {
   position: relative;
   left: 1rem;
-  width: 4rem;
+  width: 3rem;
   background: rgba(255, 69, 0, .5);
 }

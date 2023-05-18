@@ -1,8 +1,9 @@
 .BodyHeader {
     display: inline-block;
     font-family: "ShackleItalic";
-    font-size: 1.1rem;
-    letter-spacing: .1rem;
+    font-size: .9rem;
+    font-weight: bold;
+    letter-spacing: .065rem;
     width: 100%;
     border-bottom: solid 1px rgba(255, 69, 0, .8);
     color: rgba(255, 69, 0, .8);
