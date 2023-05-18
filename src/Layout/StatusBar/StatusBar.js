@@ -13,7 +13,8 @@ const StatusBar = () => {
             <Status label="# Online" value="0" />
             {ctx.isLoggedIn && (
                 <Fragment>
-                    <Status label="# New MSGs" value="0" />
+                    <Status label="# New PMs" value="0" />
+                    <Status label="# New CMs" value="0" />
                 </Fragment>
             )}
         </div>
