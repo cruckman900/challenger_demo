@@ -28,19 +28,10 @@ code {
 }
 
 .nav-link {
-  position: relative;
-  left: .5rem;
+  text-align: center;
   border-radius: 8px;
   display: block;
-  float: right;
   text-decoration: none;
-}
-
-.nav-link, .nav-link:hover {
-  -webkit-margin-start: 1rem;
-  margin-inline-start: 1rem;
-  -webkit-margin-end: 1rem;
-  margin-inline-end: 1rem;
 }
 
 .nav-link:hover {
@@ -49,7 +40,5 @@ code {
 
 .active {
   position: relative;
-  left: 1rem;
-  width: 3rem;
   background: rgba(255, 69, 0, .5);
 }

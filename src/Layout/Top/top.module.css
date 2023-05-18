@@ -35,12 +35,11 @@
     color: rgba(255, 69, 0, .8);
     text-decoration: none;
     height: 1rem;
-    width: 4rem;
+    width: 5rem;
 }
 
 .topNav:hover, .topNav:active {
     color: rgba(255, 69, 0, 1);
-    width: 4rem;
 }
 
 .link {
