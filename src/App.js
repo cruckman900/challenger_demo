@@ -5,10 +5,9 @@ import Top from './Layout/Top/top';
 import Left from './Layout/Left/left';
 import Main from './Layout/Main/Main';
 import Right from './Layout/Right/right';
-import Bottom from './Layout/Bottom/bottom';
 import Footer from './Layout/Footer/footer';
 import Portrait from './Layout/Portrait/Portrait';
-import classes from './Layout/App.module.css';
+import classes from './App.module.css';
 
 function App() {
   return (
@@ -21,7 +20,6 @@ function App() {
           <Col><Main /></Col>
           <Col><Right /></Col>
         </Row>
-        {/* <Row><Col><Bottom /></Col></Row> */}
         <Row><Col><Footer /></Col></Row>
       </div>
       <div className={classes.Portrait}>

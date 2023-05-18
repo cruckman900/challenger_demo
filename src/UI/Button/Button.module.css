@@ -6,4 +6,10 @@
     color: rgba(255, 120, 50, .8);
     font-family: "ShackleRegular";
     font-size: .9rem;
+    cursor: pointer;
+}
+
+.button:hover {
+    background: rgba(255, 69, 0, .8);
+    color: rgba(255, 120, 50, 1);
 }

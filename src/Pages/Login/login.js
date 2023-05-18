@@ -1,6 +1,7 @@
 import React, { Fragment, useState, useEffect, useReducer, useContext } from "react";
 import AuthContext from "../../store/auth-context";
-import DefaultPage from "../../UI/DefaultPage/DefaultPage";
+import Modal from "../../UI/Modal/Modal";
+import Card from "../../UI/Card/Card";
 import LeftLabelInput from "../../UI/LeftLabelInput/LeftLabelInput";
 import Button from "../../UI/Button/Button";
 import classes from './login.module.css';
@@ -12,9 +13,6 @@ const usernameReducer = (state, action) => {
     if (action.type === 'INPUT_BLUR') {
         return { value: state.value, isValid: state.value.trim().length > 11}
     }
-    if (action.type === 'CLEAR') {
-        return { value: '', isValid: null}
-    }
 }
 
 const passwordReducer = (state, action) => {
@@ -24,17 +22,13 @@ const passwordReducer = (state, action) => {
     if (action.type === 'INPUT_BLUR') {
         return { value: state.value, isValid: state.value.trim().length > 7 && hasNumber(state.value)};
     }
-    if (action.type === 'CLEAR') {
-        console.log('clear');
-        return { value: '', isValid: null}
-    }
 }
 
 const hasNumber = (val) => {
     return /\d/.test(val);
 }
 
-export default function Login() {
+export default function Login(props) {
     const authCtx = useContext(AuthContext);
 
     const [formIsValid, setFormIsValid] = useState(false);
@@ -85,14 +79,9 @@ export default function Login() {
         authCtx.onLogin(usernameState.value, passwordState.value);
     }
 
-    const clearFields = () => {
-        dispatchUsername({type: 'CLEAR'});
-        dispatchPassword({type: 'CLEAR'});
-    }
-
     return (
-        <Fragment>
-            <DefaultPage headerText="Login">
+        <Modal onClose={props.onClose}>
+            <Card headerText="Login" isOpened={true}>
                 {!authCtx.isLoggedIn &&
                     <form onSubmit={submitHandler}>
                         <div>
@@ -132,22 +121,21 @@ export default function Login() {
                             ></LeftLabelInput>
                         </div>
                         <div className={classes.formRow}>
-                            <Button type="submit" name="btnSubmit" value="Login" disabled={!formIsValid} />
-                            <Button type="button" name="btnClear" value="Clear" onClick={clearFields} />
+                            <Button className={classes.primaryBtn} type="submit" name="btnSubmit" value="Log In" disabled={!formIsValid} />
+                            <Button type="button" name="btnCancel" value="Cancel" onClick={props.onClose} />
                         </div>
                     </form>
                 }
                 {authCtx.isLoggedIn && 
                     <>
-                        <div>
-                            Welcome {usernameState.value}!
-                        </div>
+                        <p className={classes.welcome}>Welcome <span className={classes.name}>{usernameState.value}</span>!</p>
                         <div className={classes.formRow}>
-                            <Button type="button" name="btnLogout" value="Log Out" onClick={authCtx.onLogout} />
+                            <Button className={classes.primaryBtn} type="button" name="btnLogout" value="Log Out" onClick={authCtx.onLogout} />
+                            <Button type="button" name="btnClose" value="Close" onClick={props.onClose} />
                         </div>
                     </>
                 }
-            </DefaultPage>
-        </Fragment>
+            </Card>
+        </Modal>
     );
 }

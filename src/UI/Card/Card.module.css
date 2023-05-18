@@ -21,7 +21,7 @@
     font-size: 1rem;
     font-weight: 200;
     background: rgba(255, 69, 0, .4);
-    color: rgba(255, 69, 0, 1);
+    color: rgba(255, 69, 0, .9);
     border-top-left-radius: 6px;
     border-top-right-radius: 6px;
     border-bottom: solid 1px rgba(255, 69, 0, .8);
@@ -32,9 +32,43 @@
     margin-bottom: 6px;
     width: calc(100% - 10px);
     height: 1rem;
+}
+
+.with-cursor {
     cursor: pointer;
+}
+
+.with-cursor:hover {
+    background: rgba(255, 69, 0, .6);
+    color: rgba(255, 69, 0, 1);
+}
+
+.opened {
+    animation: slide-down 300ms ease-out forwards;
+}
+
+.closed {
+    animation: slide-up 300ms ease-in forwards;
 }
 
 .bodyElements {
     padding: .5rem;
+}
+
+@keyframes slide-down {
+    from {
+        display: 'none';
+    }
+    to {
+        display: 'inline';
+    }
+}
+
+@keyframes slide-up {
+    from {
+        display: 'inline';
+    }
+    to {
+        display: 'none';
+    }
 }
