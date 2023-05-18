@@ -2,7 +2,7 @@ import React from "react";
 import { Row, Col } from 'react-bootstrap';
 import classes from './bottom.module.css';
 
-import SmallChatLayout from "./smallChatLayout";
+import Card from "../../UI/Card/Card";
 
 import female1 from '../../assets/images/female1.png';
 import female2 from '../../assets/images/female2.png';
@@ -20,7 +20,7 @@ export default function bottom() {
     
     const buildChatter = (chatter) => {
         return (
-            <SmallChatLayout
+            <Card
                 key={chatter.key}
                 collapsed={true}
                 image={chatter.image}

@@ -1,14 +1,14 @@
 import React, { Fragment } from 'react';
 import { Row, Col } from 'react-bootstrap';
-import Header from './Header/header';
-import Top from './Top/top';
-import Left from './Left/left';
-import Main from './Main/Main';
-import Right from './Right/right';
-import Bottom from './Bottom/bottom';
-import Footer from './Footer/footer';
-import Portrait from './Portrait/Portrait';
-import classes from './App.module.css';
+import Header from './Layout/Header/header';
+import Top from './Layout/Top/top';
+import Left from './Layout/Left/left';
+import Main from './Layout/Main/Main';
+import Right from './Layout/Right/right';
+import Bottom from './Layout/Bottom/bottom';
+import Footer from './Layout/Footer/footer';
+import Portrait from './Layout/Portrait/Portrait';
+import classes from './Layout/App.module.css';
 
 function App() {
   return (
