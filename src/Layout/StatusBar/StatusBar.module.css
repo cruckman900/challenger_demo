@@ -3,7 +3,7 @@
     margin: 0;
     display: flex;
     position: absolute;
-    right: 0;
+    left: 0.25rem;
     bottom: 0.25rem;
     font-size: .7rem;
     font-weight: bold;

@@ -4,8 +4,8 @@ const StatusBar = () => {
     return (
         <div className={classes.statusBar}>
             <div className={classes.statusContainer}>
-                <span className={classes.statusLabel}># Comms:</span>
-                <span className={classes.status}>0</span>
+                <span className={classes.statusLabel}>Version:</span>
+                <span className={classes.status}>0.1.0a</span>
             </div>
             <div className={classes.statusContainer}>
                 <span className={classes.statusLabel}># Users:</span>
