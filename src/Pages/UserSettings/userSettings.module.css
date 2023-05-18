@@ -39,7 +39,7 @@
 }
 
 .labelTextShort {
-    width: 4rem;
+    width: 7rem;
 }
 
 .label {
@@ -49,7 +49,7 @@
 }
 
 .inputStyle {
-    width: 12rem;
+    width: 15rem;
 }
 
 .smallInput {
@@ -70,5 +70,16 @@
 
     .textarea {
         width: 20rem;
+    }
+}
+
+@media screen and (max-width: 799px) {
+    .indentedInput {
+        position: relative;
+        left: 3rem;
+    }
+
+    .tabIcon {
+        margin: 0;
     }
 }

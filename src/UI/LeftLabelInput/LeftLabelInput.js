@@ -4,7 +4,7 @@ import classes from './LeftLabelInput.module.css';
 
 export default function LeftLabelInput(props) {
     return (
-        <div style={{display: 'inline-block'}}>
+        <div style={{display: 'inline-block'}} className={props.className}>
             <Label
                 className={`${classes.Label} ${props.labelClassName} ${props.required && classes.required}`}
                 text={props.labelText}
