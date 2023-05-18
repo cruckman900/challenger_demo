@@ -8,5 +8,37 @@
     text-align: center;
     font-size: .8rem;
     width: 100vw;
-    height: 1rem;
+    height: 2rem;
+}
+
+.terms {
+    margin: 0;
+    padding: 0;
+}
+
+.link {
+    background: transparent;
+    border: none;
+    padding: 0;
+    margin: 0;
+    font-weight: bold;
+    font-size: .8rem;
+    color: rgba(255, 69, 0, 0.8);
+    width: 6rem;
+    text-decoration: none;
+}
+
+.link:hover {
+    background: transparent;
+    color: rgba(255, 69, 0, 1);
+}
+
+.link:hover, .link:active {
+    color: rgba(255, 69, 0, 1);
+}
+
+@media only screen and (max-width:767px) and (orientation:portrait) {
+    .terms {
+      display: none;
+    }
 }

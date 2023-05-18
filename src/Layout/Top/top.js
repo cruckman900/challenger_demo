@@ -1,6 +1,7 @@
-import React, { useState, useContext } from "react";
+import React, { Fragment, useState, useContext } from "react";
 import AuthContext from "../../store/auth-context";
 import Login from "../../Pages/Login/login"
+import Button from "../../UI/Button/Button";
 import classes from './top.module.css';
 import font from '../../fonts.module.css';
 import logo from '../../assets/images/logo.png';
@@ -23,20 +24,26 @@ export default function Top() {
     const location = useLocation();
 
     return (
-        <React.Fragment>
+        <Fragment>
             <div className={classes.top}>
                 <span className={`${classes.topText} ${font.Kochire}`}>ChatterboxSM</span>
                 <span className={classes.logo}><img src={logo} alt="logo" /></span>
                 <Navbar key="top" className={classes.navbar}>
                     <Nav activeKey={location.pathname}>
-                        {!ctx.isLoggedIn && <a href="#" className={classes.topNav} onClick={showLoginHandler}>Log In</a> }
-                        {ctx.isLoggedIn && <a href="#" className={classes.topNav} onClick={ctx.onLogout}>Log Out</a>}
-                        <Nav.Link as={Link} to={"/donations"} eventKey="/donations" href="#donations" className={classes.topNav}>Donate</Nav.Link>
-                        <Nav.Link as={Link} to={"/suggestions"} eventKey="/suggestions" href="#suggestions" className={classes.topNav}>Suggest</Nav.Link>
+                        {!ctx.isLoggedIn && <Button href="#" className={classes.link} onClick={showLoginHandler} value="Log In" />}
+                        {
+                            ctx.isLoggedIn && (
+                                <Fragment>
+                                    <Button href="#" className={classes.link} onClick={ctx.onLogout} value="Log Out" />
+                                    <Nav.Link as={Link} to={"/donations"} eventKey="/donations" href="#donations" className={classes.topNav}>Donate</Nav.Link>
+                                    <Nav.Link as={Link} to={"/suggestions"} eventKey="/suggestions" href="#suggestions" className={classes.topNav}>Suggest</Nav.Link>
+                                </Fragment>
+                            )
+                        }
                     </Nav>
                 </Navbar>
                 {loginIsShown && <Login onClose={hideLoginHandler} />}
             </div>
-        </React.Fragment>
+        </Fragment>
     );
 }

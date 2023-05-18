@@ -19,7 +19,7 @@ function Card(props) {
         if (props.isOpened) {
             setIsOpened('inline');
         }
-    }, []);
+    }, [props.isOpened]);
 
     return (
         <Container className={`${classes.card} ${isOpened === 'none' && classes.minified}`}>

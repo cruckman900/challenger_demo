@@ -6,19 +6,54 @@ import Label from "../../UI/Label/Label";
 import Button from "../../UI/Button/Button";
 import classes from './userSettings.module.css';
 import { Container } from "react-bootstrap";
+import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
+import 'react-tabs/style/react-tabs.css';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { 
+    faUserPlus, faLocationDot, faUtensils, faTelevision, faRadio, faFootball, faComputer
+} from '@fortawesome/free-solid-svg-icons';
 
 export default function UserSettings(props) {
     const [ageSelected, setAgeSelected] = useState('under18');
+    const [sexSelected, setSexSelected] = useState(null);
     
     const ageCheckChangedHandler = (event) => {
-        setAgeSelected(event.target.value)
+        setAgeSelected(event.target.value);
+    }
+
+    const sexCheckChangedHandler = (event) => {
+        setSexSelected(event.target.value);
+    }
+
+    const myIcons = {
+        userPlus: faUserPlus,
+        locationDot: faLocationDot,
+        utensils: faUtensils,
+        television: faTelevision,
+        radio: faRadio,
+        football: faFootball,
+        computer: faComputer,
     }
 
     return (
         <Fragment>
             <DefaultPage headerText="User Information">
-                <Container className={classes.body}>
-                    <form>
+                <Tabs>
+                    <TabList className={classes.tabList}>
+                        <Tab selectedClassName={classes.activeTab}><FontAwesomeIcon className={classes.tabIcon} icon={myIcons['userPlus']} /></Tab>
+                        {
+                            ageSelected !== 'under18' && (
+                                <Tab selectedClassName={classes.activeTab}><FontAwesomeIcon className={classes.tabIcon} icon={myIcons['locationDot']} /></Tab>
+                            )
+                        }
+                        <Tab selectedClassName={classes.activeTab}><FontAwesomeIcon className={classes.tabIcon} icon={myIcons['utensils']} /></Tab>
+                        <Tab selectedClassName={classes.activeTab}><FontAwesomeIcon className={classes.tabIcon} icon={myIcons['television']} /></Tab>
+                        <Tab selectedClassName={classes.activeTab}><FontAwesomeIcon className={classes.tabIcon} icon={myIcons['radio']} /></Tab>
+                        <Tab selectedClassName={classes.activeTab}><FontAwesomeIcon className={classes.tabIcon} icon={myIcons['football']} /></Tab>
+                        <Tab selectedClassName={classes.activeTab}><FontAwesomeIcon className={classes.tabIcon} icon={myIcons['computer']} /></Tab>
+                    </TabList>
+
+                    <TabPanel>
                         <BodyHeader>Account Information</BodyHeader>
                         <div className={classes.formRow}>
                             <LeftLabelInput name="txtFirstName" inputType="text" className={classes.leftLabelInput}
@@ -39,7 +74,7 @@ export default function UserSettings(props) {
                             </LeftLabelInput>
                         </div>
                         <div className={classes.formRow}>
-                            <Label className={classes.label} text="Age Range" />
+                            <Label className={`${classes.label} ${classes.required}`} text="Age Range" />
                             <LeftLabelInput name="age" inputType="radio" className={classes.LeftLabelInput}
                                 required={true}
                                 labelClassName={classes.labelTextShort}
@@ -60,8 +95,29 @@ export default function UserSettings(props) {
                             />
                         </div>
                         <div className={classes.formRow}>
-                            <LeftLabelInput name="txtEmail" inputType="email" className={classes.LeftLabelInput}
+                            <Label className={classes.label} text="Sex" />
+                            <LeftLabelInput name="sex" inputType="radio" className={classes.LeftLabelInput}
                                 required={false}
+                                labelClassName={classes.labelTextShort}
+                                inputClassName={classes.smallInput}
+                                labelText="Male"
+                                value="male"
+                                checked={sexSelected === 'male'}
+                                onChange={sexCheckChangedHandler}
+                            />
+                            <LeftLabelInput name="sex" inputType="radio" className={classes.LeftLabelInput}
+                                required={false}
+                                labelClassName={classes.labelTextShort}
+                                inputClassName={classes.smallInput}
+                                labelText="Female"
+                                value="female"
+                                checked={sexSelected === 'female'}
+                                onChange={sexCheckChangedHandler}
+                            />
+                        </div>
+                        <div className={classes.formRow}>
+                            <LeftLabelInput name="txtEmail" inputType="email" className={classes.LeftLabelInput}
+                                required={true}
                                 labelClassName={classes.labelText}
                                 inputClassName={classes.inputStyle}
                                 labelText="Email"
@@ -95,49 +151,47 @@ export default function UserSettings(props) {
                                 labelText="Confirm Password"
                             />
                         </div>
-
-                        <BodyHeader>Location Information (optional)</BodyHeader>
-                        <div className={classes.formRow}>
-                            <LeftLabelInput name="txtCity" inputType="text"
-                                required={false}
-                                labelClassName={classes.labelText}
-                                inputClassName={classes.inputStyle}
-                                labelText="City"
-                            >
-                                {props.city}
-                            </LeftLabelInput>
-                            <LeftLabelInput name="txtState" inputType="text"
-                                required={false}
-                                labelClassName={classes.labelText}
-                                inputClassName={classes.inputStyle}
-                                labelText="State/Province"
-                            >
-                                {props.state}
-                            </LeftLabelInput>
-                        </div>
-                        <div className={classes.formRow}>
-                            <LeftLabelInput name="txtCountry" inputType="text"
-                                required={false}
-                                labelClassName={classes.labelText}
-                                inputClassName={classes.inputStyle}
-                                labelText="Country"
-                            >
-                                {props.country}
-                            </LeftLabelInput>
-                        </div>
-
-                        <BodyHeader>&nbsp;</BodyHeader>
-                        <div className={classes.formRow}>
-                            <Button type="submit" name="btnSubmit" value="Submit" />
-                            <Button type="button" name="btnClear" value="Clear" />
-                        </div>
-                    </form>
-
-                    <form>
                         <div className={classes.formRow}>
                             <Label className={classes.label} text="Describe Yourself" />
                             <textarea name="txtDesc" className={classes.textarea} readOnly={false} disabled={false}>{props.userDesc}</textarea>
                         </div>
+                    </TabPanel>
+                    {
+                        ageSelected !== 'under18' && (
+                            <TabPanel>
+                                <BodyHeader>Location (Optional)</BodyHeader>
+                                <div className={classes.formRow}>
+                                    <LeftLabelInput name="txtCity" inputType="text"
+                                        required={false}
+                                        labelClassName={classes.labelText}
+                                        inputClassName={classes.inputStyle}
+                                        labelText="City"
+                                    >
+                                        {props.city}
+                                    </LeftLabelInput>
+                                    <LeftLabelInput name="txtState" inputType="text"
+                                        required={false}
+                                        labelClassName={classes.labelText}
+                                        inputClassName={classes.inputStyle}
+                                        labelText="State/Province"
+                                    >
+                                        {props.state}
+                                    </LeftLabelInput>
+                                </div>
+                                <div className={classes.formRow}>
+                                    <LeftLabelInput name="txtCountry" inputType="text"
+                                        required={false}
+                                        labelClassName={classes.labelText}
+                                        inputClassName={classes.inputStyle}
+                                        labelText="Country"
+                                    >
+                                        {props.country}
+                                    </LeftLabelInput>
+                                </div>
+                            </TabPanel>
+                        )
+                    }
+                    <TabPanel>
                         <BodyHeader>Favorite Types of Food</BodyHeader>
                             <div className={classes.formRow}>
                             <LeftLabelInput name="chkCuisineType" inputType="checkbox" className={classes.LeftLabelInput}
@@ -233,6 +287,8 @@ export default function UserSettings(props) {
                                 {props.chkFoodOther}
                             </LeftLabelInput>
                         </div>
+                    </TabPanel>
+                    <TabPanel>
                         <BodyHeader>Favorite Movie/TV/Literature Types</BodyHeader>
                         <div className={classes.formRow}>
                             <LeftLabelInput name="chkLiteratureType" inputType="checkbox"
@@ -354,7 +410,8 @@ export default function UserSettings(props) {
                                 {props.txtFavMovieTV}
                             </LeftLabelInput>
                         </div>
-                        
+                    </TabPanel>
+                    <TabPanel>
                         <BodyHeader>Favorite Music Types</BodyHeader>
                         <div className={classes.formRow}>
                             <LeftLabelInput name="chkMusicType" inputType="checkbox"
@@ -444,7 +501,8 @@ export default function UserSettings(props) {
                                 {props.txtFavSong}
                             </LeftLabelInput>
                         </div>
-
+                    </TabPanel>
+                    <TabPanel>
                         <BodyHeader>Favorite Activities</BodyHeader>
                         <div className={classes.formRow}>
                             <LeftLabelInput name="chkActivities" inputType="checkbox"
@@ -574,7 +632,8 @@ export default function UserSettings(props) {
                                 {props.chkActivityOther}
                             </LeftLabelInput>
                         </div>
-
+                    </TabPanel>
+                    <TabPanel>
                         <BodyHeader>Technical Aptitude</BodyHeader>
                         <div className={classes.formRow}>
                             <LeftLabelInput name="chkTechAptitude" inputType="checkbox"
@@ -610,8 +669,12 @@ export default function UserSettings(props) {
                                 {props.chkSoftwareSkills}
                             </LeftLabelInput>
                         </div>
+                    </TabPanel>
+                </Tabs>
+                <BodyHeader>&nbsp;</BodyHeader>
 
-                        <BodyHeader>&nbsp;</BodyHeader>
+                <Container className={classes.body}>
+                    <form>
                         <div className={classes.formRow}>
                             <Button type="submit" name="btnSubmit" value="Submit" />
                             <Button type="button" name="btnClear" value="Clear" />
