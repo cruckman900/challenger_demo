@@ -1,7 +1,7 @@
 import React from "react";
-import DefaultPage from "../../../../UI/DefaultPage/DefaultPage";
-import BodyHeader from "../../../../UI/BodyHeader/BodyHeader";
-import Card from "../../../../UI/Card/Card";
+import DefaultPage from "../../UI/DefaultPage/DefaultPage";
+import BodyHeader from "../../UI/BodyHeader/BodyHeader";
+import Card from "../../UI/Card/Card";
 import classes from './newFeatures.module.css';
 
 export default function NewFeatures() {

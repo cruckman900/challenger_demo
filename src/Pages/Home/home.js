@@ -1,6 +1,6 @@
 import React, { Fragment } from "react";
-import DefaultPage from "../../../../UI/DefaultPage/DefaultPage";
-import Note from "../../../../UI/Note/Note";
+import DefaultPage from "../../UI/DefaultPage/DefaultPage";
+import Note from "../../UI/Note/Note";
 
 export default function home() {
     return (

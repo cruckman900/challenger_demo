@@ -1,5 +1,5 @@
 import React, { Fragment } from "react";
-import DefaultPage from "../../../../UI/DefaultPage/DefaultPage";
+import DefaultPage from "../../UI/DefaultPage/DefaultPage";
 import classes from './suggestions.module.css';
 
 export default function Suggestions() {
