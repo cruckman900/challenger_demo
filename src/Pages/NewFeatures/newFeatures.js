@@ -11,7 +11,7 @@ export default function NewFeatures() {
                 <BodyHeader>5/19/2023</BodyHeader>
                 <div className={classes.updateBody}>
                     Updated React version.  Broke User Info form into tabbed sections - Hiding Location if user is under 18.  Added Privacy Policy and Terms 
-                    of Use stubs and show links in the footer which open the pages inside of a Modal.
+                    of Use stubs and show links in the footer which open the pages inside of a Modal.  Added StatusBar.
                 </div>
                 <BodyHeader>5/17/2023</BodyHeader>
                 <div className={classes.updateBody}>
