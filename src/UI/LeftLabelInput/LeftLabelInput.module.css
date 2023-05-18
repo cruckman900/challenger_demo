@@ -10,9 +10,9 @@
 }
 
 .Input {
+    border-radius: 8px;
     border: none;
     padding: .25rem;
-    /* width: 95%; */
     margin-right: 1rem;
     background: rgba(255, 255, 255, .9);
 }

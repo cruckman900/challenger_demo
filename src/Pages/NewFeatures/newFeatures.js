@@ -3,6 +3,7 @@ import DefaultPage from "../../UI/DefaultPage/DefaultPage";
 import BodyHeader from "../../UI/BodyHeader/BodyHeader";
 import Card from "../../UI/Card/Card";
 import classes from './newFeatures.module.css';
+import wClasses from "../../assets/widget.module.css";
 
 export default function NewFeatures() {
     return (
@@ -11,7 +12,7 @@ export default function NewFeatures() {
                 <BodyHeader>5/18/2023</BodyHeader>
                 <div className={classes.updateBody}>
                     Updated React version.  Broke User Info form into tabbed sections - Hiding Location if user is under 18.  Added Privacy Policy and Terms 
-                    of Use stubs and show links in the footer which open the pages inside of a Modal.  Added StatusBar.
+                    of Use stubs and show links in the footer which open the pages inside of a Modal.  Added StatusBar.  Major update to styles.
                 </div>
                 <BodyHeader>5/17/2023</BodyHeader>
                 <div className={classes.updateBody}>
@@ -24,6 +25,7 @@ export default function NewFeatures() {
                     Added onChange handler for Age in UserSettings.js.
                 </div>
             </Card>
+            <hr className={wClasses.br} />
             <Card headerText="April 2023">
                 <BodyHeader>4/24/2023</BodyHeader>
                 <div className={classes.updateBody}>

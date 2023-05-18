@@ -14,7 +14,7 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 
 export default function UserSettings(props) {
-    const [ageSelected, setAgeSelected] = useState('under18');
+    const [ageSelected, setAgeSelected] = useState(null);
     const [sexSelected, setSexSelected] = useState(null);
     
     const ageCheckChangedHandler = (event) => {
@@ -75,45 +75,53 @@ export default function UserSettings(props) {
                         </div>
                         <div className={classes.formRow}>
                             <Label className={`${classes.label} ${classes.required}`} text="Age Range" />
-                            <LeftLabelInput name="age" inputType="radio" className={classes.indentedInput}
-                                required={true}
-                                labelClassName={classes.labelTextShort}
-                                inputClassName={classes.smallInput}
-                                labelText="Under 18"
-                                value="under18"
-                                checked={ageSelected === 'under18'}
-                                onChange={ageCheckChangedHandler}
-                            />
-                            <LeftLabelInput name="age" inputType="radio" className={classes.indentedInput}
-                                required={true}
-                                labelClassName={classes.labelTextShort}
-                                inputClassName={classes.smallInput}
-                                labelText="18 or Older"
-                                value="18orOlder"
-                                checked={ageSelected === '18orOlder'}
-                                onChange={ageCheckChangedHandler}
-                            />
+                            <div className={classes.formRow}>
+                                <LeftLabelInput name="age" inputType="radio" className={classes.indentedInput}
+                                    required={true}
+                                    labelClassName={classes.labelTextShort}
+                                    inputClassName={classes.smallInput}
+                                    labelText="Under 18"
+                                    value="under18"
+                                    checked={ageSelected === 'under18'}
+                                    onChange={ageCheckChangedHandler}
+                                />
+                            </div>
+                            <div className={classes.formRow}>
+                                <LeftLabelInput name="age" inputType="radio" className={classes.indentedInput}
+                                    required={true}
+                                    labelClassName={classes.labelTextShort}
+                                    inputClassName={classes.smallInput}
+                                    labelText="18 or Older"
+                                    value="18orOlder"
+                                    checked={ageSelected === '18orOlder'}
+                                    onChange={ageCheckChangedHandler}
+                                />
+                            </div>
                         </div>
                         <div className={classes.formRow}>
                             <Label className={classes.label} text="Sex" />
-                            <LeftLabelInput name="sex" inputType="radio" className={classes.indentedInput}
-                                required={false}
-                                labelClassName={classes.labelTextShort}
-                                inputClassName={classes.smallInput}
-                                labelText="Male"
-                                value="male"
-                                checked={sexSelected === 'male'}
-                                onChange={sexCheckChangedHandler}
-                            />
-                            <LeftLabelInput name="sex" inputType="radio" className={classes.indentedInput}
-                                required={false}
-                                labelClassName={classes.labelTextShort}
-                                inputClassName={classes.smallInput}
-                                labelText="Female"
-                                value="female"
-                                checked={sexSelected === 'female'}
-                                onChange={sexCheckChangedHandler}
-                            />
+                            <div className={classes.formRow}>
+                                <LeftLabelInput name="sex" inputType="radio" className={classes.indentedInput}
+                                    required={false}
+                                    labelClassName={classes.labelTextShort}
+                                    inputClassName={classes.smallInput}
+                                    labelText="Male"
+                                    value="male"
+                                    checked={sexSelected === 'male'}
+                                    onChange={sexCheckChangedHandler}
+                                />
+                            </div>
+                            <div className={classes.formRow}>
+                                <LeftLabelInput name="sex" inputType="radio" className={classes.indentedInput}
+                                    required={false}
+                                    labelClassName={classes.labelTextShort}
+                                    inputClassName={classes.smallInput}
+                                    labelText="Female"
+                                    value="female"
+                                    checked={sexSelected === 'female'}
+                                    onChange={sexCheckChangedHandler}
+                                />
+                            </div>
                         </div>
                         <div className={classes.formRow}>
                             <LeftLabelInput name="txtEmail" inputType="email"
@@ -676,7 +684,7 @@ export default function UserSettings(props) {
                 <Container className={classes.body}>
                     <form>
                         <div className={classes.formRow}>
-                            <Button type="submit" name="btnSubmit" value="Submit" />
+                            <Button className={classes.primaryBtn} type="submit" name="btnSubmit" value="Submit" />
                             <Button type="button" name="btnClear" value="Clear" />
                         </div>
                     </form>
