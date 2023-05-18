@@ -6,7 +6,7 @@ export default function Donations() {
     return (
         <Fragment>
             <DefaultPage headerText="Donations">
-                <p>
+                <div>
                     I will continually be making an effort to improve this site.  I do not earn a wage, I am not doing this
                     for an employer or with a group of developers.  I ask, from time to time, for ideas, or a second set of
                     eyes, but for the most part, I am the sole developer.  I am hoping for funding to come through through 
@@ -15,7 +15,7 @@ export default function Donations() {
                     i.e. an added feature), and some form of visual that will show the size of the donation (a meter of 
                     sorts).  But, for the time being, I am developing up to the point to where backend technologies will need 
                     to be developed and this type of feature will be made available.
-                </p>
+                </div>
             </DefaultPage>
         </Fragment>
     );
