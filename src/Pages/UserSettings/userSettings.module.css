@@ -10,12 +10,13 @@
 }
 
 .tabIcon {
-    font-size: 1.25rem;
+    font-size: .9rem;
     margin: 0 .5rem;
 }
 
 .selectedTab {
     background: rgba(255, 69, 0, 0.5);
+    outline: none;
     color: rgba(255, 120, 0, 1);
     border-top-left-radius: 8px;
     border-top-right-radius: 8px;
