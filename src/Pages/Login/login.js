@@ -1,8 +1,8 @@
 import React, { Fragment, useState, useEffect, useReducer, useContext } from "react";
-import AuthContext from "../../../store/auth-context";
-import DefaultPage from "../../../UI/DefaultPage/DefaultPage";
-import LeftLabelInput from "../../../UI/LeftLabelInput/LeftLabelInput";
-import Button from "../../../UI/Button/Button";
+import AuthContext from "../../../../store/auth-context";
+import DefaultPage from "../../../../UI/DefaultPage/DefaultPage";
+import LeftLabelInput from "../../../../UI/LeftLabelInput/LeftLabelInput";
+import Button from "../../../../UI/Button/Button";
 import classes from './login.module.css';
 
 const usernameReducer = (state, action) => {
