@@ -4,8 +4,14 @@
     display: flex;
     position: fixed;
     left: 5rem;
-    bottom: 1px;
+    bottom: .25rem;
     font-size: .7rem;
     font-weight: bold;
     letter-spacing: .065rem;
+}
+
+@media screen and (max-width: 680px) {
+    .statusBar {
+        display: none;
+    }
 }

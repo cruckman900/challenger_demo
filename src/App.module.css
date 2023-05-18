@@ -23,6 +23,16 @@
   }
 }
 
+@media only screen and (min-width:768px) {
+  .App {
+    display: block;
+  }
+
+  .Portrait {
+    display: none;
+  }
+}
+
 @media only screen and (max-width:767px) and (orientation:portrait) {
   .App {
     display: none;
