@@ -28,10 +28,8 @@ code {
 }
 
 .nav-link {
-  text-align: center;
   border-radius: 8px;
   display: block;
-  text-decoration: none;
 }
 
 .nav-link:hover {
@@ -39,6 +37,5 @@ code {
 }
 
 .active {
-  position: relative;
   background: rgba(255, 69, 0, .5);
 }
