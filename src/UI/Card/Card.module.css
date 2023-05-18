@@ -2,7 +2,7 @@
     background: rgba(0, 0, 0, .75);
     color: rgba(255, 120, 50, .8);
     font-family: "ShackleRegular";
-    letter-spacing: .1rem;
+    letter-spacing: .065rem;
     font-size: .9rem;
     text-align: left;
     border: solid 1px rgba(255, 69, 0, 0.8);
@@ -17,7 +17,7 @@
 
 .header {
     font-family: "ShackleItalic";
-    letter-spacing: .1rem;
+    letter-spacing: .065rem;
     font-size: 1rem;
     font-weight: 200;
     background: rgba(255, 69, 0, .4);

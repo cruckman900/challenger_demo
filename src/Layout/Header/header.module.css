@@ -5,6 +5,7 @@
 
 .headerText a:link, .headerText a:visited {
     font-family: "ShackleRegular";
+    letter-spacing: .065rem;
     color: rgba(255, 69, 0, .8);
     text-decoration: none;
     float: right;
