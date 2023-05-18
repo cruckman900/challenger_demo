@@ -23,6 +23,10 @@
     border-bottom: solid 1px rgba(255, 120, 0, 1);
 }
 
+.selectedTab::after {
+    display: none;
+}
+
 .primaryBtn {
     background: rgba(255, 69, 0, .5);
     color: rgba(255, 120, 50, .8);
