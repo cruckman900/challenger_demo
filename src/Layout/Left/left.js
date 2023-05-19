@@ -26,11 +26,8 @@ const Left = () => {
         <React.Fragment>
             <Navbar key="left" className={`${classes.left} ${classes.scrollable} ${classes.noScrollbars}`}>
                 <Nav defaultActiveKey="#" activeKey={location.pathname}>
-                    <Nav.Link as={Link} to={"/"} eventKey="/" href="#">
+                    <Nav.Link as={Link} to={"/"} eventKey="/" href="#" alt="Home">
                         <p className={classes.menuButtonBackground}><FontAwesomeIcon className={classes.menuButton} icon={myIcons['house']} /></p>
-                    </Nav.Link>
-                    <Nav.Link as={Link} to={"/newFeatures"} eventKey="/newFeatures" href="#newFeatures">
-                        <p className={classes.menuButtonBackground}><FontAwesomeIcon className={classes.menuButton} icon={myIcons['newspaper']} /></p>
                     </Nav.Link>
                     <Nav.Link as={Link} to={"/userSettings"} eventKey="/userSettings" href="#userSettings">
                         <p className={classes.menuButtonBackground}><FontAwesomeIcon className={classes.menuButton} icon={myIcons['userGear']} /></p>
@@ -51,6 +48,9 @@ const Left = () => {
                             </Nav.Link>
                         </>                    
                     }
+                    <Nav.Link as={Link} to={"/newFeatures"} eventKey="/newFeatures" href="#newFeatures">
+                        <p className={classes.menuButtonBackground}><FontAwesomeIcon className={classes.menuButton} icon={myIcons['newspaper']} /></p>
+                    </Nav.Link>
                 </Nav>
             </Navbar>
         </React.Fragment>
