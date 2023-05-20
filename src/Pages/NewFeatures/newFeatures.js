@@ -15,7 +15,8 @@ export default function NewFeatures() {
                     created labledInputs.js to return all types of Inputs already formatted.  Gave collapsable cards a '+/-' indicator.  Added more fields to 
                     AccountInfo.  Modified form styles.  Clicking on labels in forms selects the associated input.  Hovering over inputs or their labels
                     makes a border around it, changes the cursor, and underlines the label.  Disable pertinent account info after user is created.  Alphabetized 
-                    checkbox lists in User Information forms.
+                    checkbox lists in User Information forms.  Some simple form validations on the Account Info form, including locking down pertinant info and 
+                    disabling the submit button on successful activation of the account (mocked).
                 </div>
                 <BodyHeader>5/18/2023</BodyHeader>
                 <div className={classes.updateBody}>
