@@ -33,14 +33,15 @@ const AccountInfo = (props) => {
 
     const inputs = [
         {id: "txtFirstName", inputType: "text", required: true, labelText: "First Name", value: props.firstName},
+        {id: "txtMiddle", inputType: "text", required: false, labelText: "Middle", value: props.middle},
         {id: "txtLastName", inputType: "text", required: true, labelText: "Last Name", value: props.lastName},
-        {id: "txtDisplayName", inputType: "text", required: true, labelText: "Display Name", value: props.displayname},
+        {id: "txtDisplayName", inputType: "text", required: false, labelText: "Display Name", value: props.displayname},
         {id: "label1", inputType: "label", required: true, className: `${classes.label} ${classes.required}`, text: "Age Range"},
-        {id: "age18OrOlder", name: "age", inputType: "radio", className: classes.indentedInput, required: true, labelText: "18 or Older", value: "18orOlder", checked: ageSelected === '18orOlder', onChange: ageCheckChangedHandler},
-        {id: "ageUnder18", name: "age", inputType: "radio", className: classes.indentedInput, required: true, labelText: "Under 18", value: "under18", checked: ageSelected === 'under18', onChange: ageCheckChangedHandler},
+        {id: "rad18OrOlder", name: "age", inputType: "radio", className: classes.indentedInput, required: true, labelText: "18 or Older", value: "18orOlder", checked: ageSelected === '18orOlder', onChange: ageCheckChangedHandler},
+        {id: "radUnder18", name: "age", inputType: "radio", className: classes.indentedInput, required: true, labelText: "Under 18", value: "under18", checked: ageSelected === 'under18', onChange: ageCheckChangedHandler},
         {id: "label2", inputType: "label", required: true, className: classes.label, text: "Gender"},
-        {id: "genderMale", name: "gender", inputType: "radio", className: classes.indentedInput, required: false, labelText: "Male", value: "male", checked: sexSelected === 'male', onChange: sexCheckChangedHandler},
-        {id: "genderFemale", name: "gender", inputType: "radio", className: classes.indentedInput, required: false, labelText: "Female", value: "female", checked: sexSelected === 'female', onChange: sexCheckChangedHandler},
+        {id: "radMale", name: "gender", inputType: "radio", className: classes.indentedInput, required: false, labelText: "Male", value: "male", checked: sexSelected === 'male', onChange: sexCheckChangedHandler},
+        {id: "radFemale", name: "gender", inputType: "radio", className: classes.indentedInput, required: false, labelText: "Female", value: "female", checked: sexSelected === 'female', onChange: sexCheckChangedHandler},
         {id: "txtEmail", inputType: "email", required: true, labelText: "Email", value: props.email},
         {id: "txtUsername", inputType: "text", required: true, labelText: "Username", value: props.username},
         {id: "txtPassword", inputType: "password", required: true, labelText: "Password", value: props.password},
@@ -54,10 +55,11 @@ const AccountInfo = (props) => {
 
     return (
         <form onSubmit={onSubmitHandler}>
+            <Note noteType="info" headerText="Form Handling">You must submit a completed Account Information form to unlock  the optional forms.</Note>
             <BodyHeader>Account Information</BodyHeader>
+            {errorMessage && <Note noteType="error" headerText="Validation Error.">{errorMessage}</Note>}
             {labeledInputs(inputs)}
             <BodyHeader>&nbsp;</BodyHeader>
-            {errorMessage && <Note noteType="error" headerText="Validation Error.">{errorMessage}</Note>}
             <div className={classes.formRow}>
                 <Button className={classes.primaryBtn} type="submit" name="btnSubmit" value="Submit" />
                 <Button type="button" name="btnClear" value="Clear" />

@@ -3,7 +3,7 @@ import DefaultPage from "../../UI/DefaultPage/DefaultPage";
 import BodyHeader from "../../UI/BodyHeader/BodyHeader";
 import Card from "../../UI/Card/Card";
 import classes from './newFeatures.module.css';
-import wClasses from "../../assets/widget.module.css";
+import wClasses from "../../builders/widget.module.css";
 
 export default function NewFeatures() {
     return (
@@ -13,7 +13,7 @@ export default function NewFeatures() {
                 <div className={classes.updateBody}>
                     Modified Note component to now be used for Info, Success, Warning, and Error messages.  Broke down UserInfo forms into array maps and 
                     created labledInputs.js to return all types of Inputs already formatted.  Gave collapsable cards a '+/-' indicator.  Added more fields to 
-                    AccountInfo.  Modified form styles.
+                    AccountInfo.  Modified form styles.  Clicking on labels in forms selects the associated input.
                 </div>
                 <BodyHeader>5/18/2023</BodyHeader>
                 <div className={classes.updateBody}>

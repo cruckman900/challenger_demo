@@ -10,6 +10,10 @@
     margin: 0 .15rem;
 }
 
+.tabIcon:hover {
+    color: rgba(255, 120, 0, 1)
+}
+
 .selectedTab {
     background: rgba(255, 69, 0, 0.5);
     outline: none;
@@ -37,6 +41,11 @@
 .required {
     font-weight: bold;
     color: rgba(255, 120, 0, 1);
+}
+
+.smallInputStyle {
+    width: 2rem;
+    padding: .25rem;
 }
 
 .indentedInput {

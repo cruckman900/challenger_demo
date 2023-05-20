@@ -1,7 +1,7 @@
 import Modal from "../../UI/Modal/Modal";
 import Card from "../../UI/Card/Card";
 import classes from './Agreements.module.css';
-import wClasses from "../../assets/widget.module.css";
+import wClasses from "../../builders/widget.module.css";
 import Label from "../../UI/Label/Label";
 import Button from "../../UI/Button/Button";
 

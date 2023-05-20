@@ -7,7 +7,8 @@ const labeledInputs = (inputs) => {
         if (input.inputType === "label") {
             return (
                 <div className={classes.formRow}>
-                    <Label id={input.id} key={input.id}
+                    <Label
+                        htmlFor={input.id}
                         required={input.required}
                         className={input.className}
                         text={input.text}
@@ -19,7 +20,7 @@ const labeledInputs = (inputs) => {
         if (input.inputType === "radio") {
             return (
                 <div className={classes.formRow}>
-                    <LeftLabelInput id={input.id} key={input.id} name={input.name}
+                    <LeftLabelInput id={input.id} key={input.id} name={input.id}
                         inputType={input.inputType}
                         className={input.className}
                         required={input.required}
@@ -44,7 +45,7 @@ const labeledInputs = (inputs) => {
                     inputType={input.inputType}
                     required={input.required}
                     labelClassName={classes.labelText}
-                    inputClassName={classes.inputStyle}
+                    inputClassName={`${classes.inputStyle} ${input.className}`}
                     labelText={input.labelText}
                 >
                     {input.value}

@@ -2,7 +2,7 @@ import Modal from "../../UI/Modal/Modal";
 import Card from "../../UI/Card/Card";
 import Label from "../../UI/Label/Label";
 import classes from './Agreements.module.css';
-import wClasses from "../../assets/widget.module.css";
+import wClasses from "../../builders/widget.module.css";
 import Button from "../../UI/Button/Button";
 
 const PrivacyPolicy = (props) => {

@@ -12,6 +12,7 @@ export default function LeftLabelInput(props) {
             />
             {props.inputType !== "textarea" && (
                 <input
+                    id={props.id}
                     className={`${classes.Input} ${props.inputClassName} ${props.Valid && classes.InputValid} ${props.Error && classes.InputError}`}
                     type={props.inputType}
                     name={props.name}

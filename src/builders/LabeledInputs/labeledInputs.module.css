@@ -26,6 +26,11 @@
     width: 25rem;
 }
 
+.textarea:hover {
+    border: solid 1px rgba(255, 120, 0, 1);
+    cursor: text;
+}
+
 @media screen and (min-width: 800px) {
     .inputStyle {
         width: 20rem;
