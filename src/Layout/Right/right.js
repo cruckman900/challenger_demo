@@ -1,5 +1,5 @@
 import React from "react";
-import RightContainer from "../../UI/RightContainer/RightContainer";
+import RightContainer from "./RightContainer/RightContainer";
 import Card from "../../UI/Card/Card";
 import wClasses from "../../assets/widget.module.css";
 

@@ -17,7 +17,7 @@ const ComputerInfo = (props) => {
                     required={false}
                     labelClassName={classes.labelText}
                     inputClassName={classes.smallInput}
-                    labelText="Digital Art/Media or 3D Modelling"
+                    labelText="Digital Art/Media"
                 >
                     {props.chkDigitalMedia}
                 </LeftLabelInput>
@@ -25,7 +25,7 @@ const ComputerInfo = (props) => {
                     required={false}
                     labelClassName={classes.labelText}
                     inputClassName={classes.smallInput}
-                    labelText="Web/Mobile Development"
+                    labelText="Software Development"
                 >
                     {props.chkSoftwareDevelopment}
                 </LeftLabelInput>

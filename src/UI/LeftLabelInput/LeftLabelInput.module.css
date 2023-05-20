@@ -1,7 +1,12 @@
+.container {
+    display: flex;
+    justify-content: left;
+    align-items: center;
+}
+
 .Label, .Input {
     float: left;
     margin: .25rem;
-    vertical-align: middle;
 }
 
 .required {

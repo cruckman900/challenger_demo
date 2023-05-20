@@ -47,10 +47,6 @@
     width: 10rem;
 }
 
-.labelTextShort {
-    width: 6rem;
-}
-
 .label {
     float: left;
     margin: .25rem;    
@@ -68,7 +64,7 @@
 
 .indentedInput {
     position: relative;
-    left: 10rem;
+    left: 2rem;
 }
 
 .textarea {

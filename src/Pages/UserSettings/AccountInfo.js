@@ -50,7 +50,7 @@ const AccountInfo = (props) => {
                 <div className={classes.formRow}>
                     <LeftLabelInput name="age" inputType="radio" className={classes.indentedInput}
                         required={true}
-                        labelClassName={classes.labelTextShort}
+                        labelClassName={classes.labelText}
                         inputClassName={classes.smallInput}
                         labelText="Under 18"
                         value="under18"
@@ -61,7 +61,7 @@ const AccountInfo = (props) => {
                 <div className={classes.formRow}>
                     <LeftLabelInput name="age" inputType="radio" className={classes.indentedInput}
                         required={true}
-                        labelClassName={classes.labelTextShort}
+                        labelClassName={classes.labelText}
                         inputClassName={classes.smallInput}
                         labelText="18 or Older"
                         value="18orOlder"
@@ -75,7 +75,7 @@ const AccountInfo = (props) => {
                 <div className={classes.formRow}>
                     <LeftLabelInput name="sex" inputType="radio" className={classes.indentedInput}
                         required={false}
-                        labelClassName={classes.labelTextShort}
+                        labelClassName={classes.labelText}
                         inputClassName={classes.smallInput}
                         labelText="Male"
                         value="male"
@@ -86,7 +86,7 @@ const AccountInfo = (props) => {
                 <div className={classes.formRow}>
                     <LeftLabelInput name="sex" inputType="radio" className={classes.indentedInput}
                         required={false}
-                        labelClassName={classes.labelTextShort}
+                        labelClassName={classes.labelText}
                         inputClassName={classes.smallInput}
                         labelText="Female"
                         value="female"
