@@ -67,27 +67,13 @@ export default function UserSettings(props) {
                         <Tab disabled={!accountID && true}><FontAwesomeIcon className={classes.tabIcon} icon={myIcons['computer']} /></Tab>
                     </TabList>
 
-                    <TabPanel>
-                        <AccountInfo setAgeRange={setAgeRange} setAccountID={setID} />
-                    </TabPanel>
-                    <TabPanel>
-                        <LocationInfo acctID={accountID} />
-                    </TabPanel>
-                    <TabPanel>
-                        <FoodInfo acctID={accountID} />
-                    </TabPanel>
-                    <TabPanel>
-                        <MovieInfo acctID={accountID} />
-                    </TabPanel>
-                    <TabPanel>
-                        <MusicInfo acctID={accountID} />
-                    </TabPanel>
-                    <TabPanel>
-                        <ActivityInfo acctID={accountID} />
-                    </TabPanel>
-                    <TabPanel>
-                        <ComputerInfo acctID={accountID} />
-                    </TabPanel>
+                    <TabPanel><AccountInfo setAgeRange={setAgeRange} setAccountID={setID} /></TabPanel>
+                    <TabPanel><LocationInfo acctID={accountID} /></TabPanel>
+                    <TabPanel><FoodInfo acctID={accountID} /></TabPanel>
+                    <TabPanel><MovieInfo acctID={accountID} /></TabPanel>
+                    <TabPanel><MusicInfo acctID={accountID} /></TabPanel>
+                    <TabPanel><ActivityInfo acctID={accountID} /></TabPanel>
+                    <TabPanel><ComputerInfo acctID={accountID} /></TabPanel>
                 </Tabs>
             </DefaultPage>
         </Fragment>
