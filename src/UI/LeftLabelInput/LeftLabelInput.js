@@ -8,19 +8,30 @@ export default function LeftLabelInput(props) {
             <Label
                 className={`${classes.Label} ${props.labelClassName} ${props.required && classes.required}`}
                 text={props.labelText}
-                htmlFor={props.htmlFor}
+                htmlFor={props.name}
             />
-            <input
-                className={`${classes.Input} ${props.inputClassName} ${props.Valid && classes.InputValid} ${props.Error && classes.InputError}`}
-                type={props.inputType}
-                name={props.name}
-                title={props.title}
-                placeholder={props.placeholder}
-                value={props.value}
-                checked={props.checked}
-                onChange={props.onChange}
-                onBlur={props.onBlur}
-            />
+            {props.inputType !== "textarea" && (
+                <input
+                    className={`${classes.Input} ${props.inputClassName} ${props.Valid && classes.InputValid} ${props.Error && classes.InputError}`}
+                    type={props.inputType}
+                    name={props.name}
+                    title={props.title}
+                    placeholder={props.placeholder}
+                    value={props.value}
+                    checked={props.checked}
+                    onChange={props.onChange}
+                    onBlur={props.onBlur}
+                />
+            )}
+            {props.inputType === "textarea" && (
+                <textarea id={props.id} key={props.id} name={props.name}
+                    className={props.inputClassName}
+                    readOnly={props.readOnly}
+                    disabled={props.disabled}
+                >
+                    {props.value}
+                </textarea>
+            )}
         </div>
     );
 }

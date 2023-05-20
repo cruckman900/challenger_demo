@@ -27,7 +27,8 @@
 .body {
     display: block;
     height: calc(100vh - 9.5rem);
-    overflow: auto;
+    overflow-x: hidden;
+    overflow-y: auto;
     -ms-overflow-style: none;
     text-align: start;
     padding: .5rem;

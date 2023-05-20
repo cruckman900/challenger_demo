@@ -1,0 +1,37 @@
+.formRow {
+    clear: both;
+    min-height: 1.5rem;
+    display: block;
+}
+
+.labelText {
+    width: 10rem;
+}
+
+.label {
+    float: left;
+    margin: .25rem;    
+    width: 10rem;
+}
+
+.inputStyle {
+    width: 15rem;
+}
+
+.textarea {
+    float: left;
+    border-radius: 8px;
+    padding: .25rem;
+    height: 4rem;
+    width: 25rem;
+}
+
+@media screen and (min-width: 800px) {
+    .inputStyle {
+        width: 20rem;
+    }
+
+    .textarea {
+        width: 20rem;
+    }
+}

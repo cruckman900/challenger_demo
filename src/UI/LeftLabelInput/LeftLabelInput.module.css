@@ -1,12 +1,16 @@
 .container {
     display: flex;
     justify-content: left;
-    align-items: center;
+    align-items: top;
 }
 
 .Label, .Input {
     float: left;
     margin: .25rem;
+}
+
+.Label {
+    width: 10rem;
 }
 
 .required {

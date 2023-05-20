@@ -11,7 +11,7 @@
 
 .tabIcon {
     font-size: .9rem;
-    margin: 0 .5rem;
+    margin: 0 .15rem;
 }
 
 .selectedTab {
@@ -43,53 +43,8 @@
     color: rgba(255, 120, 0, 1);
 }
 
-.labelText {
-    width: 10rem;
-}
-
-.label {
-    float: left;
-    margin: .25rem;    
-    width: 10rem;
-}
-
-.inputStyle {
-    width: 15rem;
-}
-
-.smallInput {
-    height: 1rem;
-    width: 1rem;
-}
-
 .indentedInput {
     position: relative;
+    width: 12rem;
     left: 2rem;
-}
-
-.textarea {
-    margin: .25rem;
-    height: 4rem;
-    width: 18em;
-}
-
-@media screen and (min-width: 800px) {
-    .inputStyle {
-        width: 20rem;
-    }
-
-    .textarea {
-        width: 20rem;
-    }
-}
-
-@media screen and (max-width: 799px) {
-    .indentedInput {
-        position: relative;
-        left: 5rem;
-    }
-    
-    .tabIcon {
-        margin: 0 .15rem;
-    }
 }
