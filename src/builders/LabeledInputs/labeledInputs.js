@@ -50,13 +50,18 @@ const labeledInputs = (inputs) => {
                     id={input.id}
                     key={input.id}
                     name={input.id}
+                    placeholder={input.placeholder}
                     inputType={input.inputType}
                     required={input.required}
                     labelClassName={classes.labelText}
                     inputClassName={`${classes.inputStyle} ${input.className}`}
                     labelText={input.labelText}
                     disabled={input.disabled}
-                    >
+                    onChange={input.onChange}
+                    onBlur={input.onBlur}
+                    valid={input.valid}
+                    error={input.error}
+            >
                     {input.value}
                 </LeftLabelInput>
             );
@@ -73,6 +78,8 @@ const labeledInputs = (inputs) => {
                     readOnly={input.readOnly}
                     labelText={input.labelText}
                     disabled={input.disabled}
+                    onChange={input.onChange}
+                    onBlur={input.onBlur}
                 >
                     {input.value}
                 </LeftLabelInput>

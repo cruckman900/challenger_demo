@@ -6,6 +6,10 @@ import LeftLabelInput from "../../UI/LeftLabelInput/LeftLabelInput";
 import Button from "../../UI/Button/Button";
 import classes from './login.module.css';
 
+const hasNumber = (val) => {
+    return /\d/.test(val);
+}
+
 const usernameReducer = (state, action) => {
     if (action.type === 'USER_INPUT') {
         return { value: action.value, isValid: action.value.trim().length > 11 };
@@ -22,10 +26,6 @@ const passwordReducer = (state, action) => {
     if (action.type === 'INPUT_BLUR') {
         return { value: state.value, isValid: state.value.trim().length > 7 && hasNumber(state.value)};
     }
-}
-
-const hasNumber = (val) => {
-    return /\d/.test(val);
 }
 
 export default function Login(props) {

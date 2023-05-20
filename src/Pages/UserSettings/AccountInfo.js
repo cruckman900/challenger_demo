@@ -1,9 +1,53 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useReducer } from "react";
 import BodyHeader from "../../UI/BodyHeader/BodyHeader";
 import Button from "../../UI/Button/Button";
 import Note from "../../UI/Note/Note";
 import labeledInputs from '../../builders/LabeledInputs/labeledInputs';
 import classes from './userSettings.module.css';
+
+const hasNumber = (val) => {
+    return /\d/.test(val);
+}
+
+const isEmail = (val) => {
+    return /^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/.test(val);
+}
+
+const nameReducer = (state, action) => {
+    if (action.type === 'USER_INPUT') {
+        return { value: action.value, isValid: action.value.trim().length > 0 };
+    }
+    if (action.type === 'INPUT_BLUR') {
+        return { value: state.value, isValid: state.value.trim().length > 0}
+    }
+}
+
+const emailReducer = (state, action) => {
+    if (action.type === 'USER_INPUT') {
+        return { value: action.value, isValid: isEmail(action.value.trim())};
+    }
+    if (action.type === 'INPUT_BLUR') {
+        return { value: state.value, isValid: isEmail(state.value.trim())}
+    }
+}
+
+const usernameReducer = (state, action) => {
+    if (action.type === 'USER_INPUT') {
+        return { value: action.value, isValid: action.value.trim().length > 11 };
+    }
+    if (action.type === 'INPUT_BLUR') {
+        return { value: state.value, isValid: state.value.trim().length > 11}
+    }
+}
+
+const passwordReducer = (state, action) => {
+    if (action.type === 'USER_INPUT') {
+        return { value: action.value, isValid: action.value.trim().length > 7 && hasNumber(action.value)};
+    }
+    if (action.type === 'INPUT_BLUR') {
+        return { value: state.value, isValid: state.value.trim().length > 7 && hasNumber(state.value)};
+    }
+}
 
 const AccountInfo = (props) => {
     const [ageSelected, setAgeSelected] = useState('18orOlder');
@@ -11,7 +55,106 @@ const AccountInfo = (props) => {
     const [identSelected, setIdentSelected] = useState('realname');
     const [disabled, setDisabled] = useState(false);
     const [queryType, setQueryType] = useState('insert');
-    
+
+    const [formSubmitted, setFormSubmitted] = useState(false);
+
+    const [message, setMessage] = useState(null);
+
+    useEffect(() => {
+        if (!formSubmitted) {
+            setMessage({noteType: 'info', headerText: 'Form Handling', messageText: 'You must submit this form to unlock the other forms. Bold Items are required fields.'});
+        }
+    }, [formSubmitted]);
+
+    const [formIsValid, setFormIsValid] = useState(false);
+
+    const [emailState, dispatchEmail] = useReducer(emailReducer, {
+        value: '',
+        isValid: null
+    });
+
+    const [firstNameState, dispatchFirstName] = useReducer(nameReducer, {
+        value: '',
+        isValid: null
+    });
+
+    const [lastNameState, dispatchLastName] = useReducer(nameReducer, {
+        value: '',
+        isValid: null
+    });
+
+    const [usernameState, dispatchUsername] = useReducer(usernameReducer, {
+        value: '',
+        isValid: null
+    });
+
+    const [passwordState, dispatchPassword] = useReducer(passwordReducer, {
+        value: '',
+        isValid: null
+    });
+
+    const { isValid: firstNameIsValid } = firstNameState;
+    const { isValid: lastNameIsValid } = lastNameState;
+    const { isValid: emailIsValid } = emailState;
+    const { isValid: usernameIsValid } = usernameState;
+    const { isValid: passwordIsValid } = passwordState;
+ 
+    useEffect(() => {
+        const identifier = setTimeout(() => {
+            setFormIsValid(
+                firstNameIsValid &&
+                lastNameIsValid &&
+                emailIsValid &&
+                usernameIsValid &&
+                passwordIsValid
+            );
+        }, 500);
+
+        return () => {
+            clearTimeout(identifier);
+        }
+    }, [firstNameIsValid, lastNameIsValid, emailIsValid, usernameIsValid, passwordIsValid]);
+
+    const firstNameChangeHandler = (event) => {
+        dispatchFirstName({type: 'USER_INPUT', value: event.target.value});
+    };
+
+    const lastNameChangeHandler = (event) => {
+        dispatchLastName({type: 'USER_INPUT', value: event.target.value});
+    };
+
+    const usernameChangeHandler = (event) => {
+        dispatchUsername({type: 'USER_INPUT', value: event.target.value});
+    };
+
+    const emailChangeHandler = (event) => {
+        dispatchEmail({type: 'USER_INPUT', value: event.target.value});
+    };
+
+    const passwordChangeHandler = (event) => {
+        dispatchPassword({type: 'USER_INPUT', value: event.target.value});
+    };
+
+    const validateEmailHandler = () => {
+        dispatchEmail({type: 'INPUT_BLUR'});
+    };
+
+    const validateFirstNameHandler = () => {
+        dispatchUsername({type: 'INPUT_BLUR'});
+    };
+
+    const validateLastNameHandler = () => {
+        dispatchUsername({type: 'INPUT_BLUR'});
+    };
+
+    const validateUsernameHandler = () => {
+        dispatchUsername({type: 'INPUT_BLUR'});
+    };
+
+    const validatePasswordHandler = () => {
+        dispatchPassword({type: 'INPUT_BLUR'});
+    };
+
     const ageCheckChangedHandler = (event) => {
         const val = event.target.value;
         setAgeSelected(val);
@@ -28,24 +171,31 @@ const AccountInfo = (props) => {
 
     const onSubmitHandler = (event) => {
         event.preventDefault();
-        setDisabled(true);
-        if (queryType === 'insert') {
-            props.setAccountID(1);
-            setQueryType('update');
+        if (formIsValid) {
+            if (queryType === 'insert') {
+                props.setAccountID(1);
+                setQueryType('update');
+                setMessage("")
+            } else if (queryType === 'update') {
+                // do nothing yet
+            }
+            setFormSubmitted(true);
+            setDisabled(true);
+            setMessage({noteType: 'success', headerText: 'Form submitted!', messageText: 'Please check your email.'});
             return;
+        } else {
+            setMessage({noteType: 'error', headerText: 'Validation Error!', messageText: 'You have 1 or more errors preventing you from submitting your form.'});
         }
     };
-
-    const [errorMessage, setErrorMessage] = useState(null);
 
     useEffect(() => {
         props.setAgeRange(ageSelected);
     }, []);
 
     const inputs = [
-        {id: "txtFirstName", inputType: "text", required: true, labelText: "First Name", value: props.firstName},
+        {id: "txtFirstName", placeholder: "Cannot be blank", inputType: "text", required: true, labelText: "First Name", value: props.firstName, onChange: firstNameChangeHandler, onBlur: validateFirstNameHandler, valid: firstNameIsValid, error: !firstNameIsValid},
         {id: "txtMiddle", inputType: "text", required: false, labelText: "Middle", value: props.middle},
-        {id: "txtLastName", inputType: "text", required: true, labelText: "Last Name", value: props.lastName},
+        {id: "txtLastName", placeholder: "Cannot be blank", inputType: "text", required: true, labelText: "Last Name", value: props.lastName, onChange: lastNameChangeHandler, onBlur: validateLastNameHandler, valid: lastNameIsValid, error: !lastNameIsValid},
         {id: "txtDisplayName", inputType: "text", required: false, labelText: "Display Name", value: props.displayname},
         {id: "label1", inputType: "label", required: true, className: `${classes.label} ${classes.required}`, text: "Age Range"},
         {id: "rad18OrOlder", name: "age", inputType: "radio", className: classes.indentedInput, required: true, labelText: "18 or Older", value: "18orOlder", checked: ageSelected === '18orOlder', onChange: ageCheckChangedHandler},
@@ -53,10 +203,9 @@ const AccountInfo = (props) => {
         {id: "label2", inputType: "label", required: true, className: classes.label, text: "Gender"},
         {id: "radMale", name: "gender", inputType: "radio", className: classes.indentedInput, required: false, labelText: "Male", value: "male", checked: sexSelected === 'male', onChange: sexCheckChangedHandler},
         {id: "radFemale", name: "gender", inputType: "radio", className: classes.indentedInput, required: false, labelText: "Female", value: "female", checked: sexSelected === 'female', onChange: sexCheckChangedHandler},
-        {id: "txtEmail", inputType: "email", required: true, labelText: "Email", value: props.email, disabled: disabled},
-        {id: "txtUsername", inputType: "text", required: true, labelText: "Username", value: props.username, disabled: disabled},
-        {id: "txtPassword", inputType: "password", required: true, labelText: "Password", value: props.password, disabled: disabled},
-        {id: "txtConfirmPassword", inputType: "password", required: true, labelText: "Confirm Password", value: props.confirmpassword, disabled: disabled},
+        {id: "txtEmail", placeholder: "Enter a valid email", inputType: "email", required: true, labelText: "Email", value: props.email, disabled: disabled, onChange: emailChangeHandler, onBlur: validateEmailHandler, valid: emailIsValid, error: !emailIsValid},
+        {id: "txtUsername", placeholder: "12 or more chars", inputType: "text", required: true, labelText: "Username", value: props.username, disabled: disabled, onChange: usernameChangeHandler, onBlur: validateUsernameHandler, valid: usernameIsValid, error: !usernameIsValid},
+        {id: "txtPassword", placeholder: "8+ chars and 1+ numbers", inputType: "password", required: true, labelText: "Password", value: props.password, disabled: disabled, onChange: passwordChangeHandler, onBlur: validatePasswordHandler, valid: passwordIsValid, error: !passwordIsValid},
         {id: "label3", inputType: "label", required: true, className: `${classes.label} ${classes.required}`, text: "Identify me using:"},
         {id: "identRealName", name: "ident", inputType: "radio", className: classes.indentedInput, required: true, labelText: "Real Name", value: "realname", checked: identSelected === 'realname', onChange: identCheckChangedHandler},
         {id: "identDisplayName", name: "ident", inputType: "radio", className: classes.indentedInput, required: true, labelText: "Display Name", value: "displayname", checked: identSelected === 'displayname', onChange: identCheckChangedHandler},
@@ -67,8 +216,7 @@ const AccountInfo = (props) => {
     return (
         <form onSubmit={onSubmitHandler}>
             <BodyHeader>Account Information</BodyHeader>
-            {queryType === 'insert' && <Note noteType="info" headerText="Form Handling">You must submit this form to unlock the other forms.</Note>}
-            {errorMessage && <Note noteType="error" headerText="Validation Error.">{errorMessage}</Note>}
+            {message && <Note noteType={message.noteType} headerText={message.headerText}>{message.messageText}</Note>}
             {labeledInputs(inputs)}
             <BodyHeader>&nbsp;</BodyHeader>
             <div className={classes.formRow}>
