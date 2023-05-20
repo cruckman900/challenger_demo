@@ -55,6 +55,7 @@ const AccountInfo = (props) => {
     const [sexSelected, setSexSelected] = useState(null);
     const [identSelected, setIdentSelected] = useState('realname');
     const [disabled, setDisabled] = useState(false);
+    const [submitDisabled, setSubmitDisabled] = useState(false);
     const [queryType, setQueryType] = useState('insert');
 
     const [formSubmitted, setFormSubmitted] = useState(false);
@@ -196,6 +197,7 @@ const AccountInfo = (props) => {
         if (val.length > 0) {
             setMessage({noteType: 'success', headerText: 'Form submitted!', messageText: 'Account activated!'});
             props.setAccountID(1);
+            setSubmitDisabled(true);
             setQueryType('update');
         } else {
             props.setAccountID(null);
@@ -236,7 +238,7 @@ const AccountInfo = (props) => {
                 {labeledInputs(inputs)}
                 <BodyHeader>&nbsp;</BodyHeader>
                 <div className={classes.formRow}>
-                    <Button className={classes.primaryBtn} type="submit" name="btnSubmit" value="Submit" />
+                    <Button className={classes.primaryBtn} type="submit" name="btnSubmit" value="Submit" disabled={submitDisabled} />
                     <Button type="button" name="btnClear" value="Clear" />
                 </div>
             </form>
