@@ -43,11 +43,6 @@
     color: rgba(255, 120, 0, 1);
 }
 
-.smallInputStyle {
-    width: 2rem;
-    padding: .25rem;
-}
-
 .indentedInput {
     position: relative;
     width: 12rem;

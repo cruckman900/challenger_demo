@@ -8,6 +8,7 @@ const labeledInputs = (inputs) => {
             return (
                 <div className={classes.formRow}>
                     <Label
+                        key={input.id}
                         htmlFor={input.id}
                         required={input.required}
                         className={input.className}
@@ -20,7 +21,10 @@ const labeledInputs = (inputs) => {
         if (input.inputType === "radio") {
             return (
                 <div className={classes.formRow}>
-                    <LeftLabelInput id={input.id} key={input.id} name={input.id}
+                    <LeftLabelInput
+                        id={input.id}
+                        key={input.id}
+                        name={input.name}
                         inputType={input.inputType}
                         className={input.className}
                         required={input.required}
@@ -29,6 +33,7 @@ const labeledInputs = (inputs) => {
                         value={input.value}
                         checked={input.checked}
                         onChange={input.onChange}
+                        disabled={input.disabled}
                     />
                 </div>
             );
@@ -41,13 +46,17 @@ const labeledInputs = (inputs) => {
             input.inputType === "checkbox")
         {
             return (
-                <LeftLabelInput id={input.id} key={input.id} name={input.id}
+                <LeftLabelInput
+                    id={input.id}
+                    key={input.id}
+                    name={input.id}
                     inputType={input.inputType}
                     required={input.required}
                     labelClassName={classes.labelText}
                     inputClassName={`${classes.inputStyle} ${input.className}`}
                     labelText={input.labelText}
-                >
+                    disabled={input.disabled}
+                    >
                     {input.value}
                 </LeftLabelInput>
             );
@@ -55,12 +64,15 @@ const labeledInputs = (inputs) => {
     
         if (input.inputType === "textarea") {
             return (
-                <LeftLabelInput id={input.id} key={input.id} name={input.id}
+                <LeftLabelInput
+                    id={input.id}
+                    key={input.id}
+                    name={input.id}
                     inputType={input.inputType}
                     inputClassName={classes.textarea}
                     readOnly={input.readOnly}
-                    disabled={input.disabled}
                     labelText={input.labelText}
+                    disabled={input.disabled}
                 >
                     {input.value}
                 </LeftLabelInput>

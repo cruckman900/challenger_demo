@@ -9,6 +9,7 @@ const AccountInfo = (props) => {
     const [ageSelected, setAgeSelected] = useState('18orOlder');
     const [sexSelected, setSexSelected] = useState(null);
     const [identSelected, setIdentSelected] = useState('realname');
+    const [disabled, setDisabled] = useState(false);
     
     const ageCheckChangedHandler = (event) => {
         const val = event.target.value;
@@ -26,6 +27,7 @@ const AccountInfo = (props) => {
 
     const onSubmitHandler = (event) => {
         event.preventDefault();
+        setDisabled(true);
         props.setAccountID(1);
     };
 
@@ -42,10 +44,10 @@ const AccountInfo = (props) => {
         {id: "label2", inputType: "label", required: true, className: classes.label, text: "Gender"},
         {id: "radMale", name: "gender", inputType: "radio", className: classes.indentedInput, required: false, labelText: "Male", value: "male", checked: sexSelected === 'male', onChange: sexCheckChangedHandler},
         {id: "radFemale", name: "gender", inputType: "radio", className: classes.indentedInput, required: false, labelText: "Female", value: "female", checked: sexSelected === 'female', onChange: sexCheckChangedHandler},
-        {id: "txtEmail", inputType: "email", required: true, labelText: "Email", value: props.email},
-        {id: "txtUsername", inputType: "text", required: true, labelText: "Username", value: props.username},
-        {id: "txtPassword", inputType: "password", required: true, labelText: "Password", value: props.password},
-        {id: "txtConfirmPassword", inputType: "password", required: true, labelText: "Confirm Password"},
+        {id: "txtEmail", inputType: "email", required: true, labelText: "Email", value: props.email, disabled: disabled},
+        {id: "txtUsername", inputType: "text", required: true, labelText: "Username", value: props.username, disabled: disabled},
+        {id: "txtPassword", inputType: "password", required: true, labelText: "Password", value: props.password, disabled: disabled},
+        {id: "txtConfirmPassword", inputType: "password", required: true, labelText: "Confirm Password", value: props.confirmpassword, disabled: disabled},
         {id: "label3", inputType: "label", required: true, className: `${classes.label} ${classes.required}`, text: "Identify me using:"},
         {id: "identRealName", name: "ident", inputType: "radio", className: classes.indentedInput, required: true, labelText: "Real Name", value: "realname", checked: identSelected === 'realname', onChange: identCheckChangedHandler},
         {id: "identDisplayName", name: "ident", inputType: "radio", className: classes.indentedInput, required: true, labelText: "Display Name", value: "displayname", checked: identSelected === 'displayname', onChange: identCheckChangedHandler},

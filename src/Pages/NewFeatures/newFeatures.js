@@ -13,7 +13,8 @@ export default function NewFeatures() {
                 <div className={classes.updateBody}>
                     Modified Note component to now be used for Info, Success, Warning, and Error messages.  Broke down UserInfo forms into array maps and 
                     created labledInputs.js to return all types of Inputs already formatted.  Gave collapsable cards a '+/-' indicator.  Added more fields to 
-                    AccountInfo.  Modified form styles.  Clicking on labels in forms selects the associated input.
+                    AccountInfo.  Modified form styles.  Clicking on labels in forms selects the associated input.  Hovering over inputs or their labels
+                    makes a border around it, changes the cursor, and underlines the label.  Disable pertinent account info after user is created.
                 </div>
                 <BodyHeader>5/18/2023</BodyHeader>
                 <div className={classes.updateBody}>

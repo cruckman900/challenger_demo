@@ -13,17 +13,17 @@ const FoodInfo = (props) => {
     const [errorMessage, setErrorMessage] = useState("Am I evil?");
 
     const inputs = [
-        {id: "chkAmerican", name: "cuisinetypes", className: classes.smallInputStyle, inputType: "checkbox", required: false, labelText: "American?", value: props.chkAmerican},
-        {id: "chkAsian", name: "cuisinetypes", className: classes.smallInputStyle, inputType: "checkbox", required: false, labelText: "Asian", value: props.chkAsian},
-        {id: "chkCajun", name: "cuisinetypes", className: classes.smallInputStyle, inputType: "checkbox", required: false, labelText: "Cajun", value: props.chkCajun},
-        {id: "chkFrench", name: "cuisinetypes", className: classes.smallInputStyle, inputType: "checkbox", required: false, labelText: "French", value: props.chkFrench},
-        {id: "chkItalian", name: "cuisinetypes", className: classes.smallInputStyle, inputType: "checkbox", required: false, labelText: "Italian", value: props.chkItalian},
-        {id: "chkMexican", name: "cuisinetypes", className: classes.smallInputStyle, inputType: "checkbox", required: false, labelText: "Latin/Mexican", value: props.chkMexican},
-        {id: "chkSlavic", name: "cuisinetypes", className: classes.smallInputStyle, inputType: "checkbox", required: false, labelText: "Slavic", value: props.chkSlavic},
-        {id: "chkMediterranian", name: "cuisinetypes", className: classes.smallInputStyle, inputType: "checkbox", required: false, labelText: "Mediterranian", value: props.chkMediterranian},
-        {id: "chkRussian", name: "cuisinetypes", className: classes.smallInputStyle, inputType: "checkbox", required: false, labelText: "Russian", value: props.chkRussian},
-        {id: "chkCookies", name: "cuisinetypes", className: classes.smallInputStyle, inputType: "checkbox", required: false, labelText: "I only like cookies", value: props.chkCookies},
-        {id: "chkFoodOther", name: "cuisinetypes", className: classes.smallInputStyle, inputType: "checkbox", required: false, labelText: "Other", value: props.chkFoodOther},
+        {id: "chkAmerican", name: "cuisinetypes", inputType: "checkbox", required: false, labelText: "American?", value: props.chkAmerican},
+        {id: "chkAsian", name: "cuisinetypes", inputType: "checkbox", required: false, labelText: "Asian", value: props.chkAsian},
+        {id: "chkCajun", name: "cuisinetypes", inputType: "checkbox", required: false, labelText: "Cajun", value: props.chkCajun},
+        {id: "chkFrench", name: "cuisinetypes", inputType: "checkbox", required: false, labelText: "French", value: props.chkFrench},
+        {id: "chkItalian", name: "cuisinetypes", inputType: "checkbox", required: false, labelText: "Italian", value: props.chkItalian},
+        {id: "chkMexican", name: "cuisinetypes", inputType: "checkbox", required: false, labelText: "Latin/Mexican", value: props.chkMexican},
+        {id: "chkSlavic", name: "cuisinetypes", inputType: "checkbox", required: false, labelText: "Slavic", value: props.chkSlavic},
+        {id: "chkMediterranian", name: "cuisinetypes", inputType: "checkbox", required: false, labelText: "Mediterranian", value: props.chkMediterranian},
+        {id: "chkRussian", name: "cuisinetypes", inputType: "checkbox", required: false, labelText: "Russian", value: props.chkRussian},
+        {id: "chkCookies", name: "cuisinetypes", inputType: "checkbox", required: false, labelText: "I only like cookies", value: props.chkCookies},
+        {id: "chkFoodOther", name: "cuisinetypes", inputType: "checkbox", required: false, labelText: "Other", value: props.chkFoodOther},
         {id: "txtFavFood", inputType: "text", required: false, labelText: "favoriteFood", value: props.txtFavFood},
     ];
 

@@ -31,24 +31,34 @@
     background: rgba(255, 255, 255, .9);
 }
 
-.Input[type='radio'] {
+.Input:disabled {
+    background: rgba(155, 155, 155, 1);
+}
+
+.Input[type='radio'],
+.Input[type='checkbox'] {
     width: 1.5rem;
     height: 1.5rem;
 }
 
-.Input[type='text']:hover {
-    border: solid 1px rgba(255, 120, 50, 1);
+.Input[type='radio']:hover,
+.Input[type='checkbox']:hover {
+    cursor: pointer;
+}
+
+.Input:hover {
     cursor: text;
+    outline: solid 1px rgba(255, 120, 50, 1);
 }
 
 .Input:focus {
-    background: rgba(200, 200, 255, 1);
+    background: rgba(155, 155, 255, 1);
 }
 
 .InputError {
-    background: rgba(255, 175, 175, .8);
+    background: rgba(255, 155, 155, .8);
 }
 
 .InputValid {
-    background: rgba(175, 255, 175, .8);
+    background: rgba(155, 255, 155, .8);
 }
