@@ -191,11 +191,15 @@ const AccountInfo = (props) => {
 
     const [confirmationIsShown, setConfirmationIsShown] = useState(false);
 
-    const hideConfirmationHandler = () => {
+    const hideConfirmationHandler = (val) => {
         setConfirmationIsShown(false);
-        setMessage({noteType: 'success', headerText: 'Form submitted!', messageText: 'Account activated!'});
-        props.setAccountID(1);
-        setQueryType('update');
+        if (val.length > 0) {
+            setMessage({noteType: 'success', headerText: 'Form submitted!', messageText: 'Account activated!'});
+            props.setAccountID(1);
+            setQueryType('update');
+        } else {
+            setMessage({noteType: 'warning', headerText: 'Account not activated!', messageText: 'Whatcha gonna do now, tough guy?'});
+        }
     };
 
     useEffect(() => {

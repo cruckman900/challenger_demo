@@ -14,7 +14,7 @@ const Confirmation = (props) => {
     const onSubmitHandler = (event) => {
         event.preventDefault();
         if (code.length === 5) {
-            props.onClose();
+            props.onClose(code);
         }
     }
 
