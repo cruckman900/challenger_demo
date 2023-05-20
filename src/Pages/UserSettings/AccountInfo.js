@@ -198,6 +198,7 @@ const AccountInfo = (props) => {
             props.setAccountID(1);
             setQueryType('update');
         } else {
+            props.setAccountID(null);
             setMessage({noteType: 'warning', headerText: 'Account not activated!', messageText: 'Whatcha gonna do now, tough guy?'});
         }
     };
