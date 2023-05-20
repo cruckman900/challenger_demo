@@ -9,6 +9,12 @@ export default function NewFeatures() {
     return (
         <DefaultPage headerText="Features & Updates Log">
             <Card headerText="May 2023">
+                <BodyHeader>5/20/2023</BodyHeader>
+                <div className={classes.updateBody}>
+                    Modified Note component to now be used for Info, Success, Warning, and Error messages.  Broke down UserInfo forms into array maps and 
+                    created labledInputs.js to return all types of Inputs already formatted.  Gave collapsable cards a '+/-' indicator.  Added more fields to 
+                    AccountInfo.  Modified form styles.
+                </div>
                 <BodyHeader>5/18/2023</BodyHeader>
                 <div className={classes.updateBody}>
                     Updated React version.  Broke User Info form into tabbed sections - Hiding Location if user is under 18.  Added Privacy Policy and Terms 
