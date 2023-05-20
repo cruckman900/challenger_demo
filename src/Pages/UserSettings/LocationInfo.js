@@ -1,7 +1,7 @@
 import React from "react";
 import BodyHeader from "../../UI/BodyHeader/BodyHeader";
-import LeftLabelInput from "../../UI/LeftLabelInput/LeftLabelInput";
 import Button from "../../UI/Button/Button";
+import labeledInputs from '../../builders/LabeledInputs/labeledInputs';
 import classes from './userSettings.module.css';
 
 const LocationInfo = (props) => {
@@ -9,37 +9,16 @@ const LocationInfo = (props) => {
         event.preventDefault();
     };
 
+    const inputs = [
+        {id: "txtCity", inputType: "text", required: false, labelText: "City", value: props.txtCity},
+        {id: "txtState", inputType: "text", required: false, labelText: "State/Province", value: props.txtState},
+        {id: "txtCountry", inputType: "text", required: false, labelText: "Country", value: props.txtCountry},
+    ];
+
     return (
         <form onSubmit={onSubmitHandler}>
             <BodyHeader>Location (Optional)</BodyHeader>
-            <div className={classes.formRow}>
-                <LeftLabelInput name="txtCity" inputType="text"
-                    required={false}
-                    labelClassName={classes.labelText}
-                    inputClassName={classes.inputStyle}
-                    labelText="City"
-                >
-                    {props.city}
-                </LeftLabelInput>
-                <LeftLabelInput name="txtState" inputType="text"
-                    required={false}
-                    labelClassName={classes.labelText}
-                    inputClassName={classes.inputStyle}
-                    labelText="State/Province"
-                >
-                    {props.state}
-                </LeftLabelInput>
-            </div>
-            <div className={classes.formRow}>
-                <LeftLabelInput name="txtCountry" inputType="text"
-                    required={false}
-                    labelClassName={classes.labelText}
-                    inputClassName={classes.inputStyle}
-                    labelText="Country"
-                >
-                    {props.country}
-                </LeftLabelInput>
-            </div>
+            {labeledInputs(inputs)}
             <BodyHeader>&nbsp;</BodyHeader>
             <div className={classes.formRow}>
                 <Button className={classes.primaryBtn} type="submit" name="btnSubmit" value="Submit" />

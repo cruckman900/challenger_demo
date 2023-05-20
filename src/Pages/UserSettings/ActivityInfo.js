@@ -1,7 +1,7 @@
 import React from "react";
 import BodyHeader from "../../UI/BodyHeader/BodyHeader";
-import LeftLabelInput from "../../UI/LeftLabelInput/LeftLabelInput";
 import Button from "../../UI/Button/Button";
+import labeledInputs from '../../builders/LabeledInputs/labeledInputs';
 import classes from './userSettings.module.css';
 
 const ActivityInfo = (props) => {
@@ -9,137 +9,34 @@ const ActivityInfo = (props) => {
         event.preventDefault();
     };
 
+    const inputs = [
+        {id: "chkArcheryGuns", name: "activitytypes", inputType: "checkbox", required: false, labelText: "Archery/Fire Arms", value: props.chkArcheryGuns},
+        {id: "chkArtsCrafts", name: "activitytypes", inputType: "checkbox", required: false, labelText: "Arts and Crafts", value: props.chkArtsCrafts},
+        {id: "chkBarsClubs", name: "activitytypes", inputType: "checkbox", required: false, labelText: "Bars/Clubs", value: props.chkBarsClubs},
+        {id: "chkBoxingWrestling", name: "activitytypes", inputType: "checkbox", required: false, labelText: "Boxing/Wrestling", value: props.chkBoxingWrestling},
+        {id: "chkBilliardsDarts", name: "activitytypes", inputType: "checkbox", required: false, labelText: "Billiards/Darts", value: props.chkBilliardsDarts},
+        {id: "chkBoatingCamping", name: "activitytypes", inputType: "checkbox", required: false, labelText: "BoatingCamping", value: props.chkBoatingCamping},
+        {id: "chkClassicSports", name: "activitytypes", inputType: "checkbox", required: false, labelText: "Classic Sports", value: props.chkClassicSports},
+        {id: "chkCycling", name: "activitytypes", inputType: "checkbox", required: false, labelText: "Cycling", value: props.chkCycling},
+        {id: "chkFishingHunting", name: "activitytypes", inputType: "checkbox", required: false, labelText: "Fishing/Hunting", value: props.chkFishingHunting},
+        {id: "chkHikingClimbing", name: "activitytypes", inputType: "checkbox", required: false, labelText: "Hiking/Climbing", value: props.chkHikingClimbing},
+        {id: "chkMachinesElectronics", name: "activitytypes", inputType: "checkbox", required: false, labelText: "Machines/Electronics", value: props.chkWatchingTV},
+        {id: "chkMartialArts", name: "activitytypes", inputType: "checkbox", required: false, labelText: "Martial Arts", value: props.chkArcheryGuns},
+        {id: "chkMusicInstr", name: "activitytypes", inputType: "checkbox", required: false, labelText: "Musical Instruments", value: props.chkMusicInstr},
+        {id: "chkPuzzlesGames", name: "activitytypes", inputType: "checkbox", required: false, labelText: "Puzzles/Games", value: props.chkPuzzlesGames},
+        {id: "chkReadingWriting", name: "activitytypes", inputType: "checkbox", required: false, labelText: "Reading/Writing", value: props.chkReadingWriting},
+        {id: "chkSingingDancing", name: "activitytypes", inputType: "checkbox", required: false, labelText: "Singing/Dancing", value: props.chkSingingDancing},
+        {id: "chkSwimming", name: "activitytypes", inputType: "checkbox", required: false, labelText: "Swimming", value: props.chkSwimming},
+        {id: "chkVideoGames", name: "activitytypes", inputType: "checkbox", required: false, labelText: "Video Games", value: props.chkVideoGames},
+        {id: "chkWalkingRunning", name: "activitytypes", inputType: "checkbox", required: false, labelText: "Walking/Running", value: props.chkWalkingRunning},
+        {id: "chkWatchingTV", name: "activitytypes", inputType: "checkbox", required: false, labelText: "Watching TV", value: props.chkWatchingTV},
+        {id: "chkActivityOther", name: "activitytypes", inputType: "checkbox", required: false, labelText: "Other", value: props.chkActivityOther},
+    ];
+
     return (
         <form onSubmit={onSubmitHandler}>
             <BodyHeader>Favorite Activities</BodyHeader>
-            <div className={classes.formRow}>
-                <LeftLabelInput name="chkActivities" inputType="checkbox"
-                    required={false}
-                    labelClassName={classes.labelText}
-                    inputClassName={classes.smallInput}
-                    labelText="Classic Sports"
-                >
-                    {props.chkClsSports}
-                </LeftLabelInput>
-                <LeftLabelInput name="chkActivities" inputType="checkbox"
-                    required={false}
-                    labelClassName={classes.labelText}
-                    inputClassName={classes.smallInput}
-                    labelText="Boating/Camping"
-                >
-                    {props.chkBoatCamp}
-                </LeftLabelInput>
-                <LeftLabelInput name="chkActivities" inputType="checkbox"
-                    required={false}
-                    labelClassName={classes.labelText}
-                    inputClassName={classes.smallInput}
-                    labelText="Hiking/Climbing"
-                >
-                    {props.chkHikeClimb}
-                </LeftLabelInput>
-                <LeftLabelInput name="chkActivities" inputType="checkbox"
-                    required={false}
-                    labelClassName={classes.labelText}
-                    inputClassName={classes.smallInput}
-                    labelText="Music Instruments"
-                >
-                    {props.chkMusicalInst}
-                </LeftLabelInput>
-            </div>
-            <div className={classes.formRow}>
-                <LeftLabelInput name="chkActivities" inputType="checkbox"
-                    required={false}
-                    labelClassName={classes.labelText}
-                    inputClassName={classes.smallInput}
-                    labelText="Video Games"
-                >
-                    {props.chkVideoGames}
-                </LeftLabelInput>
-                <LeftLabelInput name="chkActivities" inputType="checkbox"
-                    required={false}
-                    labelClassName={classes.labelText}
-                    inputClassName={classes.smallInput}
-                    labelText="Billiards or Darts"
-                >
-                    {props.chkBarGames}
-                </LeftLabelInput>
-                <LeftLabelInput name="chkActivities" inputType="checkbox"
-                    required={false}
-                    labelClassName={classes.labelText}
-                    inputClassName={classes.smallInput}
-                    labelText="Swimming"
-                >
-                    {props.chkSwimming}
-                </LeftLabelInput>
-                <LeftLabelInput name="chkActivities" inputType="checkbox"
-                    required={false}
-                    labelClassName={classes.labelText}
-                    inputClassName={classes.smallInput}
-                    labelText="Walking/Jogging"
-                >
-                    {props.chkWalkJog}
-                </LeftLabelInput>
-            </div>
-            <div className={classes.formRow}>
-                <LeftLabelInput name="chkActivities" inputType="checkbox"
-                    required={false}
-                    labelClassName={classes.labelText}
-                    inputClassName={classes.smallInput}
-                    labelText="Fishing/Hunting"
-                >
-                    {props.chkFishHunt}
-                </LeftLabelInput>
-                <LeftLabelInput name="chkActivities" inputType="checkbox"
-                    required={false}
-                    labelClassName={classes.labelText}
-                    inputClassName={classes.smallInput}
-                    labelText="Archery/Guns"
-                >
-                    {props.chkArcheryGuns}
-                </LeftLabelInput>
-                <LeftLabelInput name="chkActivities" inputType="checkbox"
-                    required={false}
-                    labelClassName={classes.labelText}
-                    inputClassName={classes.smallInput}
-                    labelText="Reading/Writing"
-                >
-                    {props.chkReadingWriting}
-                </LeftLabelInput>
-                <LeftLabelInput name="chkActivities" inputType="checkbox"
-                    required={false}
-                    labelClassName={classes.labelText}
-                    inputClassName={classes.smallInput}
-                    labelText="Bars/Clubs"
-                >
-                    {props.chkBarsClubs}
-                </LeftLabelInput>
-            </div>
-            <div className={classes.formRow}>
-                <LeftLabelInput name="chkActivities" inputType="checkbox"
-                    required={false}
-                    labelClassName={classes.labelText}
-                    inputClassName={classes.smallInput}
-                    labelText="Singing/Dancing"
-                >
-                    {props.chkSingDance}
-                </LeftLabelInput>
-                <LeftLabelInput name="chkActivities" inputType="checkbox"
-                    required={false}
-                    labelClassName={classes.labelText}
-                    inputClassName={classes.smallInput}
-                    labelText="Martial Arts"
-                >
-                    {props.chkMartialArts}
-                </LeftLabelInput>
-                <LeftLabelInput name="chkActivities" inputType="checkbox"
-                    required={false}
-                    labelClassName={classes.labelText}
-                    inputClassName={classes.smallInput}
-                    labelText="Other"
-                >
-                    {props.chkActivityOther}
-                </LeftLabelInput>
-            </div>
+            {labeledInputs(inputs)}
             <BodyHeader>&nbsp;</BodyHeader>
             <div className={classes.formRow}>
                 <Button className={classes.primaryBtn} type="submit" name="btnSubmit" value="Submit" />

@@ -48,7 +48,6 @@ export default function UserSettings(props) {
 
     useEffect(() => {
         if(ageSelected === 'under18' || ageSelected === null || accountID === null) {
-            console.log('Age Selected:', ageSelected);
             setShowLocation(false);
             return;
         }

@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import BodyHeader from "../../UI/BodyHeader/BodyHeader";
 import Button from "../../UI/Button/Button";
-import Note from "../../UI/Note/Note";
 import labeledInputs from '../../builders/LabeledInputs/labeledInputs';
 import classes from './userSettings.module.css';
 
@@ -9,8 +8,6 @@ const MovieInfo = (props) => {
     const onSubmitHandler = (event) => {
         event.preventDefault();
     };
-
-    const [errorMessage, setErrorMessage] = useState("Am I evil?");
 
     const inputs = [
         {id: "chkAction", name: "literaturetypes", className: classes.smallInputStyle, inputType: "checkbox", required: false, labelText: "Action", value: props.chkAction},

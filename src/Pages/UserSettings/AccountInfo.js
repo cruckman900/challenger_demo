@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import BodyHeader from "../../UI/BodyHeader/BodyHeader";
 import Button from "../../UI/Button/Button";
 import Note from "../../UI/Note/Note";
@@ -10,6 +10,7 @@ const AccountInfo = (props) => {
     const [sexSelected, setSexSelected] = useState(null);
     const [identSelected, setIdentSelected] = useState('realname');
     const [disabled, setDisabled] = useState(false);
+    const [queryType, setQueryType] = useState('insert');
     
     const ageCheckChangedHandler = (event) => {
         const val = event.target.value;
@@ -28,10 +29,18 @@ const AccountInfo = (props) => {
     const onSubmitHandler = (event) => {
         event.preventDefault();
         setDisabled(true);
-        props.setAccountID(1);
+        if (queryType === 'insert') {
+            props.setAccountID(1);
+            setQueryType('update');
+            return;
+        }
     };
 
-    const [errorMessage, setErrorMessage] = useState("Am I evil?");
+    const [errorMessage, setErrorMessage] = useState(null);
+
+    useEffect(() => {
+        props.setAgeRange(ageSelected);
+    }, []);
 
     const inputs = [
         {id: "txtFirstName", inputType: "text", required: true, labelText: "First Name", value: props.firstName},
@@ -57,8 +66,8 @@ const AccountInfo = (props) => {
 
     return (
         <form onSubmit={onSubmitHandler}>
-            <Note noteType="info" headerText="Form Handling">You must submit a completed Account Information form to unlock  the optional forms.</Note>
             <BodyHeader>Account Information</BodyHeader>
+            {queryType === 'insert' && <Note noteType="info" headerText="Form Handling">You must submit this form to unlock the other forms.</Note>}
             {errorMessage && <Note noteType="error" headerText="Validation Error.">{errorMessage}</Note>}
             {labeledInputs(inputs)}
             <BodyHeader>&nbsp;</BodyHeader>
