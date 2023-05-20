@@ -40,10 +40,12 @@ const labeledInputs = (inputs) => {
         }
     
         if (
-            input.inputType === "text" || 
-            input.inputType === "email" || 
-            input.inputType === "password" ||
-            input.inputType === "checkbox")
+                input.inputType === "text" || 
+                input.inputType === "email" || 
+                input.inputType === "password" ||
+                input.inputType === "checkbox" ||
+                input.inputType === "number"
+            )
         {
             return (
                 <LeftLabelInput

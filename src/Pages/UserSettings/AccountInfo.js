@@ -1,8 +1,9 @@
-import React, { useState, useEffect, useReducer } from "react";
+import React, { Fragment, useState, useEffect, useReducer } from "react";
 import BodyHeader from "../../UI/BodyHeader/BodyHeader";
 import Button from "../../UI/Button/Button";
 import Note from "../../UI/Note/Note";
 import labeledInputs from '../../builders/LabeledInputs/labeledInputs';
+import Confirmation from "../Confirmation/Confirmation";
 import classes from './userSettings.module.css';
 
 const hasNumber = (val) => {
@@ -174,18 +175,27 @@ const AccountInfo = (props) => {
         if (formIsValid) {
             if (queryType === 'insert') {
                 props.setAccountID(1);
-                setQueryType('update');
-                setMessage("")
             } else if (queryType === 'update') {
                 // do nothing yet
             }
             setFormSubmitted(true);
             setDisabled(true);
-            setMessage({noteType: 'success', headerText: 'Form submitted!', messageText: 'Please check your email.'});
+            setTimeout(() => {
+                setConfirmationIsShown(true);
+            }, 500);
             return;
         } else {
             setMessage({noteType: 'error', headerText: 'Validation Error!', messageText: 'You have 1 or more errors preventing you from submitting your form.'});
         }
+    };
+
+    const [confirmationIsShown, setConfirmationIsShown] = useState(false);
+
+    const hideConfirmationHandler = () => {
+        setConfirmationIsShown(false);
+        setMessage({noteType: 'success', headerText: 'Form submitted!', messageText: 'Account activated!'});
+        props.setAccountID(1);
+        setQueryType('update');
     };
 
     useEffect(() => {
@@ -214,16 +224,19 @@ const AccountInfo = (props) => {
     ];
 
     return (
-        <form onSubmit={onSubmitHandler}>
-            <BodyHeader>Account Information</BodyHeader>
-            {message && <Note noteType={message.noteType} headerText={message.headerText}>{message.messageText}</Note>}
-            {labeledInputs(inputs)}
-            <BodyHeader>&nbsp;</BodyHeader>
-            <div className={classes.formRow}>
-                <Button className={classes.primaryBtn} type="submit" name="btnSubmit" value="Submit" />
-                <Button type="button" name="btnClear" value="Clear" />
-            </div>
-        </form>
+        <Fragment>
+            <form onSubmit={onSubmitHandler}>
+                <BodyHeader>Account Information</BodyHeader>
+                {message && <Note noteType={message.noteType} headerText={message.headerText}>{message.messageText}</Note>}
+                {labeledInputs(inputs)}
+                <BodyHeader>&nbsp;</BodyHeader>
+                <div className={classes.formRow}>
+                    <Button className={classes.primaryBtn} type="submit" name="btnSubmit" value="Submit" />
+                    <Button type="button" name="btnClear" value="Clear" />
+                </div>
+            </form>
+            {confirmationIsShown && <Confirmation onClose={hideConfirmationHandler} />}
+        </Fragment>
     );
 };
 
