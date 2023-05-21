@@ -36,7 +36,7 @@ export default function Home() {
             return;
         }
         if (navCtx.channelLocation.navTitle || navCtx.channelLocation.navName) {
-            setHeaderText(`Now Chatting With ${navCtx.channelLocation.navTitle ? navCtx.channelLocation.navTitle : navCtx.channelLocation.navName}`);
+            setHeaderText(`Chatting With ${navCtx.channelLocation.navTitle ? navCtx.channelLocation.navTitle : navCtx.channelLocation.navName}`);
             setMessage(null);
 
             return;

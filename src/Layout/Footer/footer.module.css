@@ -41,4 +41,8 @@
     .terms {
       display: none;
     }
+
+    .footer {
+        bottom: 0;
+    }
 }

@@ -26,3 +26,13 @@
 .noScrollbars::-webkit-scrollbar {
     display: none;
 }
+
+@media only screen and (max-width:767px) and (orientation:portrait) {
+    .left {
+        padding-top: 2rem;
+    }
+
+    .menuButton {
+        padding-left: .35rem;
+    }
+}

@@ -27,7 +27,12 @@ function App() {
       <div className={classes.Portrait}>
         <Row><Col><Header /></Col></Row>
         <Row><Col><Top /></Col></Row>
-        <Row><Col><Portrait /></Col></Row>
+        {/* <Row><Col><Portrait /></Col></Row> */}
+        <Row className={classes.horizRowContainer}>
+          <Col><Left /></Col>
+          <Col><Main /></Col>
+          <Col className={classes.floatingHolder}><Right /></Col>
+        </Row>
         <Row><Col><Footer /></Col></Row>
       </div>
     </Fragment>

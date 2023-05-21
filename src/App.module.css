@@ -42,4 +42,11 @@
     display: block;
     height: 100vh;
   }
+
+  .floatingHolder {
+    position: absolute;
+    left: 0;
+    width: 18rem;
+    height: calc(100vh - 4.5rem);
+  }
 }

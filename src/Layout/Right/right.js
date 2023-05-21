@@ -1,6 +1,8 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useEffect, useContext, Fragment } from "react";
 import RightContainer from "./RightContainer/RightContainer";
 import Card from "../../UI/Card/Card";
+import Button from "../../UI/Button/Button";
+import classes from './right.module.css';
 import wClasses from "../../builders/widget.module.css";
 import AuthContext from "../../store/auth-context";
 import NavContext from "../../store/nav-context";
@@ -47,30 +49,45 @@ const Right = (props) => {
         })
     });
 
+    const [toggle, setToggle] = useState('collapse');
+    const [chevron, setChevron] = useState('>');
+
+    const onToggleClickHandler = () => {
+        if (toggle === 'collapsed') {
+            setToggle('expanded');
+            setChevron('>');
+            return;
+        }
+        setToggle('collapsed');
+        setChevron('<');
+    }
+
     return (
-        <RightContainer>
-            <Card headerText="Communities">
-                {!authCtx.isLoggedIn && <div style={{margin: '.25rem'}}>If you join one or more communities, the list of communities will be displayed in this block.</div>}
-                {authCtx.isLoggedIn && (
-                    NavLocations(myCommunitiesArray, 'community', onClickHandler, selectedID)
-                )}
-                {console.log('members array', myCommunityMembersArray)}
-            </Card>
-            <hr className={wClasses.br} />
-            <Card headerText="Groups">
-                {!authCtx.isLoggedIn && <div style={{margin: '.25rem'}}>You can set up a group of friends for communications amongst each other.</div>}
-                {authCtx.isLoggedIn && (
-                    NavLocations(myGroupsArray, 'group', onClickHandler, selectedID)
-                )}
-            </Card>
-            <hr className={wClasses.br} />
-            <Card headerText="People">
-                {!authCtx.isLoggedIn && <div style={{margin: '.25rem'}}>Here will be individuals (friends, family members, etc.) that you can message privately.</div>}   
-                {authCtx.isLoggedIn && (
-                    NavLocations(myPeopleArray, 'people', onClickHandler, selectedID)
-                )}
-            </Card>
-        </RightContainer>
+        <Fragment>
+            <div><Button className={classes.toggle} value={chevron} onClick={() => onToggleClickHandler()} /></div>
+            <RightContainer className={`${chevron === '>' && classes.hide} ${chevron === '<' && classes.show}`} onClick={onClickHandler}>
+                <Card headerText="Communities">
+                    {!authCtx.isLoggedIn && <div style={{margin: '.25rem'}}>If you join one or more communities, the list of communities will be displayed in this block.</div>}
+                    {authCtx.isLoggedIn && (
+                        NavLocations(myCommunitiesArray, 'community', onClickHandler, selectedID)
+                    )}
+                </Card>
+                <hr className={wClasses.br} />
+                <Card headerText="Groups">
+                    {!authCtx.isLoggedIn && <div style={{margin: '.25rem'}}>You can set up a group of friends for communications amongst each other.</div>}
+                    {authCtx.isLoggedIn && (
+                        NavLocations(myGroupsArray, 'group', onClickHandler, selectedID)
+                    )}
+                </Card>
+                <hr className={wClasses.br} />
+                <Card headerText="People">
+                    {!authCtx.isLoggedIn && <div style={{margin: '.25rem'}}>Here will be individuals (friends, family members, etc.) that you can message privately.</div>}   
+                    {authCtx.isLoggedIn && (
+                        NavLocations(myPeopleArray, 'people', onClickHandler, selectedID)
+                    )}
+                </Card>
+            </RightContainer>
+        </Fragment>
     );
 }
 
