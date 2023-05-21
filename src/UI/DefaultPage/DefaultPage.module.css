@@ -40,3 +40,10 @@
     background: rgba(0, 0, 0, .75);
     color: rgba(255, 120, 50, .8);
 }
+
+.noSelect {
+    -ms-user-select: none;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    user-select: none;
+}
