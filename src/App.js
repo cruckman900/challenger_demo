@@ -24,16 +24,6 @@ function App() {
         <Row><Col><Footer /></Col></Row>
         <Row className={classes.status}><Col><StatusBar /></Col></Row>
       </div>
-      {/* <div className={classes.Portrait}>
-        <Row><Col><Header /></Col></Row>
-        <Row><Col><Top /></Col></Row>
-        <Row className={classes.horizRowContainer}>
-          <Col><Left /></Col>
-          <Col><Main /></Col>
-          <Col className={classes.floatingHolder}><Right /></Col>
-        </Row>
-        <Row><Col><Footer /></Col></Row>
-      </div> */}
     </Fragment>
   );
 }

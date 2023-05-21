@@ -20,16 +20,6 @@
   display: inline;
 }
 
-@media only screen and (orientation:landscape) {
-  .App {
-    display: block;
-  }
-
-  .Portrait {
-    display: none;
-  }
-}
-
 @media only screen and (min-width:768px) {
   .App {
     display: block;
@@ -45,12 +35,6 @@
     display: block;
   }
 
-  /* .Portrait {
-    background: linear-gradient(180deg, #000000, #630000 80%, #000000 );
-    display: block;
-    height: 100vh;
-  } */
-
   .status {
     display: none;
   }
@@ -62,6 +46,5 @@
     left: 0;
     width: 18rem;
     height: 2rem;
-    /* height: calc(100vh - 4.5rem); */
   }
 }
