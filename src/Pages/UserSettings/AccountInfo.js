@@ -207,7 +207,7 @@ const AccountInfo = (props) => {
 
     useEffect(() => {
         props.setAgeRange(ageSelected);
-    }, []);
+    }, [ageSelected, props]);
 
     const inputs = [
         {id: "txtFirstName", placeholder: "Cannot be blank", inputType: "text", required: true, labelText: "First Name", value: props.firstName, onChange: firstNameChangeHandler, onBlur: validateFirstNameHandler, valid: firstNameIsValid, error: !firstNameIsValid},

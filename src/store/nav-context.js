@@ -12,7 +12,7 @@ export const NavContextProvider = (props) => {
     useEffect(() => {
         const storedUserLoggedInInformation = localStorage.getItem('channelLocation');
 
-        if(storedUserLoggedInInformation.navID !== null) {
+        if(storedUserLoggedInInformation !== null) {
             setChannelLocation({
                 navType: storedUserLoggedInInformation.navType,
                 navID: storedUserLoggedInInformation.navID,
