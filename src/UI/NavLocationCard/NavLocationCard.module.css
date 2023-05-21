@@ -21,6 +21,13 @@
     color: rgba(255, 120, 0, 1);
 }
 
+.noSelect {
+    -ms-user-select: none;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    user-select: none;
+}
+
 .colLeft {
     width: 15rem;
 }

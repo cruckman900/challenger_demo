@@ -44,9 +44,9 @@ const NavLocationCard = (props) => {
                 <Container>
                     <Row style={{display: 'flex'}}>
                         <Col className={classes.colLeft}>
-                            {titleOrName === 'title' && <div className={classes.header}>{props.title}</div>}
-                            {titleOrName === 'name' && <div className={classes.header}>{props.name}</div>}
-                            <div className={classes.body}>{`${dateCreatedWording} ${props.dateCreated}`}</div>
+                            {titleOrName === 'title' && <div className={`${classes.header} ${classes.noSelect}`}>{props.title}</div>}
+                            {titleOrName === 'name' && <div className={`${classes.header} ${classes.noSelect}`}>{props.name}</div>}
+                            <div className={`${classes.body} ${classes.noSelect}`}>{`${dateCreatedWording} ${props.dateCreated}`}</div>
                         </Col>
                         <Col className={classes.colRight}>
                             {props.icon && <FontAwesomeIcon className={classes.icon} icon={myIcons[props.icon]} />}
