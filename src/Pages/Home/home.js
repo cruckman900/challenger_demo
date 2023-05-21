@@ -35,10 +35,21 @@ export default function Home() {
 
             return;
         }
-        if (navCtx.channelLocation) {
+        if (navCtx.channelLocation.navTitle || navCtx.channelLocation.navName) {
             setHeaderText(`Now Chatting With ${navCtx.channelLocation.navTitle ? navCtx.channelLocation.navTitle : navCtx.channelLocation.navName}`);
             setMessage(null);
-        }
+
+            return;
+        } else {
+            setHeaderText(`Idling...`);
+            setMessage({
+                noteType: 'warning',
+                headerText: `You haven't selected a conversation to get engaged with!`,
+                messageText: `It's never too late to start up a conversation... but it could very well be too early!`
+            });
+
+            return
+       }
     }, [authCtx.isLoggedIn, navCtx.channelLocation]);
 
     return (
