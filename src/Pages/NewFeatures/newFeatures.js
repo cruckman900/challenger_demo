@@ -12,7 +12,8 @@ export default function NewFeatures() {
                 <BodyHeader>5/21/2023</BodyHeader>
                 <div className={classes.updateBody}>
                     Created mock data for the chat rooms and added switch functionality to switch the display - lots of work.  I now have 2 contexts, 1 
-                    for authorization and 1 for navigating the chat channels.  Created tiles for the chat channels and loading them in their proper place.
+                    for authorization and 1 for navigating the chat channels.  Created tiles for the chat channels and loading them in their proper place.  
+                    Removed the need for the Portrait spinner telling users to rotate devices.  App displays correctly on devices now.
                 </div>
                 <BodyHeader>5/20/2023</BodyHeader>
                 <div className={classes.updateBody}>
