@@ -13,7 +13,10 @@
 }
 
 .floatingHolder {
-  display: none;
+  display: inline;
+  position: absolute;
+  top: 4rem;
+  right: 0;
 }
 
 .status {
@@ -36,5 +39,6 @@
     left: 0;
     width: 18rem;
     height: 0;
+    z-index: 10;
   }
 }

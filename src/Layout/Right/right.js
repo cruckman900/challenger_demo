@@ -65,7 +65,7 @@ const Right = (props) => {
     return (
         <Fragment>
             <div><Button className={classes.toggle} value={chevron} onClick={() => onToggleClickHandler()} /></div>
-            <RightContainer className={`${chevron === '>' && classes.hide} ${chevron === '<' && classes.show}`} onClick={onClickHandler}>
+            <RightContainer className={`${classes.showFull} ${chevron === '>' && classes.hide} ${chevron === '<' && classes.show}`} onClick={onClickHandler}>
                 <Card headerText="Communities">
                     {!authCtx.isLoggedIn && <div style={{margin: '.25rem'}}>If you join one or more communities, the list of communities will be displayed in this block.</div>}
                     {authCtx.isLoggedIn && (

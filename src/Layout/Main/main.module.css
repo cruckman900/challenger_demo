@@ -18,10 +18,11 @@
     display: none;
 }
 
-@media only screen and (max-width:767px) and (orientation:portrait) {
+@media only screen and (min-width:350px) and (max-width:767px) and (orientation:portrait) {
     .main {
         position: relative;
         top: 1rem;
         width: calc(100vw - 2.5rem);
+        height: calc(100vh - 6.5rem);
     }
 }
