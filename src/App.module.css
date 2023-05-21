@@ -32,6 +32,11 @@
     display: none;
   }
 
+  .horizRowContainer {
+    position: absolute;
+    left: 0;
+  }
+
   .floatingHolder {
     display: inline;
     position: absolute;
