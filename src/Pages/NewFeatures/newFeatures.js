@@ -9,6 +9,11 @@ export default function NewFeatures() {
     return (
         <DefaultPage headerText="Features & Updates Log">
             <Card headerText="May 2023">
+                <BodyHeader>5/21/2023</BodyHeader>
+                <div className={classes.updateBody}>
+                    Created mock data for the chat rooms and added switch functionality to switch the display - lots of work.  I now have 2 contexts, 1 
+                    for authorization and 1 for navigating the chat channels.  Created tiles for the chat channels and loading them in their proper place.
+                </div>
                 <BodyHeader>5/20/2023</BodyHeader>
                 <div className={classes.updateBody}>
                     Modified Note component to now be used for Info, Success, Warning, and Error messages.  Broke down UserInfo forms into array maps and 

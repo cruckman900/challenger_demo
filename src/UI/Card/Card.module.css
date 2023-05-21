@@ -54,7 +54,7 @@
 }
 
 .bodyElements {
-    padding: .25rem;
+    padding: 0rem;
 }
 
 @keyframes slide-down {

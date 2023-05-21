@@ -1,4 +1,4 @@
-import React, { Fragment, useState, useEffect, useReducer, useContext } from "react";
+import React, { useState, useEffect, useReducer, useContext } from "react";
 import AuthContext from "../../store/auth-context";
 import Modal from "../../UI/Modal/Modal";
 import Card from "../../UI/Card/Card";
@@ -77,7 +77,8 @@ export default function Login(props) {
     const submitHandler = (event) => {
         event.preventDefault();
         authCtx.onLogin(usernameState.value, passwordState.value);
-    }
+        props.onClose();
+    };
 
     return (
         <Modal onClose={props.onClose}>
