@@ -16,6 +16,5 @@
         top: 0;
         height: calc(100vh - 6.5rem);
         padding: 2.5rem 0;
-        z-index: 10;
     }
 }

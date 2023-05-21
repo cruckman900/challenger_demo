@@ -12,6 +12,14 @@
   display: flex;
 }
 
+.floatingHolder {
+  display: none;
+}
+
+.status {
+  display: inline;
+}
+
 @media only screen and (orientation:landscape) {
   .App {
     display: block;
@@ -34,19 +42,26 @@
 
 @media only screen and (max-width:767px) and (orientation:portrait) {
   .App {
-    display: none;
+    display: block;
   }
 
-  .Portrait {
+  /* .Portrait {
     background: linear-gradient(180deg, #000000, #630000 80%, #000000 );
     display: block;
     height: 100vh;
+  } */
+
+  .status {
+    display: none;
   }
 
   .floatingHolder {
+    display: inline;
     position: absolute;
+    top: 4.5rem;
     left: 0;
     width: 18rem;
-    height: calc(100vh - 4.5rem);
+    height: 2rem;
+    /* height: calc(100vh - 4.5rem); */
   }
 }
