@@ -20,16 +20,6 @@
   display: inline;
 }
 
-@media only screen and (min-width:768px) {
-  .App {
-    display: block;
-  }
-
-  .Portrait {
-    display: none;
-  }
-}
-
 @media only screen and (max-width:767px) and (orientation:portrait) {
   .App {
     display: block;
@@ -45,6 +35,6 @@
     top: 4.5rem;
     left: 0;
     width: 18rem;
-    height: 2rem;
+    height: 0;
   }
 }
