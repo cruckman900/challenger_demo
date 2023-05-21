@@ -1,9 +1,26 @@
-import React, { useState, useEffect } from 'react';
+import React, { Fragment, useState, useEffect, useContext } from 'react';
+import { Container, Row, Col } from 'react-bootstrap';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { 
+    faUserPlus, faLocationDot, faUtensils, faTelevision, faRadio, faFootball, faComputer
+} from '@fortawesome/free-solid-svg-icons';
+
 import classes from './NavLocationCard.module.css';
 
 const NavLocationCard = (props) => {
+    const myIcons = {
+        userPlus: faUserPlus,
+        locationDot: faLocationDot,
+        utensils: faUtensils,
+        television: faTelevision,
+        radio: faRadio,
+        football: faFootball,
+        computer: faComputer,
+    };
+
     const [dateCreatedWording, setDateCreatedWording] = useState('Created on');
     const [titleOrName, setTitleOrName] = useState('title');
+    const [selected, setSelected] = useState(false);
 
     useEffect(() => {
         if (props.navType === 'community' || props.navType === 'group') {
@@ -13,14 +30,31 @@ const NavLocationCard = (props) => {
             setDateCreatedWording('Joined on');
             setTitleOrName('name');
         }
+
+        if (props.selected === true) {
+            setSelected(true);
+        } else {
+            setSelected(false);
+        }
     }, [props]);
 
     return (
-        <div className={classes.NavCard} onClick={props.onClickHandler}>
-            {titleOrName === 'title' && <div className={classes.header}>{props.title}</div>}
-            {titleOrName === 'name' && <div className={classes.header}>{props.name}</div>}
-            <div className={classes.body}>{`${dateCreatedWording} ${props.dateCreated}`}</div>
-        </div>
+        <Fragment>
+            <div className={`${classes.NavCard} ${selected && classes.selected}`} onClick={props.onClickHandler}>
+                <Container>
+                    <Row style={{display: 'flex'}}>
+                        <Col className={classes.colLeft}>
+                            {titleOrName === 'title' && <div className={classes.header}>{props.title}</div>}
+                            {titleOrName === 'name' && <div className={classes.header}>{props.name}</div>}
+                            <div className={classes.body}>{`${dateCreatedWording} ${props.dateCreated}`}</div>
+                        </Col>
+                        <Col className={classes.colRight}>
+                            {props.icon && <FontAwesomeIcon className={classes.icon} icon={myIcons[props.icon]} />}
+                        </Col>
+                    </Row>
+                </Container>
+            </div>
+        </Fragment>
     );
 };
 

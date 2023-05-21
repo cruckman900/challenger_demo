@@ -5,26 +5,25 @@ import wClasses from "../../builders/widget.module.css";
 import AuthContext from "../../store/auth-context";
 import NavContext from "../../store/nav-context";
 import NavLocations from "../../builders/NavLocations/NavLocations";
-import { faPeopleArrows } from "@fortawesome/free-solid-svg-icons";
 
 const Right = (props) => {
     const authCtx = useContext(AuthContext);
     const navCtx = useContext(NavContext);
 
     const communities = [
-        {id: 0, title: "Anime Extravaganza", ownerID: 3, dateCreated: '01/29/1989'},
-        {id: 1, title: "The Cajun Cook", ownerID: 5, dateCreated: '06/02/2021'},
-        {id: 2, title: "Talking the Walk", ownerID: 52, dateCreated: '12/01/2020'},
+        {id: 0, title: "Anime Extravaganza", ownerID: 3, dateCreated: '01/29/1989', icon: 'television'},
+        {id: 1, title: "The Cajun Cook", ownerID: 5, dateCreated: '06/02/2021', icon: 'utensils'},
+        {id: 2, title: "Talking the Walk", ownerID: 52, dateCreated: '12/01/2020', icon: 'football'},
     ];
 
     const communityMembers = [
         {id: 0, communityID: 0, peopleID: 3, isLeader: true},
         {id: 1, communityID: 1, peopleID: 3},
-        {id: 1, communityID: 1, peopleID: 1},
-        {id: 2, communityID: 1, peopleID: 7, isLeader: true},
-        {id: 3, communityID: 2, peopleID: 52, isLeader: true},
-        {id: 4, communityID: 2, peopleID: 42},
-        {id: 4, communityID: 2, peopleID: 1},
+        {id: 2, communityID: 1, peopleID: 1},
+        {id: 3, communityID: 1, peopleID: 7, isLeader: true},
+        {id: 4, communityID: 2, peopleID: 52, isLeader: true},
+        {id: 5, communityID: 2, peopleID: 42},
+        {id: 6, communityID: 2, peopleID: 1},
     ];
 
     const groups = [
@@ -57,6 +56,7 @@ const Right = (props) => {
     ];
 
     const myCommunitiesArray = Array();
+    const myCommunityMembersArray = Array();
     const myGroupsArray = Array();
     const myPeopleArray = Array();
 
@@ -84,8 +84,11 @@ const Right = (props) => {
         })
     });
 
+    const [selectedID, setSelectedID] = useState(null);
+
     const onClickHandler = (type, id, title, name) => {
         navCtx.onJoin(type, id, title, name);
+        setSelectedID(id);
     };
 
     return (
@@ -93,21 +96,22 @@ const Right = (props) => {
             <Card headerText="Communities">
                 {!authCtx.isLoggedIn && <span>If you join one or more communities, the list of communities will be displayed in this block.</span>}
                 {authCtx.isLoggedIn && (
-                    NavLocations(myCommunitiesArray, 'community', onClickHandler)
+                    NavLocations(myCommunitiesArray, 'community', onClickHandler, selectedID)
                 )}
+                {console.log('members array', myCommunityMembersArray)}
             </Card>
             <hr className={wClasses.br} />
             <Card headerText="Groups">
                 {!authCtx.isLoggedIn && <span>You can set up a group of friends for communications amongst each other.</span>}
                 {authCtx.isLoggedIn && (
-                    NavLocations(myGroupsArray, 'group', onClickHandler)
+                    NavLocations(myGroupsArray, 'group', onClickHandler, selectedID)
                 )}
             </Card>
             <hr className={wClasses.br} />
             <Card headerText="People">
                 {!authCtx.isLoggedIn && <span>Here will be individuals (friends, family members, etc.) that you can message privately.</span>}   
                 {authCtx.isLoggedIn && (
-                    NavLocations(myPeopleArray, 'people', onClickHandler)
+                    NavLocations(myPeopleArray, 'people', onClickHandler, selectedID)
                 )}
             </Card>
         </RightContainer>

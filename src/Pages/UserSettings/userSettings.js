@@ -9,7 +9,6 @@ import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import 'react-tabs/style/react-tabs.css';
 
 import DefaultPage from '../../UI/DefaultPage/DefaultPage';
-import Note from "../../UI/Note/Note";
 
 import AccountInfo from "./AccountInfo";
 import LocationInfo from "./LocationInfo";
