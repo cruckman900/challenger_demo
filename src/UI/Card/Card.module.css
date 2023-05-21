@@ -9,6 +9,11 @@
     border-radius: 8px;
 }
 
+.toggle {
+    float: right;
+    font-size: 1rem;
+}
+
 .minified {
     background: rgba(0, 0, 0, 0.75);
     border-radius: 4px;
