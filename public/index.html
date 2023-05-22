@@ -26,10 +26,37 @@
     <meta property="og:image" content="%PUBLIC_URL%/android-chrome-192x192.png" />
     <meta property="og:url" content="https://chatterboxsm.com" />
     <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta names="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
     <meta name="mobile-web-app-capable" content="yes">
     <link rel="apple-touch-icon" sizes="180x180" href="%PUBLIC_URL%/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="%PUBLIC_URL%/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="%PUBLIC_URL%/favicon-16x16.png">
+
+    <script type="text/javascript" scr="http://ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.min.js"></script>
+    <title>ChatterboxSM</title>
+    <style type="text/css">
+      body {
+        margin: 0px;
+        padding: 0px;
+      }
+    </style>
+    <script>
+      window.addEventListener("load", function() {
+        setTimeout(function() {
+          window.scrollTo(0, 1);
+        }, 0);
+      });
+
+      var preventDefault = function(e) {
+        e.preventDefault();
+        return false;
+      };
+
+      document.addEventListener('touchmove', preventDefault, false);
+      document.body.addEventListener('touchmove', preventDefault, true);
+      window.addEventListener('touchmove', preventDefault, true);
+    </script>
     <!--
       manifest.json provides metadata used when your web app is installed on a
       user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
