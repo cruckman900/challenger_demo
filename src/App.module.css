@@ -37,7 +37,7 @@
 
   .horizRowContainer {
     position: absolute;
-    height: 5rem;
+    /* height: 5rem; */
     left: 0;
   }
 

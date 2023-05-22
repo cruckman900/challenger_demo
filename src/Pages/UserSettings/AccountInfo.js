@@ -34,10 +34,10 @@ const emailReducer = (state, action) => {
 
 const usernameReducer = (state, action) => {
     if (action.type === 'USER_INPUT') {
-        return { value: action.value, isValid: action.value.trim().length > 11 };
+        return { value: action.value, isValid: action.value.trim().length > 7 };
     }
     if (action.type === 'INPUT_BLUR') {
-        return { value: state.value, isValid: state.value.trim().length > 11}
+        return { value: state.value, isValid: state.value.trim().length > 7}
     }
 }
 
@@ -220,8 +220,9 @@ const AccountInfo = (props) => {
         {id: "label2", inputType: "label", required: true, className: classes.label, text: "Gender"},
         {id: "radMale", name: "gender", inputType: "radio", className: classes.indentedInput, required: false, labelText: "Male", value: "male", checked: sexSelected === 'male', onChange: sexCheckChangedHandler},
         {id: "radFemale", name: "gender", inputType: "radio", className: classes.indentedInput, required: false, labelText: "Female", value: "female", checked: sexSelected === 'female', onChange: sexCheckChangedHandler},
+        {id: "radOther", name: "gender", inputType: "radio", className: classes.indentedInput, required: false, labelText: "Other/Not Specified", value: "other", checked: sexSelected === 'other', onChange: sexCheckChangedHandler},
         {id: "txtEmail", placeholder: "Enter a valid email", inputType: "email", required: true, labelText: "Email", value: props.email, disabled: disabled, onChange: emailChangeHandler, onBlur: validateEmailHandler, valid: emailIsValid, error: !emailIsValid},
-        {id: "txtUsername", placeholder: "12 or more chars", inputType: "text", required: true, labelText: "Username", value: props.username, disabled: disabled, onChange: usernameChangeHandler, onBlur: validateUsernameHandler, valid: usernameIsValid, error: !usernameIsValid},
+        {id: "txtUsername", placeholder: "8 or more chars", inputType: "text", required: true, labelText: "Username", value: props.username, disabled: disabled, onChange: usernameChangeHandler, onBlur: validateUsernameHandler, valid: usernameIsValid, error: !usernameIsValid},
         {id: "txtPassword", placeholder: "8+ chars and 1+ numbers", inputType: "password", required: true, labelText: "Password", value: props.password, disabled: disabled, onChange: passwordChangeHandler, onBlur: validatePasswordHandler, valid: passwordIsValid, error: !passwordIsValid},
         {id: "label3", inputType: "label", required: true, className: `${classes.label} ${classes.required}`, text: "Identify me using:"},
         {id: "identRealName", name: "ident", inputType: "radio", className: classes.indentedInput, required: true, labelText: "Real Name", value: "realname", checked: identSelected === 'realname', onChange: identCheckChangedHandler},

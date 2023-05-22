@@ -5,6 +5,7 @@ import Card from "../../UI/Card/Card";
 import LeftLabelInput from "../../UI/LeftLabelInput/LeftLabelInput";
 import Button from "../../UI/Button/Button";
 import classes from './login.module.css';
+import labeledInputs from '../../builders/LabeledInputs/labeledInputs';
 
 const hasNumber = (val) => {
     return /\d/.test(val);
@@ -12,10 +13,10 @@ const hasNumber = (val) => {
 
 const usernameReducer = (state, action) => {
     if (action.type === 'USER_INPUT') {
-        return { value: action.value, isValid: action.value.trim().length > 11 };
+        return { value: action.value, isValid: action.value.trim().length > 7 };
     }
     if (action.type === 'INPUT_BLUR') {
-        return { value: state.value, isValid: state.value.trim().length > 11}
+        return { value: state.value, isValid: state.value.trim().length > 7}
     }
 }
 
@@ -80,47 +81,17 @@ export default function Login(props) {
         props.onClose();
     };
 
+    const inputs = [
+        {id: "txtUsername", placeholder: "8 or more chars", inputType: "text", required: true, labelText: "Username", value: props.username, onChange: usernameChangeHandler, onBlur: validateUsernameHandler, valid: usernameIsValid, error: !usernameIsValid},
+        {id: "txtPassword", placeholder: "8+ chars and 1+ numbers", inputType: "password", required: true, labelText: "Password", value: props.password, onChange: passwordChangeHandler, onBlur: validatePasswordHandler, valid: passwordIsValid, error: !passwordIsValid},
+    ];
+
     return (
         <Modal onClose={props.onClose}>
             <Card headerText="Login" isOpened={true}>
                 {!authCtx.isLoggedIn &&
                     <form onSubmit={submitHandler}>
-                        <div>
-                            <LeftLabelInput
-                                name="txtUsername"
-                                title="Username"
-                                placeholder="12 or more chars"
-                                inputType="text"
-                                className={classes.LeftLabelInput}
-                                required={true}
-                                labelClassName={classes.labelText}
-                                inputClassName={classes.inputStyle}
-                                labelText="Username"
-                                value={usernameState.value}
-                                onChange={usernameChangeHandler}
-                                onBlur={validateUsernameHandler}
-                                Error={!usernameState.isValid}
-                                Valid={usernameState.isValid}
-                            ></LeftLabelInput>
-                        </div>
-                        <div>
-                            <LeftLabelInput
-                                name="txtPassword"
-                                title="Password"
-                                placeholder="8+ chars / 1+ numbers"
-                                inputType="password"
-                                className={classes.LeftLabelInput}
-                                required={true}
-                                labelClassName={classes.labelText}
-                                inputClassName={classes.inputStyle}
-                                labelText="Password"
-                                value={passwordState.value}
-                                onChange={passwordChangeHandler}
-                                onBlur={validatePasswordHandler}
-                                Error={!passwordState.isValid}
-                                Valid={passwordState.isValid}
-                            ></LeftLabelInput>
-                        </div>
+                        {labeledInputs(inputs)}
                         <div className={classes.formRow}>
                             <Button className={classes.primaryBtn} type="submit" name="btnSubmit" value="Log In" disabled={!formIsValid} />
                             <Button type="button" name="btnCancel" value="Cancel" onClick={props.onClose} />
