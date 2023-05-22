@@ -27,7 +27,7 @@
 
 .body {
     display: block;
-    height: calc(100vh - 9.5rem);
+    height: calc(100vh - 11rem);
     overflow-x: hidden;
     overflow-y: auto;
     -ms-overflow-style: none;

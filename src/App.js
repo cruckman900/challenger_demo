@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, useEffect, useRef } from 'react';
 import { Row, Col } from 'react-bootstrap';
 import Header from './Layout/Header/header';
 import Top from './Layout/Top/top';
@@ -11,9 +11,15 @@ import Portrait from './Layout/Portrait/Portrait';
 import classes from './App.module.css';
 
 function App() {
+  const scrollInto = useRef();
+
+  useEffect(() => {
+    scrollInto.current.scrollIntoView();
+  });
+
   return (
     <Fragment>
-      <div className={classes.App}>
+      <div className={classes.App} ref={scrollInto}>
         <Row><Col><Header /></Col></Row>
         <Row><Col><Top /></Col></Row>
         <Row className={classes.horizRowContainer}>

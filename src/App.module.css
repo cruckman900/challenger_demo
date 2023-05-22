@@ -1,10 +1,13 @@
 .App {
-  background: linear-gradient(180deg, #000000, #630000 80%, #000000 );
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
   background-attachment: fixed;
+  background: linear-gradient(180deg, #000000, #630000 80%, #000000 );
   text-align: center;
   width: 100vw;
   height: 100vh;
-  display: block;
   -ms-overflow-style: none;
 }
 
