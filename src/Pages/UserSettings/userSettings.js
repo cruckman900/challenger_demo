@@ -58,13 +58,13 @@ export default function UserSettings(props) {
             <DefaultPage headerText="User Information">
                 <Tabs selectedTabClassName={classes.selectedTab}>
                     <TabList className={classes.tabList}>
-                        <Tab><FontAwesomeIcon className={classes.tabIcon} icon={myIcons['userPlus']} /></Tab>
-                        <Tab disabled={!showLocation && true}><FontAwesomeIcon className={classes.tabIcon} icon={myIcons['locationDot']} /></Tab>
-                        <Tab disabled={!accountID && true}><FontAwesomeIcon className={classes.tabIcon} icon={myIcons['utensils']} /></Tab>
-                        <Tab disabled={!accountID && true}><FontAwesomeIcon className={classes.tabIcon} icon={myIcons['television']} /></Tab>
-                        <Tab disabled={!accountID && true}><FontAwesomeIcon className={classes.tabIcon} icon={myIcons['radio']} /></Tab>
-                        <Tab disabled={!accountID && true}><FontAwesomeIcon className={classes.tabIcon} icon={myIcons['football']} /></Tab>
-                        <Tab disabled={!accountID && true}><FontAwesomeIcon className={classes.tabIcon} icon={myIcons['computer']} /></Tab>
+                        <Tab className={classes.tab}><FontAwesomeIcon className={classes.tabIcon} icon={myIcons['userPlus']} /></Tab>
+                        <Tab className={classes.tab} disabled={!showLocation && true}><FontAwesomeIcon className={classes.tabIcon} icon={myIcons['locationDot']} /></Tab>
+                        <Tab className={classes.tab} disabled={!accountID && true}><FontAwesomeIcon className={classes.tabIcon} icon={myIcons['utensils']} /></Tab>
+                        <Tab className={classes.tab} disabled={!accountID && true}><FontAwesomeIcon className={classes.tabIcon} icon={myIcons['television']} /></Tab>
+                        <Tab className={classes.tab} disabled={!accountID && true}><FontAwesomeIcon className={classes.tabIcon} icon={myIcons['radio']} /></Tab>
+                        <Tab className={classes.tab} disabled={!accountID && true}><FontAwesomeIcon className={classes.tabIcon} icon={myIcons['football']} /></Tab>
+                        <Tab className={classes.tab} disabled={!accountID && true}><FontAwesomeIcon className={classes.tabIcon} icon={myIcons['computer']} /></Tab>
                     </TabList>
 
                     <TabPanel><AccountInfo setAgeRange={setAgeRange} setAccountID={setID} /></TabPanel>

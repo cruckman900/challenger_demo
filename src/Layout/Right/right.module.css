@@ -16,15 +16,15 @@
         display: inline;
         position: absolute;
         top: -3.5rem;
-        left: .5rem;
-        width: 1.5rem;
+        left: .25rem;
+        width: 2rem;
         height: 1rem;
         padding: 0;
-        background: rgba(255, 69, 0, .6);
-        color: rgba(255, 120, 0, .6);
-        outline: solid 2px rgba(255, 120, 0, .6);
+        padding-bottom: .25rem;
+        background: rgba(255, 69, 0, .7);
+        color: rgba(255, 120, 0, 1);
         font-weight: bold;
-        font-size: .95rem;
+        font-size: 1rem;
         z-index: 1;
     }
 

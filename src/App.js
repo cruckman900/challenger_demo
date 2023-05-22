@@ -11,26 +11,18 @@ import Portrait from './Layout/Portrait/Portrait';
 import classes from './App.module.css';
 
 function App() {
-  const scrollInto = useRef();
-
-  useEffect(() => {
-    scrollInto.current.scrollIntoView();
-  });
-
   return (
-    <Fragment>
-      <div className={classes.App} ref={scrollInto}>
-        <Row><Col><Header /></Col></Row>
-        <Row><Col><Top /></Col></Row>
-        <Row className={classes.horizRowContainer}>
-          <Col><Left /></Col>
-          <Col><Main /></Col>
-          <Col className={classes.floatingHolder}><Right /></Col>
-        </Row>
-        <Row><Col><Footer /></Col></Row>
-        <Row className={classes.status}><Col><StatusBar /></Col></Row>
-      </div>
-    </Fragment>
+    <div className={classes.App}>
+    <Row><Col><Header /></Col></Row>
+    <Row><Col><Top /></Col></Row>
+    <Row className={classes.horizRowContainer}>
+      <Col><Left /></Col>
+      <Col><Main /></Col>
+      <Col className={classes.floatingHolder}><Right /></Col>
+    </Row>
+    <Row><Col><Footer /></Col></Row>
+    <Row className={classes.status}><Col><StatusBar /></Col></Row>
+    </div>
   );
 }
 

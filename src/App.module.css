@@ -3,11 +3,11 @@
   position: absolute;
   top: 0;
   left: 0;
-  background-attachment: fixed;
+  /* background-attachment: fixed; */
   background: linear-gradient(180deg, #000000, #630000 80%, #000000 );
   text-align: center;
   width: 100vw;
-  height: 100vh;
+  height: 100vh !important;
   -ms-overflow-style: none;
 }
 
@@ -37,6 +37,7 @@
 
   .horizRowContainer {
     position: absolute;
+    height: 5rem;
     left: 0;
   }
 

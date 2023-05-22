@@ -30,7 +30,7 @@
 @media only screen and (max-width:767px) and (orientation:portrait) {
     .left {
         padding-top: 2rem;
-        height: calc(100vh - 8rem);
+        height: calc(100vh - 8.5rem);
     }
 
     .menuButton {
