@@ -16,7 +16,7 @@ class App extends Component {
   };
 
   callAPI() {
-    fetch("http://localhost:9000/testApi")
+    fetch("http://chatterboxsm.com/chatterbox-api/testApi")
       .then(res => res.text())
       .then(res => this.setState({ apiResponse: res }));
   }

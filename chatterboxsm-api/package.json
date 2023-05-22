@@ -14,5 +14,26 @@
     "jade": "~1.11.0",
     "morgan": "~1.9.1",
     "mysql": "^2.18.1"
-  }
+  },
+  "description": "api for chatterboxsm",
+  "main": "app.js",
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cruckman900/chatterboxsm.com.git"
+  },
+  "keywords": [
+    "reactjs",
+    "css",
+    "chat",
+    "node",
+    "express",
+    "mysql"
+  ],
+  "author": "christopher ruckman",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/cruckman900/chatterboxsm.com/issues"
+  },
+  "homepage": "https://github.com/cruckman900/chatterboxsm.com#readme"
 }
