@@ -27,7 +27,7 @@
 
 .body {
     display: block;
-    height: calc(100vh - 11rem);
+    height: calc(100vh - 9.5rem);
     overflow-x: hidden;
     overflow-y: auto;
     -ms-overflow-style: none;
@@ -50,7 +50,7 @@
     user-select: none;
 }
 
-@media only screen and (max-width:767px) and (orientation:portrait) {
+@media only screen and (max-width:767px) {
     .defaultPage {
         height: calc(100vh - 8rem);
     }

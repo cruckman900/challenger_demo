@@ -30,17 +30,17 @@
   .App {
     display: block;
   }
-
+  
   .status {
     display: none;
   }
-
+  
   .horizRowContainer {
     position: absolute;
     /* height: 5rem; */
     left: 0;
   }
-
+  
   .floatingHolder {
     display: inline;
     position: absolute;
