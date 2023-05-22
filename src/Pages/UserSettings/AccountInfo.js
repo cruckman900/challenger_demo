@@ -54,6 +54,10 @@ const AccountInfo = (props) => {
     const [ageSelected, setAgeSelected] = useState('18orOlder');
     const [sexSelected, setSexSelected] = useState(null);
     const [identSelected, setIdentSelected] = useState('realname');
+
+    const [screenName, setScreenName] = useState(null);
+    const [description, setDescription] = useState(null);
+
     const [disabled, setDisabled] = useState(false);
     const [submitDisabled, setSubmitDisabled] = useState(false);
     const [queryType, setQueryType] = useState('insert');
@@ -84,6 +88,8 @@ const AccountInfo = (props) => {
         value: '',
         isValid: null
     });
+
+    const [middleName, setMiddleName] = useState(null);
 
     const [usernameState, dispatchUsername] = useReducer(usernameReducer, {
         value: '',
@@ -120,6 +126,10 @@ const AccountInfo = (props) => {
     const firstNameChangeHandler = (event) => {
         dispatchFirstName({type: 'USER_INPUT', value: event.target.value});
     };
+
+    const middleNameChangeHandler = (event) => {
+        setMiddleName(event.target.value);
+    }
 
     const lastNameChangeHandler = (event) => {
         dispatchLastName({type: 'USER_INPUT', value: event.target.value});
@@ -171,6 +181,14 @@ const AccountInfo = (props) => {
         setIdentSelected(event.target.value);
     }
 
+    const screenNameChangeHandler = (event) => {
+        setScreenName(event.target.value);
+    };
+
+    const descriptionChangeHandler = (event) => {
+        setDescription(event.target.value);
+    };
+
     const onSubmitHandler = (event) => {
         event.preventDefault();
         if (formIsValid) {
@@ -211,9 +229,9 @@ const AccountInfo = (props) => {
 
     const inputs = [
         {id: "txtFirstName", placeholder: "Cannot be blank", inputType: "text", required: true, labelText: "First Name", value: props.firstName, onChange: firstNameChangeHandler, onBlur: validateFirstNameHandler, valid: firstNameIsValid, error: !firstNameIsValid},
-        {id: "txtMiddle", inputType: "text", required: false, labelText: "Middle", value: props.middle},
+        {id: "txtMiddle", inputType: "text", required: false, labelText: "Middle", value: props.middle, onChange: {middleNameChangeHandler}},
         {id: "txtLastName", placeholder: "Cannot be blank", inputType: "text", required: true, labelText: "Last Name", value: props.lastName, onChange: lastNameChangeHandler, onBlur: validateLastNameHandler, valid: lastNameIsValid, error: !lastNameIsValid},
-        {id: "txtScreenName", inputType: "text", required: false, labelText: "Screen Name", value: props.screenname},
+        {id: "txtScreenName", inputType: "text", required: false, labelText: "Screen Name", value: props.screenname, onChange: {screenNameChangeHandler}},
         {id: "label1", inputType: "label", required: true, className: `${classes.label} ${classes.required}`, text: "Age Range"},
         {id: "rad18OrOlder", name: "age", inputType: "radio", className: classes.indentedInput, required: true, labelText: "18 or Older", value: "18orOlder", checked: ageSelected === '18orOlder', onChange: ageCheckChangedHandler},
         {id: "radUnder18", name: "age", inputType: "radio", className: classes.indentedInput, required: true, labelText: "Under 18", value: "under18", checked: ageSelected === 'under18', onChange: ageCheckChangedHandler},
@@ -228,7 +246,7 @@ const AccountInfo = (props) => {
         {id: "identRealName", name: "ident", inputType: "radio", className: classes.indentedInput, required: true, labelText: "Real Name", value: "realname", checked: identSelected === 'realname', onChange: identCheckChangedHandler},
         {id: "identDisplayName", name: "ident", inputType: "radio", className: classes.indentedInput, required: true, labelText: "Display Name", value: "displayname", checked: identSelected === 'displayname', onChange: identCheckChangedHandler},
         {id: "identUsername", name: "ident", inputType: "radio", className: classes.indentedInput, required: true, labelText: "Username", value: "username", checked: identSelected === 'username', onChange: identCheckChangedHandler},
-        {id: "txtDesc", inputType: "textarea", readOnly: false, disabled: false, labelText: "Describe Yourself", value: props.userDesc},
+        {id: "txtDesc", inputType: "textarea", readOnly: false, disabled: false, labelText: "Describe Yourself", value: props.userDesc, onChange: {descriptionChangeHandler}},
     ];
 
     const [formInputs, setFormInputs] = useState(null);
