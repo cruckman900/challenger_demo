@@ -40,12 +40,12 @@
     
     .show {
         display: inline;
-        top: -3.5rem;
+        top: -3.75rem;
         left: 0;
         margin: .25rem;
         padding: 2.5rem .5rem;
         padding-bottom: 1.5rem;
-        height: calc(100vh - 11.5rem);
+        height: calc(100vh - 11.75rem);
         background: rgba(25, 25, 25, 1);
         border-radius: 12px;
         outline: solid 1px rgba(255, 120, 0, .8);
