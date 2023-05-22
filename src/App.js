@@ -28,7 +28,7 @@ class App extends Component {
   render() {
     return (
       <div className={classes.App}>
-        <p style={{color: 'rgba(255, 69, 0, .8)', position: 'absolute', top: 25, left: 25, zIndex: 5}}><i>{this.state.apiResponse}</i></p>
+        <div style={{color: 'rgba(255, 69, 0, .8)', position: 'absolute', top: 25, left: 25, zIndex: 5}}><i>{this.state.apiResponse}</i></div>
         <Row><Col><Header /></Col></Row>
         <Row><Col><Top /></Col></Row>
         <Row className={classes.horizRowContainer}>
