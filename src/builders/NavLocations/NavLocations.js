@@ -6,6 +6,7 @@ const NavLocations = (inputs, thisType, onClickHandler, selectedID) => {
         return (
             <NavLocationCard
                 id={input.id}
+                key={input.id}
                 selected={input.id === selectedID}
                 navType={thisType}
                 icon={input.icon}

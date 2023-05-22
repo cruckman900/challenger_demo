@@ -8,6 +8,7 @@ const labeledInputs = (inputs) => {
             return (
                 <div className={classes.formRow}>
                     <Label
+                        id={input.id}
                         key={input.id}
                         htmlFor={input.id}
                         required={input.required}
@@ -63,7 +64,7 @@ const labeledInputs = (inputs) => {
                     onBlur={input.onBlur}
                     valid={input.valid}
                     error={input.error}
-            >
+                >
                     {input.value}
                 </LeftLabelInput>
             );
@@ -87,8 +88,6 @@ const labeledInputs = (inputs) => {
                 </LeftLabelInput>
             );
         }
-    
-        return null;
     });
 
     return retVal;

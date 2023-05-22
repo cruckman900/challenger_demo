@@ -6,6 +6,8 @@ const LeftLabelInput = React.forwardRef((props, ref) => {
     return (
         <div className={`${classes.container} ${props.className}`}>
             <Label
+                id={props.id}
+                key={props.id}
                 className={`${classes.Label} ${props.labelClassName} ${props.required && classes.required}`}
                 text={props.labelText}
                 htmlFor={props.id}
