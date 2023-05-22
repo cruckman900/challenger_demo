@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import BodyHeader from "../../UI/BodyHeader/BodyHeader";
 import Button from "../../UI/Button/Button";
 import labeledInputs from '../../builders/LabeledInputs/labeledInputs';
@@ -27,10 +27,16 @@ const MusicInfo = (props) => {
         {id: "txtFavMusic", inputType: "text", required: false, labelText: "favoriteMusic", value: props.txtFavMusic},
     ];
 
+    const [formInputs, setFormInputs] = useState(null);
+
+    useEffect(() => {
+        setFormInputs(labeledInputs(inputs));
+    }, []);
+
     return (
         <form onSubmit={onSubmitHandler}>
             <BodyHeader>Favorite Music Types</BodyHeader>
-            {labeledInputs(inputs)}
+            {formInputs}
             <BodyHeader>&nbsp;</BodyHeader>
             <div className={classes.formRow}>
                 <Button className={classes.primaryBtn} type="submit" name="btnSubmit" value="Submit" />

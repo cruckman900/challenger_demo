@@ -231,12 +231,18 @@ const AccountInfo = (props) => {
         {id: "txtDesc", inputType: "textarea", readOnly: false, disabled: false, labelText: "Describe Yourself", value: props.userDesc},
     ];
 
+    const [formInputs, setFormInputs] = useState(null);
+
+    useEffect(() => {
+        setFormInputs(labeledInputs(inputs));
+    }, []);
+
     return (
         <Fragment>
             <form onSubmit={onSubmitHandler}>
                 <BodyHeader>Account Information</BodyHeader>
                 {message && <Note noteType={message.noteType} headerText={message.headerText}>{message.messageText}</Note>}
-                {labeledInputs(inputs)}
+                {formInputs}
                 <BodyHeader>&nbsp;</BodyHeader>
                 <div className={classes.formRow}>
                     <Button className={classes.primaryBtn} type="submit" name="btnSubmit" value="Submit" disabled={submitDisabled} />

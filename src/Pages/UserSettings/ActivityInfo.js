@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import BodyHeader from "../../UI/BodyHeader/BodyHeader";
 import Button from "../../UI/Button/Button";
 import labeledInputs from '../../builders/LabeledInputs/labeledInputs';
@@ -33,10 +33,16 @@ const ActivityInfo = (props) => {
         {id: "chkActivityOther", name: "activitytypes", inputType: "checkbox", required: false, labelText: "Other", value: props.chkActivityOther},
     ];
 
+    const [formInputs, setFormInputs] = useState(null);
+
+    useEffect(() => {
+        setFormInputs(labeledInputs(inputs));
+    }, []);
+
     return (
         <form onSubmit={onSubmitHandler}>
             <BodyHeader>Favorite Activities</BodyHeader>
-            {labeledInputs(inputs)}
+            {formInputs}
             <BodyHeader>&nbsp;</BodyHeader>
             <div className={classes.formRow}>
                 <Button className={classes.primaryBtn} type="submit" name="btnSubmit" value="Submit" />
