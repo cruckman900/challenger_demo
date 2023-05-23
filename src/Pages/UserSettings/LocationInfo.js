@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import BodyHeader from "../../UI/BodyHeader/BodyHeader";
 import Button from "../../UI/Button/Button";
 import labeledInputs from '../../builders/LabeledInputs/labeledInputs';
@@ -11,15 +11,11 @@ const LocationInfo = (props) => {
 
     const inputs = [
         {id: "txtCity", inputType: "text", required: false, labelText: "City", value: props.txtCity},
-        {id: "txtState", inputType: "text", required: false, labelText: "State/Province", value: props.txtState},
+        {id: "txtState", inputType: "text", required: false, labelText: "State (Province)", value: props.txtState},
         {id: "txtCountry", inputType: "text", required: false, labelText: "Country", value: props.txtCountry},
     ];
 
-    const [formInputs, setFormInputs] = useState(null);
-
-    useEffect(() => {
-        setFormInputs(labeledInputs(inputs));
-    }, []);
+    const formInputs = labeledInputs(inputs);
 
     return (
         <form onSubmit={onSubmitHandler}>

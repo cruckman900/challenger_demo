@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import BodyHeader from "../../UI/BodyHeader/BodyHeader";
 import Button from "../../UI/Button/Button";
 import labeledInputs from '../../builders/LabeledInputs/labeledInputs';
@@ -33,11 +33,7 @@ const ActivityInfo = (props) => {
         {id: "chkActivityOther", name: "activitytypes", inputType: "checkbox", required: false, labelText: "Other", value: props.chkActivityOther},
     ];
 
-    const [formInputs, setFormInputs] = useState(null);
-
-    useEffect(() => {
-        setFormInputs(labeledInputs(inputs));
-    }, []);
+    const formInputs = labeledInputs(inputs);
 
     return (
         <form onSubmit={onSubmitHandler}>

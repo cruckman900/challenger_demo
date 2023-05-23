@@ -27,6 +27,7 @@
     border-radius: 8px;
     border: solid 1px transparent;
     padding: .25rem;
+    height: 1rem;
     margin-right: 1rem;
     background: rgba(255, 255, 255, .9);
 }
@@ -39,10 +40,6 @@
 .Input[type='checkbox'] {
     width: 1.5rem;
     height: 1.5rem;
-}
-
-.Input[type='radio']:hover,
-.Input[type='checkbox']:hover {
     cursor: pointer;
 }
 
@@ -61,4 +58,19 @@
 
 .InputValid {
     background: rgba(155, 255, 155, .8);
+}
+
+::-webkit-input-placeholder { /* Edge */
+    font-family: 'ShackleItalic';
+    color: rgba(175, 20, 0, 1);
+}
+
+:-ms-input-placeholder { /* Internet Explorer 10-11 */
+    font-family: 'ShackleItalic';
+    color: rgba(175, 20, 0, 1);
+}
+
+::placeholder {
+    font-family: 'ShackleItalic';
+    color: rgba(175, 20, 0, 1);
 }

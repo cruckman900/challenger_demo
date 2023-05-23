@@ -16,7 +16,7 @@ class App extends Component {
   };
 
   callAPI() {
-    fetch("https://chatterboxsm.com/chatterbox-api/testApi")
+    fetch("http://localhost:4000/programming-languages")
       .then(res => res.text())
       .then(res => this.setState({ apiResponse: res }));
   }
@@ -28,7 +28,7 @@ class App extends Component {
   render() {
     return (
       <div className={classes.App}>
-        <div style={{color: 'rgba(255, 69, 0, .8)', position: 'absolute', top: 25, left: 25, zIndex: 5}}><i>{this.state.apiResponse}</i></div>
+        {console.log(this.state.apiResponse)}
         <Row><Col><Header /></Col></Row>
         <Row><Col><Top /></Col></Row>
         <Row className={classes.horizRowContainer}>

@@ -9,7 +9,6 @@ const labeledInputs = (inputs) => {
                 <div className={classes.formRow}>
                     <Label
                         id={input.id}
-                        key={input.id}
                         htmlFor={input.id}
                         required={input.required}
                         className={input.className}
@@ -24,7 +23,6 @@ const labeledInputs = (inputs) => {
                 <div className={classes.formRow}>
                     <LeftLabelInput
                         id={input.id}
-                        key={input.id}
                         name={input.name}
                         inputType={input.inputType}
                         className={input.className}
@@ -51,13 +49,12 @@ const labeledInputs = (inputs) => {
             return (
                 <LeftLabelInput
                     id={input.id}
-                    key={input.id}
                     name={input.id}
                     placeholder={input.placeholder}
                     inputType={input.inputType}
                     required={input.required}
                     labelClassName={classes.labelText}
-                    inputClassName={`${classes.inputStyle} ${input.className}`}
+                    inputClassName={null}
                     labelText={input.labelText}
                     disabled={input.disabled}
                     onChange={input.onChange}
@@ -74,7 +71,6 @@ const labeledInputs = (inputs) => {
             return (
                 <LeftLabelInput
                     id={input.id}
-                    key={input.id}
                     name={input.id}
                     inputType={input.inputType}
                     inputClassName={classes.textarea}

@@ -6,8 +6,6 @@ const LeftLabelInput = React.forwardRef((props, ref) => {
     return (
         <div className={`${classes.container} ${props.className}`}>
             <Label
-                id={props.id}
-                key={props.id}
                 className={`${classes.Label} ${props.labelClassName} ${props.required && classes.required}`}
                 text={props.labelText}
                 htmlFor={props.id}
@@ -15,7 +13,6 @@ const LeftLabelInput = React.forwardRef((props, ref) => {
             {props.inputType !== "textarea" && (
                 <input
                     id={props.id}
-                    key={props.id}
                     name={props.name}
                     placeholder={props.placeholder}
                     className={`${classes.Input} ${props.inputClassName} ${props.valid && classes.InputValid} ${props.error && classes.InputError}`}
@@ -31,16 +28,14 @@ const LeftLabelInput = React.forwardRef((props, ref) => {
             {props.inputType === "textarea" && (
                 <textarea
                     id={props.id}
-                    key={props.id}
                     name={props.name}
                     className={props.inputClassName}
                     readOnly={props.readOnly}
                     disabled={props.disabled}
                     onChange={props.onChange}
                     onBlur={props.onBlur}
-                >
-                    {props.value}
-                </textarea>
+                    value={props.value}
+                />
             )}
         </div>
     );

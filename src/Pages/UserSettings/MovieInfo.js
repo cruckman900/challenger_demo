@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import BodyHeader from "../../UI/BodyHeader/BodyHeader";
 import Button from "../../UI/Button/Button";
 import labeledInputs from '../../builders/LabeledInputs/labeledInputs';
@@ -29,11 +29,7 @@ const MovieInfo = (props) => {
         {id: "txtFavVideo", inputType: "text", required: false, labelText: "Favorite Video", value: props.txtFavVideo},
     ];
 
-    const [formInputs, setFormInputs] = useState(null);
-
-    useEffect(() => {
-        setFormInputs(labeledInputs(inputs));
-    }, []);
+    const formInputs = labeledInputs(inputs);
 
     return (
         <form onSubmit={onSubmitHandler}>

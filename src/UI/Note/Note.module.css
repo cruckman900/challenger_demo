@@ -4,13 +4,13 @@
 
 .noteHeader {
     font-family: "ShackleItalic";
-    font-size: .9rem;
+    font-size: .8rem;
     font-weight: 400;
     letter-spacing: .065rem;
-    border-top-left-radius: 8px;
-    border-top-right-radius: 8px;
+    border-top-left-radius: 6px;
+    border-top-right-radius: 6px;
     border-bottom: none;
-    padding: .05rem;
+    padding-top: .25rem;
     padding-left: .5rem;
     padding-right: .5rem;
 }
@@ -20,9 +20,9 @@
     font-size: .8rem;
     font-weight: 200;
     letter-spacing: .065rem;
-    border-bottom-left-radius: 8px;
-    border-bottom-right-radius: 8px;
-    padding: .5rem;
+    border-bottom-left-radius: 6px;
+    border-bottom-right-radius: 6px;
+    padding: .25rem;
 }
 
 .infotype-header {

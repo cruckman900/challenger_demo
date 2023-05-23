@@ -5,7 +5,6 @@ import Card from "../../UI/Card/Card";
 import LeftLabelInput from "../../UI/LeftLabelInput/LeftLabelInput";
 import Button from "../../UI/Button/Button";
 import classes from './login.module.css';
-import labeledInputs from '../../builders/LabeledInputs/labeledInputs';
 
 const hasNumber = (val) => {
     return /\d/.test(val);
@@ -81,17 +80,43 @@ export default function Login(props) {
         props.onClose();
     };
 
-    const inputs = [
-        {id: "txtUsername", placeholder: "8 or more chars", inputType: "text", required: true, labelText: "Username", value: props.username, onChange: usernameChangeHandler, onBlur: validateUsernameHandler, valid: usernameIsValid, error: !usernameIsValid},
-        {id: "txtPassword", placeholder: "8+ chars and 1+ numbers", inputType: "password", required: true, labelText: "Password", value: props.password, onChange: passwordChangeHandler, onBlur: validatePasswordHandler, valid: passwordIsValid, error: !passwordIsValid},
-    ];
-
     return (
         <Modal onClose={props.onClose}>
             <Card headerText="Login" isOpened={true}>
                 {!authCtx.isLoggedIn &&
                     <form onSubmit={submitHandler}>
-                        {labeledInputs(inputs)}
+                        <div className={classes.formRow}>
+                            <LeftLabelInput
+                                id="txtUsername"
+                                placeholder="8+ characters"
+                                inputType="text"
+                                required={true}
+                                labelText="Username"
+                                labelClassName={classes.labelText}
+                                inputClassName={classes.inputStyle}
+                                value={usernameState.value}
+                                onChange={usernameChangeHandler}
+                                onBlur={validateUsernameHandler}
+                                valid={usernameIsValid}
+                                error={!usernameIsValid}
+                            />
+                        </div>
+                        <div className={classes.formRow}>
+                            <LeftLabelInput
+                                id="txtPassword"
+                                placeholder="8+ chars with numbers"
+                                inputType="password"
+                                required={true}
+                                labelText="Password"
+                                labelClassName={classes.labelText}
+                                inputClassName={classes.inputStyle}
+                                value={passwordState.value}
+                                onChange={passwordChangeHandler}
+                                onBlur={validatePasswordHandler}
+                                valid={passwordIsValid}
+                                error={!passwordIsValid}
+                            />
+                        </div>
                         <div className={classes.formRow}>
                             <Button className={classes.primaryBtn} type="submit" name="btnSubmit" value="Log In" disabled={!formIsValid} />
                             <Button type="button" name="btnCancel" value="Cancel" onClick={props.onClose} />

@@ -1,8 +1,9 @@
 import React, { Fragment, useState, useEffect, useReducer } from "react";
 import BodyHeader from "../../UI/BodyHeader/BodyHeader";
+import LeftLabelInput from "../../UI/LeftLabelInput/LeftLabelInput";
+import Label from "../../UI/Label/Label";
 import Button from "../../UI/Button/Button";
 import Note from "../../UI/Note/Note";
-import labeledInputs from '../../builders/LabeledInputs/labeledInputs';
 import Confirmation from "../Confirmation/Confirmation";
 import classes from './userSettings.module.css';
 
@@ -52,11 +53,11 @@ const passwordReducer = (state, action) => {
 
 const AccountInfo = (props) => {
     const [ageSelected, setAgeSelected] = useState('18orOlder');
-    const [sexSelected, setSexSelected] = useState(null);
+    const [sexSelected, setSexSelected] = useState('');
     const [identSelected, setIdentSelected] = useState('realname');
 
-    const [screenName, setScreenName] = useState(null);
-    const [description, setDescription] = useState(null);
+    const [screenName, setScreenName] = useState('');
+    const [description, setDescription] = useState('');
 
     const [disabled, setDisabled] = useState(false);
     const [submitDisabled, setSubmitDisabled] = useState(false);
@@ -64,11 +65,14 @@ const AccountInfo = (props) => {
 
     const [formSubmitted, setFormSubmitted] = useState(false);
 
-    const [message, setMessage] = useState(null);
+    const [message, setMessage] = useState('');
 
     useEffect(() => {
         if (!formSubmitted) {
-            setMessage({noteType: 'info', headerText: 'Form Handling', messageText: 'You must submit this form to unlock the other forms. Bold Items are required fields.'});
+            setMessage({
+                noteType: 'info',
+                headerText: 'Form Handling',
+                messageText: 'You must submit this form to unlock the other forms. Bold Items are required fields.'});
         }
     }, [formSubmitted]);
 
@@ -89,7 +93,7 @@ const AccountInfo = (props) => {
         isValid: null
     });
 
-    const [middleName, setMiddleName] = useState(null);
+    const [middleName, setMiddleName] = useState('');
 
     const [usernameState, dispatchUsername] = useReducer(usernameReducer, {
         value: '',
@@ -171,6 +175,7 @@ const AccountInfo = (props) => {
         const val = event.target.value;
         setAgeSelected(val);
         props.setAgeRange(val);
+
     };
 
     const sexCheckChangedHandler = (event) => {
@@ -204,7 +209,10 @@ const AccountInfo = (props) => {
             }, 500);
             return;
         } else {
-            setMessage({noteType: 'error', headerText: 'Validation Error!', messageText: 'You have 1 or more errors preventing you from submitting your form.'});
+            setMessage({
+                noteType: 'error',
+                headerText: 'Validation Error!',
+                messageText: 'You have 1 or more errors preventing you from submitting your form.'});
         }
     };
 
@@ -223,48 +231,260 @@ const AccountInfo = (props) => {
         }
     };
 
-    useEffect(() => {
-        props.setAgeRange(ageSelected);
-    }, [ageSelected, props]);
-
-    const inputs = [
-        {id: "txtFirstName", placeholder: "Cannot be blank", inputType: "text", required: true, labelText: "First Name", value: props.firstName, onChange: firstNameChangeHandler, onBlur: validateFirstNameHandler, valid: firstNameIsValid, error: !firstNameIsValid},
-        {id: "txtMiddle", inputType: "text", required: false, labelText: "Middle", value: props.middle, onChange: {middleNameChangeHandler}},
-        {id: "txtLastName", placeholder: "Cannot be blank", inputType: "text", required: true, labelText: "Last Name", value: props.lastName, onChange: lastNameChangeHandler, onBlur: validateLastNameHandler, valid: lastNameIsValid, error: !lastNameIsValid},
-        {id: "txtScreenName", inputType: "text", required: false, labelText: "Screen Name", value: props.screenname, onChange: {screenNameChangeHandler}},
-        {id: "label1", inputType: "label", required: true, className: `${classes.label} ${classes.required}`, text: "Age Range"},
-        {id: "rad18OrOlder", name: "age", inputType: "radio", className: classes.indentedInput, required: true, labelText: "18 or Older", value: "18orOlder", checked: ageSelected === '18orOlder', onChange: ageCheckChangedHandler},
-        {id: "radUnder18", name: "age", inputType: "radio", className: classes.indentedInput, required: true, labelText: "Under 18", value: "under18", checked: ageSelected === 'under18', onChange: ageCheckChangedHandler},
-        {id: "label2", inputType: "label", required: true, className: classes.label, text: "Gender"},
-        {id: "radMale", name: "gender", inputType: "radio", className: classes.indentedInput, required: false, labelText: "Male", value: "male", checked: sexSelected === 'male', onChange: sexCheckChangedHandler},
-        {id: "radFemale", name: "gender", inputType: "radio", className: classes.indentedInput, required: false, labelText: "Female", value: "female", checked: sexSelected === 'female', onChange: sexCheckChangedHandler},
-        {id: "radOther", name: "gender", inputType: "radio", className: classes.indentedInput, required: false, labelText: "Other/Not Specified", value: "other", checked: sexSelected === 'other', onChange: sexCheckChangedHandler},
-        {id: "txtEmail", placeholder: "Enter a valid email", inputType: "email", required: true, labelText: "Email", value: props.email, disabled: disabled, onChange: emailChangeHandler, onBlur: validateEmailHandler, valid: emailIsValid, error: !emailIsValid},
-        {id: "txtUsername", placeholder: "8 or more chars", inputType: "text", required: true, labelText: "Username", value: props.username, disabled: disabled, onChange: usernameChangeHandler, onBlur: validateUsernameHandler, valid: usernameIsValid, error: !usernameIsValid},
-        {id: "txtPassword", placeholder: "8+ chars and 1+ numbers", inputType: "password", required: true, labelText: "Password", value: props.password, disabled: disabled, onChange: passwordChangeHandler, onBlur: validatePasswordHandler, valid: passwordIsValid, error: !passwordIsValid},
-        {id: "label3", inputType: "label", required: true, className: `${classes.label} ${classes.required}`, text: "Identify me using:"},
-        {id: "identRealName", name: "ident", inputType: "radio", className: classes.indentedInput, required: true, labelText: "Real Name", value: "realname", checked: identSelected === 'realname', onChange: identCheckChangedHandler},
-        {id: "identDisplayName", name: "ident", inputType: "radio", className: classes.indentedInput, required: true, labelText: "Display Name", value: "displayname", checked: identSelected === 'displayname', onChange: identCheckChangedHandler},
-        {id: "identUsername", name: "ident", inputType: "radio", className: classes.indentedInput, required: true, labelText: "Username", value: "username", checked: identSelected === 'username', onChange: identCheckChangedHandler},
-        {id: "txtDesc", inputType: "textarea", readOnly: false, disabled: false, labelText: "Describe Yourself", value: props.userDesc, onChange: {descriptionChangeHandler}},
-    ];
-
-    const [formInputs, setFormInputs] = useState(null);
-
-    useEffect(() => {
-        setFormInputs(labeledInputs(inputs));
-    }, []);
-
     return (
         <Fragment>
             <form onSubmit={onSubmitHandler}>
                 <BodyHeader>Account Information</BodyHeader>
                 {message && <Note noteType={message.noteType} headerText={message.headerText}>{message.messageText}</Note>}
-                {formInputs}
+                <div className={classes.formRow}>
+                    <LeftLabelInput
+                        id="txtFirstName"
+                        placeholder="Cannot be blank"
+                        inputType="text"
+                        required={true}
+                        labelText="First Name"
+                        labelClassName={classes.labelText}
+                        inputClassName={classes.inputStyle}
+                        value={firstNameState.value}
+                        onChange={firstNameChangeHandler}
+                        onBlur={validateFirstNameHandler}
+                        valid={firstNameIsValid}
+                        error={!firstNameIsValid}
+                    />
+                </div>
+                <div className={classes.formRow}>
+                    <LeftLabelInput
+                        id="txtMiddleName"
+                        inputType="text"
+                        labelText="Middle"
+                        labelClassName={classes.labelText}
+                        inputClassName={classes.inputStyle}
+                        value={middleName}
+                        onChange={middleNameChangeHandler}
+                    />
+                </div>
+                <div className={classes.formRow}>
+                    <LeftLabelInput
+                        id="txtLastName"
+                        placeholder="Cannot be blank"
+                        inputType="text"
+                        required={true}
+                        labelText="Last Name"
+                        labelClassName={classes.labelText}
+                        inputClassName={classes.inputStyle}
+                        value={lastNameState.value}
+                        onChange={lastNameChangeHandler}
+                        onBlur={validateLastNameHandler}
+                        valid={lastNameIsValid}
+                        error={!lastNameIsValid}
+                    />
+                </div>
+                <div className={classes.formRow}>
+                    <LeftLabelInput
+                        id="txtScreenName"
+                        inputType="text"
+                        labelText="Screen Name"
+                        labelClassName={classes.labelText}
+                        inputClassName={classes.inputStyle}
+                        value={screenName}
+                        onChange={screenNameChangeHandler}
+                    />
+                </div>
+                <div className={classes.formRow}>
+                    <Label
+                        required={true}
+                        className={`${classes.label} ${classes.required}`}
+                        text="Age Range"
+                    />
+                </div>
+                <div className={classes.formRow}>
+                    <LeftLabelInput
+                        id="rad18OrOlder"
+                        name="age"
+                        inputType="radio"
+                        className={classes.indentedInput}
+                        required={true}
+                        labelClassName={classes.labelText}
+                        labelText="18 or Older"
+                        value="18orOlder"
+                        checked={ageSelected === '18orOlder'}
+                        onChange={ageCheckChangedHandler}
+                    />
+                </div>
+                <div className={classes.formRow}>
+                    <LeftLabelInput
+                        id="radUnder18"
+                        name="age"
+                        inputType="radio"
+                        className={classes.indentedInput}
+                        required={true}
+                        labelClassName={classes.labelText}
+                        labelText="Under 18"
+                        value="under18"
+                        checked={ageSelected === 'under18'}
+                        onChange={ageCheckChangedHandler}
+                    />
+                </div>
+                <div className={classes.formRow}>
+                    <Label
+                        className={classes.label}
+                        text="Gender"
+                    />
+                </div>
+                <div className={classes.formRow}>
+                    <LeftLabelInput
+                        id="radMale"
+                        name="gender"
+                        inputType="radio"
+                        className={classes.indentedInput}
+                        labelClassName={classes.labelText}
+                        labelText="Male"
+                        value="male"
+                        checked={sexSelected === 'male'}
+                        onChange={sexCheckChangedHandler}
+                    />
+                </div>
+                <div className={classes.formRow}>
+                    <LeftLabelInput
+                        id="radFemale"
+                        name="gender"
+                        inputType="radio"
+                        className={classes.indentedInput}
+                        labelClassName={classes.labelText}
+                        labelText="Female"
+                        value="female"
+                        checked={sexSelected === 'female'}
+                        onChange={sexCheckChangedHandler}
+                    />
+                </div>
+                <div className={classes.formRow}>
+                    <LeftLabelInput
+                        id="radGenderOther"
+                        name="gender"
+                        inputType="radio"
+                        className={classes.indentedInput}
+                        labelClassName={classes.labelText}
+                        labelText="Other (Unspecified)"
+                        value="other"
+                        checked={sexSelected === 'other'}
+                        onChange={sexCheckChangedHandler}
+                    />
+                </div>
+                <div className={classes.formRow}>
+                    <LeftLabelInput
+                        id="txtEmail"
+                        placeholder="Must be valid"
+                        inputType="email"
+                        required={true}
+                        labelText="Email"
+                        labelClassName={classes.labelText}
+                        inputClassName={classes.inputStyle}
+                        value={emailState.value}
+                        disabled={disabled}
+                        onChange={emailChangeHandler}
+                        onBlur={validateEmailHandler}
+                        valid={emailIsValid}
+                        error={!emailIsValid}
+                    />
+                </div>
+                <div className={classes.formRow}>
+                    <LeftLabelInput
+                        id="txtUsername"
+                        placeholder="8+ characters"
+                        inputType="text"
+                        required={true}
+                        labelText="Username"
+                        labelClassName={classes.labelText}
+                        inputClassName={classes.inputStyle}
+                        value={usernameState.value}
+                        disabled={disabled}
+                        onChange={usernameChangeHandler}
+                        onBlur={validateUsernameHandler}
+                        valid={usernameIsValid}
+                        error={!usernameIsValid}
+                    />
+                </div>
+                <div className={classes.formRow}>
+                    <LeftLabelInput
+                        id="txtPassword"
+                        placeholder="8+ chars with numbers"
+                        inputType="password"
+                        required={true}
+                        labelText="Password"
+                        labelClassName={classes.labelText}
+                        inputClassName={classes.inputStyle}
+                        value={passwordState.value}
+                        disabled={disabled}
+                        onChange={passwordChangeHandler}
+                        onBlur={validatePasswordHandler}
+                        valid={passwordIsValid}
+                        error={!passwordIsValid}
+                    />
+                </div>
+                <div className={classes.formRow}>
+                    <Label
+                        className={classes.label}
+                        text="Identify me using:"
+                    />
+                </div>
+                <div className={classes.formRow}>
+                    <LeftLabelInput
+                        id="radRealName"
+                        name="ident"
+                        inputType="radio"
+                        className={classes.indentedInput}
+                        labelClassName={classes.labelText}
+                        labelText="Real Name"
+                        value="realname"
+                        checked={identSelected === 'realname'}
+                        onChange={identCheckChangedHandler}
+                    />
+                </div>
+                <div className={classes.formRow}>
+                    <LeftLabelInput
+                        id="radScreenName"
+                        name="ident"
+                        inputType="radio"
+                        className={classes.indentedInput}
+                        labelClassName={classes.labelText}
+                        labelText="Screen Name"
+                        value="screenname"
+                        checked={identSelected === 'screenname'}
+                        onChange={identCheckChangedHandler}
+                    />
+                </div>
+                <div className={classes.formRow}>
+                    <LeftLabelInput
+                        id="radUsername"
+                        name="ident"
+                        inputType="radio"
+                        className={classes.indentedInput}
+                        labelClassName={classes.labelText}
+                        labelText="Username"
+                        value="other"
+                        checked={identSelected === 'other'}
+                        onChange={identCheckChangedHandler}
+                    />
+                </div>
+                <LeftLabelInput
+                    id="txtDesc"
+                    inputType="textarea"
+                    inputClassName={classes.textarea}
+                    readOnly={false}
+                    disabled={false}
+                    labelText="Describe Yourself"
+                    onChange={descriptionChangeHandler}
+                    value={description}
+                />
                 <BodyHeader>&nbsp;</BodyHeader>
                 <div className={classes.formRow}>
-                    <Button className={classes.primaryBtn} type="submit" name="btnSubmit" value="Submit" disabled={submitDisabled} />
-                    <Button type="button" name="btnClear" value="Clear" />
+                    <Button
+                        className={classes.primaryBtn}
+                        type="submit"
+                        value="Submit"
+                        disabled={submitDisabled}
+                    />
+                    <Button type="button" value="Clear" />
                 </div>
             </form>
             {confirmationIsShown && <Confirmation onClose={hideConfirmationHandler} />}
