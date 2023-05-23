@@ -15,15 +15,15 @@ class App extends Component {
     this.state = { apiResponse: "" };
   };
 
-  callAPI() {
-    fetch("http://localhost:4000/programming-languages")
-      .then(res => res.text())
-      .then(res => this.setState({ apiResponse: res }));
-  }
+  // callAPI() {
+  //   fetch("http://localhost:4000/programming-languages")
+  //     .then(res => res.text())
+  //     .then(res => this.setState({ apiResponse: res }));
+  // }
 
-  UNSAFE_componentWillMount() {
-    this.callAPI();
-  }
+  // UNSAFE_componentWillMount() {
+  //   this.callAPI();
+  // }
 
   render() {
     return (
