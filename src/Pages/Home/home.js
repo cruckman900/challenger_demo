@@ -13,6 +13,11 @@ export default function Home() {
 
     const [headerText, setHeaderText] = useState('Welcome Home!');
     const [message, setMessage] = useState(null);
+    const [chatMessages, setChatMessages] = useState('There are no messages in this channel.  Be the first!');
+    
+    useEffect(() => {
+        // Do something when chatMessages changes.
+    }, [chatMessages]);
 
     // will use loader at some point
     const [hideLoader, setHideLoader] = useState(true);
@@ -26,12 +31,7 @@ export default function Home() {
     useEffect(() => {
         if (!authCtx.isLoggedIn) {
             setHeaderText("Welcome Home!");
-            setMessage({
-                noteType: 'info',
-                headerText: 'Many parts of this site move.',
-                messageText: `If you are on a phone, for instance, the icon bar to the left scrolls up and down, as well as items that 
-                will appear in this area and in the right column.  There are collapsable/expandable items such as those in the right column.`
-            });
+            setMessage(null);
 
             return;
         }
@@ -40,8 +40,8 @@ export default function Home() {
             setMessage({
                 noteType: 'info',
                 headerText: 'Communities, Groups, and People',
-                messageText: `The list on the right is kind of in reverse, but if you don't have anyone or anywhere set up to talk to, the icon bar to the 
-                left should get you started.  Otherwise, jump on in on some conversation!  The idea is to take your conversations to communities, but groups and 
+                messageText: `If you don't have anyone or anywhere set up to talk to, the icon bar to the left should get you started.
+                Otherwise, jump on in on some conversation!  The idea is to take your conversations to communities, but groups and 
                 friends are really nice too!`
             });
 
@@ -57,10 +57,10 @@ export default function Home() {
             setMessage({
                 noteType: 'warning',
                 headerText: `You haven't selected a conversation to get engaged with!`,
-                messageText: `It's never too late to start up a conversation... but it could very well be too early!`
+                messageText: `It's never too late to start up a conversation... but it could very well be too early!  Coffee first could be good.`
             });
 
-            return
+            return;
        }
     }, [authCtx.isLoggedIn, navCtx.channelLocation]);
 
@@ -70,12 +70,13 @@ export default function Home() {
                 {!hideLoader && <div className={classes.goRotate}><FontAwesomeIcon className={classes.iconRotate} icon={faRotate} /></div>}
                 {!authCtx.isLoggedIn && (
                     <div>
-                        This place is for communities to be created and joined by all that wish to be welcomed in.  You can join communities, create a friend's group,
-                        or talk individually with friends that you make, all in one spot!  In the future, if I can fund it, I would like to incorporate audio capabilities
-                        so that your encounters are a little more personal than reading text on a screen.
+                        This place is for communities and groups to be created and joined by all that wish to be welcomed in.
+                        You can join communities, create a friend's group,
+                        or talk individually with friends that you make, all in one spot!
                     </div>
                 )}
                 {message && <Note noteType={message.noteType} headerText={message.headerText}>{message.messageText}</Note>}
+                {authCtx.isLoggedIn && <div>{headerText !== 'Idling...' && <div>{chatMessages}</div>}</div>}
             </DefaultPage>
         </Fragment>
     );
