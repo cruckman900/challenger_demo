@@ -7,7 +7,7 @@
 }
 
 .header {
-    background: rgba(0, 0, 0, .75);
+    background: rgba(0, 0, 0, .1);
     border-top-left-radius: 8px;
     border-top-right-radius: 8px;
 }
@@ -33,6 +33,7 @@
     -ms-overflow-style: none;
     text-align: start;
     padding: .5rem;
+    padding-top: 0;
     padding-bottom: 0;
     border-bottom-left-radius: 8px;
     border-bottom-right-radius: 8px;

@@ -3,13 +3,26 @@ import DefaultPage from "../../UI/DefaultPage/DefaultPage";
 import Note from "../../UI/Note/Note";
 import AuthContext from "../../store/auth-context";
 import NavContext from "../../store/nav-context";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faRotate } from '@fortawesome/free-solid-svg-icons';
+import classes from './home.module.css';
 
 export default function Home() {
     const authCtx = useContext(AuthContext);
     const navCtx = useContext(NavContext);
 
-    const [headerText, setHeaderText] = useState(null);
+    const [headerText, setHeaderText] = useState('Welcome Home!');
     const [message, setMessage] = useState(null);
+
+    // will use loader at some point
+    const [hideLoader, setHideLoader] = useState(true);
+
+    useEffect(() => {
+        if (headerText != 'Welcome Home!')
+        setTimeout(() => {
+            setHideLoader(true);
+        }, 1000);
+    }, [headerText])
 
     useEffect(() => {
         if (!authCtx.isLoggedIn) {
@@ -36,7 +49,7 @@ export default function Home() {
             return;
         }
         if (navCtx.channelLocation.navTitle || navCtx.channelLocation.navName) {
-            setHeaderText(`Chatting With ${navCtx.channelLocation.navTitle ? navCtx.channelLocation.navTitle : navCtx.channelLocation.navName}`);
+            setHeaderText(`${navCtx.channelLocation.navTitle ? navCtx.channelLocation.navTitle : navCtx.channelLocation.navName}`);
             setMessage(null);
 
             return;
@@ -55,14 +68,13 @@ export default function Home() {
     return (
         <Fragment>
             <DefaultPage headerText={headerText}>
+                {!hideLoader && <div className={classes.goRotate}><FontAwesomeIcon className={classes.iconRotate} icon={faRotate} /></div>}
                 {!authCtx.isLoggedIn && (
-                    <Fragment>
-                        <div>
-                            This place is for communities to be created and joined by all that wish to be welcomed in.  You can join communities, create a friend's group,
-                            or talk individually with friends that you make, all in one spot!  In the future, if I can fund it, I would like to incorporate audio capabilities
-                            so that your encounters are a little more personal than reading text on a screen.
-                        </div>
-                    </Fragment>
+                    <div>
+                        This place is for communities to be created and joined by all that wish to be welcomed in.  You can join communities, create a friend's group,
+                        or talk individually with friends that you make, all in one spot!  In the future, if I can fund it, I would like to incorporate audio capabilities
+                        so that your encounters are a little more personal than reading text on a screen.
+                    </div>
                 )}
                 {message && <Note noteType={message.noteType} headerText={message.headerText}>{message.messageText}</Note>}
             </DefaultPage>

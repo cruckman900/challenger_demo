@@ -2,8 +2,8 @@ import React, { Fragment, useState, useEffect, useReducer } from "react";
 import BodyHeader from "../../UI/BodyHeader/BodyHeader";
 import LeftLabelInput from "../../UI/LeftLabelInput/LeftLabelInput";
 import Label from "../../UI/Label/Label";
-import Button from "../../UI/Button/Button";
 import Note from "../../UI/Note/Note";
+import Button from "../../UI/Button/Button";
 import Confirmation from "../Confirmation/Confirmation";
 import classes from './userSettings.module.css';
 

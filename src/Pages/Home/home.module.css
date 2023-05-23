@@ -3,3 +3,51 @@
     text-shadow: 2px 2px 2px black;
     font-size: .85rem;
 }
+
+.goRotate {
+    position: fixed;
+    top: calc(100vh / 2 - 7.5rem);
+    left: calc(100vw / 2 - 7.5rem);
+    z-index: 40;
+    animation: spin-anim 2s linear 1;
+}
+
+.iconRotate {
+    color: transparent;
+    stroke: rgba(255, 120, 50, 1);
+    stroke-width: .25rem;
+    font-size: 15rem;
+}
+
+@keyframes spin-anim {
+    0% {
+        transform: rotate(0deg) scale(.75);
+        -webkit-filter: brightness(1);
+        filter: brightness(1);
+        -webkit-filter: contrast(1);
+        filter: contrast(1);
+    }
+    50% {
+        transform: rotate(180deg) scale(1);
+        -webkit-filter: brightness(0);
+        filter: brightness(0);
+        -webkit-filter: contrast(0);
+        filter: contrast(0);
+    }
+    100% {
+        transform: rotate(360deg) scale(.75);
+        -webkit-filter: brightness(1);
+        filter: brightness(1);
+        -webkit-filter: contrast(1);
+        filter: contrast(1);
+    }
+}
+
+@media only screen and (max-width:767px) and (orientation:portrait) {
+    .main {
+        position: relative;
+        top: 1rem;
+        width: calc(100vw - 2.75rem);
+        height: calc(100vh - 6.5rem);
+    }
+}
