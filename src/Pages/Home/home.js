@@ -18,10 +18,9 @@ export default function Home() {
     const [hideLoader, setHideLoader] = useState(true);
 
     useEffect(() => {
-        if (headerText != 'Welcome Home!')
         setTimeout(() => {
             setHideLoader(true);
-        }, 1000);
+        }, 2000);
     }, [headerText])
 
     useEffect(() => {
