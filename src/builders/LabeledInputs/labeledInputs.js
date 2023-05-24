@@ -12,7 +12,7 @@ const labeledInputs = (inputs) => {
                     className={classes.inputStyle}
                     labelClassName={classes.labelText}
                     labelText={input.labelText}
-                    required={false}
+                    required={input.required}
                     value={input.value}
                     onChange={input.onChange}
                 />
