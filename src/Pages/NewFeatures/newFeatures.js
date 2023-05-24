@@ -9,6 +9,12 @@ export default function NewFeatures() {
     return (
         <DefaultPage headerText="Features & Updates Log">
             <Card headerText="May 2023">
+                <BodyHeader className={classes.header}>5/23/2023 - 5/24/2023</BodyHeader>
+                <div className={classes.updateBody}>
+                    I've been busy looking into NodeJS for my backend.  Other than that though, the Account Information page is looking amazing!  I love it 
+                    on devices.  I've also begun building out tables in MySQL to hold all of the data.  Form field validation is coming along.  I am gathering 
+                    regEx expressions for validating input and will build out a helper class so that I can handle all of the checks from it.
+                </div>
                 <BodyHeader className={classes.header}>5/21/2023</BodyHeader>
                 <div className={classes.updateBody}>
                     Created mock data for the chat rooms and added switch functionality to switch the display - lots of work.  I now have 2 contexts, 1 
