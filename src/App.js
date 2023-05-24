@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { Row, Col } from 'react-bootstrap';
-import Header from './Layout/Header/header';
 import Top from './Layout/Top/top';
 import Left from './Layout/Left/left';
 import Main from './Layout/Main/Main';
@@ -29,7 +28,6 @@ class App extends Component {
     return (
       <div className={classes.App}>
         {console.log(this.state.apiResponse)}
-        <Row><Col><Header /></Col></Row>
         <Row><Col><Top /></Col></Row>
         <Row className={classes.horizRowContainer}>
           <Col><Left /></Col>

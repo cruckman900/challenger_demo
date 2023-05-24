@@ -8,14 +8,17 @@ import classes from "./login.module.css";
 const Confirmation = (props) => {
     const [code, setCode] = useState('');
     const [codeIsValid, setCodeIsValid] = useState(false);
+    const [btnEnabled, setButtonEnabled] = useState(false);
 
     const onChangeHandler = (event) => {
         setCode(event.target.value.toString());
     }
 
     useEffect(() => {
-        if (code.length === 5) {
+        if (code.length > 4) {
             setCodeIsValid(true);
+            setButtonEnabled(true)
+            return;
         }
         setCodeIsValid(false);
     }, [code]);
@@ -29,7 +32,7 @@ const Confirmation = (props) => {
 
     return (
         <Modal onClose={props.onClose}>
-            <Card headerText="Check your email and enter Confirmation Code below." isOpened={true}>
+            <Card headerText="Check your email and enter activation code." isOpened={true}>
                 <form onSubmit={onSubmitHandler}>
                     <LeftLabelInput
                         id="txtConfCode"
@@ -45,7 +48,7 @@ const Confirmation = (props) => {
                         error={!codeIsValid}
                     />
                     <br />
-                    <Button type="submit" value="Submit" />
+                    <Button type="submit" value="Submit" disabled={!btnEnabled} />
                     <Button type="button" value="Cancel" onClick={props.onClose} />
                 </form>
             </Card>

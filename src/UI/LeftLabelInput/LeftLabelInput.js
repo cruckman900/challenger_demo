@@ -31,7 +31,7 @@ const LeftLabelInput = React.forwardRef((props, ref) => {
                     id={props.id}
                     name={props.name}
                     placeholder={props.placeholder}
-                    className={props.inputClassName}
+                    className={`${classes.Input} ${props.inputClassName}`}
                     readOnly={props.readOnly}
                     disabled={props.disabled}
                     onChange={props.onChange}

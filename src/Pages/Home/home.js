@@ -56,7 +56,7 @@ export default function Home() {
                 messageText: `It's never too late to start up a conversation... but it could very well be too early!  Coffee first could be good.`
             });
        }
-    }, [authCtx.isLoggedIn, navCtx.channelLocation]);
+    }, [authCtx.isLoggedIn, navCtx.channelLocation, headerText]);
 
     return (
         <Fragment>

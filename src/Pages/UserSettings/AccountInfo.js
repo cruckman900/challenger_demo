@@ -255,16 +255,11 @@ const AccountInfo = (props) => {
     }
 
     const hideConfirmationHandler = (val) => {
+        setMessage({noteType: 'success', headerText: 'Form submitted!', messageText: 'Account activated!'});
+        props.setAccountID(1);
+        setSubmitDisabled(true);
+        setQueryType('update');
         setConfirmationIsShown(false);
-        if (val.length > 0) {
-            setMessage({noteType: 'success', headerText: 'Form submitted!', messageText: 'Account activated!'});
-            props.setAccountID(1);
-            setSubmitDisabled(true);
-            setQueryType('update');
-        } else {
-            props.setAccountID(null);
-            setMessage({noteType: 'warning', headerText: 'Account not activated!', messageText: 'Whatcha gonna do now, tough guy?'});
-        }
     };
 
     return (
@@ -435,7 +430,7 @@ const AccountInfo = (props) => {
                         placeholder="8+ characters"
                         inputType="text"
                         required={true}
-                        labelText="Username"
+                        labelText="User"
                         labelClassName={classes.labelText}
                         inputClassName={classes.inputStyle}
                         maxLength="45"
@@ -453,7 +448,7 @@ const AccountInfo = (props) => {
                         placeholder="8+ chars with numbers"
                         inputType="password"
                         required={true}
-                        labelText="Password"
+                        labelText="Pass"
                         labelClassName={classes.labelText}
                         inputClassName={classes.inputStyle}
                         maxLength="45"
@@ -469,33 +464,37 @@ const AccountInfo = (props) => {
                     id="txtDescCounter"
                     placeholder={descWordCount}
                     inputType="text"
-                    labelClassName={classes.labelText}
+                    labelClassName={classes.indentedInput}
                     inputClassName={classes.tinyInput}
                     readOnly={true}
-                    labelText="Desc Char Count"
+                    disabled={true}
+                    labelText="Char Count"
                 />
-                <LeftLabelInput
-                    id="txtDesc"
-                    placeholder="Up to 8000 characters"
-                    inputType="textarea"
-                    inputClassName={classes.textarea}
-                    readOnly={false}
-                    disabled={descDisabled}
-                    labelText="Describe Yourself"
-                    onChange={descriptionChangeHandler}
-                    value={description}
-                />
+                <div className={classes.formRow}>
+                    <LeftLabelInput
+                        id="txtDesc"
+                        placeholder="Up to 8000 characters"
+                        inputType="textarea"
+                        labelText="Describe Yourself"
+                        labelClassName={classes.labelText}
+                        inputClassName={classes.textarea}
+                        readOnly={false}
+                        disabled={descDisabled}
+                        onChange={descriptionChangeHandler}
+                        value={description}
+                    />
+                </div>
                 <br />
                 <div className={classes.formRow} style={{paddingLeft: '.5rem'}}>
                     <Button type="button" className={classes.link} href="#" onClick={showPrivacyHandler} value="PRIVACY POLICY" />
-                    <span>&nbsp;AND&nbsp;</span>
+                    <span>&nbsp;and&nbsp;</span>
                     <Button type="button" className={classes.link} href="#" onClick={showTermsHandler} value="TERMS OF USE" />
                 </div>
                 <div className={classes.formRow}>
                     <LeftLabelInput
                         id="chkAgree"
                         inputType="checkbox"
-                        className={classes.inputStyle}
+                        className={classes.indentedInput}
                         labelClassName={classes.labelText}
                         inputClassName={classes.inputStyle}
                         labelText="Agree to Terms"

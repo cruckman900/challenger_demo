@@ -4,6 +4,7 @@ import Login from "../../Pages/Login/login"
 import Button from "../../UI/Button/Button";
 import classes from './top.module.css';
 import logo from '../../assets/images/logo.png';
+import { Container, Row, Col } from "reactstrap";
 import { Nav, Navbar } from 'react-bootstrap';
 import { useLocation, Link } from 'react-router-dom';
 
@@ -25,8 +26,21 @@ export default function Top() {
     return (
         <Fragment>
             <div className={classes.top}>
-                <span className={`${classes.topText}`}>ChatterboxSM</span>
-                <span className={classes.logo}><img src={logo} alt="logo" /></span>
+                <Container>
+                    <Row>
+                        <Col>
+                            <span className={`${classes.topText}`}>ChatterboxSM</span>
+                            <span className={classes.logo}><img src={logo} alt="logo" /></span>
+                        </Col>
+                        <Col>
+                            <div className={classes.header}>
+                                <span className={classes.headerText}>
+                                    <a href="https://cruckman.com" alt="cruckman.com" target="_blank" rel="noreferrer">By <i>CRUCKMAN</i></a>
+                                </span>
+                            </div>
+                        </Col>
+                    </Row>
+                </Container>
                 <Navbar key="top" className={classes.navbar}>
                     <Nav activeKey={location.pathname}>
                         {!ctx.isLoggedIn && <Button href="#" className={classes.link} onClick={showLoginHandler} value="Log In" />}
