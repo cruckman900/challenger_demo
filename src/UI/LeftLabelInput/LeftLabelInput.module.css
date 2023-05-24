@@ -35,6 +35,7 @@
     background: rgba(155, 155, 155, 1);
 }
 
+
 .Input[type='radio'],
 .Input[type='checkbox'] {
     width: 1.5rem;
@@ -44,7 +45,7 @@
 }
 
 .Input:hover {
-    outline: solid 1px rgba(255, 120, 0, 1);
+    outline: solid 1px rgba(255, 180, 30, .6);
 }
 
 .Input:focus {

@@ -464,11 +464,11 @@ const AccountInfo = (props) => {
                     id="txtDescCounter"
                     placeholder={descWordCount}
                     inputType="text"
-                    labelClassName={classes.indentedInput}
+                    labelClassName={classes.labelText}
                     inputClassName={classes.tinyInput}
                     readOnly={true}
                     disabled={true}
-                    labelText="Char Count"
+                    labelText="Character Count"
                 />
                 <div className={classes.formRow}>
                     <LeftLabelInput

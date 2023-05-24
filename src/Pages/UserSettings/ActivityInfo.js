@@ -10,7 +10,7 @@ const ActivityInfo = (props) => {
     };
 
     const inputs = [
-        {id: "chkArcheryGuns", name: "activitytypes", inputType: "checkbox", required: false, labelText: "Archery / Fire Arms", value: props.chkArcheryGuns},
+        {id: "chkArcheryGuns", name: "activitytypes", inputType: "checkbox", labelClassName: classes.labelText, required: false, labelText: "Archery / Fire Arms", value: props.chkArcheryGuns},
         {id: "chkArtsCrafts", name: "activitytypes", inputType: "checkbox", required: false, labelText: "Arts and Crafts", value: props.chkArtsCrafts},
         {id: "chkBarsClubs", name: "activitytypes", inputType: "checkbox", required: false, labelText: "Bars / Clubs", value: props.chkBarsClubs},
         {id: "chkBoxingWrestling", name: "activitytypes", inputType: "checkbox", required: false, labelText: "Boxing / Wrestling", value: props.chkBoxingWrestling},

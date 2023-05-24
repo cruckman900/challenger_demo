@@ -16,6 +16,7 @@
     background: black;
     border-bottom: solid 1px rgba(255, 69, 0, 0.8);
     list-style-type: none;
+    z-index: 100;
 }
 
 .tab {
@@ -89,15 +90,15 @@
 }
 
 .tinyInput {
-    width: 5rem;
+    width: 4rem;
     border-radius: 4px;
+    text-align: center;
 }
 
 .textarea {
     float: left;
     border-radius: 8px;
     padding: .25rem;
-    padding-left: .5rem;
     height: 5rem;
     width: 15rem;
 }
