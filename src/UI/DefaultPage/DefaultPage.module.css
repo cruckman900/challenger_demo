@@ -1,6 +1,6 @@
 .defaultPage {
-    position: fixed;
-    height: calc(99.99vh - 1rem);
+    position: absolute;
+    height: calc(100vh - 1rem);
     width: calc(100vw - 22rem);
     margin: 1rem;
     margin-top: 0;
@@ -29,9 +29,9 @@
 
 .body {
     display: block;
-    position: fixed;
-    height: calc(99.99vh - 9.15rem);
-    width: calc(99.99vw - 23rem);
+    position: absolute;
+    height: calc(100vh - 9.15rem);
+    width: calc(100vw - 23rem);
     padding: 0 .5rem;
     border-bottom-left-radius: 8px;
     border-bottom-right-radius: 8px;
@@ -62,9 +62,7 @@
 
 @media only screen and (max-width:767px) {
     .defaultPage {
-        /* height: calc(100vh - 9rem); */
         width: calc(100vw - 5rem);
-        /* background: pink; */
     }
     
     .body {

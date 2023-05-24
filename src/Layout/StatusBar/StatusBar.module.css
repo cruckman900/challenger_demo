@@ -1,17 +1,11 @@
 .statusBar {
+    position: absolute;
+    left: 3.5rem;
+    bottom: 1.5rem;
     padding: 0;
     margin: 0;
     display: flex;
-    position: fixed;
-    left: 3.5rem;
-    bottom: .25rem;
     font-size: .7rem;
     font-weight: bold;
     letter-spacing: .065rem;
 }
-
-/* @media screen and (max-width: 680px) {
-    .statusBar {
-        display: none;
-    }
-} */

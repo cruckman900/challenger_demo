@@ -1,11 +1,11 @@
 .App {
   display: block;
-  position: fixed;
+  position: absolute;
   top: 0;
   left: 0;
   background: linear-gradient(180deg, #000000, #630000 80%, #000000 );
   width: 100vw;
-  height: 99.99vh;
+  height: 100vh;
   -ms-overflow-style: none;
 }
 

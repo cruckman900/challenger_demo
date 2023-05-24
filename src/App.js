@@ -34,8 +34,8 @@ class App extends Component {
           <Col><Main /></Col>
           <Col className={classes.floatingHolder}><Right /></Col>
         </Row>
+        <Row className={classes.status}><Col><StatusBar /></Col></Row>
         <Row><Col><Footer /></Col></Row>
-        {/* <Row className={classes.status}><Col><StatusBar /></Col></Row> */}
       </div>
     );
   }

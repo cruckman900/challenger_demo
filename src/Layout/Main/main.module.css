@@ -1,10 +1,10 @@
 .main {
-    position: fixed;
+    position: absolute;
     top: 4rem;
     color: rgba(255, 69, 0, 1);
     font-size: 1.2rem;
     width: calc(100vw - 20rem);
-    height: calc(99.99vh - 6rem);
+    height: calc(100vh - 6rem);
 }
 
 .scrollable {
