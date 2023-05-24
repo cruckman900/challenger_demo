@@ -54,9 +54,9 @@ export default function UserSettings(props) {
     }, [ageSelected, accountID]);
 
     return (
-        <Fragment>
+        <div>
             <DefaultPage headerText="User Information">
-                <Tabs selectedTabClassName={classes.selectedTab}>
+                <Tabs className={classes.userSettings} selectedTabClassName={classes.selectedTab}>
                     <TabList className={`${classes.tabList} ${classes.sticky}`}>
                         <Tab id="tab1" className={classes.tab}>
                             <FontAwesomeIcon className={classes.tabIcon} icon={myIcons['userPlus']} />
@@ -90,6 +90,6 @@ export default function UserSettings(props) {
                     <TabPanel id="tabPanel2"><LocationInfo acctID={accountID} /></TabPanel>
                 </Tabs>
             </DefaultPage>
-        </Fragment>
+        </div>
     );
 }

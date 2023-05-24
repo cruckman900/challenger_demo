@@ -1,6 +1,6 @@
 .defaultPage {
     position: fixed;
-    height: 99.99vh;
+    height: calc(99.99vh - 1rem);
     width: calc(100vw - 22rem);
     margin: 1rem;
     margin-top: 0;
@@ -23,21 +23,16 @@
     font-family: 'ShackleItalic';
     letter-spacing: .065rem;
     font-size: 1.2rem;
-    font-weight: 400;
+    font-weight: bold;
     color: rgba(255, 69, 0, 1);
-    text-shadow: 3px 3px 3px black;
 }
 
 .body {
     display: block;
-    height: calc(100vh - 9rem);
-    overflow-x: hidden;
-    overflow-y: scroll;
-    -ms-overflow-style: none;
-    text-align: start;
-    padding: .5rem;
-    padding-top: 0;
-    padding-bottom: 0;
+    position: fixed;
+    height: calc(99.99vh - 9.15rem);
+    width: calc(99.99vw - 23rem);
+    padding: 0 .5rem;
     border-bottom-left-radius: 8px;
     border-bottom-right-radius: 8px;
     font-family: 'ShackleRegular';
@@ -45,6 +40,12 @@
     font-size: .95rem;
     background: rgba(0, 0, 0, .75);
     color: rgba(255, 120, 50, .8);
+}
+
+.noScrollbars {
+    overflow-x: hidden;
+    overflow-y: scroll;
+    -ms-overflow-style: none;
 }
 
 ::-webkit-scrollbar {
@@ -63,5 +64,10 @@
     .defaultPage {
         /* height: calc(100vh - 9rem); */
         width: calc(100vw - 5rem);
+        /* background: pink; */
+    }
+    
+    .body {
+        width: calc(99.99vw - 6rem);
     }
 }

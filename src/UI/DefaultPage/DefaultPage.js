@@ -9,7 +9,7 @@ export default function DefaultPage(props) {
                     {props.headerText}
                 </div>
             </div>
-            <div className={`${classes.body} ${classes.noSelect} ${props.className}`}>
+            <div className={`${classes.body} ${classes.noSelect} ${classes.noScrollbars} ${props.className}`}>
                 {props.children}
             </div>
         </div>

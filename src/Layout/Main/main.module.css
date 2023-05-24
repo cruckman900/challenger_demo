@@ -1,10 +1,10 @@
 .main {
     position: fixed;
-    height: 99.99vh;
+    top: 4rem;
     color: rgba(255, 69, 0, 1);
     font-size: 1.2rem;
     width: calc(100vw - 20rem);
-    height: calc(100vh - 4.5rem);
+    height: calc(99.99vh - 6rem);
 }
 
 .scrollable {
@@ -20,11 +20,10 @@
     display: none;
 }
 
-/* @media only screen and (max-width:767px) and (orientation:portrait) {
+@media only screen and (max-width:767px) and (orientation:portrait) {
     .main {
         position: relative;
-        top: 1rem;
+        top: 1.25rem;
         width: calc(100vw - 2.75rem);
-        height: calc(100vh - 6.5rem);
     }
-} */
+}

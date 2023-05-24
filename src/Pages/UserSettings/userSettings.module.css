@@ -1,3 +1,11 @@
+.userSettings {
+    position: fixed;
+    height: calc(99.99vh - 9.5rem);
+    width: calc(100vw - 6rem);
+    /* background: pink; */
+    overflow-y: auto;
+}
+
 .sticky {
     position: sticky;
     top: 0;
@@ -126,6 +134,10 @@
 }
 
 @media screen and (min-width: 800px) {
+    .userSettings {
+        width: calc(100vw - 23rem);
+    }
+
     .inputStyle {
         width: 20rem;
     }

@@ -51,7 +51,7 @@
 .navbar {
     position: absolute;
     right: 0;
-    top: 1rem;
+    top: 1.5rem;
     z-index: 10;
 }
 
@@ -95,6 +95,6 @@
 
 @media screen and (max-width: 550px) {
     .navbar {
-        margin-top: 1.5rem;
+        margin-top: 1.25rem;
     }
 }
