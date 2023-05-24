@@ -1,4 +1,6 @@
 .main {
+    position: fixed;
+    height: 99.99vh;
     color: rgba(255, 69, 0, 1);
     font-size: 1.2rem;
     width: calc(100vw - 20rem);
@@ -18,11 +20,11 @@
     display: none;
 }
 
-@media only screen and (max-width:767px) and (orientation:portrait) {
+/* @media only screen and (max-width:767px) and (orientation:portrait) {
     .main {
         position: relative;
         top: 1rem;
         width: calc(100vw - 2.75rem);
         height: calc(100vh - 6.5rem);
     }
-}
+} */

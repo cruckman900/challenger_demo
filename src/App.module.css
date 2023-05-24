@@ -24,8 +24,9 @@
   display: inline;
 }
 
-@media only screen and (max-width:767px) and (orientation:portrait) {
-  .App {
+@media only screen and (max-width:767px) {
+  /* @media only screen and (max-width:767px) and (orientation:portrait) { */
+    .App {
     display: block;
   }
   

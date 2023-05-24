@@ -3,7 +3,7 @@
     letter-spacing: .065rem;
     color: rgba(255, 69, 0, .8);
     position: fixed;
-    bottom: .5rem;
+    bottom: 0;
     left: 0;
     text-align: center;
     font-size: .8rem;
@@ -13,42 +13,4 @@
     -moz-user-select: none;
     -webkit-user-select: none;
     user-select: none;
-}
-
-.terms {
-    margin: 0;
-    padding: 0;
-}
-
-.link {
-    background: transparent;
-    border: none;
-    padding: 0;
-    margin: 0;
-    font-weight: bold;
-    font-size: .8rem;
-    color: rgba(255, 69, 0, 0.8);
-    width: 6.5rem;
-    text-decoration: none;
-}
-
-.link:hover {
-    background: transparent;
-    color: rgba(255, 69, 0, 1);
-}
-
-.link:hover, .link:active {
-    color: rgba(255, 69, 0, 1);
-}
-
-@media only screen and (max-width:767px) and (orientation:portrait) {
-    .terms {
-      display: none;
-    }
-
-    .footer {
-        bottom: .5rem;
-        height: 1.25rem;
-        padding-top: .25rem;
-    }
 }

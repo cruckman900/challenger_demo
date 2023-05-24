@@ -1,4 +1,7 @@
 .defaultPage {
+    position: fixed;
+    height: 99.99vh;
+    width: calc(100vw - 22rem);
     margin: 1rem;
     margin-top: 0;
     border-radius: 8px;
@@ -58,10 +61,7 @@
 
 @media only screen and (max-width:767px) {
     .defaultPage {
-        height: calc(100vh - 8rem);
-    }
-
-    .body {
-        height: calc(100vh - 10rem);
+        /* height: calc(100vh - 9rem); */
+        width: calc(100vw - 5rem);
     }
 }
