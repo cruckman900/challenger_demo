@@ -41,7 +41,7 @@
     width: 1.5rem;
     height: 1.5rem;
     cursor: pointer;
-    accent-color: rgba(255, 69, 0, .8);
+    accent-color: rgba(255, 69, 0, .6);
 }
 
 .Input:hover {

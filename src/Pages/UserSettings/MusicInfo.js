@@ -2,7 +2,7 @@ import React from "react";
 import BodyHeader from "../../UI/BodyHeader/BodyHeader";
 import Button from "../../UI/Button/Button";
 import labeledInputs from '../../builders/LabeledInputs/labeledInputs';
-import classes from './userSettings.module.css';
+import classes from './UserSettings.module.css';
 
 const MusicInfo = (props) => {
     const onSubmitHandler = (event) => {
@@ -24,7 +24,6 @@ const MusicInfo = (props) => {
         {id: "chkRock", name: "musictypes", inputType: "checkbox", required: false, labelText: "Rock", value: props.chkRock},
         {id: "chkTribal", name: "musictypes", inputType: "checkbox", required: false, labelText: "Tribal", value: props.chkTribal},
         {id: "chkMusicOther", name: "musictypes", inputType: "checkbox", required: false, labelText: "Other", value: props.chkMusicOther},
-        {id: "txtFavMusic", inputType: "text", required: false, labelText: "favoriteMusic", value: props.txtFavMusic},
     ];
 
     const formInputs = labeledInputs(inputs);

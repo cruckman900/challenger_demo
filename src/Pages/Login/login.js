@@ -117,6 +117,7 @@ export default function Login(props) {
                                 error={!passwordIsValid}
                             />
                         </div>
+                        <br />
                         <div className={classes.formRow}>
                             <Button className={classes.primaryBtn} type="submit" name="btnSubmit" value="Log In" disabled={!formIsValid} />
                             <Button type="button" name="btnCancel" value="Cancel" onClick={props.onClose} />

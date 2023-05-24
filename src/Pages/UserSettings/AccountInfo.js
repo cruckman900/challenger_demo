@@ -5,7 +5,9 @@ import Label from "../../UI/Label/Label";
 import Note from "../../UI/Note/Note";
 import Button from "../../UI/Button/Button";
 import Confirmation from "../Confirmation/Confirmation";
-import classes from './userSettings.module.css';
+import PrivacyPolicy from "../Agreements/PrivacyPolicy";
+import TermsOfUse from "../Agreements/TermsOfUse";
+import classes from './UserSettings.module.css';
 
 const hasNumber = (val) => {
     return /\d/.test(val);
@@ -54,13 +56,13 @@ const passwordReducer = (state, action) => {
 const AccountInfo = (props) => {
     const [ageSelected, setAgeSelected] = useState('18orOlder');
     const [sexSelected, setSexSelected] = useState('');
-    const [identSelected, setIdentSelected] = useState('realname');
+    const [agreeSelected, setAgreeSelected] = useState(false);
 
     const [screenName, setScreenName] = useState('');
     const [description, setDescription] = useState('');
 
     const [disabled, setDisabled] = useState(false);
-    const [submitDisabled, setSubmitDisabled] = useState(false);
+    const [submitDisabled, setSubmitDisabled] = useState(true);
     const [queryType, setQueryType] = useState('insert');
 
     const [formSubmitted, setFormSubmitted] = useState(false);
@@ -182,17 +184,32 @@ const AccountInfo = (props) => {
         setSexSelected(event.target.value);
     };
 
-    const identCheckChangedHandler = (event) => {
-        setIdentSelected(event.target.value);
-    }
+    const agreeCheckChangedHandler = (event) => {
+        console.log(event.target.value);
+        setAgreeSelected(!agreeSelected);
+    };
+
+    useEffect(() => {
+        setSubmitDisabled(agreeSelected);
+    }, [agreeSelected]);
 
     const screenNameChangeHandler = (event) => {
         setScreenName(event.target.value);
     };
+    
+    const [descWordCount, setDescWordCount] = useState(0);
+    const [descDisabled, setDescDisabled] = useState(false);
 
     const descriptionChangeHandler = (event) => {
         setDescription(event.target.value);
+        setDescWordCount(event.target.value.length);
     };
+
+    useEffect(() => {
+        if (+descWordCount > 7999) {
+            setDescDisabled(true);
+        }
+    }, [descWordCount]);
 
     const onSubmitHandler = (event) => {
         event.preventDefault();
@@ -217,6 +234,26 @@ const AccountInfo = (props) => {
     };
 
     const [confirmationIsShown, setConfirmationIsShown] = useState(false);
+
+    const [privacyIsShown, setPrivacyIsShown] = useState(false);
+    const [termsIsShown, setTermsIsShown] = useState(false);
+
+
+    const showPrivacyHandler = () => {
+        setPrivacyIsShown(true);
+    }
+
+    const hidePrivacyHandler = () => {
+        setPrivacyIsShown(false);
+    }
+
+    const showTermsHandler = () => {
+        setTermsIsShown(true);
+    }
+
+    const hideTermsHandler = () => {
+        setTermsIsShown(false);
+    }
 
     const hideConfirmationHandler = (val) => {
         setConfirmationIsShown(false);
@@ -282,6 +319,7 @@ const AccountInfo = (props) => {
                 <div className={classes.formRow}>
                     <LeftLabelInput
                         id="txtScreenName"
+                        placeholder="If different from name"
                         inputType="text"
                         labelText="Screen Name"
                         labelClassName={classes.labelText}
@@ -421,73 +459,61 @@ const AccountInfo = (props) => {
                         error={!passwordIsValid}
                     />
                 </div>
-                <div className={classes.formRow}>
-                    <Label
-                        className={classes.label}
-                        text="Identify me using:"
-                    />
-                </div>
-                <div className={classes.formRow}>
-                    <LeftLabelInput
-                        id="radRealName"
-                        name="ident"
-                        inputType="radio"
-                        className={classes.indentedInput}
-                        labelClassName={classes.labelText}
-                        labelText="Real Name"
-                        value="realname"
-                        checked={identSelected === 'realname'}
-                        onChange={identCheckChangedHandler}
-                    />
-                </div>
-                <div className={classes.formRow}>
-                    <LeftLabelInput
-                        id="radScreenName"
-                        name="ident"
-                        inputType="radio"
-                        className={classes.indentedInput}
-                        labelClassName={classes.labelText}
-                        labelText="Screen Name"
-                        value="screenname"
-                        checked={identSelected === 'screenname'}
-                        onChange={identCheckChangedHandler}
-                    />
-                </div>
-                <div className={classes.formRow}>
-                    <LeftLabelInput
-                        id="radUsername"
-                        name="ident"
-                        inputType="radio"
-                        className={classes.indentedInput}
-                        labelClassName={classes.labelText}
-                        labelText="Username"
-                        value="other"
-                        checked={identSelected === 'other'}
-                        onChange={identCheckChangedHandler}
-                    />
-                </div>
+                <LeftLabelInput
+                    id="txtDescCounter"
+                    placeholder={descWordCount}
+                    inputType="text"
+                    labelClassName={classes.labelText}
+                    inputClassName={classes.inputStyle}
+                    readOnly="true"
+                    labelText="Desc Char Count"
+                />
                 <LeftLabelInput
                     id="txtDesc"
+                    placeholder="Up to 8000 characters"
                     inputType="textarea"
                     inputClassName={classes.textarea}
                     readOnly={false}
-                    disabled={false}
+                    disabled={descDisabled}
                     labelText="Describe Yourself"
                     onChange={descriptionChangeHandler}
                     value={description}
                 />
+                <br />
+                <div className={classes.formRow} style={{paddingLeft: '.5rem'}}>
+                    <Button className={classes.link} href="#" onClick={showPrivacyHandler} value="PRIVACY POLICY" />
+                    <span>&nbsp;AND&nbsp;</span>
+                    <Button className={classes.link} href="#" onClick={showTermsHandler} value="TERMS OF USE" />
+                </div>
+                <div className={classes.formRow}>
+                    <LeftLabelInput
+                        id="chkAgree"
+                        inputType="checkbox"
+                        className={classes.inputStyle}
+                        labelClassName={classes.labelText}
+                        inputClassName={classes.inputStyle}
+                        labelText="Agree to Terms"
+                        required={true}
+                        value={agreeSelected}
+                        onChange={agreeCheckChangedHandler}
+                    />
+                </div>
+
                 <BodyHeader>&nbsp;</BodyHeader>
                 <div className={classes.formRow}>
                     <Button
                         className={classes.primaryBtn}
                         type="submit"
                         value="Submit"
+                        inputClassName={classes.textarea}
                         disabled={submitDisabled}
                     />
                     <Button type="button" value="Clear" />
                 </div>
             </form>
             {confirmationIsShown && <Confirmation onClose={hideConfirmationHandler} />}
+            {privacyIsShown && <PrivacyPolicy onClose={hidePrivacyHandler} />}
+            {termsIsShown && <TermsOfUse onClose={hideTermsHandler} />}
         </Fragment>
     );
 };

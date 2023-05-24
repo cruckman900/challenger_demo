@@ -4,7 +4,7 @@ import Home from '../../Pages/Home/home';
 import Login from '../../Pages/Login/login';
 import Donations from '../../Pages/Donations/donations';
 import Suggestions from '../../Pages/Suggestions/suggestions';
-import UserSettings from '../../Pages/UserSettings/userSettings';
+import UserSettings from '../../Pages/UserSettings/UserSettings';
 import FriendSettings from '../../Pages/FriendSettings/friendSettings';
 import GroupSettings from '../../Pages/GroupSettings/groupSettings';
 import CommunitySettings from '../../Pages/CommunitySettings/communitySettings';

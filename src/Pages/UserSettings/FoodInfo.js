@@ -2,7 +2,7 @@ import React from "react";
 import BodyHeader from "../../UI/BodyHeader/BodyHeader";
 import Button from "../../UI/Button/Button";
 import labeledInputs from '../../builders/LabeledInputs/labeledInputs';
-import classes from './userSettings.module.css';
+import classes from './UserSettings.module.css';
 
 const FoodInfo = (props) => {
     const onSubmitHandler = (event) => {
@@ -14,14 +14,15 @@ const FoodInfo = (props) => {
         {id: "chkAsian", name: "cuisinetypes", inputType: "checkbox", required: false, labelText: "Asian", value: props.chkAsian},
         {id: "chkCajun", name: "cuisinetypes", inputType: "checkbox", required: false, labelText: "Cajun", value: props.chkCajun},
         {id: "chkFrench", name: "cuisinetypes", inputType: "checkbox", required: false, labelText: "French", value: props.chkFrench},
+        {id: "chkHungarian", name: "cuisinetypes", inputType: "checkbox", required: false, labelText: "Hungarian", value: props.chkHungarian},
         {id: "chkItalian", name: "cuisinetypes", inputType: "checkbox", required: false, labelText: "Italian", value: props.chkItalian},
+        {id: "chkMediterranean", name: "cuisinetypes", inputType: "checkbox", required: false, labelText: "Mediterranean", value: props.chkMediterranian},
         {id: "chkMexican", name: "cuisinetypes", inputType: "checkbox", required: false, labelText: "Latin/Mexican", value: props.chkMexican},
-        {id: "chkSlavic", name: "cuisinetypes", inputType: "checkbox", required: false, labelText: "Slavic", value: props.chkSlavic},
-        {id: "chkMediterranian", name: "cuisinetypes", inputType: "checkbox", required: false, labelText: "Mediterranian", value: props.chkMediterranian},
         {id: "chkRussian", name: "cuisinetypes", inputType: "checkbox", required: false, labelText: "Russian", value: props.chkRussian},
+        {id: "chkRomanian", name: "cuisinetypes", inputType: "checkbox", required: false, labelText: "Romanian", value: props.chkRomanian},
+        {id: "chkSlavic", name: "cuisinetypes", inputType: "checkbox", required: false, labelText: "Slavic", value: props.chkSlavic},
         {id: "chkCookies", name: "cuisinetypes", inputType: "checkbox", required: false, labelText: "I only like cookies", value: props.chkCookies},
         {id: "chkFoodOther", name: "cuisinetypes", inputType: "checkbox", required: false, labelText: "Other", value: props.chkFoodOther},
-        {id: "txtFavFood", inputType: "text", required: false, labelText: "favoriteFood", value: props.txtFavFood},
     ];
 
     const formInputs = labeledInputs(inputs);

@@ -101,6 +101,23 @@
     cursor: text;
 }
 
+.link {
+    background: transparent;
+    border: none;
+    padding: 0;
+    margin: 0;
+    font-weight: bold;
+    font-size: .8rem;
+    color: rgba(255, 69, 0, 0.8);
+    width: 6.5rem;
+    text-decoration: none;
+}
+
+.link:hover {
+    background: transparent;
+    color: rgba(255, 69, 0, 1);
+}
+
 @media screen and (min-width: 800px) {
     .inputStyle {
         width: 20rem;

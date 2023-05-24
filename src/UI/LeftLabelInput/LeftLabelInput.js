@@ -29,6 +29,7 @@ const LeftLabelInput = React.forwardRef((props, ref) => {
                 <textarea
                     id={props.id}
                     name={props.name}
+                    placeholder={props.placeholder}
                     className={props.inputClassName}
                     readOnly={props.readOnly}
                     disabled={props.disabled}

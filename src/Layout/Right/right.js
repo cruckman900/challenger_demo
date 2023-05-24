@@ -20,17 +20,18 @@ const Right = (props) => {
         setSelectedID(id);
     };
 
-    const myCommunitiesArray = Array();
-    const myCommunityMembersArray = Array();
-    const myGroupsArray = Array();
-    const myPeopleArray = Array();
+    const myCommunitiesArray = [];
+    const myGroupsArray = [];
+    const myPeopleArray = [];
 
     communities.map((community) => {
         communityMembers.map((communityMember) => {
             if (community.id === communityMember.communityID && communityMember.peopleID === 1) {
                 myCommunitiesArray.push(community);
             }
+            return;
         });
+        return;
     });
 
     peopleGroups.map((peopleGroup) => {
@@ -38,7 +39,9 @@ const Right = (props) => {
             if (peopleGroup.peopleID === 1 && group.id === peopleGroup.groupID) {
                 myGroupsArray.push(group);
             }
+            return;
         });
+        return;
     });
 
     myPeople.map((peoples) => {
@@ -46,7 +49,9 @@ const Right = (props) => {
             if (peoples.peopleID === person.id) {
                 myPeopleArray.push(person);
             }
-        })
+            return;
+        });
+        return;
     });
 
     const [toggle, setToggle] = useState('collapse');

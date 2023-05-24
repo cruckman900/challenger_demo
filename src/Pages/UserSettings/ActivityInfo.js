@@ -2,7 +2,7 @@ import React from "react";
 import BodyHeader from "../../UI/BodyHeader/BodyHeader";
 import Button from "../../UI/Button/Button";
 import labeledInputs from '../../builders/LabeledInputs/labeledInputs';
-import classes from './userSettings.module.css';
+import classes from './UserSettings.module.css';
 
 const ActivityInfo = (props) => {
     const onSubmitHandler = (event) => {

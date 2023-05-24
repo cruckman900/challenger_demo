@@ -2,7 +2,7 @@ import React from "react";
 import BodyHeader from "../../UI/BodyHeader/BodyHeader";
 import Button from "../../UI/Button/Button";
 import labeledInputs from '../../builders/LabeledInputs/labeledInputs';
-import classes from './userSettings.module.css';
+import classes from './UserSettings.module.css';
 
 const MovieInfo = (props) => {
     const onSubmitHandler = (event) => {
@@ -25,8 +25,6 @@ const MovieInfo = (props) => {
         {id: "chkSports", name: "literaturetypes", className: classes.smallInputStyle, inputType: "checkbox", required: false, labelText: "Sports", value: props.chkSports},
         {id: "chkThriller", name: "literaturetypes", className: classes.smallInputStyle, inputType: "checkbox", required: false, labelText: "Suspense/Thriller", value: props.chkThriller},
         {id: "chkOther", name: "literaturetypes", className: classes.smallInputStyle, inputType: "checkbox", required: false, labelText: "Other", value: props.chkLitOther},
-        {id: "txtFavBook", inputType: "text", required: false, labelText: "Favorite Book", value: props.txtFavBook},
-        {id: "txtFavVideo", inputType: "text", required: false, labelText: "Favorite Video", value: props.txtFavVideo},
     ];
 
     const formInputs = labeledInputs(inputs);
