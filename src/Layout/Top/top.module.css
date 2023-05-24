@@ -1,6 +1,10 @@
 .top {
     height: 3rem;
     width: 100%;
+    -ms-user-select: none;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    user-select: none;
 }
 
 .topText {

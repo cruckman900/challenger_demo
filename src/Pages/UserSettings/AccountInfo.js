@@ -4,7 +4,7 @@ import LeftLabelInput from "../../UI/LeftLabelInput/LeftLabelInput";
 import Label from "../../UI/Label/Label";
 import Note from "../../UI/Note/Note";
 import Button from "../../UI/Button/Button";
-import Confirmation from "../Confirmation/Confirmation";
+import Confirmation from "../Login/Confirmation";
 import PrivacyPolicy from "../Agreements/PrivacyPolicy";
 import TermsOfUse from "../Agreements/TermsOfUse";
 import classes from './UserSettings.module.css';
@@ -54,7 +54,7 @@ const passwordReducer = (state, action) => {
 }
 
 const AccountInfo = (props) => {
-    const [ageSelected, setAgeSelected] = useState('18orOlder');
+    const [ageSelected, setAgeSelected] = useState('under18');
     const [sexSelected, setSexSelected] = useState('');
     const [agreeSelected, setAgreeSelected] = useState(false);
 
@@ -185,12 +185,11 @@ const AccountInfo = (props) => {
     };
 
     const agreeCheckChangedHandler = (event) => {
-        console.log(event.target.value);
         setAgreeSelected(!agreeSelected);
     };
 
     useEffect(() => {
-        setSubmitDisabled(agreeSelected);
+        setSubmitDisabled(!agreeSelected);
     }, [agreeSelected]);
 
     const screenNameChangeHandler = (event) => {
@@ -282,6 +281,7 @@ const AccountInfo = (props) => {
                         labelText="First Name"
                         labelClassName={classes.labelText}
                         inputClassName={classes.inputStyle}
+                        maxLength="45"
                         value={firstNameState.value}
                         onChange={firstNameChangeHandler}
                         onBlur={validateFirstNameHandler}
@@ -296,6 +296,7 @@ const AccountInfo = (props) => {
                         labelText="Middle"
                         labelClassName={classes.labelText}
                         inputClassName={classes.inputStyle}
+                        maxLength="45"
                         value={middleName}
                         onChange={middleNameChangeHandler}
                     />
@@ -309,6 +310,7 @@ const AccountInfo = (props) => {
                         labelText="Last Name"
                         labelClassName={classes.labelText}
                         inputClassName={classes.inputStyle}
+                        maxLength="45"
                         value={lastNameState.value}
                         onChange={lastNameChangeHandler}
                         onBlur={validateLastNameHandler}
@@ -324,6 +326,7 @@ const AccountInfo = (props) => {
                         labelText="Screen Name"
                         labelClassName={classes.labelText}
                         inputClassName={classes.inputStyle}
+                        maxLength="45"
                         value={screenName}
                         onChange={screenNameChangeHandler}
                     />
@@ -337,20 +340,6 @@ const AccountInfo = (props) => {
                 </div>
                 <div className={classes.formRow}>
                     <LeftLabelInput
-                        id="rad18OrOlder"
-                        name="age"
-                        inputType="radio"
-                        className={classes.indentedInput}
-                        required={true}
-                        labelClassName={classes.labelText}
-                        labelText="18 or Older"
-                        value="18orOlder"
-                        checked={ageSelected === '18orOlder'}
-                        onChange={ageCheckChangedHandler}
-                    />
-                </div>
-                <div className={classes.formRow}>
-                    <LeftLabelInput
                         id="radUnder18"
                         name="age"
                         inputType="radio"
@@ -360,6 +349,20 @@ const AccountInfo = (props) => {
                         labelText="Under 18"
                         value="under18"
                         checked={ageSelected === 'under18'}
+                        onChange={ageCheckChangedHandler}
+                    />
+                </div>
+                <div className={classes.formRow}>
+                    <LeftLabelInput
+                        id="rad18OrOlder"
+                        name="age"
+                        inputType="radio"
+                        className={classes.indentedInput}
+                        required={true}
+                        labelClassName={classes.labelText}
+                        labelText="18 or Older"
+                        value="18orOlder"
+                        checked={ageSelected === '18orOlder'}
                         onChange={ageCheckChangedHandler}
                     />
                 </div>
@@ -417,6 +420,7 @@ const AccountInfo = (props) => {
                         labelText="Email"
                         labelClassName={classes.labelText}
                         inputClassName={classes.inputStyle}
+                        maxLength="150"
                         value={emailState.value}
                         disabled={disabled}
                         onChange={emailChangeHandler}
@@ -434,6 +438,7 @@ const AccountInfo = (props) => {
                         labelText="Username"
                         labelClassName={classes.labelText}
                         inputClassName={classes.inputStyle}
+                        maxLength="45"
                         value={usernameState.value}
                         disabled={disabled}
                         onChange={usernameChangeHandler}
@@ -451,6 +456,7 @@ const AccountInfo = (props) => {
                         labelText="Password"
                         labelClassName={classes.labelText}
                         inputClassName={classes.inputStyle}
+                        maxLength="45"
                         value={passwordState.value}
                         disabled={disabled}
                         onChange={passwordChangeHandler}
@@ -464,8 +470,8 @@ const AccountInfo = (props) => {
                     placeholder={descWordCount}
                     inputType="text"
                     labelClassName={classes.labelText}
-                    inputClassName={classes.inputStyle}
-                    readOnly="true"
+                    inputClassName={classes.tinyInput}
+                    readOnly={true}
                     labelText="Desc Char Count"
                 />
                 <LeftLabelInput
@@ -481,9 +487,9 @@ const AccountInfo = (props) => {
                 />
                 <br />
                 <div className={classes.formRow} style={{paddingLeft: '.5rem'}}>
-                    <Button className={classes.link} href="#" onClick={showPrivacyHandler} value="PRIVACY POLICY" />
+                    <Button type="button" className={classes.link} href="#" onClick={showPrivacyHandler} value="PRIVACY POLICY" />
                     <span>&nbsp;AND&nbsp;</span>
-                    <Button className={classes.link} href="#" onClick={showTermsHandler} value="TERMS OF USE" />
+                    <Button type="button" className={classes.link} href="#" onClick={showTermsHandler} value="TERMS OF USE" />
                 </div>
                 <div className={classes.formRow}>
                     <LeftLabelInput

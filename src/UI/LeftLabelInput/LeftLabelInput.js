@@ -18,6 +18,7 @@ const LeftLabelInput = React.forwardRef((props, ref) => {
                     className={`${classes.Input} ${props.inputClassName} ${props.valid && classes.InputValid} ${props.error && classes.InputError}`}
                     type={props.inputType}
                     title={props.title}
+                    maxLength={props.maxLength}
                     value={props.value}
                     checked={props.checked}
                     disabled={props.disabled}

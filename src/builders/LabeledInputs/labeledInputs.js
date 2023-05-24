@@ -1,4 +1,3 @@
-import Label from '../../UI/Label/Label';
 import LeftLabelInput from '../../UI/LeftLabelInput/LeftLabelInput';
 import classes from './labeledInputs.module.css';
 

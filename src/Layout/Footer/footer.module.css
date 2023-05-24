@@ -9,6 +9,10 @@
     font-size: .8rem;
     width: 100vw;
     height: 2rem;
+    -ms-user-select: none;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    user-select: none;
 }
 
 .terms {

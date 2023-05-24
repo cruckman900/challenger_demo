@@ -12,6 +12,7 @@
 .toggle {
     float: right;
     font-size: 1rem;
+    margin-bottom: .25rem;
 }
 
 .minified {

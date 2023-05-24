@@ -1,6 +1,5 @@
 import React, { Fragment } from "react";
 import DefaultPage from "../../UI/DefaultPage/DefaultPage";
-import classes from './donations.module.css';
 
 export default function Donations() {
     return (

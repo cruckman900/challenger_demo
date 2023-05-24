@@ -88,12 +88,18 @@
     width: 15rem;
 }
 
+.tinyInput {
+    width: 5rem;
+    border-radius: 4px;
+}
+
 .textarea {
     float: left;
     border-radius: 8px;
     padding: .25rem;
-    height: 4rem;
-    width: 25rem;
+    padding-left: .5rem;
+    height: 5rem;
+    width: 15rem;
 }
 
 .textarea:hover {

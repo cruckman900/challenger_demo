@@ -13,7 +13,7 @@ export default function Home() {
 
     const [headerText, setHeaderText] = useState('Welcome Home!');
     const [message, setMessage] = useState(null);
-    const [chatMessages, setChatMessages] = useState('There are no messages in this channel.  Be the first!');
+    const [chatMessages, setChatMessages] = useState(null);
     
     useEffect(() => {
         // Do something when chatMessages changes.
@@ -32,8 +32,9 @@ export default function Home() {
         if (!authCtx.isLoggedIn) {
             setHeaderText("Welcome Home!");
             setMessage(null);
-
-            return;
+        }
+        if (authCtx.isLoggedIn && headerText !== "What do you want to do next?") {
+            setChatMessages("There are no messages here yet.  Be the first!");
         }
         if (!navCtx.channelLocation) {
             setHeaderText("What do you want to do next?");
@@ -44,14 +45,9 @@ export default function Home() {
                 Otherwise, jump on in on some conversation!  The idea is to take your conversations to communities, but groups and 
                 friends are really nice too!`
             });
-
-            return;
-        }
-        if (navCtx.channelLocation.navTitle || navCtx.channelLocation.navName) {
+        } else if (navCtx.channelLocation.navTitle || navCtx.channelLocation.navName) {
             setHeaderText(`${navCtx.channelLocation.navTitle ? navCtx.channelLocation.navTitle : navCtx.channelLocation.navName}`);
             setMessage(null);
-
-            return;
         } else {
             setHeaderText(`Idling...`);
             setMessage({
@@ -59,8 +55,6 @@ export default function Home() {
                 headerText: `You haven't selected a conversation to get engaged with!`,
                 messageText: `It's never too late to start up a conversation... but it could very well be too early!  Coffee first could be good.`
             });
-
-            return;
        }
     }, [authCtx.isLoggedIn, navCtx.channelLocation]);
 

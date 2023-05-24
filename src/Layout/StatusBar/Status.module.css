@@ -2,6 +2,10 @@
     display: inline;
     margin: 0 .15rem;
     padding: .015rem;
+    -ms-user-select: none;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    user-select: none;
 }
 
 .statusLabel {
