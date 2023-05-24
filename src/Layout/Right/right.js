@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext, Fragment } from "react";
+import React, { useState, useContext, Fragment } from "react";
 import RightContainer from "./RightContainer/RightContainer";
 import Card from "../../UI/Card/Card";
 import Button from "../../UI/Button/Button";

@@ -1,4 +1,4 @@
-import React, { Fragment, useState, useEffect } from "react";
+import React, { Fragment } from "react";
 import classes from './RightContainer.module.css';
 
 export default function RightContainer(props) {
