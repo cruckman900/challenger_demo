@@ -10,7 +10,7 @@ const ComputerInfo = (props) => {
     };
 
     const inputs = [
-        {id: "chkDigitalMedia", name: "musictypes", inputType: "checkbox", required: false, labelText: "Digital Art/Media", value: props.chkDigitalMedia},
+        {id: "chkDigitalMedia", name: "musictypes", inputType: "checkbox", required: false, labelText: "Digital Art / Media", value: props.chkDigitalMedia},
         {id: "chkGameDev", name: "musictypes", inputType: "checkbox", required: false, labelText: "Game Development", value: props.chkGameDev},
         {id: "chkOfficeProf", name: "musictypes", inputType: "checkbox", required: false, labelText: "Office Software Proficiency", value: props.chkOfficeProf},
         {id: "chkSoftwareDev", name: "musictypes", inputType: "checkbox", required: false, labelText: "Software Development", value: props.chkSoftwareDev},

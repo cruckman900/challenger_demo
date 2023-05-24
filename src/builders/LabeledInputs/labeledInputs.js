@@ -7,6 +7,7 @@ const labeledInputs = (inputs) => {
             <div className={classes.formRow}>
                 <LeftLabelInput
                     id={input.id}
+                    name={input.id}
                     inputType={input.inputType}
                     className={classes.inputStyle}
                     labelClassName={classes.labelText}

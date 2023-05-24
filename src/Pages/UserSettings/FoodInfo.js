@@ -11,13 +11,13 @@ const FoodInfo = (props) => {
 
     const inputs = [
         {id: "chkAmerican", name: "cuisinetypes", inputType: "checkbox", required: false, labelText: "American?", value: props.chkAmerican},
-        {id: "chkAsian", name: "cuisinetypes", inputType: "checkbox", required: false, labelText: "Asian", value: props.chkAsian},
+        {id: "chkAsian", name: "cuisinetypes", inputType: "checkbox", required: false, labelText: "Asian / Indian", value: props.chkAsian},
         {id: "chkCajun", name: "cuisinetypes", inputType: "checkbox", required: false, labelText: "Cajun", value: props.chkCajun},
         {id: "chkFrench", name: "cuisinetypes", inputType: "checkbox", required: false, labelText: "French", value: props.chkFrench},
         {id: "chkHungarian", name: "cuisinetypes", inputType: "checkbox", required: false, labelText: "Hungarian", value: props.chkHungarian},
         {id: "chkItalian", name: "cuisinetypes", inputType: "checkbox", required: false, labelText: "Italian", value: props.chkItalian},
         {id: "chkMediterranean", name: "cuisinetypes", inputType: "checkbox", required: false, labelText: "Mediterranean", value: props.chkMediterranian},
-        {id: "chkMexican", name: "cuisinetypes", inputType: "checkbox", required: false, labelText: "Latin/Mexican", value: props.chkMexican},
+        {id: "chkMexican", name: "cuisinetypes", inputType: "checkbox", required: false, labelText: "Latin / Mexican", value: props.chkMexican},
         {id: "chkRomanian", name: "cuisinetypes", inputType: "checkbox", required: false, labelText: "Romanian", value: props.chkRomanian},
         {id: "chkRussian", name: "cuisinetypes", inputType: "checkbox", required: false, labelText: "Russian", value: props.chkRussian},
         {id: "chkSlavic", name: "cuisinetypes", inputType: "checkbox", required: false, labelText: "Slavic", value: props.chkSlavic},
