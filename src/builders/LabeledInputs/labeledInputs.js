@@ -5,6 +5,7 @@ const labeledInputs = (inputs) => {
         return (
             <LeftLabelInput
                 id={input.id}
+                key={input.id}
                 name={input.name}
                 inputType={input.inputType}
                 labelText={input.labelText}
