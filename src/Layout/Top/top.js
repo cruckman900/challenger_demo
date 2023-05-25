@@ -2,14 +2,14 @@ import React, { Fragment, useState, useContext } from "react";
 import AuthContext from "../../store/auth-context";
 import Login from "../../Pages/Login/login"
 import Button from "../../UI/Button/Button";
-import classes from './top.module.css';
-import logo from '../../assets/images/logo.png';
 import { Container, Row, Col } from "reactstrap";
 import { Nav, Navbar } from 'react-bootstrap';
 import { useLocation, Link } from 'react-router-dom';
+import logo from '../../assets/images/logo.png';
+import classes from './top.module.css';
 
 export default function Top() {
-    const ctx = useContext(AuthContext);
+    const authCtx = useContext(AuthContext);
 
     const [loginIsShown, setLoginIsShown] = useState(false);
 
@@ -43,12 +43,12 @@ export default function Top() {
                 </Container>
                 <Navbar key="top" className={classes.navbar}>
                     <Nav activeKey={location.pathname}>
-                        {!ctx.isLoggedIn && <Button href="#" className={classes.link} onClick={showLoginHandler} value="Log In" />}
-                        {ctx.isLoggedIn && (
+                        {!authCtx.isLoggedIn && <Button href="#" className={classes.link} onClick={showLoginHandler} value="Log In" />}
+                        {authCtx.isLoggedIn && (
                             <Fragment>
-                                <Button href="#" className={classes.link} onClick={ctx.onLogout} value="Log Out" />
-                                <Nav.Link as={Link} to={"/donations"} eventKey="/donations" href="#donations" className={classes.topNav}>Donate</Nav.Link>
-                                <Nav.Link as={Link} to={"/suggestions"} eventKey="/suggestions" href="#suggestions" className={classes.topNav}>Suggest</Nav.Link>
+                                <Button href="#" className={classes.link} onClick={authCtx.onLogout} value="Log Out" />
+                                <Nav.Link as={Link} to={"/donations"} eventKey="/donations" href="#donations" className={classes.navLink}>Donate</Nav.Link>
+                                <Nav.Link as={Link} to={"/suggestions"} eventKey="/suggestions" href="#suggestions" className={classes.navLink}>Suggest</Nav.Link>
                             </Fragment>
                         )}
                     </Nav>

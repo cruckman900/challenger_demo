@@ -29,14 +29,15 @@ export default function Home() {
     }, [headerText])
 
     useEffect(() => {
-        if (!authCtx.isLoggedIn) {
+        if (!authCtx.isLoggedIn && headerText !== "Welcome Home!") {
             setHeaderText("Welcome Home!");
-            setMessage(null);
         }
         if (authCtx.isLoggedIn && headerText !== "What do you want to do next?") {
-            setChatMessages("There are no messages here yet.  Be the first!");
+            if (headerText != "Welcome Home!") {
+                setChatMessages("There are no messages here yet.  Be the first!");
+            }
         }
-        if (!navCtx.channelLocation) {
+        if (authCtx.isLoggedIn && !navCtx.channelLocation) {
             setHeaderText("What do you want to do next?");
             setMessage({
                 noteType: 'info',
@@ -45,30 +46,31 @@ export default function Home() {
                 Otherwise, jump on in on some conversation!  The idea is to take your conversations to communities, but groups and 
                 friends are really nice too!`
             });
-        } else if (navCtx.channelLocation.navTitle || navCtx.channelLocation.navName) {
+        }
+        if (navCtx.channelLocation && (navCtx.channelLocation.navTitle || navCtx.channelLocation.navName)) {
             setHeaderText(`${navCtx.channelLocation.navTitle ? navCtx.channelLocation.navTitle : navCtx.channelLocation.navName}`);
             setMessage(null);
-        } else {
+        }
+        if (authCtx.isLoggedIn && headerText === "Welcome Home!") {
             setHeaderText(`Idling...`);
             setMessage({
                 noteType: 'warning',
                 headerText: `You haven't selected a conversation to get engaged with!`,
                 messageText: `It's never too late to start up a conversation... but it could very well be too early!  Coffee first could be good.`
             });
-       }
+        }
+        if (!authCtx) {
+            setHeaderText("Welcome Home!");
+            setMessage(`This place is for communities and groups to be created and joined by all that wish to be welcomed in.
+            You can join communities, create a friend's group,
+            or talk individually with friends that you make, all in one spot!`);
+        }
     }, [authCtx.isLoggedIn, navCtx.channelLocation, headerText]);
 
     return (
         <Fragment>
             <DefaultPage headerText={headerText}>
                 {!hideLoader && <div className={classes.goRotate}><FontAwesomeIcon className={classes.iconRotate} icon={faRotate} /></div>}
-                {!authCtx.isLoggedIn && (
-                    <div>
-                        This place is for communities and groups to be created and joined by all that wish to be welcomed in.
-                        You can join communities, create a friend's group,
-                        or talk individually with friends that you make, all in one spot!
-                    </div>
-                )}
                 {message && <Note noteType={message.noteType} headerText={message.headerText}>{message.messageText}</Note>}
                 {authCtx.isLoggedIn && <div>{headerText !== 'Idling...' && <div>{chatMessages}</div>}</div>}
             </DefaultPage>

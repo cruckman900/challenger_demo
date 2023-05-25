@@ -51,13 +51,13 @@
 .navbar {
     position: absolute;
     right: 0;
-    top: 1.5rem;
+    top: 1.65rem;
     z-index: 10;
 }
 
-.topNav {
+.navLink {
     display: block;
-    margin-top: .15rem;
+    text-align: center;
     padding: .25rem;
     float: right;
     font-family: "ShackleRegular";
@@ -68,23 +68,21 @@
     width: 5rem;
 }
 
-.topNav:hover, .topNav:active {
+.navLink:hover, .navLink:active {
     color: rgba(255, 69, 0, 1);
 }
-
 .link {
-    display: block;
-    padding: 0;
+    padding: .25;
     margin: 0;
-    margin-top: .35rem;
-    float: right;
+    text-align: center;
     background: transparent;
     border: none;
     font-weight: bold;
     font-size: 1rem;
+    text-decoration: none;
+    float: right;
     color: rgba(255, 69, 0, 0.8);
     width: 6.5rem;
-    text-decoration: none;
 }
 
 .link:hover {
