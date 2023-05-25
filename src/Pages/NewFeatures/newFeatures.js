@@ -9,11 +9,18 @@ export default function NewFeatures() {
     return (
         <DefaultPage headerText="Features & Updates Log">
             <Card headerText="May 2023">
+                <BodyHeader className={classes.header}>5/25/2023</BodyHeader>
+                <div className={classes.updateBody}>
+                    Built out a few database tables.  Added some features to the System Settings page.  Fixed checkbox groups - no longer recieving the 
+                    warning that they need to have a unique key.
+                </div>
                 <BodyHeader className={classes.header}>5/23/2023 - 5/24/2023</BodyHeader>
                 <div className={classes.updateBody}>
                     I've been busy looking into NodeJS for my backend.  Other than that though, the Account Information page is looking amazing!  I love it 
                     on devices.  I've also begun building out tables in MySQL to hold all of the data.  Form field validation is coming along.  I am gathering 
-                    regEx expressions for validating input and will build out a helper class so that I can handle all of the checks from it.
+                    regEx expressions for validating input and will build out a helper class so that I can handle all of the checks from it.  Re-worked a lot of 
+                    styling.  After close inspection, I noticed that things weren't jiving the way they were supposed to be... (i.e. - defaultpage component width 
+                    not stretching as it should be.).
                 </div>
                 <BodyHeader className={classes.header}>5/21/2023</BodyHeader>
                 <div className={classes.updateBody}>
