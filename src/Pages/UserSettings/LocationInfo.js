@@ -43,7 +43,7 @@ const LocationInfo = (props) => {
                 <LeftLabelInput
                     id="txtState"
                     inputType="text"
-                    labelText="State (Province)"
+                    labelText="State / Province"
                     labelClassName={classes.labelText}
                     inputClassName={classes.inputStyle}
                     value={state.value}
