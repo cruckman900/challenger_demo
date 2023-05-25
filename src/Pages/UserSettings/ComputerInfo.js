@@ -10,12 +10,12 @@ const ComputerInfo = (props) => {
     };
 
     const inputs = [
-        {id: "chkDigitalMedia", name: "computerinfo", inputType: "checkbox", required: false, labelText: "Digital Art / Media", value: props.chkDigitalMedia},
-        {id: "chkGameDev", name: "computerinfo", inputType: "checkbox", required: false, labelText: "Game Development", value: props.chkGameDev},
-        {id: "chkOfficeProf", name: "computerinfo", inputType: "checkbox", required: false, labelText: "Office Software Proficiency", value: props.chkOfficeProf},
-        {id: "chkSoftwareDev", name: "computerinfo", inputType: "checkbox", required: false, labelText: "Software Development", value: props.chkSoftwareDev},
-        {id: "chkTechWriting", name: "computerinfo", inputType: "checkbox", required: false, labelText: "Technical Writing", value: props.chkTechWriting},
-        {id: "chkCompOther", name: "computerinfo", inputType: "checkbox", required: false, labelText: "Other", value: props.chkCompOther},
+        {id: "chkDigitalMedia", name: "computerinfotypes", inputType: "checkbox", required: false, labelText: "Digital Art / Media", value: props.chkDigitalMedia},
+        {id: "chkGameDev", name: "computerinfotypes", inputType: "checkbox", required: false, labelText: "Game Development", value: props.chkGameDev},
+        {id: "chkOfficeProf", name: "computerinfotypes", inputType: "checkbox", required: false, labelText: "Office Software Proficiency", value: props.chkOfficeProf},
+        {id: "chkSoftwareDev", name: "computerinfotypes", inputType: "checkbox", required: false, labelText: "Software Development", value: props.chkSoftwareDev},
+        {id: "chkTechWriting", name: "computerinfotypes", inputType: "checkbox", required: false, labelText: "Technical Writing", value: props.chkTechWriting},
+        {id: "chkCompOther", name: "computerinfotypes", inputType: "checkbox", required: false, labelText: "Other", value: props.chkCompOther},
     ];
 
     const formInputs = labeledInputs(inputs);
