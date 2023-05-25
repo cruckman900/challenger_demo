@@ -138,8 +138,20 @@
         width: calc(100vw - 23rem);
     }
 
+    .label {
+        width: 15rem;
+    }
+
+    .labelText {
+        width: 15rem;
+    }
+
     .inputStyle {
         width: 20rem;
+    }
+
+    .indentedInput {
+        width: 16rem;
     }
 
     .textarea {

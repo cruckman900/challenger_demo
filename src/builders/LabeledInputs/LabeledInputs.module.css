@@ -1,0 +1,9 @@
+.labelText {
+    width: 10rem;
+}
+
+@media screen and (min-width: 800px) {
+    .labelText {
+        width: 15rem;
+    }
+}
