@@ -65,7 +65,6 @@ const LocationInfo = (props) => {
             <BodyHeader>&nbsp;</BodyHeader>
             <div className={classes.formRow}>
                 <Button className={classes.primaryBtn} type="submit" name="btnSubmit" value="Submit" />
-                <Button type="button" name="btnClear" value="Clear" />
             </div>
         </form>
     );
