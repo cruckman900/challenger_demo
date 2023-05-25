@@ -44,6 +44,25 @@
     accent-color: rgba(255, 120, 0, .6);
 }
 
+.Input[type='file'] {
+    font-family: "ShackleRegular";
+    font-style: italic;
+    font-weight: bold;
+    letter-spacing: .065rem;
+}
+
+.Input[type='file']::file-selector-button {
+    background: rgba(255, 69, 0, .8);
+    color: rgba(33, 33, 33, .8);
+    cursor: pointer;
+    border: none;
+    border-radius: 8px;
+}
+
+.input[type='color'] {
+    border: none;
+}
+
 .Input:hover {
     outline: solid 1px rgba(255, 180, 30, .6);
 }
