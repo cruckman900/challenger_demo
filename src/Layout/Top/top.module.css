@@ -71,6 +71,7 @@
 .navLink:hover, .navLink:active {
     color: rgba(255, 69, 0, 1);
 }
+
 .link {
     padding: .25;
     margin: 0;
