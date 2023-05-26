@@ -9,3 +9,14 @@
     font-weight: bold;
     letter-spacing: .065rem;
 }
+
+@media screen and (max-width:767px) {
+    .statusBar {
+        position: fixed;
+        left: calc(100vw / 2 - 7.5rem);
+    }
+
+    .statusHideIfTiny {
+        display: none;
+    }
+}
