@@ -2,7 +2,7 @@
     font-family: "ShackleItalic";
     letter-spacing: .065rem;
     color: rgba(255, 69, 0, .8);
-    position: fixed;
+    position: absolute;
     bottom: 0;
     left: 0;
     text-align: center;
