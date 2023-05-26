@@ -4,14 +4,15 @@
 }
 
 .headerText a:link, .headerText a:visited {
-    font-family: "ShackleRegular";
-    letter-spacing: .065rem;
-    color: rgba(255, 69, 0, .8);
-    text-decoration: none;
     float: right;
     margin-top: .25rem;
     margin-inline-end: 1rem;
+    font-family: "ShackleRegular";
+    font-size: .8rem;
     font-weight: bold;
+    text-decoration: none;
+    letter-spacing: .065rem;
+    color: rgba(255, 69, 0, .8);
 }
 
 .headerText a:hover {
