@@ -1,8 +1,7 @@
 .userSettings {
-    position: fixed;
+    position: absolute;
     height: calc(99.99vh - 9.5rem);
     width: calc(100vw - 6rem);
-    /* background: pink; */
     overflow-y: auto;
 }
 
@@ -138,23 +137,15 @@
         width: calc(100vw - 23rem);
     }
 
-    .label {
+    .label, .labelText {
         width: 15rem;
     }
 
-    .labelText {
-        width: 15rem;
-    }
-
-    .inputStyle {
+    .inputStyle, .textarea {
         width: 20rem;
     }
 
     .indentedInput {
         width: 16rem;
-    }
-
-    .textarea {
-        width: 20rem;
     }
 }
