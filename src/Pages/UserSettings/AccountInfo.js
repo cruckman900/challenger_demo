@@ -7,6 +7,9 @@ import Button from "../../UI/Button/Button";
 import Confirmation from "../Login/Confirmation";
 import PrivacyPolicy from "../Agreements/PrivacyPolicy";
 import TermsOfUse from "../Agreements/TermsOfUse";
+import { getUserInfoById, getUserInfoByUserAndPass,
+    inputUserInfo, updateUserInfo } from "./DataHandler";
+import AuthContext from "../../store/auth-context";
 import classes from './UserSettings.module.css';
 
 const hasNumber = (val) => {
@@ -54,6 +57,8 @@ const passwordReducer = (state, action) => {
 }
 
 const AccountInfo = (props) => {
+    const authCtx = useContext(AuthContext);
+
     const [ageSelected, setAgeSelected] = useState('under18');
     const [sexSelected, setSexSelected] = useState('');
     const [agreeSelected, setAgreeSelected] = useState(false);
@@ -204,6 +209,8 @@ const AccountInfo = (props) => {
         setDescWordCount(event.target.value.length);
     };
 
+    const [validated, setValidated] = useState(false);
+
     useEffect(() => {
         if (+descWordCount > 7999) {
             setDescDisabled(true);
@@ -213,10 +220,33 @@ const AccountInfo = (props) => {
     const onSubmitHandler = (event) => {
         event.preventDefault();
         if (formIsValid) {
+            /* package the data */
+            const data = {
+                id: authCtx.AccountInfo.id || 0,
+                firstname: firstNameState.value,
+                middleName: middleName,
+                lastname: lastNameState.value,
+                screenname: screenName,
+                agerange: ageSelected,
+                gender: gender,
+                username: usernameState.value,
+                password: passwordState.value,
+                description: description,
+                validated: validated
+            }
+
             if (queryType === 'insert') {
-                props.setAccountID(1);
+                /* POST user */
+                const result = inputUserInfo(data) || 0;
+
+                console.log(result);
+
+                props.setAccountID(result.id);
             } else if (queryType === 'update') {
-                // do nothing yet
+                /* PUT user */
+                const result = updateUserInfo(data);
+
+                console.log(result);
             }
             setFormSubmitted(true);
             setDisabled(true);
