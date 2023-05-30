@@ -11,11 +11,12 @@ const Confirmation = (props) => {
     const [btnEnabled, setButtonEnabled] = useState(false);
 
     const onChangeHandler = (event) => {
-        setCode(event.target.value.toString());
+        setCode(+event.target.value);
     }
 
     useEffect(() => {
-        if (code.length > 4) {
+        console.log(props.code, code)
+        if (props.code === code) {
             setCodeIsValid(true);
             setButtonEnabled(true)
             return;
@@ -37,11 +38,11 @@ const Confirmation = (props) => {
                     <LeftLabelInput
                         id="txtConfCode"
                         placeholder="5 digit code"
-                        inputType="number"
+                        inputType="text"
                         labelText="Confirmation Code"
                         labelClassName={classes.labelText}
-                        inputClassName={classes.inputStyle}
-                        maxLength="5"
+                        inputClassName={classes.inputStyl}
+                        maxLength={5}
                         value={code}
                         onChange={onChangeHandler}
                         valid={codeIsValid}

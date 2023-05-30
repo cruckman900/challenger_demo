@@ -1,4 +1,4 @@
-import React, { Fragment, useState, useEffect, useReducer } from "react";
+import React, { Fragment, useState, useEffect, useReducer, useContext } from "react";
 import BodyHeader from "../../UI/BodyHeader/BodyHeader";
 import LeftLabelInput from "../../UI/LeftLabelInput/LeftLabelInput";
 import Label from "../../UI/Label/Label";
@@ -7,8 +7,8 @@ import Button from "../../UI/Button/Button";
 import Confirmation from "../Login/Confirmation";
 import PrivacyPolicy from "../Agreements/PrivacyPolicy";
 import TermsOfUse from "../Agreements/TermsOfUse";
-import { getUserInfoById, getUserInfoByUserAndPass,
-    inputUserInfo, updateUserInfo } from "./DataHandler";
+import { getRandomInt, getUserInfoById, getUserInfoByUserAndPass,
+    inputUserInfo, updateUserInfo, sendVerifyMail } from "./DataHandler";
 import AuthContext from "../../store/auth-context";
 import classes from './UserSettings.module.css';
 
@@ -189,14 +189,6 @@ const AccountInfo = (props) => {
         setSexSelected(event.target.value);
     };
 
-    const agreeCheckChangedHandler = (event) => {
-        setAgreeSelected(!agreeSelected);
-    };
-
-    useEffect(() => {
-        setSubmitDisabled(!agreeSelected);
-    }, [agreeSelected]);
-
     const screenNameChangeHandler = (event) => {
         setScreenName(event.target.value);
     };
@@ -216,51 +208,6 @@ const AccountInfo = (props) => {
             setDescDisabled(true);
         }
     }, [descWordCount]);
-
-    const onSubmitHandler = (event) => {
-        event.preventDefault();
-        if (formIsValid) {
-            /* package the data */
-            const data = {
-                id: authCtx.AccountInfo.id || 0,
-                firstname: firstNameState.value,
-                middleName: middleName,
-                lastname: lastNameState.value,
-                screenname: screenName,
-                agerange: ageSelected,
-                gender: gender,
-                username: usernameState.value,
-                password: passwordState.value,
-                description: description,
-                validated: validated
-            }
-
-            if (queryType === 'insert') {
-                /* POST user */
-                const result = inputUserInfo(data) || 0;
-
-                console.log(result);
-
-                props.setAccountID(result.id);
-            } else if (queryType === 'update') {
-                /* PUT user */
-                const result = updateUserInfo(data);
-
-                console.log(result);
-            }
-            setFormSubmitted(true);
-            setDisabled(true);
-            setTimeout(() => {
-                setConfirmationIsShown(true);
-            }, 500);
-            return;
-        } else {
-            setMessage({
-                noteType: 'error',
-                headerText: 'Validation Error!',
-                messageText: 'You have 1 or more errors preventing you from submitting your form.'});
-        }
-    };
 
     const [confirmationIsShown, setConfirmationIsShown] = useState(false);
 
@@ -284,12 +231,104 @@ const AccountInfo = (props) => {
         setTermsIsShown(false);
     }
 
+    const [verificationcode, setVerificationCode] = useState(null);
+
+    const agreeCheckChangedHandler = (event) => {
+        setAgreeSelected(!agreeSelected);
+    };
+
+    useEffect(() => {
+        setSubmitDisabled(!agreeSelected);
+    }, [agreeSelected]);
+
+    useEffect(() => {
+        setVerificationCode(getRandomInt(10000, 99999))
+    }, []);
+
+    const [showVerifyLink, setShowVerifyLink] = useState(false);
+    const [user, setUser] = useState({});
+
     const hideConfirmationHandler = (val) => {
-        setMessage({noteType: 'success', headerText: 'Form submitted!', messageText: 'Account activated!'});
-        props.setAccountID(1);
-        setSubmitDisabled(true);
-        setQueryType('update');
+        if (+val === verificationcode) {
+            console.log('user1', user);
+
+            const result = getUserInfoByUserAndPass(user.username, user.password);
+            setUser(result);
+            console.log('user2', user);
+
+            user.validated = true;
+
+            updateUserInfo(user);
+
+            setMessage({noteType: 'success', headerText: 'Form submitted!', 
+                messageText: 'Account activated!'});
+
+            props.setAccountID(user.id);
+
+            setValidated(true);
+            setSubmitDisabled(true);
+            setQueryType('update');
+            setShowVerifyLink(false);
+        } else {
+            setMessage({noteType: 'error', headerText: 'Account Not Verified', 
+                messageText: 'Click link below to enter your verification code!'
+            });
+            setShowVerifyLink(true);
+        }
         setConfirmationIsShown(false);
+    };
+
+    const onSubmitHandler = (event) => {
+        event.preventDefault();
+        if (formIsValid) {
+            /* package the data */
+            const data = {
+                firstname: firstNameState.value,
+                middlename: middleName,
+                lastname: lastNameState.value,
+                screenname: screenName,
+                email: emailState.value,
+                agerange: ageSelected,
+                gender: sexSelected,
+                username: usernameState.value,
+                password: passwordState.value,
+                description: description,
+                verificationcode: verificationcode,
+                validated: validated
+            }
+
+            if (queryType === 'insert') {
+                /* POST user */
+                const result = inputUserInfo(data);
+                
+                console.log('insert', result);
+                setUser(result);
+
+                setTimeout(() => {
+                    setConfirmationIsShown(true);
+                }, 500);
+
+                props.setAccountID(result.id);
+            } else if (queryType === 'update') {
+                /* PUT user */
+                data.id = authCtx.AccountInfo.id || 0;
+                data.verificationcode = verificationcode;
+                const result = updateUserInfo(data);
+
+                console.log(result);
+                setFormSubmitted(true);
+                setDisabled(true);
+            }
+
+            setUser(data);
+            return;
+        } else {
+            setMessage({
+                noteType: 'error',
+                headerText: 'Validation Error!',
+                messageText: 'You have 1 or more errors preventing you from submitting your form.'
+            });
+        }
     };
 
     return (
@@ -297,6 +336,23 @@ const AccountInfo = (props) => {
             <form onSubmit={onSubmitHandler}>
                 <BodyHeader>Account Information</BodyHeader>
                 {message && <Note noteType={message.noteType} headerText={message.headerText}>{message.messageText}</Note>}
+                {showVerifyLink && 
+                    <Fragment>
+                        <Button
+                            type="button"
+                            onClick={() => setConfirmationIsShown(true)}
+                            className={classes.primaryBtn}
+                            style={{width: '10rem', padding: '.25rem'}}
+                            value="Verify Acount"
+                        />
+                        <Button
+                            type="button"
+                            onClick={() => sendVerifyMail(emailState.value, usernameState.value, verificationcode)}
+                            style={{width: '10rem', padding: '.25rem'}}
+                            value="Resend Code"
+                        />
+                    </Fragment>
+                }
                 <div className={classes.formRow}>
                     <LeftLabelInput
                         id="txtFirstName"
@@ -546,7 +602,7 @@ const AccountInfo = (props) => {
                     <Button type="button" value="Clear" />
                 </div>
             </form>
-            {confirmationIsShown && <Confirmation onClose={hideConfirmationHandler} />}
+            {confirmationIsShown && <Confirmation code={verificationcode} onClose={hideConfirmationHandler} />}
             {privacyIsShown && <PrivacyPolicy onClose={hidePrivacyHandler} />}
             {termsIsShown && <TermsOfUse onClose={hideTermsHandler} />}
         </Fragment>

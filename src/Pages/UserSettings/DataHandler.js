@@ -5,6 +5,29 @@ const api = axios.create({
     headers: { 'Content-Type': 'application/json' }
 });
 
+function getRandomInt(min, max) {
+    return Math.floor(Math.random() * (max - min) + min);
+}
+
+
+const mailer = axios.create({
+    baseURL: process.env.MAILER_URL || "http://localhost:80"
+});
+
+async function sendVerifyMail(email, username, code) {
+    mailer.get('/mailer', {
+        params: {
+            action: 'verifyUser',
+            e: email,
+            un: username,
+            vc: code
+        }
+    })
+    .then((response) => {
+        console.log('Response:', response.data);
+    });
+}
+
 /* GET user by id */
 async function getUserInfoById(id) {
     try {
@@ -17,21 +40,23 @@ async function getUserInfoById(id) {
         // handle success
         console.log(response);
 
-        const data = {
+        const result = {
             id: response.id,
             firstname: response.firstname,
             middlename: response.middlename,
             lastname: response.lastname,
             screenname: response.screenname,
+            email: response.email,
             agerange: response.agerange,
             gender: response.gender,
             username: response.username,
             password: response.password,
             description: response.description,
+            verificationcode: response.verificationcode,
             validated: response.validated
         };
 
-        return data;
+        return result;
     } catch (err) {
 
         // handle error
@@ -53,21 +78,23 @@ async function getUserInfoByUserAndPass(data) {
         //handle success
         console.log(response);
 
-        const data = {
+        const result = {
             id: response.id,
             firstname: response.firstname,
             middlename: response.middlename,
             lastname: response.lastname,
             screenname: response.screenname,
+            email: response.email,
             agerange: response.agerange,
             gender: response.gender,
             username: response.username,
             password: response.password,
             description: response.description,
+            verificationcode: response.verificationcode,
             validated: response.validated
         };
 
-        return data;
+        return result;
     } catch (err) {
 
         // handle error
@@ -86,19 +113,24 @@ async function inputUserInfo(data) {
                 middlename: data.middlename,
                 lastname: data.lastname,
                 screenname: data.screenname,
+                email: data.email,
                 agerange: data.agerange,
                 gender: data.gender,
                 username: data.username,
                 password: data.password,
                 description: data.description,
+                verificationcode: data.verificationcode,
                 validated: data.validated
             }
         });
 
         // handle success
         console.log(response);
+        if(response) {
+            sendVerifyMail(data.email, data.username, data.verificationcode);
+        }
 
-        return response.json();
+        return response;
     } catch (err) {
 
         // handle error
@@ -118,18 +150,19 @@ async function updateUserInfo(data) {
                 middlename: data.middlename,
                 lastname: data.lastname,
                 screenname: data.screenname,
+                email: data.email,
                 agerange: data.agerange,
                 gender: data.gender,
                 username: data.username,
                 password: data.password,
                 description: data.description,
+                verificationcode: data.verificationcode,
                 validated: data.validated
             }
         });
 
         // handle success
         console.log(response);
-
         return response.json();
     } catch (err) {
 
@@ -139,9 +172,11 @@ async function updateUserInfo(data) {
     }
 };
 
-exports = {
+export {
+    getRandomInt,
     getUserInfoById,
     getUserInfoByUserAndPass,
     inputUserInfo,
-    updateUserInfo
+    updateUserInfo,
+    sendVerifyMail
 };

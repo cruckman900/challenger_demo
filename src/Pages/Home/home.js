@@ -11,6 +11,8 @@ export default function Home() {
     const authCtx = useContext(AuthContext);
     const navCtx = useContext(NavContext);
 
+    const [hasChatMessages, setHasChatMessages] = useState(false);
+
     const [headerText, setHeaderText] = useState('Welcome Home!');
     const [message, setMessage] = useState(null);
     const [chatMessages, setChatMessages] = useState(null);
@@ -29,13 +31,17 @@ export default function Home() {
     }, [headerText])
 
     useEffect(() => {
-        if (!authCtx.isLoggedIn && headerText !== "Welcome Home!") {
+        if (!authCtx.isLoggedIn) {
             setHeaderText("Welcome Home!");
+            setMessage({
+                noteType: 'info',
+                headerText: `Site Info`,
+                messageText: `This place is for communities and groups to be created and joined by all that wish to be welcomed in.
+                    You can join communities, create a friend's group,or talk individually with friends that you make, all in one spot!`
+            });
         }
-        if (authCtx.isLoggedIn && headerText !== "What do you want to do next?") {
-            if (headerText != "Welcome Home!") {
-                setChatMessages("There are no messages here yet.  Be the first!");
-            }
+        if (authCtx.isLoggedIn && navCtx.channelLocation && hasChatMessages === false) {
+            setChatMessages("There are no messages here yet.  Be the first!");
         }
         if (authCtx.isLoggedIn && !navCtx.channelLocation) {
             setHeaderText("What do you want to do next?");
@@ -58,12 +64,6 @@ export default function Home() {
                 headerText: `You haven't selected a conversation to get engaged with!`,
                 messageText: `It's never too late to start up a conversation... but it could very well be too early!  Coffee first could be good.`
             });
-        }
-        if (!authCtx) {
-            setHeaderText("Welcome Home!");
-            setMessage(`This place is for communities and groups to be created and joined by all that wish to be welcomed in.
-            You can join communities, create a friend's group,
-            or talk individually with friends that you make, all in one spot!`);
         }
     }, [authCtx.isLoggedIn, navCtx.channelLocation, headerText]);
 

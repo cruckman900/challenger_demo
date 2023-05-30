@@ -15,7 +15,12 @@ const LeftLabelInput = React.forwardRef((props, ref) => {
                     id={props.id}
                     name={props.name}
                     placeholder={props.placeholder}
-                    className={`${props.inputType !== 'color' && classes.Input} ${props.inputClassName} ${props.valid && classes.InputValid} ${props.error && classes.InputError}`}
+                    className={`
+                        ${props.inputType !== 'color' &&  classes.Input} 
+                        ${props.inputClassName} 
+                        ${props.valid && classes.InputValid} 
+                        ${props.error && classes.InputError}
+                    `}
                     type={props.inputType}
                     title={props.title}
                     maxLength={props.maxLength}
