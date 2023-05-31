@@ -11,23 +11,11 @@ import classes from './App.module.css';
 class App extends Component {
   constructor(props) {
     super(props);
-    this.state = { apiResponse: "" };
   };
-
-  // callAPI() {
-  //   fetch("http://localhost:4000/programming-languages")
-  //     .then(res => res.text())
-  //     .then(res => this.setState({ apiResponse: res }));
-  // }
-
-  // UNSAFE_componentWillMount() {
-  //   this.callAPI();
-  // }
 
   render() {
     return (
       <div className={classes.App}>
-        {console.log(this.state.apiResponse)}
         <Row><Col><Top /></Col></Row>
         <Row className={classes.horizRowContainer}>
           <Col><Left /></Col>
