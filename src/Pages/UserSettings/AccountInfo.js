@@ -248,17 +248,17 @@ const AccountInfo = (props) => {
     const [showVerifyLink, setShowVerifyLink] = useState(false);
     const [user, setUser] = useState({});
 
-    const hideConfirmationHandler = (val) => {
+    async function hideConfirmationHandler(val) {
         if (+val === verificationcode) {
-            console.log('user1', user);
-
-            const result = getUserInfoByUserAndPass(user.username, user.password);
-            setUser(result);
-            console.log('user2', user);
-
             user.validated = true;
 
-            updateUserInfo(user);
+            await updateUserInfo(user);
+
+            /* GET user */
+            const thisUser = await getUserInfoByUserAndPass(usernameState.value, passwordState.value);
+            setUser(thisUser);
+
+            props.setAccountID(user.USERID);
 
             setMessage({noteType: 'success', headerText: 'Form submitted!', 
                 messageText: 'Account activated!'});
@@ -278,7 +278,7 @@ const AccountInfo = (props) => {
         setConfirmationIsShown(false);
     };
 
-    const onSubmitHandler = (event) => {
+    async function onSubmitHandler(event) {
         event.preventDefault();
         if (formIsValid) {
             /* package the data */
@@ -299,28 +299,27 @@ const AccountInfo = (props) => {
 
             if (queryType === 'insert') {
                 /* POST user */
-                const result = inputUserInfo(data);
-                
-                console.log('insert', result);
-                setUser(result);
+                await inputUserInfo(data);
 
                 setTimeout(() => {
                     setConfirmationIsShown(true);
                 }, 500);
-
-                props.setAccountID(result.id);
             } else if (queryType === 'update') {
                 /* PUT user */
-                data.id = authCtx.AccountInfo.id || 0;
+                data.id = user.USERID || 0;
                 data.verificationcode = verificationcode;
-                const result = updateUserInfo(data);
+                await updateUserInfo(data);
 
-                console.log(result);
                 setFormSubmitted(true);
                 setDisabled(true);
             }
 
-            setUser(data);
+            /* GET user */
+            const thisUser = await getUserInfoByUserAndPass(usernameState.value, data.password);
+            setUser(thisUser);
+
+            props.setAccountID(user.USERID);
+            
             return;
         } else {
             setMessage({

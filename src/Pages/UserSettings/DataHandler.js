@@ -38,25 +38,9 @@ async function getUserInfoById(id) {
         });
 
         // handle success
-        console.log(response);
 
-        const result = {
-            id: response.id,
-            firstname: response.firstname,
-            middlename: response.middlename,
-            lastname: response.lastname,
-            screenname: response.screenname,
-            email: response.email,
-            agerange: response.agerange,
-            gender: response.gender,
-            username: response.username,
-            password: response.password,
-            description: response.description,
-            verificationcode: response.verificationcode,
-            validated: response.validated
-        };
-
-        return result;
+        console.log('DataHandler: getUserInfoById', response);
+        return response;
     } catch (err) {
 
         // handle error
@@ -66,35 +50,18 @@ async function getUserInfoById(id) {
 }
 
 /* GET user by username and password */
-async function getUserInfoByUserAndPass(data) {
+async function getUserInfoByUserAndPass(username, password) {
     try {
         const response = await api.get('/users', {
             params: {
-                username: data.username,
-                password: data.password
+                username: username,
+                password: password
             }
         });
 
         //handle success
-        console.log(response);
-
-        const result = {
-            id: response.id,
-            firstname: response.firstname,
-            middlename: response.middlename,
-            lastname: response.lastname,
-            screenname: response.screenname,
-            email: response.email,
-            agerange: response.agerange,
-            gender: response.gender,
-            username: response.username,
-            password: response.password,
-            description: response.description,
-            verificationcode: response.verificationcode,
-            validated: response.validated
-        };
-
-        return result;
+        
+        return response.data[0];
     } catch (err) {
 
         // handle error
@@ -124,13 +91,15 @@ async function inputUserInfo(data) {
             }
         });
 
+        let result = response.data;
+
         // handle success
-        console.log(response);
-        if(response) {
+        if(result) {
             sendVerifyMail(data.email, data.username, data.verificationcode);
+            console.log('DataHandler: api POST', result);
+            return result;
         }
 
-        return response;
     } catch (err) {
 
         // handle error
@@ -162,8 +131,8 @@ async function updateUserInfo(data) {
         });
 
         // handle success
-        console.log(response);
-        return response.json();
+        console.log('DataHandler: api PUT', response);
+        return response;
     } catch (err) {
 
         // handle error
