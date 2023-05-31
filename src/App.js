@@ -9,10 +9,6 @@ import Footer from './Layout/Footer/footer';
 import classes from './App.module.css';
 
 class App extends Component {
-  constructor(props) {
-    super(props);
-  };
-
   render() {
     return (
       <div className={classes.App}>

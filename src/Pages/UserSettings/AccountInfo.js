@@ -11,7 +11,7 @@ import TermsOfUse from "../Agreements/TermsOfUse";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHand } from '@fortawesome/free-solid-svg-icons';
 
-import { getRandomInt, getUserInfoById, getUserInfoByUserAndPass,
+import { getRandomInt, getUserInfoByUserAndPass,
     inputUserInfo, updateUserInfo, sendVerifyMail } from "./DataHandler";
 import AuthContext from "../../store/auth-context";
 import classes from './UserSettings.module.css';
