@@ -77,6 +77,19 @@
     color: rgba(255, 120, 0, 1);
 }
 
+.icon {
+    position: relative;
+    margin: 0;
+    padding: 0;
+    height: 1rem;
+    top: -1.75rem;
+    left: 4rem;
+}
+
+.redHand {
+    color: rgba(255, 69, 0, 1);
+}
+
 .indentedInput {
     position: relative;
     width: 12rem;

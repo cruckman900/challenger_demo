@@ -7,6 +7,10 @@ import Button from "../../UI/Button/Button";
 import Confirmation from "../Login/Confirmation";
 import PrivacyPolicy from "../Agreements/PrivacyPolicy";
 import TermsOfUse from "../Agreements/TermsOfUse";
+
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faHand } from '@fortawesome/free-solid-svg-icons';
+
 import { getRandomInt, getUserInfoById, getUserInfoByUserAndPass,
     inputUserInfo, updateUserInfo, sendVerifyMail } from "./DataHandler";
 import AuthContext from "../../store/auth-context";
@@ -266,7 +270,6 @@ const AccountInfo = (props) => {
             props.setAccountID(user.id);
 
             setValidated(true);
-            setSubmitDisabled(true);
             setQueryType('update');
             setShowVerifyLink(false);
         } else {
@@ -311,8 +314,9 @@ const AccountInfo = (props) => {
                 await updateUserInfo(data);
 
                 setFormSubmitted(true);
-                setDisabled(true);
             }
+
+            setDisabled(true);
 
             /* GET user */
             const thisUser = await getUserInfoByUserAndPass(usernameState.value, data.password);
@@ -508,6 +512,7 @@ const AccountInfo = (props) => {
                         valid={emailIsValid}
                         error={!emailIsValid}
                     />
+                    {disabled && <span className={classes.icon}><FontAwesomeIcon className={classes.redHand} icon={faHand} /></span>}
                 </div>
                 <div className={classes.formRow}>
                     <LeftLabelInput
@@ -526,6 +531,7 @@ const AccountInfo = (props) => {
                         valid={usernameIsValid}
                         error={!usernameIsValid}
                     />
+                    {disabled && <span className={classes.icon}><FontAwesomeIcon className={classes.redHand} icon={faHand} /></span>}
                 </div>
                 <div className={classes.formRow}>
                     <LeftLabelInput
@@ -544,6 +550,7 @@ const AccountInfo = (props) => {
                         valid={passwordIsValid}
                         error={!passwordIsValid}
                     />
+                    {disabled && <span className={classes.icon}><FontAwesomeIcon className={classes.redHand} icon={faHand} /></span>}
                 </div>
                 <LeftLabelInput
                     id="txtDescCounter"
