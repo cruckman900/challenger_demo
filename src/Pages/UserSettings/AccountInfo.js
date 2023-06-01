@@ -350,13 +350,13 @@ const AccountInfo = (props) => {
                             type="button"
                             onClick={() => setConfirmationIsShown(true)}
                             className={classes.primaryBtn}
-                            style={{width: '10rem', padding: '.25rem'}}
+                            style={{width: '8rem', padding: '.25rem'}}
                             value="Verify Acount"
                         />
                         <Button
                             type="button"
                             onClick={() => sendVerifyMail(emailState.value, usernameState.value, verificationcode)}
-                            style={{width: '10rem', padding: '.25rem'}}
+                            style={{width: '8rem', padding: '.25rem'}}
                             value="Resend Code"
                         />
                     </Fragment>
