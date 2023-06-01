@@ -105,7 +105,7 @@ export default function Login(props) {
     const submitHandler = (event) => {
         event.preventDefault();
         const user = getUserInfoByUserAndPass(usernameState.value, passwordState.value);
-        if (user) {
+        if (user && +user.id > 0) {
             authCtx.onLogin(usernameState.value, passwordState.value);
             authCtx.setUser(user);
         }
