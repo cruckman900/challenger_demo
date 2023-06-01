@@ -9,6 +9,12 @@ export default function NewFeatures() {
     return (
         <DefaultPage headerText="Features & Updates Log">
             <Card headerText="May 2023">
+                <BodyHeader className={classes.header}>5/31/2023</BodyHeader>
+                <div className={classes.updateBody}>
+                    Been really busy trying to get Insert and Update user info working.  I finally having it connecting to the live database and 
+                    inserting, updating users and sending verification emails.  Reset Password body text is already set up, just haven't built a 
+                    page for that email to send users yet.
+                </div>
                 <BodyHeader className={classes.header}>5/25/2023</BodyHeader>
                 <div className={classes.updateBody}>
                     Built out a few database tables.  Added some features to the System Settings page.  Fixed checkbox groups - no longer recieving the 
