@@ -29,9 +29,9 @@ const Right = (props) => {
             if (community.id === communityMember.communityID && communityMember.peopleID === 1) {
                 myCommunitiesArray.push(community);
             }
-            return;
+            return communityMember;
         });
-        return;
+        return community;
     });
 
     peopleGroups.map((peopleGroup) => {
@@ -39,9 +39,9 @@ const Right = (props) => {
             if (peopleGroup.peopleID === 1 && group.id === peopleGroup.groupID) {
                 myGroupsArray.push(group);
             }
-            return;
+            return group;
         });
-        return;
+        return peopleGroup;
     });
 
     myPeople.map((peoples) => {
@@ -49,9 +49,9 @@ const Right = (props) => {
             if (peoples.peopleID === person.id) {
                 myPeopleArray.push(person);
             }
-            return;
+            return person;
         });
-        return;
+        return peoples;
     });
 
     const [toggle, setToggle] = useState('collapse');

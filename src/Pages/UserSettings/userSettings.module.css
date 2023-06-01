@@ -24,6 +24,7 @@
     background: black;
     border-bottom: solid 1px rgba(255, 69, 0, 0.8);
     list-style-type: none;
+    z-index: 1;
 }
 
 .tab {

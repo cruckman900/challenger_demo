@@ -4,7 +4,6 @@ import LeftLabelInput from "../../UI/LeftLabelInput/LeftLabelInput";
 import BodyHeader from "../../UI/BodyHeader/BodyHeader";
 import Label from "../../UI/Label/Label";
 import Button from "../../UI/Button/Button";
-import { Row, Col } from "react-bootstrap";
 import classes from "./systemSettings.module.css";
 
 export default function SystemSettings() {
@@ -39,7 +38,7 @@ export default function SystemSettings() {
                     {imageSrc !== null && (
                         <div>
                             <Label text="Preview" className={classes.Label} />
-                            <img src={imageSrc} className={classes.image} />
+                            <img src={imageSrc} className={classes.image} alt="Avatar Preview" />
                         </div>
                     )}
                 </div>

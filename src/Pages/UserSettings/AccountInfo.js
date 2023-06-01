@@ -8,11 +8,9 @@ import Confirmation from "../Login/Confirmation";
 import PrivacyPolicy from "../Agreements/PrivacyPolicy";
 import TermsOfUse from "../Agreements/TermsOfUse";
 
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faHand } from '@fortawesome/free-solid-svg-icons';
-
 import { getRandomInt, getUserInfoByUserAndPass,
-    inputUserInfo, updateUserInfo, sendVerifyMail } from "./DataHandler";
+    inputUserInfo, updateUserInfo, sendVerifyMail } from "../../DataHandlers/AccountInfoDataHandler";
+
 import AuthContext from "../../store/auth-context";
 import classes from './UserSettings.module.css';
 
@@ -250,24 +248,23 @@ const AccountInfo = (props) => {
     }, []);
 
     const [showVerifyLink, setShowVerifyLink] = useState(false);
-    const [user, setUser] = useState({});
 
     async function hideConfirmationHandler(val) {
         if (+val === verificationcode) {
-            user.validated = true;
+            authCtx.user.validated = true;
 
-            await updateUserInfo(user);
+            await updateUserInfo(authCtx.user);
 
             /* GET user */
             const thisUser = await getUserInfoByUserAndPass(usernameState.value, passwordState.value);
-            setUser(thisUser);
+            authCtx.setUser(thisUser);
 
-            props.setAccountID(user.USERID);
+            props.setAccountID(authCtx.user.USERID);
 
             setMessage({noteType: 'success', headerText: 'Form submitted!', 
                 messageText: 'Account activated!'});
 
-            props.setAccountID(user.id);
+            props.setAccountID(authCtx.user.id);
 
             setValidated(true);
             setQueryType('update');
@@ -309,7 +306,7 @@ const AccountInfo = (props) => {
                 }, 500);
             } else if (queryType === 'update') {
                 /* PUT user */
-                data.id = user.USERID || 0;
+                data.id = authCtx.user.USERID || 0;
                 data.verificationcode = verificationcode;
                 await updateUserInfo(data);
 
@@ -318,11 +315,11 @@ const AccountInfo = (props) => {
             
             /* GET user */
             const thisUser = await getUserInfoByUserAndPass(usernameState.value, data.password);
-            setUser(thisUser);
+            authCtx.setUser(thisUser);
             
-            if (user.id !== null) {
+            if (authCtx.user.id !== null) {
                 setDisabled(true);
-                props.setAccountID(user.USERID);
+                props.setAccountID(authCtx.user.USERID);
             } else {
                 setMessage({noteType: 'error', headerText: 'Something went wrong', 
                     messageText: 'Account information has not been saved! Try again, or come back later'
@@ -500,63 +497,66 @@ const AccountInfo = (props) => {
                         onChange={sexCheckChangedHandler}
                     />
                 </div>
-                <div className={classes.formRow}>
-                    <LeftLabelInput
-                        id="txtEmail"
-                        placeholder="Must be valid"
-                        inputType="email"
-                        required={true}
-                        labelText="Email"
-                        labelClassName={classes.labelText}
-                        inputClassName={classes.inputStyle}
-                        maxLength="150"
-                        value={emailState.value}
-                        disabled={disabled}
-                        onChange={emailChangeHandler}
-                        onBlur={validateEmailHandler}
-                        valid={emailIsValid}
-                        error={!emailIsValid}
-                    />
-                    {disabled && <span className={classes.icon}><FontAwesomeIcon className={classes.redHand} icon={faHand} /></span>}
-                </div>
-                <div className={classes.formRow}>
-                    <LeftLabelInput
-                        id="txtUsername"
-                        placeholder="8+ characters"
-                        inputType="text"
-                        required={true}
-                        labelText="User"
-                        labelClassName={classes.labelText}
-                        inputClassName={classes.inputStyle}
-                        maxLength="45"
-                        value={usernameState.value}
-                        disabled={disabled}
-                        onChange={usernameChangeHandler}
-                        onBlur={validateUsernameHandler}
-                        valid={usernameIsValid}
-                        error={!usernameIsValid}
-                    />
-                    {disabled && <span className={classes.icon}><FontAwesomeIcon className={classes.redHand} icon={faHand} /></span>}
-                </div>
-                <div className={classes.formRow}>
-                    <LeftLabelInput
-                        id="txtPassword"
-                        placeholder="8+ chars with numbers"
-                        inputType="password"
-                        required={true}
-                        labelText="Pass"
-                        labelClassName={classes.labelText}
-                        inputClassName={classes.inputStyle}
-                        maxLength="45"
-                        value={passwordState.value}
-                        disabled={disabled}
-                        onChange={passwordChangeHandler}
-                        onBlur={validatePasswordHandler}
-                        valid={passwordIsValid}
-                        error={!passwordIsValid}
-                    />
-                    {disabled && <span className={classes.icon}><FontAwesomeIcon className={classes.redHand} icon={faHand} /></span>}
-                </div>
+                {!disabled && ( 
+                    <div className={classes.formRow}>
+                        <LeftLabelInput
+                            id="txtEmail"
+                            placeholder="Must be valid"
+                            inputType="email"
+                            required={true}
+                            labelText="Email"
+                            labelClassName={classes.labelText}
+                            inputClassName={classes.inputStyle}
+                            maxLength="150"
+                            value={emailState.value}
+                            disabled={disabled}
+                            onChange={emailChangeHandler}
+                            onBlur={validateEmailHandler}
+                            valid={emailIsValid}
+                            error={!emailIsValid}
+                        />
+                    </div>
+                )}
+                {!disabled && (
+                    <div className={classes.formRow}>
+                        <LeftLabelInput
+                            id="txtUsername"
+                            placeholder="8+ characters"
+                            inputType="text"
+                            required={true}
+                            labelText="User"
+                            labelClassName={classes.labelText}
+                            inputClassName={classes.inputStyle}
+                            maxLength="45"
+                            value={usernameState.value}
+                            disabled={disabled}
+                            onChange={usernameChangeHandler}
+                            onBlur={validateUsernameHandler}
+                            valid={usernameIsValid}
+                            error={!usernameIsValid}
+                        />
+                    </div>
+                )}
+                {!disabled && (
+                    <div className={classes.formRow}>
+                        <LeftLabelInput
+                            id="txtPassword"
+                            placeholder="8+ chars with numbers"
+                            inputType="password"
+                            required={true}
+                            labelText="Pass"
+                            labelClassName={classes.labelText}
+                            inputClassName={classes.inputStyle}
+                            maxLength="45"
+                            value={passwordState.value}
+                            disabled={disabled}
+                            onChange={passwordChangeHandler}
+                            onBlur={validatePasswordHandler}
+                            valid={passwordIsValid}
+                            error={!passwordIsValid}
+                        />
+                    </div>
+                )}
                 <LeftLabelInput
                     id="txtDescCounter"
                     placeholder={descWordCount}

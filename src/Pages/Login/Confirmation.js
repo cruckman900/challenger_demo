@@ -15,14 +15,13 @@ const Confirmation = (props) => {
     }
 
     useEffect(() => {
-        console.log(props.code, code)
         if (props.code === code) {
             setCodeIsValid(true);
             setButtonEnabled(true)
             return;
         }
         setCodeIsValid(false);
-    }, [code]);
+    }, [props.code, code]);
 
     const onSubmitHandler = (event) => {
         event.preventDefault();
