@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const api = axios.create({
-    baseURL: process.env.API_URL || "http://localhost:4000",
+    baseURL: "https://api.chatterboxsm.com/", // || "http://localhost:4000",
     headers: { 'Content-Type': 'application/json' }
 });
 
@@ -11,11 +11,11 @@ function getRandomInt(min, max) {
 
 
 const mailer = axios.create({
-    baseURL: process.env.MAILER_URL || "http://localhost:80"
+    baseURL: process.env.MAILER_URL, // || "http://localhost:80"
 });
 
 async function sendVerifyMail(email, username, code) {
-    mailer.get('/mailer', {
+    mailer.get('/', {
         params: {
             action: 'verifyUser',
             e: email,
@@ -90,16 +90,13 @@ async function inputUserInfo(data) {
                 validated: data.validated
             }
         });
-
+        
         let result = response.data;
 
         // handle success
-        if(result) {
-            sendVerifyMail(data.email, data.username, data.verificationcode);
-            console.log('DataHandler: api POST', result);
-            return result;
-        }
-
+        sendVerifyMail(data.email, data.username, data.verificationcode);
+        console.log('DataHandler: api POST', result);
+        return result;
     } catch (err) {
 
         // handle error

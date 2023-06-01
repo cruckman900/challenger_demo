@@ -315,14 +315,19 @@ const AccountInfo = (props) => {
 
                 setFormSubmitted(true);
             }
-
-            setDisabled(true);
-
+            
             /* GET user */
             const thisUser = await getUserInfoByUserAndPass(usernameState.value, data.password);
             setUser(thisUser);
-
-            props.setAccountID(user.USERID);
+            
+            if (user.id !== null) {
+                setDisabled(true);
+                props.setAccountID(user.USERID);
+            } else {
+                setMessage({noteType: 'error', headerText: 'Something went wrong', 
+                    messageText: 'Account information has not been saved! Try again, or come back later'
+                });
+            }
             
             return;
         } else {

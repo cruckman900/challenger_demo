@@ -11,10 +11,10 @@
 }
 
 @media screen and (max-width:767px) {
-    .statusBar {
+    /* .statusBar {
         position: fixed;
         left: calc(100vw / 2 - 7.5rem);
-    }
+    } */
 
     .statusHideIfTiny {
         display: none;

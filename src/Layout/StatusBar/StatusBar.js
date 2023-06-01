@@ -9,14 +9,14 @@ const StatusBar = () => {
     return (
         <div className={classes.statusBar}>
             <Fragment>
-                <Status className={classes.statusHideIfTiny} label="Version" value={process.env.REACT_APP_VERSION} />
-                <Status className={classes.statusHideIfTiny} label="# Users" value="0" />
-                <Status className={classes.statusHideIfTiny} label="# On" value="0" />
+                <Status className={authCtx.isLoggedIn && classes.statusHideIfTiny} label="Vers" value={process.env.REACT_APP_VERSION} />
+                <Status className={authCtx.isLoggedIn && classes.statusHideIfTiny} label="Usrs" value="0" />
+                <Status className={authCtx.isLoggedIn && classes.statusHideIfTiny} label="# On" value="0" />
             </Fragment>
             {authCtx.isLoggedIn && (
                 <Fragment>
-                    <Status label="# PMs" value="0" />
-                    <Status label="# CMs" value="0" />
+                    <Status label="PMs" value="0" />
+                    <Status label="CMs" value="0" />
                 </Fragment>
             )}
         </div>

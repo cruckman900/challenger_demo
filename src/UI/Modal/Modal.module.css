@@ -4,7 +4,7 @@
     left: 0;
     width: 100%;
     height: 100vh;
-    z-index: 99;
+    z-index: 999;
     background-color: rgba(0, 0, 0, 0.75);
 }
 
@@ -20,7 +20,7 @@
     padding: .5rem;
     border-radius: 12px;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
-    z-index: 100;
+    z-index: 1000;
     animation: slide-down 300ms ease-out forwards;
 }
 
