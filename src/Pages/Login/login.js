@@ -4,6 +4,7 @@ import Modal from "../../UI/Modal/Modal";
 import Card from "../../UI/Card/Card";
 import LeftLabelInput from "../../UI/LeftLabelInput/LeftLabelInput";
 import Button from "../../UI/Button/Button";
+import { getUserInfoByUserAndPass } from "../../DataHandlers/AccountInfoDataHandler";
 import classes from './login.module.css';
 
 const hasNumber = (val) => {
@@ -103,7 +104,11 @@ export default function Login(props) {
 
     const submitHandler = (event) => {
         event.preventDefault();
-        authCtx.onLogin(usernameState.value, passwordState.value);
+        const user = getUserInfoByUserAndPass(usernameState.value, passwordState.value);
+        if (user) {
+            authCtx.onLogin(usernameState.value, passwordState.value);
+            authCtx.setUser(user);
+        }
         props.onClose();
     };
 
