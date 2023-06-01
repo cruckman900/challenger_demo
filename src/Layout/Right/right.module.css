@@ -34,13 +34,14 @@
     }
 
     .showFull {
-        display: none;
+        display: inline;
     }
     
     .show {
         display: inline;
         top: -3.75rem;
         left: 0;
+        width: 16rem;
         margin: .25rem;
         padding: 2.5rem .5rem;
         padding-bottom: 1.5rem;
@@ -48,9 +49,19 @@
         background: rgba(25, 25, 25, 1);
         border-radius: 12px;
         outline: solid 1px rgba(255, 120, 0, .8);
+        animation: expand linear .1s 1;
     }
     
     .hide {
         display: none;
+    }
+
+    @keyframes expand {
+        from {
+            width: 0rem;
+        }
+        to {
+            width: 16rem;
+        }
     }
 }

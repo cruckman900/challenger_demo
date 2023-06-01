@@ -67,18 +67,18 @@
 
 @keyframes slide-down {
     from {
-        display: 'none';
+        height: 0;
     }
     to {
-        display: 'inline';
+        height: 100%;
     }
 }
 
 @keyframes slide-up {
     from {
-        display: 'inline';
+        height: 100%;
     }
     to {
-        display: 'none';
+        height: 0;
     }
 }

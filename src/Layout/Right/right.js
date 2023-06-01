@@ -71,21 +71,21 @@ const Right = (props) => {
         <Fragment>
             <div><Button className={classes.toggle} value={chevron} onClick={() => onToggleClickHandler()} /></div>
             <RightContainer className={`${classes.showFull} ${chevron === '>' && classes.hide} ${chevron === '<' && classes.show}`} onClick={onClickHandler}>
-                <Card headerText="Communities">
+                <Card headerText="Communities" className={classes.card}>
                     {!authCtx.isLoggedIn && <div style={{margin: '.25rem'}}>If you join one or more communities, the list of communities will be displayed in this block.</div>}
                     {authCtx.isLoggedIn && (
                         NavLocations(myCommunitiesArray, 'community', onClickHandler, selectedID)
                     )}
                 </Card>
                 <hr className={wClasses.br} />
-                <Card headerText="Groups">
+                <Card headerText="Groups" className={classes.card}>
                     {!authCtx.isLoggedIn && <div style={{margin: '.25rem'}}>You can set up a group of friends for communications amongst each other.</div>}
                     {authCtx.isLoggedIn && (
                         NavLocations(myGroupsArray, 'group', onClickHandler, selectedID)
                     )}
                 </Card>
                 <hr className={wClasses.br} />
-                <Card headerText="People">
+                <Card headerText="People" className={classes.card}>
                     {!authCtx.isLoggedIn && <div style={{margin: '.25rem'}}>Here will be individuals (friends, family members, etc.) that you can message privately.</div>}   
                     {authCtx.isLoggedIn && (
                         NavLocations(myPeopleArray, 'people', onClickHandler, selectedID)
