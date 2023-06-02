@@ -4,7 +4,7 @@ import Modal from "../../UI/Modal/Modal";
 import Card from "../../UI/Card/Card";
 import LeftLabelInput from "../../UI/LeftLabelInput/LeftLabelInput";
 import Button from "../../UI/Button/Button";
-import { getUserInfoByUserAndPass } from "../../DataHandlers/AccountInfoDataHandler";
+import { getUserInfo } from '../../AsyncDataCaller/AsyncDataCaller';
 import classes from './login.module.css';
 
 const hasNumber = (val) => {
@@ -102,13 +102,16 @@ export default function Login(props) {
         dispatchEmail({type: 'INPUT_BLUR'});
     };
 
-    const submitHandler = (event) => {
+    async function submitHandler(event) {
         event.preventDefault();
-        const user = getUserInfoByUserAndPass(usernameState.value, passwordState.value);
-        if (user && +user.id > 0) {
-            authCtx.onLogin(usernameState.value, passwordState.value);
-            authCtx.setUser(user);
-        }
+        await getUserInfo(usernameState.value, passwordState.value)
+            .then((user) => {
+                console.log('getUserInfo', user.data[0]);
+                if(typeof user !== 'undefined') {
+                    authCtx.onLogin(user.data[0]);
+                    console.log('authCtx.user', authCtx.user)
+                }
+        });
         props.onClose();
     };
 
@@ -164,7 +167,9 @@ export default function Login(props) {
                                     error={!passwordIsValid}
                                 />
                             </div>
-                            <Button type="button" className={classes.link} href="#" onClick={forgotUserPassHandler} value="Forgot User/Pass" />
+                            <div className={classes.formRow}>
+                                <Button type="button" className={classes.link} href="#" onClick={forgotUserPassHandler} value="Forgot User/Pass" />
+                            </div>
                             <br />
                             <div className={classes.formRow}>
                                 <Button className={classes.primaryBtn} type="submit" name="btnSubmit" value="Log In" disabled={!formIsValid} />

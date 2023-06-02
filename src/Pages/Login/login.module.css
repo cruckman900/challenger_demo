@@ -22,10 +22,11 @@
 }
 
 .link {
+    position: absolute;
+    right: 0;
     background: transparent;
     border: none;
-    padding: .25;
-    margin: 0;
+    padding: .5rem;
     font-weight: bold;
     font-size: .8rem;
     color: rgba(255, 69, 0, 0.8);

@@ -66,6 +66,6 @@
     }
     
     .body {
-        width: calc(99.99vw - 6rem);
+        width: calc(100vw - 6rem);
     }
 }

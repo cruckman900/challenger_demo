@@ -52,25 +52,17 @@ async function getUserInfoById(id) {
 
 /* GET user by username and password */
 async function getUserInfoByUserAndPass(username, password) {
-    try {
-        const response = await api.get('/users', {
+    return new Promise(function(resolve, reject) {
+        api.get('/users', {
             params: {
                 action: 'getUserByUsernameAndPassword',
                 username: username,
                 password: password
             }
-        });
-
-        //handle success
-        console.log('getUserInfoByUserAndPass', response.data[0]);
-        
-        return response.data[0];
-    } catch (err) {
-
-        // handle error
-        console.log(err);
-        return err;
-    }
+        })
+        .then(results => resolve(results))
+        .catch(err => reject(err));
+    });
 }
 
 /* POST user */

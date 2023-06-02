@@ -264,7 +264,7 @@ const AccountInfo = (props) => {
             setMessage({noteType: 'success', headerText: 'Form submitted!', 
                 messageText: 'Account activated!'});
 
-            props.setAccountID(authCtx.user.id);
+            props.setAccountID(authCtx.user.USERID);
 
             setValidated(true);
             setQueryType('update');
@@ -317,7 +317,7 @@ const AccountInfo = (props) => {
             const thisUser = await getUserInfoByUserAndPass(usernameState.value, data.password);
             authCtx.setUser(thisUser);
             
-            if (authCtx.user.id !== null) {
+            if (authCtx.user.USERID !== null) {
                 setDisabled(true);
                 props.setAccountID(authCtx.user.USERID);
             } else {
