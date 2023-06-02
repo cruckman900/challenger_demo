@@ -34,7 +34,7 @@
     }
 
     .showFull {
-        display: inline;
+        display: none;
     }
     
     .show {
@@ -55,13 +55,13 @@
     .hide {
         display: none;
     }
+}
 
-    @keyframes expand {
-        from {
-            width: 0rem;
-        }
-        to {
-            width: 16rem;
-        }
+@keyframes expand {
+    from {
+        width: 0rem;
+    }
+    to {
+        width: 16rem;
     }
 }

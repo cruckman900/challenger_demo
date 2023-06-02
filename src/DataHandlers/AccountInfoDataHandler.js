@@ -33,6 +33,7 @@ async function getUserInfoById(id) {
     try {
         const response = await api.get('/users', {
             params: {
+                action: 'getUserByID',
                 id: id
             }
         });
@@ -54,12 +55,14 @@ async function getUserInfoByUserAndPass(username, password) {
     try {
         const response = await api.get('/users', {
             params: {
+                action: 'getUserByUsernameAndPassword',
                 username: username,
                 password: password
             }
         });
 
         //handle success
+        console.log('getUserInfoByUserAndPass', response.data[0]);
         
         return response.data[0];
     } catch (err) {
