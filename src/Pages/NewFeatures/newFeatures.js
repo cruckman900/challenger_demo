@@ -8,6 +8,15 @@ import wClasses from "../../builders/widget.module.css";
 export default function NewFeatures() {
     return (
         <DefaultPage headerText="Features & Updates Log">
+            <Card headerText="June 2023">
+                <BodyHeader className={classes.header}>6/01/2023 - 6/02/2023</BodyHeader>
+                <div className={classes.updateBody}>
+                    Able to insert and update user info.  Able to log in.  Pre-populating fields in user info when a user is logged in 
+                    so that they can see their info and update if necessary.  For some reason, it isn't pre-populating on my phone.  It's 
+                    acting like the cookies aren't there.  Added a nugget - in the Status bar, the number of users is displayed.  Extensive 
+                    work on the backend has been completed.  I will be rearranging files and folders soon.
+                </div>
+            </Card>
             <Card headerText="May 2023">
                 <BodyHeader className={classes.header}>5/31/2023</BodyHeader>
                 <div className={classes.updateBody}>
