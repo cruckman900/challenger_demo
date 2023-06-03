@@ -62,7 +62,7 @@ const AccountInfo = (props) => {
     const authCtx = useContext(AuthContext);
 
     const [ageSelected, setAgeSelected] = useState('under18');
-    const [sexSelected, setSexSelected] = useState('');
+    const [sexSelected, setSexSelected] = useState('other');
     const [agreeSelected, setAgreeSelected] = useState(false);
 
     const [screenName, setScreenName] = useState('');
@@ -345,17 +345,17 @@ const AccountInfo = (props) => {
     useEffect(() => {
         try {
             if (authCtx.isLoggedIn) {
-                setFName(authCtx.user.firstname);
-                setMName(authCtx.user.middlename);
-                setLName(authCtx.user.lastname);
-                setSName(authCtx.user.screenname);
-                setDesc(authCtx.user.description);
-                setAgeSelected(authCtx.user.agerange);
-                setSexSelected(authCtx.user.gender);
+                if (authCtx.user.firstname) setFName(authCtx.user.firstname);
+                if (authCtx.user.middlename) setMName(authCtx.user.middlename);
+                if (authCtx.user.lastname) setLName(authCtx.user.lastname);
+                if (authCtx.user.screenname) setSName(authCtx.user.screenname);
+                if (authCtx.user.description) setDesc(authCtx.user.description);
+                if (authCtx.user.agerange) setAgeSelected(authCtx.user.agerange);
+                if (authCtx.user.gender) setSexSelected(authCtx.user.gender);
                 setDisabled(true);
             }
         } catch (err) {
-            console.log('AccountInfo.js err', err);
+            alert('AccountInfo.js err: ' + err);
         }
     });
 
@@ -375,7 +375,7 @@ const AccountInfo = (props) => {
                         />
                         <Button
                             type="button"
-                            onClick={() => sendVerifyMail(emailState.value, usernameState.value, verificationcode)}
+                            onClick={() => sendVerifyMail(emailState.value, usernameState.value, verificationcode)}w
                             style={{width: '8rem', padding: '.25rem'}}
                             value="Resend Code"
                         />
