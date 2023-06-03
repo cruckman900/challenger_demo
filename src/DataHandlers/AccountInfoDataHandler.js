@@ -9,7 +9,6 @@ function getRandomInt(min, max) {
     return Math.floor(Math.random() * (max - min) + min);
 }
 
-
 const mailer = axios.create({
     baseURL: process.env.MAILER_URL, // || "http://localhost:80"
 });
@@ -58,6 +57,19 @@ async function getUserInfoByUserAndPass(username, password) {
                 action: 'getUserByUsernameAndPassword',
                 username: username,
                 password: password
+            }
+        })
+        .then(results => resolve(results))
+        .catch(err => reject(err));
+    });
+}
+
+/* GET user count */
+async function getUserCount() {
+    return new Promise(function(resolve, reject) {
+        api.get('/users', {
+            params: {
+                action: 'getCountUsers'
             }
         })
         .then(results => resolve(results))
@@ -137,6 +149,7 @@ export {
     getRandomInt,
     getUserInfoById,
     getUserInfoByUserAndPass,
+    getUserCount,
     inputUserInfo,
     updateUserInfo,
     sendVerifyMail

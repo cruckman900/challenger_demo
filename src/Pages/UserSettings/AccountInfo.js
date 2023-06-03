@@ -1,4 +1,4 @@
-import React, { Fragment, useState, useEffect, useReducer, useContext } from "react";
+import React, { Fragment, useState, useEffect, useReducer, useContext, useRef, useLayoutEffect } from "react";
 import BodyHeader from "../../UI/BodyHeader/BodyHeader";
 import LeftLabelInput from "../../UI/LeftLabelInput/LeftLabelInput";
 import Label from "../../UI/Label/Label";
@@ -336,6 +336,29 @@ const AccountInfo = (props) => {
         }
     };
 
+    const [fname, setFName] = useState(null);
+    const [mname, setMName] = useState(null);
+    const [lname, setLName] = useState(null);
+    const [sname, setSName] = useState(null);
+    const [desc, setDesc] = useState(null);
+
+    useEffect(() => {
+        try {
+            if (authCtx.isLoggedIn) {
+                setFName(authCtx.user.firstname);
+                setMName(authCtx.user.middlename);
+                setLName(authCtx.user.lastname);
+                setSName(authCtx.user.screenname);
+                setDesc(authCtx.user.description);
+                setAgeSelected(authCtx.user.agerange);
+                setSexSelected(authCtx.user.gender);
+                setDisabled(true);
+            }
+        } catch (err) {
+            console.log('AccountInfo.js err', err);
+        }
+    });
+
     return (
         <Fragment>
             <form onSubmit={onSubmitHandler}>
@@ -368,7 +391,7 @@ const AccountInfo = (props) => {
                         labelClassName={classes.labelText}
                         inputClassName={classes.inputStyle}
                         maxLength="45"
-                        value={firstNameState.value}
+                        value={fname || firstNameState.value}
                         onChange={firstNameChangeHandler}
                         onBlur={validateFirstNameHandler}
                         valid={firstNameIsValid}
@@ -383,7 +406,7 @@ const AccountInfo = (props) => {
                         labelClassName={classes.labelText}
                         inputClassName={classes.inputStyle}
                         maxLength="45"
-                        value={middleName}
+                        value={mname || middleName}
                         onChange={middleNameChangeHandler}
                     />
                 </div>
@@ -397,7 +420,7 @@ const AccountInfo = (props) => {
                         labelClassName={classes.labelText}
                         inputClassName={classes.inputStyle}
                         maxLength="45"
-                        value={lastNameState.value}
+                        value={lname || lastNameState.value}
                         onChange={lastNameChangeHandler}
                         onBlur={validateLastNameHandler}
                         valid={lastNameIsValid}
@@ -413,7 +436,7 @@ const AccountInfo = (props) => {
                         labelClassName={classes.labelText}
                         inputClassName={classes.inputStyle}
                         maxLength="45"
-                        value={screenName}
+                        value={sname || screenName}
                         onChange={screenNameChangeHandler}
                     />
                 </div>
@@ -578,7 +601,7 @@ const AccountInfo = (props) => {
                         readOnly={false}
                         disabled={descDisabled}
                         onChange={descriptionChangeHandler}
-                        value={description}
+                        value={desc || description}
                     />
                 </div>
                 <br />

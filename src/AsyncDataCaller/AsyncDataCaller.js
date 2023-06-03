@@ -1,7 +1,7 @@
-import { getUserInfoByUserAndPass } from "../DataHandlers/AccountInfoDataHandler";
+import { getUserInfoByUserAndPass, getUserCount } from "../DataHandlers/AccountInfoDataHandler";
 
 
-async function getUserInfo(username, password) {
+async function getUserByUserAndPass(username, password) {
     return new Promise(function(resolve, reject) {
         getUserInfoByUserAndPass(username, password)
             .then(row => resolve(row))
@@ -9,6 +9,15 @@ async function getUserInfo(username, password) {
     });
 }
 
+async function getCountUsers() {
+    return new Promise(function(resolve, reject) {
+        getUserCount()
+            .then(row => resolve(row))
+            .catch(err => reject(err));
+    });
+}
+
 export {
-    getUserInfo,
+    getUserByUserAndPass,
+    getCountUsers
 }

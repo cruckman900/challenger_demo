@@ -26,10 +26,10 @@ export const AuthContextProvider = (props) => {
         localStorage.removeItem('isLoggedIn');
         setIsLoggedIn(false);
         localStorage.removeItem('storedUser');
-        setUser(0);
+        setUser({});
     };
 
-    const loginHandler = (userID) => {
+    const loginHandler = (user) => {
         localStorage.setItem('isLoggedIn', '1');
         setIsLoggedIn(true);
         localStorage.setItem('storedUser', user);
