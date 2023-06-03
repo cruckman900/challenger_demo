@@ -355,7 +355,7 @@ const AccountInfo = (props) => {
                 setDisabled(true);
             }
         } catch (err) {
-            alert('AccountInfo.js err: ' + err);
+            alert('AccountInfo.js err: ' + err + '\nUserInfo: ' + authCtx.user);
         }
     });
 
