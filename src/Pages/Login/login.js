@@ -110,7 +110,7 @@ export default function Login(props) {
         getUserByUserAndPass(usernameState.value, passwordState.value)
             .then((user) => {
                 if(typeof user !== 'undefined') {
-                    authCtx.onLogin(user.data[0]);
+                    authCtx.onLogin(user.data[0].USERID, user.data[0]);
                 } else {
                     setShowLoginErrorMessage(true);
                 }

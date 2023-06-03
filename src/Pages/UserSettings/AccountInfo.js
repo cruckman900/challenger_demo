@@ -7,8 +7,9 @@ import Button from "../../UI/Button/Button";
 import Confirmation from "../Login/Confirmation";
 import PrivacyPolicy from "../Agreements/PrivacyPolicy";
 import TermsOfUse from "../Agreements/TermsOfUse";
+import { getUserByUserAndPass } from '../../AsyncDataCaller/AsyncDataCaller';
 
-import { getRandomInt, getUserInfoByUserAndPass,
+import { getRandomInt, getUserInfoById, getUserInfoByUserAndPass,
     inputUserInfo, updateUserInfo, sendVerifyMail } from "../../DataHandlers/AccountInfoDataHandler";
 
 import AuthContext from "../../store/auth-context";
@@ -257,7 +258,7 @@ const AccountInfo = (props) => {
 
             /* GET user */
             const thisUser = await getUserInfoByUserAndPass(usernameState.value, passwordState.value);
-            authCtx.setUser(thisUser);
+            authCtx.setUser(thisUser.USERID, thisUser);
 
             props.setAccountID(authCtx.user.USERID);
 
@@ -315,7 +316,7 @@ const AccountInfo = (props) => {
             
             /* GET user */
             const thisUser = await getUserInfoByUserAndPass(usernameState.value, data.password);
-            authCtx.setUser(thisUser);
+            authCtx.setUser(thisUser.USERID, thisUser);
             
             if (authCtx.user.USERID !== null) {
                 setDisabled(true);
@@ -345,17 +346,37 @@ const AccountInfo = (props) => {
     useEffect(() => {
         try {
             if (authCtx.isLoggedIn) {
-                if (authCtx.user.firstname) setFName(authCtx.user.firstname);
-                if (authCtx.user.middlename) setMName(authCtx.user.middlename);
-                if (authCtx.user.lastname) setLName(authCtx.user.lastname);
-                if (authCtx.user.screenname) setSName(authCtx.user.screenname);
-                if (authCtx.user.description) setDesc(authCtx.user.description);
-                if (authCtx.user.agerange) setAgeSelected(authCtx.user.agerange);
-                if (authCtx.user.gender) setSexSelected(authCtx.user.gender);
+                if (typeof authCtx.user.USERID !== undefined) {
+                    alert('gittin er done with cookies');
+                    if (authCtx.user.firstname) setFName(authCtx.user.firstname);
+                    if (authCtx.user.middlename) setMName(authCtx.user.middlename);
+                    if (authCtx.user.lastname) setLName(authCtx.user.lastname);
+                    if (authCtx.user.screenname) setSName(authCtx.user.screenname);
+                    if (authCtx.user.description) setDesc(authCtx.user.description);
+                    if (authCtx.user.agerange) setAgeSelected(authCtx.user.agerange);
+                    if (authCtx.user.gender) setSexSelected(authCtx.user.gender);
+                } else {
+                    alert('else? hello?');
+                    getUserInfoById(auth.user.USERID)
+                        .then((user) => {
+                            const userInfo = user.data[0];
+                            alert('user: ' + userInfo);
+                            if (userInfo.firstname) setFName(userInfo.firstname);
+                            if (userInfo.middlename) setMName(userInfo.middlename);
+                            if (userInfo.lastname) setLName(userInfo.lastname);
+                            if (userInfo.screenname) setSName(userInfo.screenname);
+                            if (userInfo.description) setDesc(userInfo.description);
+                            if (userInfo.agerange) setAgeSelected(userInfo.agerange);
+                            if (userInfo.gender) setSexSelected(userInfo.gender);
+                        })
+                        .catch((err) => {
+                            alert('Cannot find user info from database');
+                        });
+                }
                 setDisabled(true);
             }
         } catch (err) {
-            alert('AccountInfo.js err: ' + err + '\nUserInfo: ' + authCtx.user);
+            alert('Cannot find user info from local storage');
         }
     });
 
