@@ -4,6 +4,9 @@ import Modal from "../../UI/Modal/Modal";
 import Card from "../../UI/Card/Card";
 import LeftLabelInput from "../../UI/LeftLabelInput/LeftLabelInput";
 import Button from "../../UI/Button/Button";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faHand } from '@fortawesome/free-solid-svg-icons';
+
 import { getUserInfo } from '../../AsyncDataCaller/AsyncDataCaller';
 import classes from './login.module.css';
 
@@ -106,17 +109,17 @@ export default function Login(props) {
         event.preventDefault();
         await getUserInfo(usernameState.value, passwordState.value)
             .then((user) => {
-                console.log('getUserInfo', user.data[0]);
                 if(typeof user !== 'undefined') {
-                    authCtx.onLogin(user.data[0]);
-                    console.log('authCtx.user', authCtx.user)
+                    authCtx.onLogin(user);
+                } else {
+                    setShowLoginErrorMessage(true);
                 }
-        });
+            });
         props.onClose();
     };
 
     const [showLoginScreen, setShowLoginScreen] = useState(!authCtx.isLoggedIn);
-
+    const {showLoginErrorMessage, setShowLoginErrorMessage} = useState(false);
     const [showForgotScreen, setShowForgotScreen] = useState(false);
 
     const forgotUserPassHandler = (event) => {
@@ -167,6 +170,14 @@ export default function Login(props) {
                                     error={!passwordIsValid}
                                 />
                             </div>
+                            {showLoginErrorMessage && (
+                                <div className={classes.formRow}>
+                                    <div className={classes.errorMessage}>
+                                        <FontAwesomeIcon className={classes.tabIcon} icon={faHand} />&nbsp;
+                                        <span>Invalid Username or Password.</span>
+                                    </div>
+                                </div>
+                            )}
                             <div className={classes.formRow}>
                                 <Button type="button" className={classes.link} href="#" onClick={forgotUserPassHandler} value="Forgot User/Pass" />
                             </div>
