@@ -255,6 +255,9 @@ const AccountInfo = (props) => {
     const [mname, setMName] = useState(null);
     const [lname, setLName] = useState(null);
     const [sname, setSName] = useState(null);
+    const [email, setEmail] = useState(null);
+    const [uname, setUName] = useState(null);
+    const [password, setPassword] = useState(null);
     const [desc, setDesc] = useState(null);
 
     useEffect(() => {
@@ -270,9 +273,17 @@ const AccountInfo = (props) => {
                         setDisabled(true);
 
                         setFName(thisUser.firstname);
+                        dispatchFirstName('USER_INPUT', thisUser.firstname);
                         setMName(thisUser.middlename);
                         setLName(thisUser.lastname);
+                        dispatchLastName('USER_INPUT', thisUser.lastname);
                         setSName(thisUser.screenname);
+                        setEmail(thisUser.email);
+                        dispatchEmail('USER_INPUT', thisUser.email);
+                        setUName(thisUser.username);
+                        dispatchUsername('USER_INPUT', thisUser.username);
+                        setPassword(thisUser.password);
+                        dispatchPassword('USER_INPUT', thisUser.password);
                         setDesc(thisUser.description);
                         setAgeSelected(thisUser.agerange);
                         setSexSelected(thisUser.gender);
@@ -284,7 +295,27 @@ const AccountInfo = (props) => {
                 .catch((err) => console.log('AccountInfo.js useEffect err:', err));
         } else {
             setUser(null);
-        }
+            setDisabled(false);
+
+            setFName(null);
+            dispatchFirstName('USER_INPUT', null)
+            setMName(null);
+            setLName(null);
+            dispatchLastName('USER_INPUT', null)
+            setSName(null);
+            setEmail(null);
+            dispatchEmail('USER_INPUT', null);
+            setUName(null);
+            dispatchUsername('USER_INPUT', null);
+            setPassword(null);
+            dispatchPassword('USER_INPUT', null);
+            setDesc(null);
+            setAgeSelected('under18');
+            setSexSelected('other');
+
+            props.setAccountID(null);
+            props.setAgeRange(null);
+}
     }, [authCtx.isLoggedIn]);
 
     async function hideConfirmationHandler(val) {
@@ -549,7 +580,7 @@ const AccountInfo = (props) => {
                             labelClassName={classes.labelText}
                             inputClassName={classes.inputStyle}
                             maxLength="150"
-                            value={emailState.value}
+                            value={email || emailState.value}
                             disabled={disabled}
                             onChange={emailChangeHandler}
                             onBlur={validateEmailHandler}
@@ -569,7 +600,7 @@ const AccountInfo = (props) => {
                             labelClassName={classes.labelText}
                             inputClassName={classes.inputStyle}
                             maxLength="45"
-                            value={usernameState.value}
+                            value={uname || usernameState.value}
                             disabled={disabled}
                             onChange={usernameChangeHandler}
                             onBlur={validateUsernameHandler}
@@ -589,7 +620,7 @@ const AccountInfo = (props) => {
                             labelClassName={classes.labelText}
                             inputClassName={classes.inputStyle}
                             maxLength="45"
-                            value={passwordState.value}
+                            value={password || passwordState.value}
                             disabled={disabled}
                             onChange={passwordChangeHandler}
                             onBlur={validatePasswordHandler}
