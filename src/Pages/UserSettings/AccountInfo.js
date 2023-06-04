@@ -249,33 +249,46 @@ const AccountInfo = (props) => {
 
     const [showVerifyLink, setShowVerifyLink] = useState(false);
 
+    const [user, setUser] = useState(null);
+
     useEffect(() => {
         if (authCtx.isLoggedIn) {
             props.setAccountID = authCtx.user.USERID;
-            props.setAgeRange = authCtx.user.gender;
+            props.setAgeRange = authCtx.user.agerange;
+            
+            /* GET user */
+            getUserById(authCtx.userID)
+                .then((user) => {
+                    console.log('AccountInfo.js useEffect user:', user)
+                    const thisUser = user.data[0];
+                    if (thisUser.USERID !== null) {
+                        setUser(thisUser);
+                        setDisabled(true);
+                        props.setAccountID(thisUser.USERID);
+                        props.setAgeRange(thisUser.ageSelected);
+                    }
+                })
+                .catch((err) => console.log('AccountInfo.js useEffect err:', err));
         }
     })
 
     async function hideConfirmationHandler(val) {
         if (+val === verificationcode) {
-            authCtx.user.validated = true;
-
-            await updateUserInfo(authCtx.user);
-
-            /* GET user */
-            const thisUser = await getUserByUserAndPass(usernameState.value, passwordState.value);
-            authCtx.setUser(thisUser.USERID, thisUser);
-
-            props.setAccountID(authCtx.user.USERID);
-
-            setMessage({noteType: 'success', headerText: 'Form submitted!', 
-                messageText: 'Account activated!'});
-
-            props.setAccountID(authCtx.user.USERID);
-
-            setValidated(true);
-            setQueryType('update');
-            setShowVerifyLink(false);
+            user.validated = true;
+            await updateUserInfo(user)
+                .then((response) => {
+                    console.log('AccountInfo.js hideConfirmationHandler update response:', response)
+                    props.setAccountID(user.USERID);
+                    props.setAgeRange(user.agerange);
+        
+                    setMessage({noteType: 'success', headerText: 'Form submitted!', 
+                        messageText: 'Account activated!'});
+        
+                    setValidated(true);
+                    setQueryType('update');
+                    setShowVerifyLink(false);
+                })
+                .catch((err) => console.log('AccountInfo.js onSubmitHander insert err:', err));
         } else {
             setMessage({noteType: 'error', headerText: 'Account Not Verified', 
                 messageText: 'Click link below to enter your verification code!'
@@ -306,34 +319,42 @@ const AccountInfo = (props) => {
 
             if (queryType === 'insert') {
                 /* POST user */
-                await inputUserInfo(data);
-
-                setTimeout(() => {
-                    setConfirmationIsShown(true);
-                }, 500);
+                await inputUserInfo(data)
+                    .then((response) => {
+                        console.log('AccountInfo.js onSubmitHandler insert response:', response);
+                        setTimeout(() => {
+                            setConfirmationIsShown(true);
+                        }, 500);
+                    })
+                    .catch((err) => console.log('AccountInfo.js onSubmitHander insert err:', err));
             } else if (queryType === 'update') {
                 /* PUT user */
-                data.id = authCtx.user.USERID || 0;
+                data.id = authCtx.userID || 0;
                 data.verificationcode = verificationcode;
-                await updateUserInfo(data);
+                await updateUserInfo(data)
+                    .then((response) => {
+                        console.log('AccountInfo.js onSubmitHandler update response:', response)
+                        setFormSubmitted(true);
+                    })
+                    .catch((err) => console.log('AccountInfo.js onSubmitHander update err:', err));
 
-                setFormSubmitted(true);
             }
             
             /* GET user */
-            const thisUser = await getUserByUserAndPass(usernameState.value, data.password);
-            
-            if (thisUser.USERID !== null) {
-                setDisabled(true);
-                props.setAccountID(thisUser.USERID);
-                props.setAgeRange(thisUser.gender);
-            } else {
-                setMessage({noteType: 'error', headerText: 'Something went wrong', 
-                    messageText: 'Account information has not been saved! Try again, or come back later'
-                });
-            }
-            
-            return;
+            getUserByUserAndPass(usernameState.value, data.password)
+                .then((user) => {
+                    if (user.USERID !== null) {
+                        setUser(user);
+                        setDisabled(true);
+                        props.setAccountID(user.USERID);
+                        props.setAgeRange(user.agerange);
+                    } else {
+                        setMessage({noteType: 'error', headerText: 'Something went wrong', 
+                            messageText: 'Account information has not been saved! Try again, or come back later'
+                        });
+                    }
+                })
+                .catch((err) => console.log('AccountInfo.js onSubmitHandler updateHandler err:', err));           
         } else {
             setMessage({
                 noteType: 'error',
@@ -352,14 +373,14 @@ const AccountInfo = (props) => {
     useEffect(() => {
         try {
             if (authCtx.isLoggedIn) {
-                if (typeof authCtx.user.USERID !== undefined) {
-                    if (authCtx.user.firstname) setFName(authCtx.user.firstname);
-                    if (authCtx.user.middlename) setMName(authCtx.user.middlename);
-                    if (authCtx.user.lastname) setLName(authCtx.user.lastname);
-                    if (authCtx.user.screenname) setSName(authCtx.user.screenname);
-                    if (authCtx.user.description) setDesc(authCtx.user.description);
-                    if (authCtx.user.agerange) setAgeSelected(authCtx.user.agerange);
-                    if (authCtx.user.gender) setSexSelected(authCtx.user.gender);
+                if (typeof user.userID !== undefined) {
+                    if (user.firstname) setFName(user.firstname);
+                    if (user.middlename) setMName(user.middlename);
+                    if (user.lastname) setLName(user.lastname);
+                    if (user.screenname) setSName(user.screenname);
+                    if (user.description) setDesc(user.description);
+                    if (user.agerange) setAgeSelected(user.agerange);
+                    if (user.gender) setSexSelected(user.gender);
                 }
                 setDisabled(true);
             }

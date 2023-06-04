@@ -108,6 +108,7 @@ export default function Login(props) {
 
     const [showLoginErrorMessage, setShowLoginErrorMessage] = useState(false);
     const [showForgotScreen, setShowForgotScreen] = useState(false);
+    const [user, setUser] = useState(null);
 
     async function submitHandler(event) {
         event.preventDefault();
@@ -121,6 +122,7 @@ export default function Login(props) {
                         .then((updatedUser) => {
                             console.log('login.js submitHandler updatedUser:', updatedUser)
                         });
+                    setUser(user);
                     authCtx.onLogin(data.USERID, data);
                 } else {
                     setShowLoginErrorMessage(true);
@@ -141,9 +143,8 @@ export default function Login(props) {
     };
 
     const logoutAndClose = () => {
-        const data = authCtx.user;
-        data.isLoggedIn = false;
-        updateUserInfo(data);
+        user.isLoggedIn = false;
+        updateUserInfo(user);
         authCtx.onLogout();
         props.onClose();
     }

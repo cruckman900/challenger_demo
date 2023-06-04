@@ -7,30 +7,33 @@ import classes from './StatusBar.module.css';
 const StatusBar = () => {
     const authCtx = useContext(AuthContext);
     const [numUsers, setNumUsers] = useState(0);
-    const [numUsersLoggedIn, setNumUsersLoggedIn] = useState(0)
+    const [numUsersLoggedIn, setNumUsersLoggedIn] = useState(0);
 
     const getNums = () => {
         getCountUsers()
-        .then((result) => {
-            const count = result.data[0].user_count;
-            setNumUsers(count);
-        })
-        .catch((err) => {
-            console.log('StatusBar.js getUserCount err', err);
-        });
-    getCountUsersLoggedIn()
-        .then((result) => {
-            const count = result.data[0].logged_in_user_count;
-            setNumUsersLoggedIn(count);
-        })
-        .catch((err) => {
-            console.log('StatusBar.js getUsersLoggedInCount err', err);
-        })
-}
+            .then((result) => {
+                const count = result.data[0].user_count;
+                setNumUsers(count);
+            })
+            .catch((err) => {
+                console.log('StatusBar.js getUserCount err:', err);
+            })
+        getCountUsersLoggedIn()
+            .then((result) => {
+                const count = result.data[0].logged_in_user_count;
+                setNumUsersLoggedIn(count);
+            })
+            .catch((err) => {
+                console.log('StatusBar.js getUsersLoggedInCount err:', err);
+            })
+    }
 
     useEffect(() => {
-        setInterval(getNums() , 5000);
-    }, []);
+        let interval = setInterval(getNums, 2500);
+        return () => {
+            interval = null;
+        }
+    });
 
     return (
         <div className={classes.statusBar}>
