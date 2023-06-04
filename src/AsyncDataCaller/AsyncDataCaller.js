@@ -1,7 +1,7 @@
 import { getUserInfoById, getUserInfoByUserAndPass, getUserCount, getUserCountIsLoggedIn } from "../DataHandlers/AccountInfoDataHandler";
 
 async function getUserById(id) {
-    return new PromiseRejectionEvent(function(resolve, reject) {
+    return new Promise(function(resolve, reject) {
         getUserInfoById(id)
         .then(row => resolve(row))
         .catch(err => reject(err));
