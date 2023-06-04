@@ -117,13 +117,11 @@ export default function Login(props) {
                 if(typeof user !== 'undefined' && user.data.length > 0) {
                     const data = user.data[0];
                     data.isLoggedIn = true
-                    console.log('login.js submitHandler data', data);
                     updateUserInfo(data)
-                        .then((updatedUser) => {
-                            console.log('login.js submitHandler updatedUser:', updatedUser)
+                        .then(() => {
+                            setUser(user);
+                            authCtx.onLogin(data.USERID, data);
                         });
-                    setUser(user);
-                    authCtx.onLogin(data.USERID, data);
                 } else {
                     setShowLoginErrorMessage(true);
                 }

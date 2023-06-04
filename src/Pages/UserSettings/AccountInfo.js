@@ -253,15 +253,11 @@ const AccountInfo = (props) => {
 
     useEffect(() => {
         if (authCtx.isLoggedIn) {
-            props.setAccountID = authCtx.user.USERID;
-            props.setAgeRange = authCtx.user.agerange;
-            
             /* GET user */
             getUserById(authCtx.userID)
                 .then((user) => {
-                    console.log('AccountInfo.js useEffect user:', user)
                     const thisUser = user.data[0];
-                    if (thisUser.USERID !== null) {
+                    if (thisUser.USERID) {
                         setUser(thisUser);
                         setDisabled(true);
                         props.setAccountID(thisUser.USERID);
@@ -270,14 +266,14 @@ const AccountInfo = (props) => {
                 })
                 .catch((err) => console.log('AccountInfo.js useEffect err:', err));
         }
-    })
+    }, []);
 
     async function hideConfirmationHandler(val) {
         if (+val === verificationcode) {
             user.validated = true;
             await updateUserInfo(user)
-                .then((response) => {
-                    console.log('AccountInfo.js hideConfirmationHandler update response:', response)
+                .then(() => {
+                    setUser(user);
                     props.setAccountID(user.USERID);
                     props.setAgeRange(user.agerange);
         
@@ -321,7 +317,6 @@ const AccountInfo = (props) => {
                 /* POST user */
                 await inputUserInfo(data)
                     .then((response) => {
-                        console.log('AccountInfo.js onSubmitHandler insert response:', response);
                         setTimeout(() => {
                             setConfirmationIsShown(true);
                         }, 500);
@@ -333,7 +328,6 @@ const AccountInfo = (props) => {
                 data.verificationcode = verificationcode;
                 await updateUserInfo(data)
                     .then((response) => {
-                        console.log('AccountInfo.js onSubmitHandler update response:', response)
                         setFormSubmitted(true);
                     })
                     .catch((err) => console.log('AccountInfo.js onSubmitHander update err:', err));
@@ -373,7 +367,7 @@ const AccountInfo = (props) => {
     useEffect(() => {
         try {
             if (authCtx.isLoggedIn) {
-                if (typeof user.userID !== undefined) {
+                if (user.USERID) {
                     if (user.firstname) setFName(user.firstname);
                     if (user.middlename) setMName(user.middlename);
                     if (user.lastname) setLName(user.lastname);
@@ -381,13 +375,13 @@ const AccountInfo = (props) => {
                     if (user.description) setDesc(user.description);
                     if (user.agerange) setAgeSelected(user.agerange);
                     if (user.gender) setSexSelected(user.gender);
+                    setDisabled(true);
                 }
-                setDisabled(true);
             }
         } catch (err) {
-            alert('Cannot find user info from local storage');
+            console.log('AccountInfo.js useEffect user', 'Cannot find user info from local storage');
         }
-    });
+    }, []);
 
     return (
         <Fragment>
