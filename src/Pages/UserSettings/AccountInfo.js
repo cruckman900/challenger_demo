@@ -251,22 +251,41 @@ const AccountInfo = (props) => {
 
     const [user, setUser] = useState(null);
 
+    const [fname, setFName] = useState(null);
+    const [mname, setMName] = useState(null);
+    const [lname, setLName] = useState(null);
+    const [sname, setSName] = useState(null);
+    const [desc, setDesc] = useState(null);
+
     useEffect(() => {
         if (authCtx.isLoggedIn) {
             /* GET user */
+            console.log('AccountInfo.js useEffect authCtx.isLoggedIn', authCtx.isLoggedIn);
             getUserById(authCtx.userID)
                 .then((user) => {
+                    console.log('AccountInfo useEffect user:', user);
                     const thisUser = user.data[0];
                     if (thisUser.USERID) {
                         setUser(thisUser);
                         setDisabled(true);
+
+                        setFName(thisUser.firstname);
+                        setMName(thisUser.middlename);
+                        setLName(thisUser.lastname);
+                        setSName(thisUser.screenname);
+                        setDesc(thisUser.description);
+                        setAgeSelected(thisUser.agerange);
+                        setSexSelected(thisUser.gender);
+
                         props.setAccountID(thisUser.USERID);
                         props.setAgeRange(thisUser.ageSelected);
                     }
                 })
                 .catch((err) => console.log('AccountInfo.js useEffect err:', err));
+        } else {
+            setUser(null);
         }
-    }, []);
+    }, [authCtx.isLoggedIn]);
 
     async function hideConfirmationHandler(val) {
         if (+val === verificationcode) {
@@ -316,7 +335,7 @@ const AccountInfo = (props) => {
             if (queryType === 'insert') {
                 /* POST user */
                 await inputUserInfo(data)
-                    .then((response) => {
+                    .then(() => {
                         setTimeout(() => {
                             setConfirmationIsShown(true);
                         }, 500);
@@ -357,31 +376,6 @@ const AccountInfo = (props) => {
             });
         }
     };
-
-    const [fname, setFName] = useState(null);
-    const [mname, setMName] = useState(null);
-    const [lname, setLName] = useState(null);
-    const [sname, setSName] = useState(null);
-    const [desc, setDesc] = useState(null);
-
-    useEffect(() => {
-        try {
-            if (authCtx.isLoggedIn) {
-                if (user.USERID) {
-                    if (user.firstname) setFName(user.firstname);
-                    if (user.middlename) setMName(user.middlename);
-                    if (user.lastname) setLName(user.lastname);
-                    if (user.screenname) setSName(user.screenname);
-                    if (user.description) setDesc(user.description);
-                    if (user.agerange) setAgeSelected(user.agerange);
-                    if (user.gender) setSexSelected(user.gender);
-                    setDisabled(true);
-                }
-            }
-        } catch (err) {
-            console.log('AccountInfo.js useEffect user', 'Cannot find user info from local storage');
-        }
-    }, []);
 
     return (
         <Fragment>
@@ -604,6 +598,17 @@ const AccountInfo = (props) => {
                         />
                     </div>
                 )}
+                {disabled && 
+                    <Fragment>
+                        <Button
+                            type="button"
+                            onClick={() => setDisabled(false)}
+                            className={classes.primaryBtn}
+                            style={{width: '8rem', padding: '.25rem'}}
+                            value="Modify Credentials"
+                        />
+                    </Fragment>
+                }
                 <LeftLabelInput
                     id="txtDescCounter"
                     placeholder={descWordCount}
