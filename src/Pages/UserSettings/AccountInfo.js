@@ -27,34 +27,34 @@ const nameReducer = (state, action) => {
         return { value: action.value, isValid: action.value.trim().length > 0 };
     }
     if (action.type === 'INPUT_BLUR') {
-        return { value: state.value, isValid: state.value.trim().length > 0}
+        return { value: state.value, isValid: state.value.trim().length > 0 };
     }
 }
 
-const emailReducer = (state, action) => {
+const emailReducer = (state, action, val) => {
     if (action.type === 'USER_INPUT') {
-        return { value: action.value, isValid: isEmail(action.value.trim())};
+        return { value: action.value, isValid: isEmail(action.value.trim()) };
     }
     if (action.type === 'INPUT_BLUR') {
-        return { value: state.value, isValid: isEmail(state.value.trim())}
+        return { value: state.value, isValid: isEmail(state.value.trim()) };
     }
-}
+ }
 
-const usernameReducer = (state, action) => {
+const usernameReducer = (state, action, val) => {
     if (action.type === 'USER_INPUT') {
         return { value: action.value, isValid: action.value.trim().length > 7 };
     }
     if (action.type === 'INPUT_BLUR') {
-        return { value: state.value, isValid: state.value.trim().length > 7}
+        return { value: state.value, isValid: state.value.trim().length > 7 };
     }
 }
 
 const passwordReducer = (state, action) => {
     if (action.type === 'USER_INPUT') {
-        return { value: action.value, isValid: action.value.trim().length > 7 && hasNumber(action.value)};
+        return { value: action.value, isValid: action.value.trim().length > 7 && hasNumber(action.value) };
     }
     if (action.type === 'INPUT_BLUR') {
-        return { value: state.value, isValid: state.value.trim().length > 7 && hasNumber(state.value)};
+        return { value: state.value, isValid: state.value.trim().length > 7 && hasNumber(state.value) };
     }
 }
 
@@ -273,17 +273,17 @@ const AccountInfo = (props) => {
                         setDisabled(true);
 
                         setFName(thisUser.firstname);
-                        dispatchFirstName('USER_INPUT', thisUser.firstname);
+                        dispatchFirstName({type: 'USER_INPUT', value: thisUser.firstname});
                         setMName(thisUser.middlename);
                         setLName(thisUser.lastname);
-                        dispatchLastName('USER_INPUT', thisUser.lastname);
+                        dispatchLastName({type: 'USER_INPUT', value: thisUser.lastname});
                         setSName(thisUser.screenname);
                         setEmail(thisUser.email);
-                        dispatchEmail('USER_INPUT', thisUser.email);
+                        dispatchEmail({type: 'USER_INPUT', value: thisUser.email});
                         setUName(thisUser.username);
-                        dispatchUsername('USER_INPUT', thisUser.username);
+                        dispatchUsername({type: 'USER_INPUT', value: thisUser.username});
                         setPassword(thisUser.password);
-                        dispatchPassword('USER_INPUT', thisUser.password);
+                        dispatchPassword({type: 'USER_INPUT', value: thisUser.password});
                         setDesc(thisUser.description);
                         setAgeSelected(thisUser.agerange);
                         setSexSelected(thisUser.gender);
@@ -297,26 +297,30 @@ const AccountInfo = (props) => {
             setUser(null);
             setDisabled(false);
 
-            setFName(null);
-            dispatchFirstName('USER_INPUT', null)
-            setMName(null);
-            setLName(null);
-            dispatchLastName('USER_INPUT', null)
-            setSName(null);
-            setEmail(null);
-            dispatchEmail('USER_INPUT', null);
-            setUName(null);
-            dispatchUsername('USER_INPUT', null);
-            setPassword(null);
-            dispatchPassword('USER_INPUT', null);
-            setDesc(null);
-            setAgeSelected('under18');
-            setSexSelected('other');
+            resetForm();
 
             props.setAccountID(null);
             props.setAgeRange(null);
-}
+        }
     }, [authCtx.isLoggedIn]);
+
+    const resetForm = () => {
+        setFName(null);
+        dispatchFirstName({type: 'USER_INPUT', value: ''})
+        setMName(null);
+        setLName(null);
+        dispatchLastName({type: 'USER_INPUT', value: ''})
+        setSName(null);
+        setEmail(null);
+        dispatchEmail({type: 'USER_INPUT', value: ''});
+        setUName(null);
+        dispatchUsername({type: 'USER_INPUT', value: ''});
+        setPassword(null);
+        dispatchPassword({type: 'USER_INPUT', value: ''});
+        setDesc(null);
+        setAgeSelected('under18');
+        setSexSelected('other');
+}
 
     async function hideConfirmationHandler(val) {
         if (+val === verificationcode) {
@@ -693,7 +697,7 @@ const AccountInfo = (props) => {
                         inputClassName={classes.textarea}
                         disabled={submitDisabled}
                     />
-                    <Button type="button" value="Clear" />
+                    <Button type="button" value="Clear" onClick={() => resetForm()} />
                 </div>
             </form>
             {confirmationIsShown && <Confirmation code={verificationcode} onClose={hideConfirmationHandler} />}
