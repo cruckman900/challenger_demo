@@ -9,20 +9,27 @@ const StatusBar = () => {
     const [numUsers, setNumUsers] = useState(0);
     const [numUsersLoggedIn, setNumUsersLoggedIn] = useState(0)
 
-    useEffect(() => {
+    const getNums = () => {
         getCountUsers()
-            .then((result) => {
-                const count = result.data[0].user_count;
-                setNumUsers(count);
-            })
-            .catch((err) => {
-                console.log('StatusBar.js getUserCount err', err);
-            });
-        getCountUsersLoggedIn()
-            .then((result) => {
-                const count = result.data[0].logged_in_user_count;
-                setNumUsersLoggedIn(count);
-            })
+        .then((result) => {
+            const count = result.data[0].user_count;
+            setNumUsers(count);
+        })
+        .catch((err) => {
+            console.log('StatusBar.js getUserCount err', err);
+        });
+    getCountUsersLoggedIn()
+        .then((result) => {
+            const count = result.data[0].logged_in_user_count;
+            setNumUsersLoggedIn(count);
+        })
+        .catch((err) => {
+            console.log('StatusBar.js getUsersLoggedInCount err', err);
+        })
+}
+
+    useEffect(() => {
+        setInterval(getNums() , 5000);
     }, []);
 
     return (

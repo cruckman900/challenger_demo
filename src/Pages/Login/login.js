@@ -118,7 +118,10 @@ export default function Login(props) {
                     const data = user.data[0];
                     data.isLoggedIn = true
                     console.log('submitHandler data', data);
-                    updateUserInfo(data);
+                    updateUserInfo(data)
+                        .then((updatedUser) => {
+                            console.log('submitHandler updatedUser:', updatedUser)
+                        });
                     authCtx.onLogin(data.USERID, data);
                 } else {
                     setShowLoginErrorMessage(true);
