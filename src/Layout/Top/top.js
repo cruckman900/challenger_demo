@@ -27,10 +27,20 @@ export default function Top() {
     const location = useLocation();
 
     const performLogout = () => {
-        const user = getUserById(authCtx.user.USERID);
-        user.isLoggedIn = false;
-        updateUserInfo(user);
-        authCtx.onLogout();
+        getUserById(authCtx.user.USERID)
+            .then((user) => {
+                if(typeof user !== 'undefined' && user.data.length > 0) {
+                    user.isLoggedIn = false;
+                    console.log('top.js performLogout user:', user);
+                    updateUserInfo(user)
+                        .then((updatedUser) => {
+                            console.log('top.js performLogout updatedUser:', updatedUser);
+                        });
+                    authCtx.onLogout();
+                } else {
+                    console.log('top.js performLogout', 'Could not retrieve user');
+                }
+            });
     }
 
     return (
