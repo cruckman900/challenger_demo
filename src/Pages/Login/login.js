@@ -10,7 +10,6 @@ import { faHand } from '@fortawesome/free-solid-svg-icons';
 import { getUserByUserAndPass } from '../../AsyncDataCaller/AsyncDataCaller';
 import { updateUserInfo } from "../../DataHandlers/AccountInfoDataHandler";
 import classes from './login.module.css';
-import { logDOM } from "@testing-library/react";
 
 const hasNumber = (val) => {
     return /\d/.test(val);

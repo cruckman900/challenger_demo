@@ -6,6 +6,9 @@ import { Container, Row, Col } from "reactstrap";
 import { Nav, Navbar } from 'react-bootstrap';
 import { useLocation, Link } from 'react-router-dom';
 import logo from '../../assets/images/logo.png';
+
+import { getUserById } from '../../AsyncDataCaller/AsyncDataCaller';
+import { updateUserInfo } from "../../DataHandlers/AccountInfoDataHandler";
 import classes from './top.module.css';
 
 export default function Top() {
@@ -22,6 +25,13 @@ export default function Top() {
     }
 
     const location = useLocation();
+
+    const performLogout = () => {
+        const user = getUserById(authCtx.user.USERID);
+        user.isLoggedIn = false;
+        updateUserInfo(user);
+        authCtx.onLogout();
+    }
 
     return (
         <Fragment>
@@ -46,7 +56,7 @@ export default function Top() {
                         {!authCtx.isLoggedIn && <Button href="#" className={classes.link} onClick={showLoginHandler} value="Log In" />}
                         {authCtx.isLoggedIn && (
                             <Fragment>
-                                <Button href="#" className={classes.link} onClick={authCtx.onLogout} value="Log Out" />
+                                <Button href="#" className={classes.link} onClick={performLogout} value="Log Out" />
                                 <Nav.Link as={Link} to={"/donations"} eventKey="/donations" href="#donations" className={classes.navLink}>Donate</Nav.Link>
                                 <Nav.Link as={Link} to={"/suggestions"} eventKey="/suggestions" href="#suggestions" className={classes.navLink}>Suggest</Nav.Link>
                             </Fragment>
