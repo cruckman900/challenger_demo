@@ -141,6 +141,7 @@ async function updateUserInfo(data) {
         });
 
         // handle success
+        console.log('DataHandler: api PUT', data);
         console.log('DataHandler: api PUT', response);
         return response;
     } catch (err) {

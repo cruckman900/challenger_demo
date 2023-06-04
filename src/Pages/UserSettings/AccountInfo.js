@@ -235,7 +235,7 @@ const AccountInfo = (props) => {
 
     const [verificationcode, setVerificationCode] = useState(null);
 
-    const agreeCheckChangedHandler = (event) => {
+    const agreeCheckChangedHandler = () => {
         setAgreeSelected(!agreeSelected);
     };
 
@@ -248,6 +248,13 @@ const AccountInfo = (props) => {
     }, []);
 
     const [showVerifyLink, setShowVerifyLink] = useState(false);
+
+    useEffect(() => {
+        if (authCtx.isLoggedIn) {
+            props.setAccountID = authCtx.user.USERID;
+            props.setAgeRange = authCtx.user.gender;
+        }
+    })
 
     async function hideConfirmationHandler(val) {
         if (+val === verificationcode) {
@@ -320,6 +327,7 @@ const AccountInfo = (props) => {
             if (authCtx.user.USERID !== null) {
                 setDisabled(true);
                 props.setAccountID(authCtx.user.USERID);
+                props.setAgeRange(authCtx.user.gender);
             } else {
                 setMessage({noteType: 'error', headerText: 'Something went wrong', 
                     messageText: 'Account information has not been saved! Try again, or come back later'
