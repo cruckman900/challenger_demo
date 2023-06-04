@@ -320,14 +320,13 @@ const AccountInfo = (props) => {
                 setFormSubmitted(true);
             }
             
-            // /* GET user */
-            // const thisUser = await getUserByUserAndPass(usernameState.value, data.password);
-            // authCtx.setUser(thisUser.USERID, thisUser);
+            /* GET user */
+            const thisUser = await getUserByUserAndPass(usernameState.value, data.password);
             
-            if (authCtx.user.USERID !== null) {
+            if (thisUser.USERID !== null) {
                 setDisabled(true);
-                props.setAccountID(authCtx.user.USERID);
-                props.setAgeRange(authCtx.user.gender);
+                props.setAccountID(thisUser.USERID);
+                props.setAgeRange(thisUser.gender);
             } else {
                 setMessage({noteType: 'error', headerText: 'Something went wrong', 
                     messageText: 'Account information has not been saved! Try again, or come back later'

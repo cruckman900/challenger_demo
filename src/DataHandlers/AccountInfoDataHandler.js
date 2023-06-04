@@ -72,20 +72,20 @@ async function getUserCount() {
 /* GET user count isLoggedIn */
 async function getUserCountIsLoggedIn() {
     return new Promise(function(resolve, reject) {
-        api.get('users', {
+        api.get('/users', {
             params: {
                 action: 'getCountUsersOnline'
             }
         })
         .then(row => resolve(row))
         .catch(err => reject(err));
-    })
+    });
 }
 
 /* POST user */
 async function inputUserInfo(data) {
-    try {
-        const response = await api.post('/users', {
+    return new Promise(function(resolve, reject) {
+        api.post('/users', {
             method: 'POST',
             data: {
                 firstname: data.firstname,
@@ -101,26 +101,17 @@ async function inputUserInfo(data) {
                 verificationcode: data.verificationcode,
                 validated: data.validated
             }
-        });
-        
-        let result = response.data;
-
-        // handle success
-        sendVerifyMail(data.email, data.username, data.verificationcode);
-        console.log('DataHandler: api POST', result);
-        return result;
-    } catch (err) {
-
-        // handle error
-        console.log(err);
-        return err;
-    }
-};
+        })
+        .then(row => resolve(row))
+        .then(sendVerifyMail(data.email, data.username, data.verificationcode))
+        .catch(err => reject(err));
+    });
+}
 
 /* PUT user */
 async function updateUserInfo(data) {
-    try {
-        const response = await api.put('/users', {
+    return new Promise(function(resolve, reject) {
+        api.put('/users', {
             method: 'PUT',
             data: {
                 id: data.id,
@@ -138,19 +129,11 @@ async function updateUserInfo(data) {
                 validated: data.validated,
                 isLoggedIn: data.isLoggedIn
             }
-        });
-
-        // handle success
-        console.log('DataHandler: api PUT', data);
-        console.log('DataHandler: api PUT', response);
-        return response;
-    } catch (err) {
-
-        // handle error
-        console.log(err);
-        return err;
-    }
-};
+        })
+        .then(row => resolve(row))
+        .catch(err => reject(err));
+    });
+}
 
 export {
     getRandomInt,
