@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const api = axios.create({
-    baseURL: "https://api.chatterboxsm.com/", // || "http://localhost:4000",
+    baseURL: process.env.API_URL, // "https://api.chatterboxsm.com/", // || "http://localhost:4000",
     headers: { 'Content-Type': 'application/json' }
 });
 
@@ -29,24 +29,16 @@ async function sendVerifyMail(email, username, code) {
 
 /* GET user by id */
 async function getUserInfoById(id) {
-    try {
-        const response = await api.get('/users', {
+    return new Promise(function(resolve, reject) {
+        api.get('/users', {
             params: {
                 action: 'getUserByID',
                 id: id
             }
-        });
-
-        // handle success
-
-        console.log('DataHandler: getUserInfoById', response);
-        return response;
-    } catch (err) {
-
-        // handle error
-        console.log(err);
-        return err;
-    }
+        })
+        .then(row => resolve(row))
+        .catch(err => reject(err));
+    });
 }
 
 /* GET user by username and password */
@@ -59,7 +51,7 @@ async function getUserInfoByUserAndPass(username, password) {
                 password: password
             }
         })
-        .then(results => resolve(results))
+        .then(row => resolve(row))
         .catch(err => reject(err));
     });
 }
@@ -72,9 +64,22 @@ async function getUserCount() {
                 action: 'getCountUsers'
             }
         })
-        .then(results => resolve(results))
+        .then(row => resolve(row))
         .catch(err => reject(err));
     });
+}
+
+/* GET user count isLoggedIn */
+async function getUserCountIsLoggedIn() {
+    return new Promise(function(resolve, reject) {
+        api.get('users', {
+            params: {
+                action: 'getCountUsersOnline'
+            }
+        })
+        .then(row => resolve(row))
+        .catch(err => reject(err));
+    })
 }
 
 /* POST user */
@@ -130,7 +135,8 @@ async function updateUserInfo(data) {
                 password: data.password,
                 description: data.description,
                 verificationcode: data.verificationcode,
-                validated: data.validated
+                validated: data.validated,
+                isLoggedIn: data.isLoggedIn
             }
         });
 
@@ -150,6 +156,7 @@ export {
     getUserInfoById,
     getUserInfoByUserAndPass,
     getUserCount,
+    getUserCountIsLoggedIn,
     inputUserInfo,
     updateUserInfo,
     sendVerifyMail

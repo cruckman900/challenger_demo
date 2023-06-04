@@ -7,10 +7,9 @@ import Button from "../../UI/Button/Button";
 import Confirmation from "../Login/Confirmation";
 import PrivacyPolicy from "../Agreements/PrivacyPolicy";
 import TermsOfUse from "../Agreements/TermsOfUse";
-import { getUserByUserAndPass } from '../../AsyncDataCaller/AsyncDataCaller';
 
-import { getRandomInt, getUserInfoById, getUserInfoByUserAndPass,
-    inputUserInfo, updateUserInfo, sendVerifyMail } from "../../DataHandlers/AccountInfoDataHandler";
+import { getUserById, getUserByUserAndPass } from "../../AsyncDataCaller/AsyncDataCaller";
+import { getRandomInt, inputUserInfo, updateUserInfo, sendVerifyMail } from "../../DataHandlers/AccountInfoDataHandler";
 
 import AuthContext from "../../store/auth-context";
 import classes from './UserSettings.module.css';
@@ -257,7 +256,7 @@ const AccountInfo = (props) => {
             await updateUserInfo(authCtx.user);
 
             /* GET user */
-            const thisUser = await getUserInfoByUserAndPass(usernameState.value, passwordState.value);
+            const thisUser = await getUserByUserAndPass(usernameState.value, passwordState.value);
             authCtx.setUser(thisUser.USERID, thisUser);
 
             props.setAccountID(authCtx.user.USERID);
@@ -315,7 +314,7 @@ const AccountInfo = (props) => {
             }
             
             /* GET user */
-            const thisUser = await getUserInfoByUserAndPass(usernameState.value, data.password);
+            const thisUser = await getUserByUserAndPass(usernameState.value, data.password);
             authCtx.setUser(thisUser.USERID, thisUser);
             
             if (authCtx.user.USERID !== null) {
@@ -347,7 +346,7 @@ const AccountInfo = (props) => {
         try {
             if (authCtx.isLoggedIn) {
                 if (typeof authCtx.user.USERID !== undefined) {
-                    alert('gittin er done with cookies');
+                    alert('user: ' + authCtx.user)
                     if (authCtx.user.firstname) setFName(authCtx.user.firstname);
                     if (authCtx.user.middlename) setMName(authCtx.user.middlename);
                     if (authCtx.user.lastname) setLName(authCtx.user.lastname);
@@ -357,7 +356,7 @@ const AccountInfo = (props) => {
                     if (authCtx.user.gender) setSexSelected(authCtx.user.gender);
                 } else {
                     alert('else? hello?');
-                    getUserInfoById(auth.user.USERID)
+                    getUserById(authCtx.user.USERID)
                         .then((user) => {
                             const userInfo = user.data[0];
                             alert('user: ' + userInfo);
