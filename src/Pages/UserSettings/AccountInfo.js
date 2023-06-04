@@ -313,9 +313,9 @@ const AccountInfo = (props) => {
                 setFormSubmitted(true);
             }
             
-            /* GET user */
-            const thisUser = await getUserByUserAndPass(usernameState.value, data.password);
-            authCtx.setUser(thisUser.USERID, thisUser);
+            // /* GET user */
+            // const thisUser = await getUserByUserAndPass(usernameState.value, data.password);
+            // authCtx.setUser(thisUser.USERID, thisUser);
             
             if (authCtx.user.USERID !== null) {
                 setDisabled(true);
@@ -346,7 +346,6 @@ const AccountInfo = (props) => {
         try {
             if (authCtx.isLoggedIn) {
                 if (typeof authCtx.user.USERID !== undefined) {
-                    alert('user: ' + authCtx.user)
                     if (authCtx.user.firstname) setFName(authCtx.user.firstname);
                     if (authCtx.user.middlename) setMName(authCtx.user.middlename);
                     if (authCtx.user.lastname) setLName(authCtx.user.lastname);
@@ -354,23 +353,6 @@ const AccountInfo = (props) => {
                     if (authCtx.user.description) setDesc(authCtx.user.description);
                     if (authCtx.user.agerange) setAgeSelected(authCtx.user.agerange);
                     if (authCtx.user.gender) setSexSelected(authCtx.user.gender);
-                } else {
-                    alert('else? hello?');
-                    getUserById(authCtx.user.USERID)
-                        .then((user) => {
-                            const userInfo = user.data[0];
-                            alert('user: ' + userInfo);
-                            if (userInfo.firstname) setFName(userInfo.firstname);
-                            if (userInfo.middlename) setMName(userInfo.middlename);
-                            if (userInfo.lastname) setLName(userInfo.lastname);
-                            if (userInfo.screenname) setSName(userInfo.screenname);
-                            if (userInfo.description) setDesc(userInfo.description);
-                            if (userInfo.agerange) setAgeSelected(userInfo.agerange);
-                            if (userInfo.gender) setSexSelected(userInfo.gender);
-                        })
-                        .catch((err) => {
-                            alert('Cannot find user info from database');
-                        });
                 }
                 setDisabled(true);
             }

@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const api = axios.create({
-    baseURL: process.env.API_URL, // "https://api.chatterboxsm.com/", // || "http://localhost:4000",
+    baseURL: "https://api.chatterboxsm.com/", // || "http://localhost:4000",
     headers: { 'Content-Type': 'application/json' }
 });
 

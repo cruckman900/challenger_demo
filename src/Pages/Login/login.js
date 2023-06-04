@@ -8,7 +8,9 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHand } from '@fortawesome/free-solid-svg-icons';
 
 import { getUserByUserAndPass } from '../../AsyncDataCaller/AsyncDataCaller';
+import { updateUserInfo } from "../../DataHandlers/AccountInfoDataHandler";
 import classes from './login.module.css';
+import { logDOM } from "@testing-library/react";
 
 const hasNumber = (val) => {
     return /\d/.test(val);
@@ -105,12 +107,19 @@ export default function Login(props) {
         dispatchEmail({type: 'INPUT_BLUR'});
     };
 
+    const [showLoginErrorMessage, setShowLoginErrorMessage] = useState(false);
+    const [showForgotScreen, setShowForgotScreen] = useState(false);
+
     async function submitHandler(event) {
         event.preventDefault();
         getUserByUserAndPass(usernameState.value, passwordState.value)
             .then((user) => {
-                if(typeof user !== 'undefined') {
-                    authCtx.onLogin(user.data[0].USERID, user.data[0]);
+                if(typeof user !== 'undefined' && user.data.length > 0) {
+                    const data = user.data[0];
+                    data.isLoggedIn = true
+                    console.log('submitHandler data', data);
+                    updateUserInfo(data);
+                    authCtx.onLogin(data.USERID, data);
                 } else {
                     setShowLoginErrorMessage(true);
                 }
@@ -118,15 +127,9 @@ export default function Login(props) {
             .catch((err) => {
                 console.log('login.js submitHandler err', err);
             });
-        props.onClose();
     };
 
-    const [showLoginScreen, setShowLoginScreen] = useState(!authCtx.isLoggedIn);
-    const {showLoginErrorMessage, setShowLoginErrorMessage} = useState(false);
-    const [showForgotScreen, setShowForgotScreen] = useState(false);
-
     const forgotUserPassHandler = (event) => {
-        setShowLoginScreen(false);
         setShowForgotScreen(true);
     }
 
@@ -135,93 +138,109 @@ export default function Login(props) {
         props.onClose();
     };
 
+    const logoutAndClose = () => {
+        const data = authCtx.user;
+        data.isLoggedIn = false;
+        updateUserInfo(data);
+        authCtx.onLogout();
+        props.onClose();
+    }
+
     return (
         <Modal onClose={props.onClose}>
             <Card headerText="Login" isOpened={true}>
-                {showLoginScreen &&
+                {!authCtx.isLoggedIn && 
                     <Fragment>
-                        <form onSubmit={submitHandler}>
-                            <div className={classes.formRow}>
-                                <LeftLabelInput
-                                    id="txtUsername"
-                                    placeholder="8+ characters"
-                                    inputType="text"
-                                    required={true}
-                                    labelText="Username"
-                                    labelClassName={classes.labelText}
-                                    inputClassName={classes.inputStyle}
-                                    value={usernameState.value}
-                                    onChange={usernameChangeHandler}
-                                    onBlur={validateUsernameHandler}
-                                    valid={usernameIsValid}
-                                    error={!usernameIsValid}
-                                />
-                            </div>
-                            <div className={classes.formRow}>
-                                <LeftLabelInput
-                                    id="txtPassword"
-                                    placeholder="8+ chars with numbers"
-                                    inputType="password"
-                                    required={true}
-                                    labelText="Password"
-                                    labelClassName={classes.labelText}
-                                    inputClassName={classes.inputStyle}
-                                    value={passwordState.value}
-                                    onChange={passwordChangeHandler}
-                                    onBlur={validatePasswordHandler}
-                                    valid={passwordIsValid}
-                                    error={!passwordIsValid}
-                                />
-                            </div>
-                            {showLoginErrorMessage && (
+                        {!showForgotScreen && 
+                            <form onSubmit={submitHandler}>
                                 <div className={classes.formRow}>
-                                    <div className={classes.errorMessage}>
-                                        <FontAwesomeIcon className={classes.tabIcon} icon={faHand} />&nbsp;
-                                        <span>Invalid Username or Password.</span>
-                                    </div>
+                                    <LeftLabelInput
+                                        id="txtUsername"
+                                        placeholder="8+ characters"
+                                        inputType="text"
+                                        required={true}
+                                        labelText="Username"
+                                        labelClassName={classes.labelText}
+                                        inputClassName={classes.inputStyle}
+                                        value={usernameState.value}
+                                        onChange={usernameChangeHandler}
+                                        onBlur={validateUsernameHandler}
+                                        valid={usernameIsValid}
+                                        error={!usernameIsValid}
+                                    />
                                 </div>
-                            )}
-                            <div className={classes.formRow}>
-                                <Button type="button" className={classes.link} href="#" onClick={forgotUserPassHandler} value="Forgot User/Pass" />
-                            </div>
-                            <br />
-                            <div className={classes.formRow}>
-                                <Button className={classes.primaryBtn} type="submit" name="btnSubmit" value="Log In" disabled={!formIsValid} />
-                                <Button type="button" name="btnCancel" value="Cancel" onClick={props.onClose} />
-                            </div>
-                        </form>
+                                <div className={classes.formRow}>
+                                    <LeftLabelInput
+                                        id="txtPassword"
+                                        placeholder="8+ chars with numbers"
+                                        inputType="password"
+                                        required={true}
+                                        labelText="Password"
+                                        labelClassName={classes.labelText}
+                                        inputClassName={classes.inputStyle}
+                                        value={passwordState.value}
+                                        onChange={passwordChangeHandler}
+                                        onBlur={validatePasswordHandler}
+                                        valid={passwordIsValid}
+                                        error={!passwordIsValid}
+                                    />
+                                </div>
+                                {showLoginErrorMessage && (
+                                    <div className={classes.formRow}>
+                                        <div className={classes.errorMessage}>
+                                            <FontAwesomeIcon className={classes.tabIcon} icon={faHand} />&nbsp;
+                                            <span>Invalid Username or Password.</span>
+                                        </div>
+                                    </div>
+                                )}
+                                <div className={classes.formRow}>
+                                    <Button type="button" className={classes.link} href="#" onClick={forgotUserPassHandler} value="Forgot User/Pass" />
+                                </div>
+                                <br />
+                                <div className={classes.formRow}>
+                                    <Button className={classes.primaryBtn} type="submit" name="btnSubmit" value="Log In" disabled={!formIsValid} />
+                                    <Button type="button" name="btnCancel" value="Cancel" onClick={props.onClose} />
+                                </div>
+                            </form>
+                        }
                     </Fragment>
                 }
-                {showForgotScreen && 
-                    <form onSubmit={emailSubmitHandler}>
-                        <div className={classes.formRow}>
-                            <LeftLabelInput
-                                id="txtEmail"
-                                placeholder="Must be valid"
-                                inputType="email"
-                                required={true}
-                                labelText="Email"
-                                labelClassName={classes.labelText}
-                                inputClassName={classes.inputStyle}
-                                value={emailState.value}
-                                onChange={emailChangeHandler}
-                                onBlur={validateEmailHandler}
-                                valid={emailIsValid}  
-                                error={!emailIsValid}
-                            />
-                                <br />
-                            <div className={classes.formRow}>
-                                <Button className={classes.primaryBtn} type="submit" name="btnSubmitEmail" value="Submit" disabled={!emailIsValid} />
-                                <Button type="button" name="btnCancel" value="Cancel" onClick={props.onClose} />
-                            </div>
-                        </div>
-                    </form>
+                {!authCtx.isLoggedIn && 
+                    <Fragment>
+                        {showForgotScreen &&
+                            <form onSubmit={emailSubmitHandler}>
+                                <div className={classes.formRow}>
+                                    <LeftLabelInput
+                                        id="txtEmail"
+                                        placeholder="Must be valid"
+                                        inputType="email"
+                                        required={true}
+                                        labelText="Email"
+                                        labelClassName={classes.labelText}
+                                        inputClassName={classes.inputStyle}
+                                        value={emailState.value}
+                                        onChange={emailChangeHandler}
+                                        onBlur={validateEmailHandler}
+                                        valid={emailIsValid}  
+                                        error={!emailIsValid}
+                                    />
+                                        <br />
+                                    <div className={classes.formRow}>
+                                        <Button className={classes.primaryBtn} type="submit" name="btnSubmitEmail" value="Submit" disabled={!emailIsValid} />
+                                        <Button type="button" name="btnCancel" value="Cancel" onClick={props.onClose} />
+                                    </div>
+                                </div>
+                            </form>
+                        }
+                    </Fragment>
                 }
                 {authCtx.isLoggedIn && 
                     <Fragment>
-                        <p className={classes.welcome}>Welcome <span className={classes.name}>{usernameState.value}</span>!</p>
                         <div className={classes.formRow}>
-                            <Button className={classes.primaryBtn} type="button" name="btnLogout" value="Log Out" onClick={authCtx.onLogout} />
+                            <p className={classes.welcome}>Welcome <span className={classes.name}>{authCtx.user.firstname}</span>!</p>
+                        </div>
+                        <div className={classes.formRow}>
+                            <Button className={classes.primaryBtn} type="button" name="btnLogout" value="Log Out" onClick={logoutAndClose} />
                             <Button type="button" name="btnClose" value="Close" onClick={props.onClose} />
                         </div>
                     </Fragment>
