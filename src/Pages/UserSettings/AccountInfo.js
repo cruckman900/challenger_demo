@@ -260,7 +260,9 @@ const AccountInfo = (props) => {
     const [password, setPassword] = useState(null);
     const [desc, setDesc] = useState(null);
 
+
     useEffect(() => {
+        resetForm();
         if (authCtx.isLoggedIn) {
             /* GET user */
             console.log('AccountInfo.js useEffect authCtx.isLoggedIn', authCtx.isLoggedIn);
@@ -320,6 +322,8 @@ const AccountInfo = (props) => {
         setDesc(null);
         setAgeSelected('under18');
         setSexSelected('other');
+
+        setDisabled(false);
 }
 
     async function hideConfirmationHandler(val) {
@@ -428,7 +432,7 @@ const AccountInfo = (props) => {
                         />
                         <Button
                             type="button"
-                            onClick={() => sendVerifyMail(emailState.value, usernameState.value, verificationcode)}w
+                            onClick={() => sendVerifyMail(user.email, user.username, verificationcode)}
                             style={{width: '8rem', padding: '.25rem'}}
                             value="Resend Code"
                         />

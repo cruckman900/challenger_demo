@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const api = axios.create({
-    baseURL: "https://api.chatterboxsm.com/", // || "http://localhost:4000",
+    baseURL: "https://api.chatterboxsm.com/",
     headers: { 'Content-Type': 'application/json' }
 });
 
@@ -10,10 +10,10 @@ function getRandomInt(min, max) {
 }
 
 const mailer = axios.create({
-    baseURL: process.env.MAILER_URL, // || "http://localhost:80"
+    baseURL: "https://api.chatterboxsm.com/mailer"
 });
 
-async function sendVerifyMail(email, username, code) {
+function sendVerifyMail(email, username, code) {
     mailer.get('/', {
         params: {
             action: 'verifyUser',
@@ -22,9 +22,8 @@ async function sendVerifyMail(email, username, code) {
             vc: code
         }
     })
-    .then((response) => {
-        console.log('Response:', response.data);
-    });
+    .then(console.log(result => `AccountInfoDataHandler.js sendVerifyMail result`, result))
+    .catch(err => console.log(`AccountInfoDataHandler.js sendVerifyMail err:`, err));
 }
 
 /* GET user by id */
@@ -83,29 +82,27 @@ async function getUserCountIsLoggedIn() {
 }
 
 /* POST user */
-async function inputUserInfo(data) {
-    return new Promise(function(resolve, reject) {
-        api.post('/users', {
-            method: 'POST',
-            data: {
-                firstname: data.firstname,
-                middlename: data.middlename,
-                lastname: data.lastname,
-                screenname: data.screenname,
-                email: data.email,
-                agerange: data.agerange,
-                gender: data.gender,
-                username: data.username,
-                password: data.password,
-                description: data.description,
-                verificationcode: data.verificationcode,
-                validated: data.validated
-            }
-        })
-        .then(row => resolve(row))
-        .then(sendVerifyMail(data.email, data.username, data.verificationcode))
-        .catch(err => reject(err));
-    });
+function inputUserInfo(data) {
+    api.post('/users', {
+        method: 'POST',
+        data: {
+            firstname: data.firstname,
+            middlename: data.middlename,
+            lastname: data.lastname,
+            screenname: data.screenname,
+            email: data.email,
+            agerange: data.agerange,
+            gender: data.gender,
+            username: data.username,
+            password: data.password,
+            description: data.description,
+            verificationcode: data.verificationcode,
+            validated: data.validated
+        }
+    })
+    .then(result => console.log(`AccountInfoDataHandler.js inputUserInfo result`, result))
+    .then(sendVerifyMail(data.email, data.username, data.verificationcode))
+    .catch(err => console.log(`AccountInfoDataHandler.js inputUserInfo err`, err));
 }
 
 /* PUT user */
