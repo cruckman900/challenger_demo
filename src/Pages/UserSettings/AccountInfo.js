@@ -345,7 +345,7 @@ const AccountInfo = (props) => {
                 .catch((err) => console.log('AccountInfo.js onSubmitHander insert err:', err));
             } else {
                 setMessage({noteType: 'error', headerText: 'Account Not Verified', 
-                messageText: 'Click link below to enter your verification code!'
+                messageText: 'You will not be able to log in without validating your account.  Click link below to enter your verification code!'
             });
             setShowVerifyLink(true);
         }
