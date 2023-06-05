@@ -331,7 +331,6 @@ const AccountInfo = (props) => {
             user.validated = true;
             await updateUserInfo(user)
                 .then(() => {
-                    setUser(user);
                     props.setAccountID(user.USERID);
                     props.setAgeRange(user.agerange);
         
