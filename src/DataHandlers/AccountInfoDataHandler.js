@@ -109,6 +109,7 @@ async function inputUserInfo(data) {
 /* PUT user */
 async function updateUserInfo(data) {
     return new Promise(function(resolve, reject) {
+        console.log('AccountInfoDataHandler updateUserInfo data', data);
         api.put('/users', {
             method: 'PUT',
             data: {

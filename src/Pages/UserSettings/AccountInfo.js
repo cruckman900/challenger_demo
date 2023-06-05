@@ -329,6 +329,7 @@ const AccountInfo = (props) => {
     async function hideConfirmationHandler(val) {
         if (+val === verificationcode) {
             user.validated = true;
+            console.log('AccountInfo.js hideConfirmationHandler user', user);
             await updateUserInfo(user)
                 .then(() => {
                     props.setAccountID(user.USERID);
@@ -342,8 +343,8 @@ const AccountInfo = (props) => {
                     setShowVerifyLink(false);
                 })
                 .catch((err) => console.log('AccountInfo.js onSubmitHander insert err:', err));
-        } else {
-            setMessage({noteType: 'error', headerText: 'Account Not Verified', 
+            } else {
+                setMessage({noteType: 'error', headerText: 'Account Not Verified', 
                 messageText: 'Click link below to enter your verification code!'
             });
             setShowVerifyLink(true);
@@ -369,16 +370,10 @@ const AccountInfo = (props) => {
                 verificationcode: verificationcode,
                 validated: validated
             }
-            setUser(data);
-
+            
             if (queryType === 'insert') {
                 /* POST user */
                 await inputUserInfo(data)
-                    .then(() => {
-                        setTimeout(() => {
-                            setConfirmationIsShown(true);
-                        }, 500);
-                    })
                     .then((result) => console.log('AccountInfo.js onSubmitHandler result', result))
                     .catch((err) => console.log('AccountInfo.js onSubmitHander err:', err));
             } else if (queryType === 'update') {
@@ -396,11 +391,18 @@ const AccountInfo = (props) => {
             /* GET user */
             getUserByUserAndPass(usernameState.value, data.password)
                 .then((user) => {
-                    if (user.USERID !== null) {
-                        setUser(user);
+                    if (user.data[0].USERID !== null) {
+                        const thisUser = user.data[0]
+                        setUser(thisUser);
                         setDisabled(true);
-                        props.setAccountID(user.USERID);
-                        props.setAgeRange(user.agerange);
+                        props.setAccountID(thisUser.USERID);
+                        props.setAgeRange(thisUser.agerange);
+                        console.log('AccountInfo.js onSubmitHandler getUserByUserAndPass', thisUser);
+                        if (queryType === 'insert') {
+                            setTimeout(() => {
+                                setConfirmationIsShown(true);
+                            }, 500);
+                        }
                     } else {
                         setMessage({noteType: 'error', headerText: 'Something went wrong', 
                             messageText: 'Account information has not been saved! Try again, or come back later'
