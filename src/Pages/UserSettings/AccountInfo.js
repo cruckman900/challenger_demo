@@ -370,6 +370,7 @@ const AccountInfo = (props) => {
                 verificationcode: verificationcode,
                 validated: validated
             }
+            setUser(data);
 
             if (queryType === 'insert') {
                 /* POST user */
