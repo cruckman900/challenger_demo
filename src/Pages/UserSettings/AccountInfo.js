@@ -335,7 +335,7 @@ const AccountInfo = (props) => {
                     props.setAccountID(user.USERID);
                     props.setAgeRange(user.agerange);
         
-                    setMessage({noteType: 'success', headerText: 'Form submitted!', 
+                    setMessage({noteType: 'success', headerText: 'Form submitted', 
                         messageText: 'Account activated!'});
         
                     setValidated(true);
