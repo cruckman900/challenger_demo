@@ -92,9 +92,3 @@
     font-family: 'ShackleItalic';
     color: rgba(175, 20, 0, 1);
 }
-
-@media screen and (max-width: 450px) {
-    .Label {
-        width: 7rem !important;
-    }
-}
