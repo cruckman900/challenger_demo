@@ -22,7 +22,7 @@ function sendVerifyMail(email, username, code) {
             vc: code
         }
     })
-    .then(console.log(result => `AccountInfoDataHandler.js sendVerifyMail result`, result))
+    .then(console.log(result => console.log(`AccountInfoDataHandler.js sendVerifyMail result`, result))
     .catch(err => console.log(`AccountInfoDataHandler.js sendVerifyMail err:`, err));
 }
 
