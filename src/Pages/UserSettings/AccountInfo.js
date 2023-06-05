@@ -379,7 +379,8 @@ const AccountInfo = (props) => {
                             setConfirmationIsShown(true);
                         }, 500);
                     })
-                    .catch((err) => console.log('AccountInfo.js onSubmitHander insert err:', err));
+                    .then((result) => console.log('AccountInfo.js onSubmitHandler result', result))
+                    .catch((err) => console.log('AccountInfo.js onSubmitHander err:', err));
             } else if (queryType === 'update') {
                 /* PUT user */
                 data.id = authCtx.userID || 0;

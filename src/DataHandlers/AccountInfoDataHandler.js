@@ -14,7 +14,7 @@ const mailer = axios.create({
 });
 
 function sendVerifyMail(email, username, code) {
-    mailer.get('/', {
+    const result = mailer.get('/', {
         params: {
             action: 'verifyUser',
             e: email,
@@ -22,8 +22,8 @@ function sendVerifyMail(email, username, code) {
             vc: code
         }
     })
-    .then(result => console.log(`AccountInfoDataHandler.js sendVerifyMail result`, result))
-    .catch(err => console.log(`AccountInfoDataHandler.js sendVerifyMail err:`, err));
+    
+    console.log(`AccountInfoDataHandler.js sendVerifyMail result`, result);
 }
 
 /* GET user by id */
@@ -82,8 +82,8 @@ async function getUserCountIsLoggedIn() {
 }
 
 /* POST user */
-function inputUserInfo(data) {
-    api.post('/users', {
+async function inputUserInfo(data) {
+    await api.post('/users', {
         method: 'POST',
         data: {
             firstname: data.firstname,
@@ -100,9 +100,10 @@ function inputUserInfo(data) {
             validated: data.validated
         }
     })
-    .then(result => console.log(`AccountInfoDataHandler.js inputUserInfo result`, result))
-    .then(sendVerifyMail(data.email, data.username, data.verificationcode))
-    .catch(err => console.log(`AccountInfoDataHandler.js inputUserInfo err`, err));
+    .then(result => console.log('AccountInfoDataHandler inputUserInfo result', result))
+    .catch(err => console.log('AccountInfoDataHandler inputUserInfo err', err));
+
+    sendVerifyMail(data.email, data.username, data.verificationcode)
 }
 
 /* PUT user */
