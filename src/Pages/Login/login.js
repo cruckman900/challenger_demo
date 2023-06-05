@@ -107,6 +107,7 @@ export default function Login(props) {
     };
 
     const [showLoginErrorMessage, setShowLoginErrorMessage] = useState(false);
+    const [showAccountNotValidatedMessage, setShowAccountNotValidatedMessage] = useState(false);
     const [showForgotScreen, setShowForgotScreen] = useState(false);
     const [user, setUser] = useState(null);
 
@@ -116,12 +117,16 @@ export default function Login(props) {
             .then((user) => {
                 if(typeof user !== 'undefined' && user.data.length > 0) {
                     const data = user.data[0];
-                    data.isLoggedIn = true
-                    updateUserInfo(data)
-                        .then(() => {
-                            setUser(user);
-                            authCtx.onLogin(data.USERID, data);
-                        });
+                    if(data.validated === false) {
+                        setShowAccountNotValidatedMessage(true);
+                    } else {
+                        data.isLoggedIn = true
+                        updateUserInfo(data)
+                            .then(() => {
+                                setUser(data);
+                                authCtx.onLogin(data.USERID, data);
+                            });
+                    }
                 } else {
                     setShowLoginErrorMessage(true);
                 }
@@ -191,6 +196,14 @@ export default function Login(props) {
                                         <div className={classes.errorMessage}>
                                             <FontAwesomeIcon className={classes.tabIcon} icon={faHand} />&nbsp;
                                             <span>Invalid Username or Password.</span>
+                                        </div>
+                                    </div>
+                                )}
+                                {showAccountNotValidatedMessage && (
+                                    <div className={classes.formRow}>
+                                        <div className={classes.errorMessage}>
+                                        <FontAwesomeIcon className={classes.tabIcon} icon={faHand} />&nbsp;
+                                            <span>Your account has not been verified.</span>
                                         </div>
                                     </div>
                                 )}

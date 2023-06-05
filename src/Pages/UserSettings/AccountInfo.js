@@ -265,10 +265,8 @@ const AccountInfo = (props) => {
         resetForm();
         if (authCtx.isLoggedIn) {
             /* GET user */
-            console.log('AccountInfo.js useEffect authCtx.isLoggedIn', authCtx.isLoggedIn);
             getUserById(authCtx.userID)
                 .then((user) => {
-                    console.log('AccountInfo useEffect user:', user);
                     const thisUser = user.data[0];
                     if (thisUser.USERID) {
                         setUser(thisUser);
@@ -329,7 +327,6 @@ const AccountInfo = (props) => {
     async function hideConfirmationHandler(val) {
         if (+val === verificationcode) {
             user.validated = true;
-            console.log('AccountInfo.js hideConfirmationHandler user', user);
             await updateUserInfo(user)
                 .then(() => {
                     props.setAccountID(user.USERID);
@@ -397,7 +394,6 @@ const AccountInfo = (props) => {
                         setDisabled(true);
                         props.setAccountID(thisUser.USERID);
                         props.setAgeRange(thisUser.agerange);
-                        console.log('AccountInfo.js onSubmitHandler getUserByUserAndPass', thisUser);
                         if (queryType === 'insert') {
                             setTimeout(() => {
                                 setConfirmationIsShown(true);
