@@ -9,6 +9,11 @@ export default function NewFeatures() {
     return (
         <DefaultPage headerText="Features & Updates Log">
             <Card headerText="June 2023">
+            <BodyHeader className={classes.header}>6/04/2023 - 6/05/2023</BodyHeader>
+                <div className={classes.updateBody}>
+                    Really spent a lot of time getting the back end functioning and then flowing things in the user info section.  Logout/Log in 
+                    features and what happens with the data that appears on screen.
+                </div>
                 <BodyHeader className={classes.header}>6/01/2023 - 6/02/2023</BodyHeader>
                 <div className={classes.updateBody}>
                     Able to insert and update user info.  Able to log in.  Pre-populating fields in user info when a user is logged in 

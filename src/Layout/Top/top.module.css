@@ -13,6 +13,7 @@
     text-decoration: none;
     letter-spacing: .065rem;
     color: rgba(255, 69, 0, .8);
+    z-index: 1;
 }
 
 .headerText a:hover {
@@ -67,6 +68,7 @@
     text-decoration: none;
     height: 1rem;
     width: 5rem;
+    z-index: 1;
 }
 
 .navLink:hover, .navLink:active {
@@ -85,6 +87,7 @@
     float: right;
     color: rgba(255, 69, 0, 0.8);
     width: 6.5rem;
+    z-index: 1;
 }
 
 .link:hover {

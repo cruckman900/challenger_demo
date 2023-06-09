@@ -285,6 +285,7 @@ const AccountInfo = (props) => {
                         setPassword(thisUser.password);
                         dispatchPassword({type: 'USER_INPUT', value: thisUser.password});
                         setDesc(thisUser.description);
+                        setDescWordCount(thisUser.desc.length);
                         setAgeSelected(thisUser.agerange);
                         setSexSelected(thisUser.gender);
 
@@ -318,6 +319,7 @@ const AccountInfo = (props) => {
         setPassword(null);
         dispatchPassword({type: 'USER_INPUT', value: ''});
         setDesc(null);
+        setDescWordCount(0);
         setAgeSelected('under18');
         setSexSelected('other');
 
