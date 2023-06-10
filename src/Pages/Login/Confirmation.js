@@ -1,32 +1,33 @@
-import React, { useState, useEffect } from 'react';
-import Modal from "../../UI/Modal/Modal";
-import Card from "../../UI/Card/Card";
-import LeftLabelInput from '../../UI/LeftLabelInput/LeftLabelInput';
-import Button from "../../UI/Button/Button";
-import classes from "./login.module.css";
+/* eslint-disable react/prop-types */
+import React, { useState, useEffect } from 'react'
+import Modal from '../../UI/Modal/Modal'
+import Card from '../../UI/Card/Card'
+import LeftLabelInput from '../../UI/LeftLabelInput/LeftLabelInput'
+import Button from '../../UI/Button/Button'
+import classes from './login.module.css'
 
 const Confirmation = (props) => {
-    const [code, setCode] = useState('');
-    const [codeIsValid, setCodeIsValid] = useState(false);
-    const [btnEnabled, setButtonEnabled] = useState(false);
+    const [code, setCode] = useState('')
+    const [codeIsValid, setCodeIsValid] = useState(false)
+    const [btnEnabled, setButtonEnabled] = useState(false)
 
     const onChangeHandler = (event) => {
-        setCode(+event.target.value);
+        setCode(+event.target.value)
     }
 
     useEffect(() => {
         if (props.code === code) {
-            setCodeIsValid(true);
+            setCodeIsValid(true)
             setButtonEnabled(true)
-            return;
+            return
         }
-        setCodeIsValid(false);
-    }, [props.code, code]);
+        setCodeIsValid(false)
+    }, [props.code, code])
 
     const onSubmitHandler = (event) => {
-        event.preventDefault();
+        event.preventDefault()
         if (codeIsValid) {
-            props.onClose(code);
+            props.onClose(code)
         }
     }
 
@@ -53,7 +54,7 @@ const Confirmation = (props) => {
                 </form>
             </Card>
         </Modal>
-    );
-};
+    )
+}
 
-export default Confirmation;
+export default Confirmation
