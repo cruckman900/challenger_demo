@@ -1,7 +1,8 @@
-import React from "react";
-import classes from './BodyHeader.module.css';
+/* eslint-disable react/prop-types */
+import React from 'react'
+import classes from './BodyHeader.module.css'
 
-export default function BodyHeader(props) {
+export default function BodyHeader (props) {
     return (
         <div className={`${classes.BodyHeader} ${props.className}`}>{props.children}</div>
     )
