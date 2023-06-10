@@ -84,7 +84,7 @@ const AccountInfo = (props) => {
     const [message, setMessage] = useState('')
 
     useEffect(() => {
-        if (!formSubmitted || !authCtx.userID) {
+        if (!formSubmitted && !authCtx.userID) {
             setMessage({
                 noteType: 'info',
                 headerText: 'Form Handling',
