@@ -1,11 +1,12 @@
-import React, { Fragment, useState, useEffect} from 'react';
-import { Container, Row, Col } from 'react-bootstrap';
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { 
+/* eslint-disable react/prop-types */
+import React, { Fragment, useState, useEffect } from 'react'
+import { Container, Row, Col } from 'react-bootstrap'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import {
     faUserPlus, faLocationDot, faUtensils, faTelevision, faRadio, faFootball, faComputer
-} from '@fortawesome/free-solid-svg-icons';
+} from '@fortawesome/free-solid-svg-icons'
 
-import classes from './NavLocationCard.module.css';
+import classes from './NavLocationCard.module.css'
 
 const NavLocationCard = (props) => {
     const myIcons = {
@@ -15,34 +16,34 @@ const NavLocationCard = (props) => {
         television: faTelevision,
         radio: faRadio,
         football: faFootball,
-        computer: faComputer,
-    };
+        computer: faComputer
+    }
 
-    const [dateCreatedWording, setDateCreatedWording] = useState('Created on');
-    const [titleOrName, setTitleOrName] = useState('title');
-    const [selected, setSelected] = useState(false);
+    const [dateCreatedWording, setDateCreatedWording] = useState('Created on')
+    const [titleOrName, setTitleOrName] = useState('title')
+    const [selected, setSelected] = useState(false)
 
     useEffect(() => {
         if (props.navType === 'community' || props.navType === 'group') {
-            setDateCreatedWording('Created on');
-            setTitleOrName('title');
+            setDateCreatedWording('Created on')
+            setTitleOrName('title')
         } else {
-            setDateCreatedWording('Joined on');
-            setTitleOrName('name');
+            setDateCreatedWording('Joined on')
+            setTitleOrName('name')
         }
 
         if (props.selected === true) {
-            setSelected(true);
+            setSelected(true)
         } else {
-            setSelected(false);
+            setSelected(false)
         }
-    }, [props]);
+    }, [props])
 
     return (
         <Fragment>
             <div className={`${classes.NavCard} ${selected && classes.selected}`} onClick={props.onClickHandler}>
                 <Container>
-                    <Row style={{display: 'flex'}}>
+                    <Row style={{ display: 'flex' }}>
                         <Col className={classes.colLeft}>
                             {titleOrName === 'title' && <div className={`${classes.header} ${classes.noSelect}`}>{props.title}</div>}
                             {titleOrName === 'name' && <div className={`${classes.header} ${classes.noSelect}`}>{props.name}</div>}
@@ -55,7 +56,7 @@ const NavLocationCard = (props) => {
                 </Container>
             </div>
         </Fragment>
-    );
-};
+    )
+}
 
-export default NavLocationCard;
+export default NavLocationCard
