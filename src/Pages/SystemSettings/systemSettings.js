@@ -1,25 +1,25 @@
-import React, { useState } from "react";
-import DefaultPage from "../../UI/DefaultPage/DefaultPage";
-import LeftLabelInput from "../../UI/LeftLabelInput/LeftLabelInput";
-import BodyHeader from "../../UI/BodyHeader/BodyHeader";
-import Label from "../../UI/Label/Label";
-import Button from "../../UI/Button/Button";
-import classes from "./systemSettings.module.css";
+import React, { useState } from 'react'
+import DefaultPage from '../../UI/DefaultPage/DefaultPage'
+import LeftLabelInput from '../../UI/LeftLabelInput/LeftLabelInput'
+import BodyHeader from '../../UI/BodyHeader/BodyHeader'
+import Label from '../../UI/Label/Label'
+import Button from '../../UI/Button/Button'
+import classes from './systemSettings.module.css'
 
-export default function SystemSettings() {
-    const [imageSrc, setImageSrc] = useState(null);
-    const [primaryColor, setPrimaryColor] = useState('#990000');
-    const [secondaryColor, setSecondaryColor] = useState('#009900');
+export default function SystemSettings () {
+    const [imageSrc, setImageSrc] = useState(null)
+    const [primaryColor, setPrimaryColor] = useState('#990000')
+    const [secondaryColor, setSecondaryColor] = useState('#009900')
 
     const imgOnChangeHandler = (event) => {
-        console.log(event.target);
+        console.log(event.target)
         if (event.target.files && event.target.files[0]) {
-            setImageSrc(URL.createObjectURL(event.target.files[0]));
+            setImageSrc(URL.createObjectURL(event.target.files[0]))
         }
     }
 
     const onSubmitHandler = (event) => {
-        event.preventDefault();
+        event.preventDefault()
     }
 
     return (
@@ -66,8 +66,8 @@ export default function SystemSettings() {
                     <div className={classes.row}>
                         <Label text="Preview" className={classes.Label} />
                         <div>
-                            <div className={classes.span} style={{color: `${primaryColor}`}}>Your Name: </div>
-                            <div className={classes.span} style={{color: `${secondaryColor}`}}>Your Message Here.</div>
+                            <div className={classes.span} style={{ color: `${primaryColor}` }}>Your Name: </div>
+                            <div className={classes.span} style={{ color: `${secondaryColor}` }}>Your Message Here.</div>
                         </div>
                     </div>
                 </div>
@@ -82,5 +82,5 @@ export default function SystemSettings() {
                 </div>
             </form>
         </DefaultPage>
-    );
+    )
 }
