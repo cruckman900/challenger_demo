@@ -1,30 +1,30 @@
-import React, { useState } from "react";
-import BodyHeader from "../../UI/BodyHeader/BodyHeader";
-import LeftLabelInput from "../../UI/LeftLabelInput/LeftLabelInput";
-import Button from "../../UI/Button/Button";
-import classes from './UserSettings.module.css';
+import React, { useState } from 'react'
+import BodyHeader from '../../UI/BodyHeader/BodyHeader'
+import LeftLabelInput from '../../UI/LeftLabelInput/LeftLabelInput'
+import Button from '../../UI/Button/Button'
+import classes from './UserSettings.module.css'
 
 const LocationInfo = (props) => {
     const onSubmitHandler = (event) => {
-        event.preventDefault();
-    };
+        event.preventDefault()
+    }
 
-    const [city, setCity] = useState('');
-    const [state, setState] = useState('');
-    const [country, setCountry] = useState('');
+    const [city, setCity] = useState('')
+    const [state, setState] = useState('')
+    const [country, setCountry] = useState('')
 
     const cityChangeHandler = (event) => {
-        setCity(event.target.value);
+        setCity(event.target.value)
     }
 
     const stateChangeHandler = (event) => {
-        setState(event.target.value);
+        setState(event.target.value)
     }
 
     const countryChangeHandler = (event) => {
-        setCountry(event.target.value);
+        setCountry(event.target.value)
     }
-    
+
     return (
         <form onSubmit={onSubmitHandler}>
             <BodyHeader>Location (Optional)</BodyHeader>
@@ -67,7 +67,7 @@ const LocationInfo = (props) => {
                 <Button className={classes.primaryBtn} type="submit" name="btnSubmit" value="Submit" />
             </div>
         </form>
-    );
-};
+    )
+}
 
-export default LocationInfo;
+export default LocationInfo
