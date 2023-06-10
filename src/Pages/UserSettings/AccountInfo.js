@@ -1,12 +1,13 @@
-import React, { Fragment, useState, useEffect, useReducer, useContext, useRef, useLayoutEffect } from "react";
-import BodyHeader from "../../UI/BodyHeader/BodyHeader";
-import LeftLabelInput from "../../UI/LeftLabelInput/LeftLabelInput";
-import Label from "../../UI/Label/Label";
-import Note from "../../UI/Note/Note";
-import Button from "../../UI/Button/Button";
-import Confirmation from "../Login/Confirmation";
-import PrivacyPolicy from "../Agreements/PrivacyPolicy";
-import TermsOfUse from "../Agreements/TermsOfUse";
+/* eslint-disable react/prop-types */
+import React, { Fragment, useState, useEffect, useReducer, useContext } from 'react'
+import BodyHeader from '../../UI/BodyHeader/BodyHeader'
+import LeftLabelInput from '../../UI/LeftLabelInput/LeftLabelInput'
+import Label from '../../UI/Label/Label'
+import Note from '../../UI/Note/Note'
+import Button from '../../UI/Button/Button'
+import Confirmation from '../Login/Confirmation'
+import PrivacyPolicy from '../Agreements/PrivacyPolicy'
+import TermsOfUse from '../Agreements/TermsOfUse'
 
 import {
     getRandomInt,
@@ -15,117 +16,118 @@ import {
     inputUserInfo,
     updateUserInfo,
     sendVerifyMail
-} from "../../DataHandlers/AccountInfoDataHandler";
+} from '../../DataHandlers/AccountInfoDataHandler'
 
-import AuthContext from "../../store/auth-context";
-import classes from './UserSettings.module.css';
+import AuthContext from '../../store/auth-context'
+import classes from './UserSettings.module.css'
 
 const hasNumber = (val) => {
-    return /\d/.test(val);
+    return /\d/.test(val)
 }
 
 const isEmail = (val) => {
-    return /^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/.test(val);
+    return /^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/.test(val)
 }
 
 const nameReducer = (state, action) => {
     if (action.type === 'USER_INPUT') {
-        return { value: action.value, isValid: action.value.trim().length > 0 };
+        return { value: action.value, isValid: action.value.trim().length > 0 }
     }
     if (action.type === 'INPUT_BLUR') {
-        return { value: state.value, isValid: state.value.trim().length > 0 };
+        return { value: state.value, isValid: state.value.trim().length > 0 }
     }
 }
 
 const emailReducer = (state, action, val) => {
     if (action.type === 'USER_INPUT') {
-        return { value: action.value, isValid: isEmail(action.value.trim()) };
+        return { value: action.value, isValid: isEmail(action.value.trim()) }
     }
     if (action.type === 'INPUT_BLUR') {
-        return { value: state.value, isValid: isEmail(state.value.trim()) };
+        return { value: state.value, isValid: isEmail(state.value.trim()) }
     }
- }
+}
 
 const usernameReducer = (state, action, val) => {
     if (action.type === 'USER_INPUT') {
-        return { value: action.value, isValid: action.value.trim().length > 7 };
+        return { value: action.value, isValid: action.value.trim().length > 7 }
     }
     if (action.type === 'INPUT_BLUR') {
-        return { value: state.value, isValid: state.value.trim().length > 7 };
+        return { value: state.value, isValid: state.value.trim().length > 7 }
     }
 }
 
 const passwordReducer = (state, action) => {
     if (action.type === 'USER_INPUT') {
-        return { value: action.value, isValid: action.value.trim().length > 7 && hasNumber(action.value) };
+        return { value: action.value, isValid: action.value.trim().length > 7 && hasNumber(action.value) }
     }
     if (action.type === 'INPUT_BLUR') {
-        return { value: state.value, isValid: state.value.trim().length > 7 && hasNumber(state.value) };
+        return { value: state.value, isValid: state.value.trim().length > 7 && hasNumber(state.value) }
     }
 }
 
 const AccountInfo = (props) => {
-    const authCtx = useContext(AuthContext);
+    const authCtx = useContext(AuthContext)
 
-    const [ageSelected, setAgeSelected] = useState('under18');
-    const [sexSelected, setSexSelected] = useState('other');
-    const [agreeSelected, setAgreeSelected] = useState(false);
+    const [ageSelected, setAgeSelected] = useState('under18')
+    const [sexSelected, setSexSelected] = useState('other')
+    const [agreeSelected, setAgreeSelected] = useState(false)
 
-    const [screenName, setScreenName] = useState('');
-    const [description, setDescription] = useState('');
+    const [screenName, setScreenName] = useState('')
+    const [description, setDescription] = useState('')
 
-    const [disabled, setDisabled] = useState(false);
-    const [submitDisabled, setSubmitDisabled] = useState(true);
-    const [queryType, setQueryType] = useState('insert');
+    const [disabled, setDisabled] = useState(false)
+    const [submitDisabled, setSubmitDisabled] = useState(true)
+    const [queryType, setQueryType] = useState('insert')
 
-    const [formSubmitted, setFormSubmitted] = useState(false);
+    const [formSubmitted, setFormSubmitted] = useState(false)
 
-    const [message, setMessage] = useState('');
+    const [message, setMessage] = useState('')
 
     useEffect(() => {
         if (!formSubmitted || !authCtx.userID) {
             setMessage({
                 noteType: 'info',
                 headerText: 'Form Handling',
-                messageText: 'You must submit this form to unlock the other forms. Bold Items are required fields.'});
+                messageText: 'You must submit this form to unlock the other forms. Bold Items are required fields.'
+            })
         }
-    }, [formSubmitted]);
+    }, [formSubmitted])
 
-    const [formIsValid, setFormIsValid] = useState(false);
+    const [formIsValid, setFormIsValid] = useState(false)
 
     const [emailState, dispatchEmail] = useReducer(emailReducer, {
         value: '',
         isValid: null
-    });
+    })
 
     const [firstNameState, dispatchFirstName] = useReducer(nameReducer, {
         value: '',
         isValid: null
-    });
+    })
 
     const [lastNameState, dispatchLastName] = useReducer(nameReducer, {
         value: '',
         isValid: null
-    });
+    })
 
-    const [middleName, setMiddleName] = useState('');
+    const [middleName, setMiddleName] = useState('')
 
     const [usernameState, dispatchUsername] = useReducer(usernameReducer, {
         value: '',
         isValid: null
-    });
+    })
 
     const [passwordState, dispatchPassword] = useReducer(passwordReducer, {
         value: '',
         isValid: null
-    });
+    })
 
-    const { isValid: firstNameIsValid } = firstNameState;
-    const { isValid: lastNameIsValid } = lastNameState;
-    const { isValid: emailIsValid } = emailState;
-    const { isValid: usernameIsValid } = usernameState;
-    const { isValid: passwordIsValid } = passwordState;
- 
+    const { isValid: firstNameIsValid } = firstNameState
+    const { isValid: lastNameIsValid } = lastNameState
+    const { isValid: emailIsValid } = emailState
+    const { isValid: usernameIsValid } = usernameState
+    const { isValid: passwordIsValid } = passwordState
+
     useEffect(() => {
         const identifier = setTimeout(() => {
             setFormIsValid(
@@ -134,231 +136,233 @@ const AccountInfo = (props) => {
                 emailIsValid &&
                 usernameIsValid &&
                 passwordIsValid
-            );
-        }, 500);
+            )
+        }, 500)
 
         return () => {
-            clearTimeout(identifier);
+            clearTimeout(identifier)
         }
-    }, [firstNameIsValid, lastNameIsValid, emailIsValid, usernameIsValid, passwordIsValid]);
+    }, [firstNameIsValid, lastNameIsValid, emailIsValid, usernameIsValid, passwordIsValid])
 
     const firstNameChangeHandler = (event) => {
-        dispatchFirstName({type: 'USER_INPUT', value: event.target.value});
-    };
+        dispatchFirstName({ type: 'USER_INPUT', value: event.target.value })
+    }
 
     const middleNameChangeHandler = (event) => {
-        setMiddleName(event.target.value);
+        setMiddleName(event.target.value)
     }
 
     const lastNameChangeHandler = (event) => {
-        dispatchLastName({type: 'USER_INPUT', value: event.target.value});
-    };
+        dispatchLastName({ type: 'USER_INPUT', value: event.target.value })
+    }
 
     const usernameChangeHandler = (event) => {
-        dispatchUsername({type: 'USER_INPUT', value: event.target.value});
-    };
+        dispatchUsername({ type: 'USER_INPUT', value: event.target.value })
+    }
 
     const emailChangeHandler = (event) => {
-        dispatchEmail({type: 'USER_INPUT', value: event.target.value});
-    };
+        dispatchEmail({ type: 'USER_INPUT', value: event.target.value })
+    }
 
     const passwordChangeHandler = (event) => {
-        dispatchPassword({type: 'USER_INPUT', value: event.target.value});
-    };
+        dispatchPassword({ type: 'USER_INPUT', value: event.target.value })
+    }
 
     const validateEmailHandler = () => {
-        dispatchEmail({type: 'INPUT_BLUR'});
-    };
+        dispatchEmail({ type: 'INPUT_BLUR' })
+    }
 
     const validateFirstNameHandler = () => {
-        dispatchUsername({type: 'INPUT_BLUR'});
-    };
+        dispatchUsername({ type: 'INPUT_BLUR' })
+    }
 
     const validateLastNameHandler = () => {
-        dispatchUsername({type: 'INPUT_BLUR'});
-    };
+        dispatchUsername({ type: 'INPUT_BLUR' })
+    }
 
     const validateUsernameHandler = () => {
-        dispatchUsername({type: 'INPUT_BLUR'});
-    };
+        dispatchUsername({ type: 'INPUT_BLUR' })
+    }
 
     const validatePasswordHandler = () => {
-        dispatchPassword({type: 'INPUT_BLUR'});
-    };
+        dispatchPassword({ type: 'INPUT_BLUR' })
+    }
 
     const ageCheckChangedHandler = (event) => {
-        const val = event.target.value;
-        setAgeSelected(val);
-        props.setAgeRange(val);
-
-    };
+        const val = event.target.value
+        setAgeSelected(val)
+        props.setAgeRange(val)
+    }
 
     const sexCheckChangedHandler = (event) => {
-        setSexSelected(event.target.value);
-    };
+        setSexSelected(event.target.value)
+    }
 
     const screenNameChangeHandler = (event) => {
-        setScreenName(event.target.value);
-    };
-    
-    const [descWordCount, setDescWordCount] = useState(0);
-    const [descDisabled, setDescDisabled] = useState(false);
+        setScreenName(event.target.value)
+    }
+
+    const [descWordCount, setDescWordCount] = useState(0)
+    const [descDisabled, setDescDisabled] = useState(false)
 
     const descriptionChangeHandler = (event) => {
-        setDescription(event.target.value);
-        setDescWordCount(event.target.value.length);
-    };
+        setDescription(event.target.value)
+        setDescWordCount(event.target.value.length)
+    }
 
-    const [validated, setValidated] = useState(false);
+    const [validated, setValidated] = useState(false)
 
     useEffect(() => {
         if (+descWordCount > 7999) {
-            setDescDisabled(true);
+            setDescDisabled(true)
         }
-    }, [descWordCount]);
+    }, [descWordCount])
 
-    const [confirmationIsShown, setConfirmationIsShown] = useState(false);
+    const [confirmationIsShown, setConfirmationIsShown] = useState(false)
 
-    const [privacyIsShown, setPrivacyIsShown] = useState(false);
-    const [termsIsShown, setTermsIsShown] = useState(false);
-
+    const [privacyIsShown, setPrivacyIsShown] = useState(false)
+    const [termsIsShown, setTermsIsShown] = useState(false)
 
     const showPrivacyHandler = () => {
-        setPrivacyIsShown(true);
+        setPrivacyIsShown(true)
     }
 
     const hidePrivacyHandler = () => {
-        setPrivacyIsShown(false);
+        setPrivacyIsShown(false)
     }
 
     const showTermsHandler = () => {
-        setTermsIsShown(true);
+        setTermsIsShown(true)
     }
 
     const hideTermsHandler = () => {
-        setTermsIsShown(false);
+        setTermsIsShown(false)
     }
 
-    const [verificationcode, setVerificationCode] = useState(null);
+    const [verificationcode, setVerificationCode] = useState(null)
 
     const agreeCheckChangedHandler = () => {
-        setAgreeSelected(!agreeSelected);
-    };
+        setAgreeSelected(!agreeSelected)
+    }
 
     useEffect(() => {
-        setSubmitDisabled(!agreeSelected);
-    }, [agreeSelected]);
+        setSubmitDisabled(!agreeSelected)
+    }, [agreeSelected])
 
     useEffect(() => {
         setVerificationCode(getRandomInt(10000, 99999))
-    }, []);
+    }, [])
 
-    const [showVerifyLink, setShowVerifyLink] = useState(false);
+    const [showVerifyLink, setShowVerifyLink] = useState(false)
 
-    const [user, setUser] = useState(null);
+    const [user, setUser] = useState(null)
 
-    const [fname, setFName] = useState(null);
-    const [mname, setMName] = useState(null);
-    const [lname, setLName] = useState(null);
-    const [sname, setSName] = useState(null);
-    const [email, setEmail] = useState(null);
-    const [uname, setUName] = useState(null);
-    const [password, setPassword] = useState(null);
-    const [desc, setDesc] = useState(null);
-
+    const [fname, setFName] = useState(null)
+    const [mname, setMName] = useState(null)
+    const [lname, setLName] = useState(null)
+    const [sname, setSName] = useState(null)
+    const [email, setEmail] = useState(null)
+    const [uname, setUName] = useState(null)
+    const [password, setPassword] = useState(null)
+    const [desc, setDesc] = useState(null)
 
     useEffect(() => {
-        resetForm();
+        resetForm()
         if (authCtx.isLoggedIn) {
             /* GET user */
             getUserInfoById(authCtx.userID)
                 .then((user) => {
-                    const thisUser = user.data[0];
+                    const thisUser = user.data[0]
                     if (thisUser.USERID) {
-                        setUser(thisUser);
-                        setDisabled(true);
+                        setUser(thisUser)
+                        setDisabled(true)
 
-                        setFName(thisUser.firstname);
-                        dispatchFirstName({type: 'USER_INPUT', value: thisUser.firstname});
-                        setMName(thisUser.middlename);
-                        setLName(thisUser.lastname);
-                        dispatchLastName({type: 'USER_INPUT', value: thisUser.lastname});
-                        setSName(thisUser.screenname);
-                        setEmail(thisUser.email);
-                        dispatchEmail({type: 'USER_INPUT', value: thisUser.email});
-                        setUName(thisUser.username);
-                        dispatchUsername({type: 'USER_INPUT', value: thisUser.username});
-                        setPassword(thisUser.password);
-                        dispatchPassword({type: 'USER_INPUT', value: thisUser.password});
-                        setDesc(thisUser.description);
-                        setDescWordCount(thisUser.description.length);
-                        setAgeSelected(thisUser.agerange);
-                        setSexSelected(thisUser.gender);
+                        setFName(thisUser.firstname)
+                        dispatchFirstName({ type: 'USER_INPUT', value: thisUser.firstname })
+                        setMName(thisUser.middlename)
+                        setLName(thisUser.lastname)
+                        dispatchLastName({ type: 'USER_INPUT', value: thisUser.lastname })
+                        setSName(thisUser.screenname)
+                        setEmail(thisUser.email)
+                        dispatchEmail({ type: 'USER_INPUT', value: thisUser.email })
+                        setUName(thisUser.username)
+                        dispatchUsername({ type: 'USER_INPUT', value: thisUser.username })
+                        setPassword(thisUser.password)
+                        dispatchPassword({ type: 'USER_INPUT', value: thisUser.password })
+                        setDesc(thisUser.description)
+                        setDescWordCount(thisUser.description.length)
+                        setAgeSelected(thisUser.agerange)
+                        setSexSelected(thisUser.gender)
 
-                        props.setAccountID(thisUser.USERID);
-                        props.setAgeRange(thisUser.ageSelected);
+                        props.setAccountID(thisUser.USERID)
+                        props.setAgeRange(thisUser.ageSelected)
                     }
                 })
-                .catch((err) => console.log('AccountInfo.js useEffect err:', err));
+                .catch((err) => console.log('AccountInfo.js useEffect err:', err))
         } else {
-            setUser(null);
-            setDisabled(false);
+            setUser(null)
+            setDisabled(false)
 
-            resetForm();
+            resetForm()
 
-            props.setAccountID(null);
-            props.setAgeRange(null);
+            props.setAccountID(null)
+            props.setAgeRange(null)
         }
-    }, [authCtx.isLoggedIn]);
+    }, [authCtx.isLoggedIn])
 
     const resetForm = () => {
-        setFName(null);
-        dispatchFirstName({type: 'USER_INPUT', value: ''})
-        setMName(null);
-        setLName(null);
-        dispatchLastName({type: 'USER_INPUT', value: ''})
-        setSName(null);
-        setEmail(null);
-        dispatchEmail({type: 'USER_INPUT', value: ''});
-        setUName(null);
-        dispatchUsername({type: 'USER_INPUT', value: ''});
-        setPassword(null);
-        dispatchPassword({type: 'USER_INPUT', value: ''});
-        setDesc(null);
-        setDescWordCount(0);
-        setAgeSelected('under18');
-        setSexSelected('other');
+        setFName(null)
+        dispatchFirstName({ type: 'USER_INPUT', value: '' })
+        setMName(null)
+        setLName(null)
+        dispatchLastName({ type: 'USER_INPUT', value: '' })
+        setSName(null)
+        setEmail(null)
+        dispatchEmail({ type: 'USER_INPUT', value: '' })
+        setUName(null)
+        dispatchUsername({ type: 'USER_INPUT', value: '' })
+        setPassword(null)
+        dispatchPassword({ type: 'USER_INPUT', value: '' })
+        setDesc(null)
+        setDescWordCount(0)
+        setAgeSelected('under18')
+        setSexSelected('other')
 
-        setDisabled(false);
-}
+        setDisabled(false)
+    }
 
-    async function hideConfirmationHandler(val) {
+    async function hideConfirmationHandler (val) {
         if (+val === verificationcode) {
-            user.validated = true;
+            user.validated = true
             await updateUserInfo(user)
                 .then(() => {
-                    props.setAccountID(user.USERID);
-                    props.setAgeRange(user.agerange);
-        
-                    setMessage({noteType: 'success', headerText: 'Form submitted', 
-                        messageText: 'Account activated!'});
-        
-                    setValidated(true);
-                    setQueryType('update');
-                    setShowVerifyLink(false);
+                    props.setAccountID(user.USERID)
+                    props.setAgeRange(user.agerange)
+
+                    setMessage({
+                        noteType: 'success',
+                        headerText: 'Form submitted',
+                        messageText: 'Account activated!'
+                    })
+
+                    setValidated(true)
+                    setQueryType('update')
+                    setShowVerifyLink(false)
                 })
-                .catch((err) => console.log('AccountInfo.js onSubmitHander insert err:', err));
-            } else {
-                setMessage({noteType: 'error', headerText: 'Account Not Verified', 
+                .catch((err) => console.log('AccountInfo.js onSubmitHander insert err:', err))
+        } else {
+            setMessage({
+                noteType: 'error',
+                headerText: 'Account Not Verified',
                 messageText: 'You will not be able to log in without validating your account.  Click link below to enter your verification code!'
-            });
-            setShowVerifyLink(true);
+            })
+            setShowVerifyLink(true)
         }
-        setConfirmationIsShown(false);
+        setConfirmationIsShown(false)
     };
 
-    async function onSubmitHandler(event) {
-        event.preventDefault();
+    async function onSubmitHandler (event) {
+        event.preventDefault()
         if (formIsValid) {
             /* package the data */
             const data = {
@@ -371,55 +375,56 @@ const AccountInfo = (props) => {
                 gender: sexSelected,
                 username: usernameState.value,
                 password: passwordState.value,
-                description: description,
-                verificationcode: verificationcode,
-                validated: validated
+                description,
+                verificationcode,
+                validated
             }
-            
+
             if (queryType === 'insert') {
                 /* POST user */
                 await inputUserInfo(data)
                     .then((result) => console.log('AccountInfo.js onSubmitHandler result', result))
-                    .catch((err) => console.log('AccountInfo.js onSubmitHander err:', err));
+                    .catch((err) => console.log('AccountInfo.js onSubmitHander err:', err))
             } else if (queryType === 'update') {
                 /* PUT user */
-                data.id = authCtx.userID || 0;
-                data.verificationcode = verificationcode;
+                data.id = authCtx.userID || 0
+                data.verificationcode = verificationcode
                 await updateUserInfo(data)
                     .then(() => {
-                        setFormSubmitted(true);
+                        setFormSubmitted(true)
                     })
-                    .catch((err) => console.log('AccountInfo.js onSubmitHander update err:', err));
-
+                    .catch((err) => console.log('AccountInfo.js onSubmitHander update err:', err))
             }
-            
+
             /* GET user */
             getUserInfoByUserAndPass(usernameState.value, data.password)
                 .then((user) => {
                     if (user.data[0].USERID !== null) {
                         const thisUser = user.data[0]
-                        setUser(thisUser);
-                        setDisabled(true);
-                        props.setAccountID(thisUser.USERID);
-                        props.setAgeRange(thisUser.agerange);
+                        setUser(thisUser)
+                        setDisabled(true)
+                        props.setAccountID(thisUser.USERID)
+                        props.setAgeRange(thisUser.agerange)
                         if (queryType === 'insert') {
                             setTimeout(() => {
-                                setConfirmationIsShown(true);
-                            }, 500);
+                                setConfirmationIsShown(true)
+                            }, 500)
                         }
                     } else {
-                        setMessage({noteType: 'error', headerText: 'Something went wrong', 
+                        setMessage({
+                            noteType: 'error',
+                            headerText: 'Something went wrong',
                             messageText: 'Account information has not been saved! Try again, or come back later'
-                        });
+                        })
                     }
                 })
-                .catch((err) => console.log('AccountInfo.js onSubmitHandler updateHandler err:', err));           
+                .catch((err) => console.log('AccountInfo.js onSubmitHandler updateHandler err:', err))
         } else {
             setMessage({
                 noteType: 'error',
                 headerText: 'Validation Error!',
                 messageText: 'You have 1 or more errors preventing you from submitting your form.'
-            });
+            })
         }
     };
 
@@ -428,19 +433,19 @@ const AccountInfo = (props) => {
             <form onSubmit={onSubmitHandler}>
                 <BodyHeader>Account Information</BodyHeader>
                 {message && <Note noteType={message.noteType} headerText={message.headerText}>{message.messageText}</Note>}
-                {showVerifyLink && 
+                {showVerifyLink &&
                     <Fragment>
                         <Button
                             type="button"
                             onClick={() => setConfirmationIsShown(true)}
                             className={classes.primaryBtn}
-                            style={{width: '8rem', padding: '.25rem'}}
+                            style={{ width: '8rem', padding: '.25rem' }}
                             value="Verify Acount"
                         />
                         <Button
                             type="button"
                             onClick={() => sendVerifyMail(user.email, user.username, verificationcode)}
-                            style={{width: '8rem', padding: '.25rem'}}
+                            style={{ width: '8rem', padding: '.25rem' }}
                             value="Resend Code"
                         />
                     </Fragment>
@@ -584,7 +589,7 @@ const AccountInfo = (props) => {
                         onChange={sexCheckChangedHandler}
                     />
                 </div>
-                {!disabled && ( 
+                {!disabled && (
                     <div className={classes.formRow}>
                         <LeftLabelInput
                             id="txtEmail"
@@ -644,13 +649,13 @@ const AccountInfo = (props) => {
                         />
                     </div>
                 )}
-                {disabled && 
+                {disabled &&
                     <Fragment>
                         <Button
                             type="button"
                             onClick={() => setDisabled(false)}
                             className={classes.primaryBtn}
-                            style={{width: '8rem', padding: '.25rem'}}
+                            style={{ width: '8rem', padding: '.25rem' }}
                             value="Modify Credentials"
                         />
                     </Fragment>
@@ -680,7 +685,7 @@ const AccountInfo = (props) => {
                     />
                 </div>
                 <br />
-                <div className={classes.formRow} style={{paddingLeft: '.5rem'}}>
+                <div className={classes.formRow} style={{ paddingLeft: '.5rem' }}>
                     <Button type="button" className={classes.link} href="#" onClick={showPrivacyHandler} value="PRIVACY POLICY" />
                     <span>&nbsp;and&nbsp;</span>
                     <Button type="button" className={classes.link} href="#" onClick={showTermsHandler} value="TERMS OF USE" />
@@ -715,7 +720,7 @@ const AccountInfo = (props) => {
             {privacyIsShown && <PrivacyPolicy onClose={hidePrivacyHandler} />}
             {termsIsShown && <TermsOfUse onClose={hideTermsHandler} />}
         </Fragment>
-    );
-};
+    )
+}
 
-export default AccountInfo;
+export default AccountInfo
