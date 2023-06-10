@@ -1,24 +1,25 @@
-import React from "react";
-import BodyHeader from "../../UI/BodyHeader/BodyHeader";
-import Button from "../../UI/Button/Button";
-import labeledInputs from '../../builders/LabeledInputs/labeledInputs';
-import classes from './UserSettings.module.css';
+/* eslint-disable react/prop-types */
+import React from 'react'
+import BodyHeader from '../../UI/BodyHeader/BodyHeader'
+import Button from '../../UI/Button/Button'
+import labeledInputs from '../../builders/LabeledInputs/labeledInputs'
+import classes from './UserSettings.module.css'
 
 const ComputerInfo = (props) => {
     const onSubmitHandler = (event) => {
-        event.preventDefault();
-    };
+        event.preventDefault()
+    }
 
     const inputs = [
-        {id: "chkDigitalMedia", name: "computerinfotypes", inputType: "checkbox", required: false, labelText: "Digital Art / Media", value: props.chkDigitalMedia},
-        {id: "chkGameDev", name: "computerinfotypes", inputType: "checkbox", required: false, labelText: "Game Development", value: props.chkGameDev},
-        {id: "chkOfficeProf", name: "computerinfotypes", inputType: "checkbox", required: false, labelText: "Office Software Proficiency", value: props.chkOfficeProf},
-        {id: "chkSoftwareDev", name: "computerinfotypes", inputType: "checkbox", required: false, labelText: "Software Development", value: props.chkSoftwareDev},
-        {id: "chkTechWriting", name: "computerinfotypes", inputType: "checkbox", required: false, labelText: "Technical Writing", value: props.chkTechWriting},
-        {id: "chkCompOther", name: "computerinfotypes", inputType: "checkbox", required: false, labelText: "Other", value: props.chkCompOther},
-    ];
+        { id: 'chkDigitalMedia', name: 'computerinfotypes', inputType: 'checkbox', required: false, labelText: 'Digital Art / Media', value: props.chkDigitalMedia },
+        { id: 'chkGameDev', name: 'computerinfotypes', inputType: 'checkbox', required: false, labelText: 'Game Development', value: props.chkGameDev },
+        { id: 'chkOfficeProf', name: 'computerinfotypes', inputType: 'checkbox', required: false, labelText: 'Office Software Proficiency', value: props.chkOfficeProf },
+        { id: 'chkSoftwareDev', name: 'computerinfotypes', inputType: 'checkbox', required: false, labelText: 'Software Development', value: props.chkSoftwareDev },
+        { id: 'chkTechWriting', name: 'computerinfotypes', inputType: 'checkbox', required: false, labelText: 'Technical Writing', value: props.chkTechWriting },
+        { id: 'chkCompOther', name: 'computerinfotypes', inputType: 'checkbox', required: false, labelText: 'Other', value: props.chkCompOther }
+    ]
 
-    const formInputs = labeledInputs(inputs);
+    const formInputs = labeledInputs(inputs)
 
     return (
         <form onSubmit={onSubmitHandler}>
@@ -29,7 +30,7 @@ const ComputerInfo = (props) => {
                 <Button className={classes.primaryBtn} type="submit" name="btnSubmit" value="Submit" />
             </div>
         </form>
-    );
-};
+    )
+}
 
-export default ComputerInfo;
+export default ComputerInfo
