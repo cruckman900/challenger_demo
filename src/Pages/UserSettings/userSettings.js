@@ -1,28 +1,28 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useEffect, useContext } from 'react'
 
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { 
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import {
     faUserPlus, faLocationDot, faUtensils, faTelevision, faRadio, faFootball, faComputer
-} from '@fortawesome/free-solid-svg-icons';
+} from '@fortawesome/free-solid-svg-icons'
 
-import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
-import 'react-tabs/style/react-tabs.css';
+import { Tab, Tabs, TabList, TabPanel } from 'react-tabs'
+import 'react-tabs/style/react-tabs.css'
 
-import DefaultPage from '../../UI/DefaultPage/DefaultPage';
+import DefaultPage from '../../UI/DefaultPage/DefaultPage'
 
-import AccountInfo from "./AccountInfo";
-import LocationInfo from "./LocationInfo";
-import FoodInfo from "./FoodInfo";
-import MovieInfo from "./MovieInfo";
-import ComputerInfo from "./ComputerInfo";
-import MusicInfo from "./MusicInfo";
-import ActivityInfo from "./ActivityInfo";
+import AccountInfo from './AccountInfo'
+import LocationInfo from './LocationInfo'
+import FoodInfo from './FoodInfo'
+import MovieInfo from './MovieInfo'
+import ComputerInfo from './ComputerInfo'
+import MusicInfo from './MusicInfo'
+import ActivityInfo from './ActivityInfo'
 
-import AuthContext from "../../store/auth-context";
-import classes from './UserSettings.module.css';
+import AuthContext from '../../store/auth-context'
+import classes from './UserSettings.module.css'
 
-export default function UserSettings(props) {
-    const authCtx = useContext(AuthContext);
+export default function UserSettings (props) {
+    const authCtx = useContext(AuthContext)
 
     const myIcons = {
         userPlus: faUserPlus,
@@ -31,37 +31,37 @@ export default function UserSettings(props) {
         television: faTelevision,
         radio: faRadio,
         football: faFootball,
-        computer: faComputer,
-    };
-
-    const [ageSelected, setAgeSelected] = useState(null);
-
-    const setAgeRange = (value) => {
-        setAgeSelected(value);
-    };
-
-    const [accountID, setAccountID] = useState(null);
-
-    const setID = (value) => {
-        setAccountID(value);
+        computer: faComputer
     }
 
-    const [showLocation, setShowLocation] = useState(false);
+    const [ageSelected, setAgeSelected] = useState(null)
+
+    const setAgeRange = (value) => {
+        setAgeSelected(value)
+    }
+
+    const [accountID, setAccountID] = useState(null)
+
+    const setID = (value) => {
+        setAccountID(value)
+    }
+
+    const [showLocation, setShowLocation] = useState(false)
 
     useEffect(() => {
-        if(ageSelected === 'under18' || ageSelected === null || accountID === null) {
-            setShowLocation(false);
-            return;
+        if (ageSelected === 'under18' || ageSelected === null || accountID === null) {
+            setShowLocation(false)
+            return
         }
-        setShowLocation(true);
-    }, [ageSelected, accountID]);
+        setShowLocation(true)
+    }, [ageSelected, accountID])
 
     useEffect(() => {
         if (authCtx.user) {
-            setAccountID(authCtx.userID);
-            setAgeRange(authCtx.user.agerange);
+            setAccountID(authCtx.userID)
+            setAgeRange(authCtx.user.agerange)
         }
-    });
+    })
 
     return (
         <div>
@@ -69,25 +69,25 @@ export default function UserSettings(props) {
                 <Tabs className={classes.userSettings} selectedTabClassName={classes.selectedTab}>
                     <TabList className={`${classes.tabList} ${classes.sticky}`}>
                         <Tab id="tab1" className={classes.tab}>
-                            <FontAwesomeIcon className={classes.tabIcon} icon={myIcons['userPlus']} />
+                            <FontAwesomeIcon className={classes.tabIcon} icon={myIcons.userPlus} />
                         </Tab>
                         <Tab id="tab3" className={classes.tab} disabled={!accountID && true}>
-                            <FontAwesomeIcon className={classes.tabIcon} icon={myIcons['utensils']} />
+                            <FontAwesomeIcon className={classes.tabIcon} icon={myIcons.utensils} />
                         </Tab>
                         <Tab id="tab4" className={classes.tab} disabled={!accountID && true}>
-                            <FontAwesomeIcon className={classes.tabIcon} icon={myIcons['television']} />
+                            <FontAwesomeIcon className={classes.tabIcon} icon={myIcons.television} />
                         </Tab>
                         <Tab id="tab5" className={classes.tab} disabled={!accountID && true}>
-                            <FontAwesomeIcon className={classes.tabIcon} icon={myIcons['radio']} />
+                            <FontAwesomeIcon className={classes.tabIcon} icon={myIcons.radio} />
                         </Tab>
                         <Tab id="tab6" className={classes.tab} disabled={!accountID && true}>
-                            <FontAwesomeIcon className={classes.tabIcon} icon={myIcons['football']} />
+                            <FontAwesomeIcon className={classes.tabIcon} icon={myIcons.football} />
                         </Tab>
                         <Tab id="tab7" className={classes.tab} disabled={!accountID && true}>
-                            <FontAwesomeIcon className={classes.tabIcon} icon={myIcons['computer']} />
+                            <FontAwesomeIcon className={classes.tabIcon} icon={myIcons.computer} />
                         </Tab>
                         <Tab id="tab2" className={classes.tab} disabled={!showLocation && true}>
-                            <FontAwesomeIcon className={classes.tabIcon} icon={myIcons['locationDot']} />
+                            <FontAwesomeIcon className={classes.tabIcon} icon={myIcons.locationDot} />
                         </Tab>
                     </TabList>
 
@@ -101,5 +101,5 @@ export default function UserSettings(props) {
                 </Tabs>
             </DefaultPage>
         </div>
-    );
+    )
 }
