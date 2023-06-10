@@ -1,8 +1,9 @@
-import NavLocationCard from "../../UI/NavLocationCard/NavLocationCard";
+import React from 'react'
+import NavLocationCard from '../../UI/NavLocationCard/NavLocationCard'
 
 const NavLocations = (inputs, thisType, onClickHandler, selectedID) => {
     const retVal = inputs.map((input) => {
-        const name = input.firstName + ' ' + input.lastName;
+        const name = input.firstName + ' ' + input.lastName
         return (
             <NavLocationCard
                 id={input.id}
@@ -11,14 +12,14 @@ const NavLocations = (inputs, thisType, onClickHandler, selectedID) => {
                 navType={thisType}
                 icon={input.icon}
                 title={input.title ? input.title : ''}
-                name={name ? name : ''}
+                name={name || ''}
                 dateCreated={input.dateCreated}
                 onClickHandler={() => onClickHandler(thisType, input.id, input.title, name)}
             />
-        );
-    });
+        )
+    })
 
-    return retVal;
-};
+    return retVal
+}
 
-export default NavLocations;
+export default NavLocations
