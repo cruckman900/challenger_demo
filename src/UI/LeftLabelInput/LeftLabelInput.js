@@ -1,8 +1,10 @@
-import React from "react";
-import Label from '../Label/Label';
-import classes from './LeftLabelInput.module.css';
+/* eslint-disable react/display-name */
+/* eslint-disable react/prop-types */
+import React from 'react'
+import Label from '../Label/Label'
+import classes from './LeftLabelInput.module.css'
 
-const LeftLabelInput = React.forwardRef((props, ref) => {
+const LeftLabelInput = React.forwardRef((props) => {
     return (
         <div className={`${classes.container} ${props.className}`}>
             <Label
@@ -10,13 +12,13 @@ const LeftLabelInput = React.forwardRef((props, ref) => {
                 text={props.labelText}
                 htmlFor={props.id}
             />
-            {props.inputType !== "textarea" && (
+            {props.inputType !== 'textarea' && (
                 <input
                     id={props.id}
                     name={props.name}
                     placeholder={props.placeholder}
                     className={`
-                        ${props.inputType !== 'color' &&  classes.Input} 
+                        ${props.inputType !== 'color' && classes.Input} 
                         ${props.inputClassName} 
                         ${props.valid && classes.InputValid} 
                         ${props.error && classes.InputError}
@@ -31,7 +33,7 @@ const LeftLabelInput = React.forwardRef((props, ref) => {
                     onBlur={props.onBlur}
                 />
             )}
-            {props.inputType === "textarea" && (
+            {props.inputType === 'textarea' && (
                 <textarea
                     id={props.id}
                     placeholder={props.placeholder}
@@ -44,7 +46,7 @@ const LeftLabelInput = React.forwardRef((props, ref) => {
                 />
             )}
         </div>
-    );
-});
+    )
+})
 
-export default LeftLabelInput;
+export default LeftLabelInput
