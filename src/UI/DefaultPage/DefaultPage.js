@@ -1,7 +1,8 @@
-import React from "react";
-import classes from './DefaultPage.module.css';
+/* eslint-disable react/prop-types */
+import React from 'react'
+import classes from './DefaultPage.module.css'
 
-export default function DefaultPage(props) {
+export default function DefaultPage (props) {
     return (
         <div className={classes.defaultPage}>
             <div className={classes.header}>
@@ -13,5 +14,5 @@ export default function DefaultPage(props) {
                 {props.children}
             </div>
         </div>
-    );
+    )
 }
