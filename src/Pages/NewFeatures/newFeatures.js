@@ -10,6 +10,11 @@ export default function NewFeatures () {
     return (
         <DefaultPage headerText="Features & Updates Log">
             <Card headerText="June 2023">
+                <BodyHeader className={classes.header}>6/10/2023</BodyHeader>
+                <div className={classes.updateBody}>
+                    Added a few extensions to VS Code, including ESLint.  I linted my project and revised all files so that they now pass the
+                    lint check on build.
+                </div>
                 <BodyHeader className={classes.header}>6/09/2023</BodyHeader>
                 <div className={classes.updateBody}>
                     Created foods api.  Worked on UserInfo form - logged in state.
