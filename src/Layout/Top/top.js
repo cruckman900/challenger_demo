@@ -1,45 +1,45 @@
-import React, { Fragment, useState, useContext } from "react";
-import AuthContext from "../../store/auth-context";
-import Login from "../../Pages/Login/login"
-import Button from "../../UI/Button/Button";
-import { Container, Row, Col } from "reactstrap";
-import { Nav, Navbar } from 'react-bootstrap';
-import { useLocation, Link } from 'react-router-dom';
-import logo from '../../assets/images/logo.png';
+import React, { Fragment, useState, useContext } from 'react'
+import AuthContext from '../../store/auth-context'
+import Login from '../../Pages/Login/login'
+import Button from '../../UI/Button/Button'
+import { Container, Row, Col } from 'reactstrap'
+import { Nav, Navbar } from 'react-bootstrap'
+import { useLocation, Link } from 'react-router-dom'
+import logo from '../../assets/images/logo.png'
 
-import { getUserInfoById, updateUserInfo } from "../../DataHandlers/AccountInfoDataHandler";
-import classes from './top.module.css';
+import { getUserInfoById, updateUserInfo } from '../../DataHandlers/AccountInfoDataHandler'
+import classes from './top.module.css'
 
-export default function Top() {
-    const authCtx = useContext(AuthContext);
+export default function Top () {
+    const authCtx = useContext(AuthContext)
 
-    const [loginIsShown, setLoginIsShown] = useState(false);
+    const [loginIsShown, setLoginIsShown] = useState(false)
 
     const showLoginHandler = () => {
-        setLoginIsShown(true);
+        setLoginIsShown(true)
     }
 
     const hideLoginHandler = () => {
-        setLoginIsShown(false);
+        setLoginIsShown(false)
     }
 
-    const location = useLocation();
+    const location = useLocation()
 
     const performLogout = () => {
         getUserInfoById(authCtx.userID)
             .then((user) => {
-                if(typeof user !== 'undefined' && user.data.length > 0) {
-                    const data = user.data[0];
-                    data.isLoggedIn = false;
+                if (typeof user !== 'undefined' && user.data.length > 0) {
+                    const data = user.data[0]
+                    data.isLoggedIn = false
                     updateUserInfo(data)
                         .then(() => {
-                            authCtx.onLogout();
+                            authCtx.onLogout()
                         })
-                        .catch((err) => console.log('top.js performLogout err:', err));
+                        .catch((err) => console.log('top.js performLogout err:', err))
                 } else {
-                    console.log('top.js performLogout', 'Could not retrieve user');
+                    console.log('top.js performLogout', 'Could not retrieve user')
                 }
-            });
+            })
     }
 
     return (
@@ -66,8 +66,8 @@ export default function Top() {
                         {authCtx.isLoggedIn && (
                             <Fragment>
                                 <Button href="#" className={classes.link} onClick={performLogout} value="Log Out" />
-                                <Nav.Link as={Link} to={"/donations"} eventKey="/donations" href="#donations" className={classes.navLink}>Donate</Nav.Link>
-                                <Nav.Link as={Link} to={"/suggestions"} eventKey="/suggestions" href="#suggestions" className={classes.navLink}>Suggest</Nav.Link>
+                                <Nav.Link as={Link} to={'/donations'} eventKey="/donations" href="#donations" className={classes.navLink}>Donate</Nav.Link>
+                                <Nav.Link as={Link} to={'/suggestions'} eventKey="/suggestions" href="#suggestions" className={classes.navLink}>Suggest</Nav.Link>
                             </Fragment>
                         )}
                     </Nav>
@@ -75,5 +75,5 @@ export default function Top() {
                 {loginIsShown && <Login onClose={hideLoginHandler} />}
             </div>
         </Fragment>
-    );
+    )
 }
