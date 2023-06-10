@@ -1,18 +1,19 @@
-import React, { useState, useEffect } from 'react';
+/* eslint-disable react/prop-types */
+/* eslint-disable object-shorthand */
+import React, { useState, useEffect } from 'react'
 
 const NavContext = React.createContext({
-    channelLocation: {navType: null, navID: null, navTitle: null, navName: null, navIcon: null},
+    channelLocation: { navType: null, navID: null, navTitle: null, navName: null, navIcon: null },
     onPart: () => {},
     onJoin: (navType, navID, navTitle, navName, navIcon) => {}
-});
+})
 
 export const NavContextProvider = (props) => {
-    const [channelLocation, setChannelLocation] = useState(null);
+    const [channelLocation, setChannelLocation] = useState(null)
 
     useEffect(() => {
-        const storedUserLoggedInInformation = localStorage.getItem('channelLocation');
-
-        if(storedUserLoggedInInformation !== null) {
+        const storedUserLoggedInInformation = localStorage.getItem('channelLocation')
+        if (storedUserLoggedInInformation !== null) {
             setChannelLocation({
                 navType: storedUserLoggedInInformation.navType,
                 navID: storedUserLoggedInInformation.navID,
@@ -21,29 +22,29 @@ export const NavContextProvider = (props) => {
                 navIcon: storedUserLoggedInInformation.navIcon
             })
         }
-    }, []);
+    }, [])
 
     const exitHandler = () => {
-        localStorage.removeItem('channelLocation');
-        setChannelLocation(null);
-    };
+        localStorage.removeItem('channelLocation')
+        setChannelLocation(null)
+    }
 
     const enterHandler = (navType, navID, navTitle, navName, navIcon) => {
         localStorage.setItem('channelLocation', {
-            navType: navType, 
-            navID: navID, 
-            navTitle: navTitle, 
+            navType: navType,
+            navID: navID,
+            navTitle: navTitle,
             navName: navName,
             navIcon: navIcon
-        });
+        })
         setChannelLocation({
-            navType: navType, 
-            navID: navID, 
-            navTitle: navTitle, 
+            navType: navType,
+            navID: navID,
+            navTitle: navTitle,
             navName: navName,
             navIcon: navIcon
-        });
-    };
+        })
+    }
 
     return <NavContext.Provider
         value={{
@@ -56,4 +57,4 @@ export const NavContextProvider = (props) => {
     </NavContext.Provider>
 }
 
-export default NavContext;
+export default NavContext
