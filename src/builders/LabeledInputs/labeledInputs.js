@@ -1,5 +1,6 @@
-import LeftLabelInput from '../../UI/LeftLabelInput/LeftLabelInput';
-import classes from './LabeledInputs.module.css';
+import React from 'react'
+import LeftLabelInput from '../../UI/LeftLabelInput/LeftLabelInput'
+import classes from './LabeledInputs.module.css'
 
 const labeledInputs = (inputs) => {
     const retVal = inputs.map((input) => {
@@ -15,10 +16,10 @@ const labeledInputs = (inputs) => {
                 value={input.value}
                 onChange={input.onChange}
             />
-        );
-    });
+        )
+    })
 
-    return retVal;
-};
+    return retVal
+}
 
-export default labeledInputs;
+export default labeledInputs
