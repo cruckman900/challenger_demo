@@ -1,39 +1,36 @@
-import { Fragment, useState, useEffect, useContext } from 'react';
-import AuthContext from "../../store/auth-context";
-import Status from './Status';
-import { getUserCount, getUserCountIsLoggedIn } from '../../DataHandlers/AccountInfoDataHandler';
-import classes from './StatusBar.module.css';
+import React, { Fragment, useState, useEffect, useContext } from 'react'
+import AuthContext from '../../store/auth-context'
+import Status from './Status'
+import { getUserCount, getUserCountIsLoggedIn } from '../../DataHandlers/AccountInfoDataHandler'
+import classes from './StatusBar.module.css'
 
 const StatusBar = () => {
-    const authCtx = useContext(AuthContext);
-    const [numUsers, setNumUsers] = useState(0);
-    const [numUsersLoggedIn, setNumUsersLoggedIn] = useState(0);
+    const authCtx = useContext(AuthContext)
+    const [numUsers, setNumUsers] = useState(0)
+    const [numUsersLoggedIn, setNumUsersLoggedIn] = useState(0)
 
     const getNums = () => {
         getUserCount()
             .then((result) => {
-                const count = result.data[0].user_count;
-                setNumUsers(count);
+                const count = result.data[0].user_count
+                setNumUsers(count)
             })
             .catch((err) => {
-                console.log('StatusBar.js getUserCount err:', err);
+                console.log('StatusBar.js getUserCount err:', err)
             })
-            getUserCountIsLoggedIn()
+        getUserCountIsLoggedIn()
             .then((result) => {
-                const count = result.data[0].logged_in_user_count;
-                setNumUsersLoggedIn(count);
+                const count = result.data[0].logged_in_user_count
+                setNumUsersLoggedIn(count)
             })
             .catch((err) => {
-                console.log('StatusBar.js getUsersLoggedInCount err:', err);
+                console.log('StatusBar.js getUsersLoggedInCount err:', err)
             })
     }
 
     useEffect(() => {
-        let interval = setInterval(getNums, 2500);
-        return () => {
-            interval = null;
-        }
-    });
+        setInterval(getNums, 2500)
+    })
 
     return (
         <div className={classes.statusBar}>
@@ -49,7 +46,7 @@ const StatusBar = () => {
                 </Fragment>
             )}
         </div>
-    );
+    )
 }
 
-export default StatusBar;
+export default StatusBar
