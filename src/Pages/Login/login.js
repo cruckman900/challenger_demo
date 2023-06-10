@@ -1,162 +1,163 @@
-import React, { Fragment, useState, useEffect, useReducer, useContext } from "react";
-import AuthContext from "../../store/auth-context";
-import Modal from "../../UI/Modal/Modal";
-import Card from "../../UI/Card/Card";
-import LeftLabelInput from "../../UI/LeftLabelInput/LeftLabelInput";
-import Button from "../../UI/Button/Button";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faHand } from '@fortawesome/free-solid-svg-icons';
+/* eslint-disable react/prop-types */
+import React, { Fragment, useState, useEffect, useReducer, useContext } from 'react'
+import AuthContext from '../../store/auth-context'
+import Modal from '../../UI/Modal/Modal'
+import Card from '../../UI/Card/Card'
+import LeftLabelInput from '../../UI/LeftLabelInput/LeftLabelInput'
+import Button from '../../UI/Button/Button'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faHand } from '@fortawesome/free-solid-svg-icons'
 
-import { getUserInfoByUserAndPass, updateUserInfo } from "../../DataHandlers/AccountInfoDataHandler";
-import classes from './login.module.css';
+import { getUserInfoByUserAndPass, updateUserInfo } from '../../DataHandlers/AccountInfoDataHandler'
+import classes from './login.module.css'
 
 const hasNumber = (val) => {
-    return /\d/.test(val);
+    return /\d/.test(val)
 }
 
 const isEmail = (val) => {
-    return /^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/.test(val);
+    return /^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/.test(val)
 }
 
 const usernameReducer = (state, action) => {
     if (action.type === 'USER_INPUT') {
-        return { value: action.value, isValid: action.value.trim().length > 7 };
+        return { value: action.value, isValid: action.value.trim().length > 7 }
     }
     if (action.type === 'INPUT_BLUR') {
-        return { value: state.value, isValid: state.value.trim().length > 7}
+        return { value: state.value, isValid: state.value.trim().length > 7 }
     }
 }
 
 const passwordReducer = (state, action) => {
     if (action.type === 'USER_INPUT') {
-        return { value: action.value, isValid: action.value.trim().length > 7 && hasNumber(action.value)};
+        return { value: action.value, isValid: action.value.trim().length > 7 && hasNumber(action.value) }
     }
     if (action.type === 'INPUT_BLUR') {
-        return { value: state.value, isValid: state.value.trim().length > 7 && hasNumber(state.value)};
+        return { value: state.value, isValid: state.value.trim().length > 7 && hasNumber(state.value) }
     }
 }
 
 const emailReducer = (state, action) => {
     if (action.type === 'USER_INPUT') {
-        return { value: action.value, isValid: action.value.trim().length > 7 && isEmail(action.value)};
+        return { value: action.value, isValid: action.value.trim().length > 7 && isEmail(action.value) }
     }
     if (action.type === 'INPUT_BLUR') {
-        return { value: state.value, isValid: state.value.trim().length > 7 && isEmail(state.value)};
+        return { value: state.value, isValid: state.value.trim().length > 7 && isEmail(state.value) }
     }
 }
 
-export default function Login(props) {
-    const authCtx = useContext(AuthContext);
+export default function Login (props) {
+    const authCtx = useContext(AuthContext)
 
-    const [formIsValid, setFormIsValid] = useState(false);
+    const [formIsValid, setFormIsValid] = useState(false)
 
     const [usernameState, dispatchUsername] = useReducer(usernameReducer, {
         value: '',
         isValid: null
-    });
+    })
 
     const [passwordState, dispatchPassword] = useReducer(passwordReducer, {
         value: '',
         isValid: null
-    });
+    })
 
     const [emailState, dispatchEmail] = useReducer(emailReducer, {
         value: '',
         isValid: null
-    });
+    })
 
-    const { isValid: usernameIsValid } = usernameState;
-    const { isValid: passwordIsValid } = passwordState;
-    const { isValid: emailIsValid} = emailState;
+    const { isValid: usernameIsValid } = usernameState
+    const { isValid: passwordIsValid } = passwordState
+    const { isValid: emailIsValid } = emailState
 
     useEffect(() => {
         const identifier = setTimeout(() => {
             setFormIsValid(
                 usernameIsValid && passwordIsValid
-            );
-        }, 500);
+            )
+        }, 500)
 
         return () => {
-            clearTimeout(identifier);
+            clearTimeout(identifier)
         }
-    }, [usernameIsValid, passwordIsValid]);
+    }, [usernameIsValid, passwordIsValid])
 
     const usernameChangeHandler = (event) => {
-        dispatchUsername({type: 'USER_INPUT', value: event.target.value});
-    };
+        dispatchUsername({ type: 'USER_INPUT', value: event.target.value })
+    }
 
     const passwordChangeHandler = (event) => {
-        dispatchPassword({type: 'USER_INPUT', value: event.target.value});
-    };
+        dispatchPassword({ type: 'USER_INPUT', value: event.target.value })
+    }
 
     const emailChangeHandler = (event) => {
-        dispatchEmail({type: 'USER_INPUT', value: event.target.value});
-    };
+        dispatchEmail({ type: 'USER_INPUT', value: event.target.value })
+    }
 
     const validateUsernameHandler = () => {
-        dispatchUsername({type: 'INPUT_BLUR'});
-    };
+        dispatchUsername({ type: 'INPUT_BLUR' })
+    }
 
     const validatePasswordHandler = () => {
-        dispatchPassword({type: 'INPUT_BLUR'});
-    };
+        dispatchPassword({ type: 'INPUT_BLUR' })
+    }
 
     const validateEmailHandler = () => {
-        dispatchEmail({type: 'INPUT_BLUR'});
-    };
+        dispatchEmail({ type: 'INPUT_BLUR' })
+    }
 
-    const [showLoginErrorMessage, setShowLoginErrorMessage] = useState(false);
-    const [showAccountNotValidatedMessage, setShowAccountNotValidatedMessage] = useState(false);
-    const [showForgotScreen, setShowForgotScreen] = useState(false);
-    const [user, setUser] = useState(null);
+    const [showLoginErrorMessage, setShowLoginErrorMessage] = useState(false)
+    const [showAccountNotValidatedMessage, setShowAccountNotValidatedMessage] = useState(false)
+    const [showForgotScreen, setShowForgotScreen] = useState(false)
+    const [user, setUser] = useState(null)
 
-    async function submitHandler(event) {
-        event.preventDefault();
+    async function submitHandler (event) {
+        event.preventDefault()
         getUserInfoByUserAndPass(usernameState.value, passwordState.value)
             .then((user) => {
-                if(typeof user !== 'undefined' && user.data.length > 0) {
-                    const data = user.data[0];
-                    if(data.validated === false) {
-                        setShowAccountNotValidatedMessage(true);
+                if (typeof user !== 'undefined' && user.data.length > 0) {
+                    const data = user.data[0]
+                    if (data.validated === false) {
+                        setShowAccountNotValidatedMessage(true)
                     } else {
                         data.isLoggedIn = true
                         updateUserInfo(data)
                             .then(() => {
-                                setUser(data);
-                                authCtx.onLogin(data.USERID, data);
-                            });
+                                setUser(data)
+                                authCtx.onLogin(data.USERID, data)
+                            })
                     }
                 } else {
-                    setShowLoginErrorMessage(true);
+                    setShowLoginErrorMessage(true)
                 }
             })
             .catch((err) => {
-                console.log('login.js submitHandler err', err);
-            });
+                console.log('login.js submitHandler err', err)
+            })
     };
 
     const forgotUserPassHandler = (event) => {
-        setShowForgotScreen(true);
+        setShowForgotScreen(true)
     }
 
     const emailSubmitHandler = (event) => {
-        event.preventDefault();
-        props.onClose();
-    };
+        event.preventDefault()
+        props.onClose()
+    }
 
     const logoutAndClose = () => {
-        user.isLoggedIn = false;
-        updateUserInfo(user);
-        authCtx.onLogout();
-        props.onClose();
+        user.isLoggedIn = false
+        updateUserInfo(user)
+        authCtx.onLogout()
+        props.onClose()
     }
 
     return (
         <Modal onClose={props.onClose}>
             <Card headerText="Login" isOpened={true}>
-                {!authCtx.isLoggedIn && 
+                {!authCtx.isLoggedIn &&
                     <Fragment>
-                        {!showForgotScreen && 
+                        {!showForgotScreen &&
                             <form onSubmit={submitHandler}>
                                 <div className={classes.formRow}>
                                     <LeftLabelInput
@@ -201,7 +202,7 @@ export default function Login(props) {
                                 {showAccountNotValidatedMessage && (
                                     <div className={classes.formRow}>
                                         <div className={classes.errorMessage}>
-                                        <FontAwesomeIcon className={classes.tabIcon} icon={faHand} />&nbsp;
+                                            <FontAwesomeIcon className={classes.tabIcon} icon={faHand} />&nbsp;
                                             <span>Your account has not been verified.</span>
                                         </div>
                                     </div>
@@ -218,7 +219,7 @@ export default function Login(props) {
                         }
                     </Fragment>
                 }
-                {!authCtx.isLoggedIn && 
+                {!authCtx.isLoggedIn &&
                     <Fragment>
                         {showForgotScreen &&
                             <form onSubmit={emailSubmitHandler}>
@@ -234,10 +235,10 @@ export default function Login(props) {
                                         value={emailState.value}
                                         onChange={emailChangeHandler}
                                         onBlur={validateEmailHandler}
-                                        valid={emailIsValid}  
+                                        valid={emailIsValid}
                                         error={!emailIsValid}
                                     />
-                                        <br />
+                                    <br />
                                     <div className={classes.formRow}>
                                         <Button className={classes.primaryBtn} type="submit" name="btnSubmitEmail" value="Submit" disabled={!emailIsValid} />
                                         <Button type="button" name="btnCancel" value="Cancel" onClick={props.onClose} />
@@ -247,7 +248,7 @@ export default function Login(props) {
                         }
                     </Fragment>
                 }
-                {authCtx.isLoggedIn && 
+                {authCtx.isLoggedIn &&
                     <Fragment>
                         <div className={classes.formRow}>
                             <p className={classes.welcome}>Welcome <span className={classes.name}>{authCtx.user.firstname}</span>!</p>
@@ -260,5 +261,5 @@ export default function Login(props) {
                 }
             </Card>
         </Modal>
-    );
+    )
 }
