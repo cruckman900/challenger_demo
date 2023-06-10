@@ -7,8 +7,7 @@ import { Nav, Navbar } from 'react-bootstrap';
 import { useLocation, Link } from 'react-router-dom';
 import logo from '../../assets/images/logo.png';
 
-import { getUserById } from '../../AsyncDataCaller/AsyncDataCaller';
-import { updateUserInfo } from "../../DataHandlers/AccountInfoDataHandler";
+import { getUserInfoById, updateUserInfo } from "../../DataHandlers/AccountInfoDataHandler";
 import classes from './top.module.css';
 
 export default function Top() {
@@ -27,7 +26,7 @@ export default function Top() {
     const location = useLocation();
 
     const performLogout = () => {
-        getUserById(authCtx.userID)
+        getUserInfoById(authCtx.userID)
             .then((user) => {
                 if(typeof user !== 'undefined' && user.data.length > 0) {
                     const data = user.data[0];

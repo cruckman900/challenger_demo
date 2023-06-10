@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { 
@@ -18,9 +18,12 @@ import ComputerInfo from "./ComputerInfo";
 import MusicInfo from "./MusicInfo";
 import ActivityInfo from "./ActivityInfo";
 
+import AuthContext from "../../store/auth-context";
 import classes from './UserSettings.module.css';
 
 export default function UserSettings(props) {
+    const authCtx = useContext(AuthContext);
+
     const myIcons = {
         userPlus: faUserPlus,
         locationDot: faLocationDot,
@@ -52,6 +55,13 @@ export default function UserSettings(props) {
         }
         setShowLocation(true);
     }, [ageSelected, accountID]);
+
+    useEffect(() => {
+        if (authCtx.user) {
+            setAccountID(authCtx.userID);
+            setAgeRange(authCtx.user.agerange);
+        }
+    });
 
     return (
         <div>

@@ -8,8 +8,14 @@ import Confirmation from "../Login/Confirmation";
 import PrivacyPolicy from "../Agreements/PrivacyPolicy";
 import TermsOfUse from "../Agreements/TermsOfUse";
 
-import { getUserById, getUserByUserAndPass } from "../../AsyncDataCaller/AsyncDataCaller";
-import { getRandomInt, inputUserInfo, updateUserInfo, sendVerifyMail } from "../../DataHandlers/AccountInfoDataHandler";
+import {
+    getRandomInt,
+    getUserInfoById,
+    getUserInfoByUserAndPass,
+    inputUserInfo,
+    updateUserInfo,
+    sendVerifyMail
+} from "../../DataHandlers/AccountInfoDataHandler";
 
 import AuthContext from "../../store/auth-context";
 import classes from './UserSettings.module.css';
@@ -77,7 +83,7 @@ const AccountInfo = (props) => {
     const [message, setMessage] = useState('');
 
     useEffect(() => {
-        if (!formSubmitted) {
+        if (!formSubmitted || !authCtx.userID) {
             setMessage({
                 noteType: 'info',
                 headerText: 'Form Handling',
@@ -265,7 +271,7 @@ const AccountInfo = (props) => {
         resetForm();
         if (authCtx.isLoggedIn) {
             /* GET user */
-            getUserById(authCtx.userID)
+            getUserInfoById(authCtx.userID)
                 .then((user) => {
                     const thisUser = user.data[0];
                     if (thisUser.USERID) {
@@ -285,7 +291,7 @@ const AccountInfo = (props) => {
                         setPassword(thisUser.password);
                         dispatchPassword({type: 'USER_INPUT', value: thisUser.password});
                         setDesc(thisUser.description);
-                        setDescWordCount(thisUser.desc.length);
+                        setDescWordCount(thisUser.description.length);
                         setAgeSelected(thisUser.agerange);
                         setSexSelected(thisUser.gender);
 
@@ -380,7 +386,7 @@ const AccountInfo = (props) => {
                 data.id = authCtx.userID || 0;
                 data.verificationcode = verificationcode;
                 await updateUserInfo(data)
-                    .then((response) => {
+                    .then(() => {
                         setFormSubmitted(true);
                     })
                     .catch((err) => console.log('AccountInfo.js onSubmitHander update err:', err));
@@ -388,7 +394,7 @@ const AccountInfo = (props) => {
             }
             
             /* GET user */
-            getUserByUserAndPass(usernameState.value, data.password)
+            getUserInfoByUserAndPass(usernameState.value, data.password)
                 .then((user) => {
                     if (user.data[0].USERID !== null) {
                         const thisUser = user.data[0]

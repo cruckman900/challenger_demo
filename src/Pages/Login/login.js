@@ -7,8 +7,7 @@ import Button from "../../UI/Button/Button";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHand } from '@fortawesome/free-solid-svg-icons';
 
-import { getUserByUserAndPass } from '../../AsyncDataCaller/AsyncDataCaller';
-import { updateUserInfo } from "../../DataHandlers/AccountInfoDataHandler";
+import { getUserInfoByUserAndPass, updateUserInfo } from "../../DataHandlers/AccountInfoDataHandler";
 import classes from './login.module.css';
 
 const hasNumber = (val) => {
@@ -113,7 +112,7 @@ export default function Login(props) {
 
     async function submitHandler(event) {
         event.preventDefault();
-        getUserByUserAndPass(usernameState.value, passwordState.value)
+        getUserInfoByUserAndPass(usernameState.value, passwordState.value)
             .then((user) => {
                 if(typeof user !== 'undefined' && user.data.length > 0) {
                     const data = user.data[0];

@@ -1,7 +1,7 @@
 import { Fragment, useState, useEffect, useContext } from 'react';
 import AuthContext from "../../store/auth-context";
 import Status from './Status';
-import { getCountUsers, getCountUsersLoggedIn } from '../../AsyncDataCaller/AsyncDataCaller';
+import { getUserCount, getUserCountIsLoggedIn } from '../../DataHandlers/AccountInfoDataHandler';
 import classes from './StatusBar.module.css';
 
 const StatusBar = () => {
@@ -10,7 +10,7 @@ const StatusBar = () => {
     const [numUsersLoggedIn, setNumUsersLoggedIn] = useState(0);
 
     const getNums = () => {
-        getCountUsers()
+        getUserCount()
             .then((result) => {
                 const count = result.data[0].user_count;
                 setNumUsers(count);
@@ -18,7 +18,7 @@ const StatusBar = () => {
             .catch((err) => {
                 console.log('StatusBar.js getUserCount err:', err);
             })
-        getCountUsersLoggedIn()
+            getUserCountIsLoggedIn()
             .then((result) => {
                 const count = result.data[0].logged_in_user_count;
                 setNumUsersLoggedIn(count);
