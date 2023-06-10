@@ -1,10 +1,10 @@
-import React from "react";
-import DefaultPage from "../../UI/DefaultPage/DefaultPage";
+import React from 'react'
+import DefaultPage from '../../UI/DefaultPage/DefaultPage'
 
-export default function CommunitySettings() {
+export default function CommunitySettings () {
     return (
         <DefaultPage headerText="Community Setup">
-            
+
         </DefaultPage>
     )
 }
