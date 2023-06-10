@@ -1,4 +1,6 @@
-import classes from './Status.module.css';
+/* eslint-disable react/prop-types */
+import React from 'react'
+import classes from './Status.module.css'
 
 const Status = (props) => {
     return (
@@ -6,7 +8,7 @@ const Status = (props) => {
             <div className={classes.statusLabel}>{props.label}</div>
             <div className={classes.status}>{props.value}</div>
         </div>
-    );
+    )
 }
 
-export default Status;
+export default Status
