@@ -1,7 +1,8 @@
-import React from "react";
-import classes from './Button.module.css';
+/* eslint-disable react/prop-types */
+import React from 'react'
+import classes from './Button.module.css'
 
-export default function Button(props) {
+export default function Button (props) {
     return (
         <button
             type={props.type}
@@ -14,5 +15,5 @@ export default function Button(props) {
         >
             {props.value}
         </button>
-    );
+    )
 }
