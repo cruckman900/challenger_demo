@@ -1,12 +1,13 @@
-import React, { Fragment } from "react";
-import classes from './RightContainer.module.css';
+/* eslint-disable react/prop-types */
+import React, { Fragment } from 'react'
+import classes from './RightContainer.module.css'
 
-export default function RightContainer(props) {
+export default function RightContainer (props) {
     return (
         <Fragment>
             <div className={`${classes.body} ${props.className}`}>
                 {props.children}
             </div>
         </Fragment>
-    );
+    )
 }
