@@ -1,7 +1,7 @@
-import React from "react";
-import classes from './header.module.css';
+import React from 'react'
+import classes from './header.module.css'
 
-export default function header() {
+export default function header () {
     return (
         <React.Fragment>
             <div className={classes.header}>
@@ -10,5 +10,5 @@ export default function header() {
                 </span>
             </div>
         </React.Fragment>
-    );
+    )
 }
