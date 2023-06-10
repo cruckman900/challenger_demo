@@ -1,27 +1,28 @@
-import React, { useState, useEffect } from 'react';
+/* eslint-disable react/prop-types */
+import React, { useState, useEffect } from 'react'
 
-import { Row, Col, Container } from 'react-bootstrap';
-import classes from './Card.module.css';
+import { Row, Col, Container } from 'react-bootstrap'
+import classes from './Card.module.css'
 
-function Card(props) {
-    const [isOpened, setIsOpened] = useState('none');
-    const [toggle, setToggle] = useState('+');
+function Card (props) {
+    const [isOpened, setIsOpened] = useState('none')
+    const [toggle, setToggle] = useState('+')
 
     const toggleIsOpened = () => {
         if (isOpened === 'none') {
-            setIsOpened('inline');
-            setToggle('-');
-            return;
+            setIsOpened('inline')
+            setToggle('-')
+            return
         }
-        setIsOpened('none');
-        setToggle('+');
+        setIsOpened('none')
+        setToggle('+')
     }
 
     useEffect(() => {
         if (props.isOpened) {
-            setIsOpened('inline');
+            setIsOpened('inline')
         }
-    }, [props.isOpened]);
+    }, [props.isOpened])
 
     return (
         <Container className={`${classes.card} ${isOpened === 'none' && classes.minified}`}>
@@ -31,9 +32,9 @@ function Card(props) {
                 </Row>
             )}
             {props.isOpened && <Row className={`${classes.header}`}><Col>{props.headerText}</Col></Row>}
-            <Row style={{display: isOpened}}><Col className={`${classes.bodyElements} ${classes.noSelect}`}>{props.children}</Col></Row>
+            <Row style={{ display: isOpened }}><Col className={`${classes.bodyElements} ${classes.noSelect}`}>{props.children}</Col></Row>
         </Container>
-    );
+    )
 }
 
-export default Card;
+export default Card
