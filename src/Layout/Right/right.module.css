@@ -49,19 +49,39 @@
         background: rgba(25, 25, 25, 1);
         border-radius: 12px;
         outline: solid 1px rgba(255, 120, 0, .8);
-        animation: expand linear .1s 1;
+        animation: expand linear .2s 1;
     }
     
     .hide {
-        display: none;
+        display: inline;
+        top: -3.75rem;
+        left: -18rem;
+        width: 16rem;
+        margin: .25rem;
+        padding: 2.5rem .5rem;
+        padding-bottom: 1.5rem;
+        height: calc(100vh - 11.75rem);
+        background: rgba(25, 25, 25, 1);
+        border-radius: 12px;
+        outline: solid 1px rgba(255, 120, 0, .8);
+        animation: contract linear .2s 1;
     }
 }
 
 @keyframes expand {
     from {
-        width: 0rem;
+        left: -18rem;
     }
     to {
-        width: 16rem;
+        left: 0;
+    }
+}
+
+@keyframes contract {
+    from {
+        left: 0;
+    }
+    to {
+        left: -18rem;
     }
 }

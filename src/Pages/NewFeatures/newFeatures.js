@@ -32,6 +32,7 @@ export default function NewFeatures () {
                     work on the backend has been completed.  I will be rearranging files and folders soon.
                 </div>
             </Card>
+            <hr className={wClasses.br} />
             <Card headerText="May 2023">
                 <BodyHeader className={classes.header}>5/31/2023</BodyHeader>
                 <div className={classes.updateBody}>

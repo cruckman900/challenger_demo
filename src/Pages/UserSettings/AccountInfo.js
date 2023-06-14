@@ -84,14 +84,14 @@ const AccountInfo = (props) => {
     const [message, setMessage] = useState('')
 
     useEffect(() => {
-        if (!formSubmitted && !authCtx.userID) {
+        if (!formSubmitted && !authCtx.isLoggedIn) {
             setMessage({
                 noteType: 'info',
                 headerText: 'Form Handling',
                 messageText: 'You must submit this form to unlock the other forms. Bold Items are required fields.'
             })
         }
-    }, [formSubmitted])
+    }, [formSubmitted, authCtx.isLoggedIn])
 
     const [formIsValid, setFormIsValid] = useState(false)
 
