@@ -1,3 +1,4 @@
+/* eslint-disable object-shorthand */
 import axios from 'axios'
 
 const api = axios.create({
