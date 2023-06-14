@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import DefaultPage from '../../UI/DefaultPage/DefaultPage'
 import LeftLabelInput from '../../UI/LeftLabelInput/LeftLabelInput'
 import BodyHeader from '../../UI/BodyHeader/BodyHeader'
@@ -17,6 +17,21 @@ export default function SystemSettings () {
             setImageSrc(URL.createObjectURL(event.target.files[0]))
         }
     }
+
+    const [blurb, setBlurb] = useState(null)
+    const [blurbCharCount, setBlurbCharCount] = useState(0)
+    const [blurbDisabled, setBlurbDisabled] = useState(false)
+
+    const blurbChangeHandler = (event) => {
+        setBlurb(event.target.value)
+        setBlurbCharCount(event.target.value.length)
+    }
+
+    useEffect(() => {
+        if (+blurbCharCount > 699) {
+            setBlurbDisabled(true)
+        }
+    }, [blurbCharCount])
 
     const onSubmitHandler = (event) => {
         event.preventDefault()
@@ -41,6 +56,32 @@ export default function SystemSettings () {
                             <img src={imageSrc} className={classes.image} alt="Avatar Preview" />
                         </div>
                     )}
+                </div>
+                <div className={classes.row}>
+                    <LeftLabelInput
+                        id="txtBlurbCounter"
+                        placeholder={blurbCharCount}
+                        inputType="text"
+                        labelClassName={classes.labelText}
+                        inputClassName={classes.tinyInput}
+                        readOnly={true}
+                        disabled={true}
+                        labelText="Character Count"
+                    />
+                    <div className={classes.formRow}>
+                        <LeftLabelInput
+                            id="txtBlurb"
+                            placeholder="Up to 500 characters"
+                            inputType="textarea"
+                            labelText="Describe Yourself"
+                            labelClassName={classes.labelText}
+                            inputClassName={classes.textarea}
+                            readOnly={false}
+                            disabled={blurbDisabled}
+                            onChange={blurbChangeHandler}
+                            value={blurb}
+                        />
+                    </div>
                 </div>
                 <div className={classes.row}>
                     <div>
