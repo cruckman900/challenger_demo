@@ -1,4 +1,3 @@
-/* eslint-disable object-shorthand */
 import axios from 'axios'
 
 const api = axios.create({
@@ -84,51 +83,23 @@ async function getUserCountIsLoggedIn () {
 
 /* POST user */
 async function inputUserInfo (data) {
-    await api.post('/users', {
-        method: 'POST',
-        data: {
-            firstname: data.firstname,
-            middlename: data.middlename,
-            lastname: data.lastname,
-            screenname: data.screenname,
-            email: data.email,
-            agerange: data.agerange,
-            gender: data.gender,
-            username: data.username,
-            password: data.password,
-            description: data.description,
-            verificationcode: data.verificationcode,
-            validated: data.validated
-        }
+    return new Promise(function (resolve, reject) {
+        api.post('/users', {
+            method: 'POST',
+            data: data
+        })
+            .then(row => resolve(row))
+            .then(sendVerifyMail(data.email, data.username, data.verificationcode))
+            .catch(err => reject(err))
     })
-        .then(result => console.log('AccountInfoDataHandler inputUserInfo result', result))
-        .catch(err => console.log('AccountInfoDataHandler inputUserInfo err', err))
-
-    sendVerifyMail(data.email, data.username, data.verificationcode)
 }
 
 /* PUT user */
 async function updateUserInfo (data) {
     return new Promise(function (resolve, reject) {
-        console.log('AccountInfoDataHandler updateUserInfo data', data)
         api.put('/users', {
             method: 'PUT',
-            data: {
-                id: data.id,
-                firstname: data.firstname,
-                middlename: data.middlename,
-                lastname: data.lastname,
-                screenname: data.screenname,
-                email: data.email,
-                agerange: data.agerange,
-                gender: data.gender,
-                username: data.username,
-                password: data.password,
-                description: data.description,
-                verificationcode: data.verificationcode,
-                validated: data.validated,
-                isLoggedIn: data.isLoggedIn
-            }
+            data: data
         })
             .then(row => resolve(row))
             .catch(err => reject(err))
