@@ -26,7 +26,7 @@ async function inputFoods (data) {
             method: 'POST',
             data: data
         })
-            .then(row => resolve(row))
+            .then(result => resolve(result))
             .catch(err => reject(err))
     })
 }
@@ -38,7 +38,7 @@ async function updateFoods (data) {
             method: 'PUT',
             data: data
         })
-            .then(row => resolve(row))
+            .then(result => resolve(result))
             .catch(err => reject(err))
     })
 }

@@ -64,7 +64,7 @@ async function getUserCount () {
                 action: 'getCountUsers'
             }
         })
-            .then(row => resolve(row))
+            .then(result => resolve(result))
             .catch(err => reject(err))
     })
 }
@@ -77,7 +77,7 @@ async function getUserCountIsLoggedIn () {
                 action: 'getCountUsersOnline'
             }
         })
-            .then(row => resolve(row))
+            .then(result => resolve(result))
             .catch(err => reject(err))
     })
 }
@@ -89,7 +89,7 @@ async function inputUserInfo (data) {
             method: 'POST',
             data: data
         })
-            .then(row => resolve(row))
+            .then(result => resolve(result))
             .then(sendVerifyMail(data.email, data.username, data.verificationcode))
             .catch(err => reject(err))
     })
@@ -102,7 +102,7 @@ async function updateUserInfo (data) {
             method: 'PUT',
             data: data
         })
-            .then(row => resolve(row))
+            .then(result => resolve(result))
             .catch(err => reject(err))
     })
 }

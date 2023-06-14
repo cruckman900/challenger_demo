@@ -39,7 +39,7 @@ async function inputDonation (data) {
             method: 'POST',
             data: data
         })
-            .then(row => resolve(row))
+            .then(result => resolve(result))
             .catch(err => reject(err))
     })
 }
@@ -51,7 +51,7 @@ async function updateDonation (data) {
             method: 'PUT',
             data: data
         })
-            .then(row => resolve(row))
+            .then(result => resolve(result))
             .catch(err => reject(err))
     })
 }
