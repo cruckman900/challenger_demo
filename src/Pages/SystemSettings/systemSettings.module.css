@@ -32,6 +32,20 @@
     height: 10rem;
 }
 
+.tinyInput {
+    width: 4rem;
+    border-radius: 4px;
+    text-align: center;
+}
+
+.textarea {
+    float: left;
+    border-radius: 8px;
+    padding: .25rem;
+    height: 5rem;
+    width: 15rem;
+}
+
 @media screen and (max-width: 450px) {
     .Label {
         width: 7rem !important;

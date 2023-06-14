@@ -73,7 +73,7 @@ export default function SystemSettings () {
                             id="txtBlurb"
                             placeholder="Up to 500 characters"
                             inputType="textarea"
-                            labelText="Describe Yourself"
+                            labelText="Blurb"
                             labelClassName={classes.labelText}
                             inputClassName={classes.textarea}
                             readOnly={false}
