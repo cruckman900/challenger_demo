@@ -10,6 +10,10 @@ export default function NewFeatures () {
     return (
         <DefaultPage headerText="Features & Updates Log">
             <Card headerText="June 2023">
+                <BodyHeader className={classes.header}>6/13/2023</BodyHeader>
+                <div className={classes.updateBody}>
+                    Worked out a lot of the api files.  Started working on the api call functions inside the main app.
+                </div>
                 <BodyHeader className={classes.header}>6/10/2023</BodyHeader>
                 <div className={classes.updateBody}>
                     Added a few extensions to VS Code, including ESLint.  I linted my project and revised all files so that they now pass the
