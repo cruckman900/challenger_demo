@@ -6,10 +6,10 @@ const api = axios.create({
     headers: { 'Content-Type': 'application/json' }
 })
 
-/* GET music */
-async function getMusicByUserID (id) {
+/* GET systemsettings */
+async function getSystemSettingsByUserID (id) {
     return new Promise(function (resolve, reject) {
-        api.get('/music', {
+        api.get('/systemsettings', {
             params: {
                 id: id
             }
@@ -19,10 +19,10 @@ async function getMusicByUserID (id) {
     })
 }
 
-/* POST music */
-async function inputMusic (data) {
+/* POST systemsettings */
+async function inputSystemSettings (data) {
     return new Promise(function (resolve, reject) {
-        api.post('/music', {
+        api.post('/systemsettings', {
             method: 'POST',
             data: data
         })
@@ -31,10 +31,10 @@ async function inputMusic (data) {
     })
 }
 
-/* PUT music */
-async function updateMusic (data) {
+/* PUT systemsettings */
+async function updateSystemSettings (data) {
     return new Promise(function (resolve, reject) {
-        api.put('/music', {
+        api.put('/', {
             method: 'PUT',
             data: data
         })
@@ -44,7 +44,7 @@ async function updateMusic (data) {
 }
 
 export {
-    getMusicByUserID,
-    inputMusic,
-    updateMusic
+    getSystemSettingsByUserID,
+    inputSystemSettings,
+    updateSystemSettings
 }
