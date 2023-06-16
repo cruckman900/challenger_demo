@@ -28,7 +28,7 @@
 
 .image {
     border-radius: 8px;
-    width: 10rem;
+    max-width: 10rem;
     height: 10rem;
 }
 
