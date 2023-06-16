@@ -11,11 +11,10 @@ import { getUserInfoById } from '../../DataHandlers/AccountInfoDataHandler'
 
 const FoodInfo = (props) => {
     const authCtx = useContext(AuthContext)
-    const [user, setUser] = useState(null)
+
+    const [transactionState, setTransactionState] = useState('INSERT')
 
     const [fID, setFID] = useState(null)
-    const [transactionState, setTransactionState] = useState('INSERT')
-    const [userID, setUserID] = useState(null)
     const [chkAmerican, setChkAmerican] = useState(false)
     const [chkAsian, setChkAsian] = useState(false)
     const [chkCajun, setChkCajun] = useState(false)
@@ -31,48 +30,54 @@ const FoodInfo = (props) => {
     const [chkSlavic, setChkSlavic] = useState(false)
     const [chkFoodsOther, setChkFoodsOther] = useState(false)
 
-    useEffect(() => {
-        if (authCtx.isLoggedIn) {
-            setUserID(user.USERID)
-            setFID(user.FID || null)
-            setChkAmerican(user.american || null)
-            setChkAsian(user.asian_indian || null)
-            setChkCajun(user.cajun || null)
-            setChkFrench(user.french || null)
-            setChkHungarian(user.hungarian || null)
-            setChkItalian(user.italian || null)
-            setChkMediterranean(user.mediterranean || null)
-            setChkMexican(user.latin_mexican || null)
-            setChkMiddleEastern(user.middleeastern || null)
-            setChkRomanian(user.romanian || null)
-            setChkRussian(user.russian || null)
-            setChkSlavic(user.slavic || null)
-            setChkCookies(user.cookies || null)
-            setChkFoodsOther(user.foods_other || null)
-
-            if (fID !== null) {
-                setTransactionState('UPDATE')
-            } else {
-                setTransactionState('INSERT')
-            }
-        }
-    }, [user])
-
-    useEffect(() => {
-        setUpdateAuthCtx()
-    }, [])
-
     const setUpdateAuthCtx = () => {
-        const data = getUserInfoById(userID)
-        setUser(data)
-        authCtx.onLogin(userID, data)
+        getUserInfoById(authCtx.userID)
+            .then((user) => {
+                const thisUser = user.data[0]
+                setUserFoods(thisUser)
+                if (!thisUser.FID) {
+                    setTransactionState('INSERT')
+                } else {
+                    setTransactionState('UPDATE')
+                }
+            })
+    }
+
+    useEffect(() => {
+        if (authCtx.isLoggedIn) setUpdateAuthCtx()
+        if (!authCtx.isLoggedIn) setUserFoods(null)
+    }, [authCtx.isLoggedIn])
+
+    const setUserFoods = (user) => {
+        console.log('FoodInfo.js setUserFoods user', user)
+        setFID(user !== null ? user.FID : null)
+        setChkAmerican(user !== null ? user.american : null)
+        setChkAsian(user !== null ? user.asian_indian : null)
+        setChkCajun(user !== null ? user.cajun : null)
+        setChkFrench(user !== null ? user.french : null)
+        setChkHungarian(user !== null ? user.hungarian : null)
+        setChkItalian(user !== null ? user.italian : null)
+        setChkMediterranean(user !== null ? user.mediterranean : null)
+        setChkMexican(user !== null ? user.latin_mexican : null)
+        setChkMiddleEastern(user !== null ? user.middleeastern : null)
+        setChkRomanian(user !== null ? user.romanian : null)
+        setChkRussian(user !== null ? user.russian : null)
+        setChkSlavic(user !== null ? user.slavic : null)
+        setChkCookies(user !== null ? user.cookies : null)
+        setChkFoodsOther(user !== null ? user.foods_other : null)
+
+        if (fID !== null) {
+            setTransactionState('UPDATE')
+        } else {
+            setTransactionState('INSERT')
+        }
     }
 
     const onSubmitHandler = (event) => {
         event.preventDefault()
         const data = {
             id: fID,
-            userid: userID,
+            userid: authCtx.userID,
             american: chkAmerican,
             asian_indian: chkAsian,
             cajun: chkCajun,
@@ -96,34 +101,34 @@ const FoodInfo = (props) => {
                     .then(result => setFID(result.data.insertId))
                     .then(data.id = fID)
                     .then(() => setTransactionState('UPDATE'))
-                    .then(() => setUpdateAuthCtx(data))
+                    .then(() => setUpdateAuthCtx())
                     .catch(err => console.log('FoodInfo.js onSubmitHandler insert err', err))
             })
         } else {
             // Do Update
             return new Promise(function () {
                 updateFoods(data)
-                    .then(() => setUpdateAuthCtx(data))
+                    .then(() => setUpdateAuthCtx())
                     .catch(err => console.log('FoodInfo.js onSubmitHandler update err', err))
             })
         }
     }
 
     const inputs = [
-        { id: 'chkAmerican', name: 'cuisinetypes', inputType: 'checkbox', required: false, labelText: 'American?', value: chkAmerican, onChange: () => setChkAmerican(!chkAmerican) },
-        { id: 'chkAsian', name: 'cuisinetypes', inputType: 'checkbox', required: false, labelText: 'Asian / Indian', value: chkAsian, onChange: () => setChkAsian(!chkAsian) },
-        { id: 'chkCajun', name: 'cuisinetypes', inputType: 'checkbox', required: false, labelText: 'Cajun', value: chkCajun, onChange: () => setChkCajun(!chkCajun) },
-        { id: 'chkFrench', name: 'cuisinetypes', inputType: 'checkbox', required: false, labelText: 'French', value: chkFrench, onChange: () => setChkFrench(!chkFrench) },
-        { id: 'chkHungarian', name: 'cuisinetypes', inputType: 'checkbox', required: false, labelText: 'Hungarian', value: chkHungarian, onChange: () => setChkHungarian(!chkHungarian) },
-        { id: 'chkItalian', name: 'cuisinetypes', inputType: 'checkbox', required: false, labelText: 'Italian', value: chkItalian, onChange: () => setChkItalian(!chkItalian) },
-        { id: 'chkMediterranean', name: 'cuisinetypes', inputType: 'checkbox', required: false, labelText: 'Mediterranean', value: chkMediterranean, onChange: () => setChkMediterranean(!chkMediterranean) },
-        { id: 'chkMiddleEastern', name: 'cuisinetypes', inputType: 'checkbox', required: false, labelText: 'Middle Eastern', value: chkMiddleEastern, onChange: () => setChkMiddleEastern(!chkMiddleEastern) },
-        { id: 'chkMexican', name: 'cuisinetypes', inputType: 'checkbox', required: false, labelText: 'Latin / Mexican', value: chkMexican, onChange: () => setChkMexican(!chkMexican) },
-        { id: 'chkRomanian', name: 'cuisinetypes', inputType: 'checkbox', required: false, labelText: 'Romanian', value: chkRomanian, onChange: () => setChkRomanian(!chkRomanian) },
-        { id: 'chkRussian', name: 'cuisinetypes', inputType: 'checkbox', required: false, labelText: 'Russian', value: chkRussian, onChange: () => setChkRussian(!chkRussian) },
-        { id: 'chkSlavic', name: 'cuisinetypes', inputType: 'checkbox', required: false, labelText: 'Slavic', value: chkSlavic, onChange: () => setChkSlavic(!chkSlavic) },
-        { id: 'chkCookies', name: 'cuisinetypes', inputType: 'checkbox', required: false, labelText: 'I only like cookies', value: chkCookies, onChange: () => setChkCookies(!chkCookies) },
-        { id: 'chkFoodsOther', name: 'cuisinetypes', inputType: 'checkbox', required: false, labelText: 'Other', value: chkFoodsOther, onChange: () => setChkFoodsOther(!chkFoodsOther) }
+        { id: 'chkAmerican', name: 'cuisinetypes', inputType: 'checkbox', required: false, labelText: 'American?', checked: chkAmerican, onChange: () => setChkAmerican(!chkAmerican) },
+        { id: 'chkAsian', name: 'cuisinetypes', inputType: 'checkbox', required: false, labelText: 'Asian / Indian', checked: chkAsian, onChange: () => setChkAsian(!chkAsian) },
+        { id: 'chkCajun', name: 'cuisinetypes', inputType: 'checkbox', required: false, labelText: 'Cajun', checked: chkCajun, onChange: () => setChkCajun(!chkCajun) },
+        { id: 'chkFrench', name: 'cuisinetypes', inputType: 'checkbox', required: false, labelText: 'French', checked: chkFrench, onChange: () => setChkFrench(!chkFrench) },
+        { id: 'chkHungarian', name: 'cuisinetypes', inputType: 'checkbox', required: false, labelText: 'Hungarian', checked: chkHungarian, onChange: () => setChkHungarian(!chkHungarian) },
+        { id: 'chkItalian', name: 'cuisinetypes', inputType: 'checkbox', required: false, labelText: 'Italian', checked: chkItalian, onChange: () => setChkItalian(!chkItalian) },
+        { id: 'chkMediterranean', name: 'cuisinetypes', inputType: 'checkbox', required: false, labelText: 'Mediterranean', checked: chkMediterranean, onChange: () => setChkMediterranean(!chkMediterranean) },
+        { id: 'chkMiddleEastern', name: 'cuisinetypes', inputType: 'checkbox', required: false, labelText: 'Middle Eastern', checked: chkMiddleEastern, onChange: () => setChkMiddleEastern(!chkMiddleEastern) },
+        { id: 'chkMexican', name: 'cuisinetypes', inputType: 'checkbox', required: false, labelText: 'Latin / Mexican', checked: chkMexican, onChange: () => setChkMexican(!chkMexican) },
+        { id: 'chkRomanian', name: 'cuisinetypes', inputType: 'checkbox', required: false, labelText: 'Romanian', checked: chkRomanian, onChange: () => setChkRomanian(!chkRomanian) },
+        { id: 'chkRussian', name: 'cuisinetypes', inputType: 'checkbox', required: false, labelText: 'Russian', checked: chkRussian, onChange: () => setChkRussian(!chkRussian) },
+        { id: 'chkSlavic', name: 'cuisinetypes', inputType: 'checkbox', required: false, labelText: 'Slavic', checked: chkSlavic, onChange: () => setChkSlavic(!chkSlavic) },
+        { id: 'chkCookies', name: 'cuisinetypes', inputType: 'checkbox', required: false, labelText: 'I only like cookies', checked: chkCookies, onChange: () => setChkCookies(!chkCookies) },
+        { id: 'chkFoodsOther', name: 'cuisinetypes', inputType: 'checkbox', required: false, labelText: 'Other', checked: chkFoodsOther, onChange: () => setChkFoodsOther(!chkFoodsOther) }
     ]
 
     const formInputs = labeledInputs(inputs)

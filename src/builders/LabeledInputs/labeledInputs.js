@@ -14,6 +14,7 @@ const labeledInputs = (inputs) => {
                 labelText={input.labelText}
                 required={input.required}
                 value={input.value}
+                checked={input.checked}
                 onChange={input.onChange}
             />
         )

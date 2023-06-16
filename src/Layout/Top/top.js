@@ -37,7 +37,8 @@ export default function Top () {
                         })
                         .catch((err) => console.log('top.js performLogout err:', err))
                 } else {
-                    console.log('top.js performLogout', 'Could not retrieve user')
+                    console.log('top.js performLogout', 'Could not retrieve user. Forcing Local Log Out.')
+                    authCtx.onLogout()
                 }
             })
     }
