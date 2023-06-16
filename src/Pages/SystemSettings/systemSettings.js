@@ -46,6 +46,7 @@ export default function SystemSettings () {
                             id="avatarImage"
                             inputType="file"
                             labelText="Avatar Image"
+                            labelClassName={classes.labelText}
                             inputClassName={classes.inputFileType}
                             onChange={(event) => imgOnChangeHandler(event)}
                         />
@@ -68,7 +69,7 @@ export default function SystemSettings () {
                         disabled={true}
                         labelText="Character Count"
                     />
-                    <div className={classes.formRow}>
+                    <div className={classes.row}>
                         <LeftLabelInput
                             id="txtBlurb"
                             placeholder="Up to 500 characters"
@@ -88,6 +89,7 @@ export default function SystemSettings () {
                         <LeftLabelInput
                             id="primaryColor"
                             inputType="color"
+                            labelClassName={classes.labelText}
                             inputClassName={classes.inputColorType}
                             labelText="Primary Color"
                             value={primaryColor}
@@ -98,6 +100,7 @@ export default function SystemSettings () {
                         <LeftLabelInput
                             id="secondaryColor"
                             inputType="color"
+                            labelClassName={classes.labelText}
                             inputClassName={classes.inputColorType}
                             labelText="Secondary Color"
                             value={secondaryColor}
@@ -107,14 +110,16 @@ export default function SystemSettings () {
                     <div className={classes.row}>
                         <Label text="Preview" className={classes.Label} />
                         <div>
-                            <div className={classes.span} style={{ color: `${primaryColor}` }}>Your Name: </div>
-                            <div className={classes.span} style={{ color: `${secondaryColor}` }}>Your Message Here.</div>
+                            <div className={classes.span}>
+                                <div style={{ color: `${primaryColor}` }}>Your Name:</div>
+                                <div style={{ color: `${secondaryColor}` }}>Your Message Here.</div>
+                            </div>
                         </div>
                     </div>
                 </div>
 
                 <BodyHeader>&nbsp;</BodyHeader>
-                <div className={classes.formRow}>
+                <div className={classes.row}>
                     <Button
                         className={classes.primaryBtn}
                         type="submit"

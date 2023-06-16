@@ -49,7 +49,6 @@ const FoodInfo = (props) => {
     }, [authCtx.isLoggedIn])
 
     const setUserFoods = (user) => {
-        console.log('FoodInfo.js setUserFoods user', user)
         setFID(user !== null ? user.FID : null)
         setChkAmerican(user !== null ? user.american : null)
         setChkAsian(user !== null ? user.asian_indian : null)

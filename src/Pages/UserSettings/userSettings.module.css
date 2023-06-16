@@ -112,6 +112,7 @@
 
 .tinyInput {
     width: 4rem;
+    margin-left: 6rem;
     border-radius: 4px;
     text-align: center;
 }
@@ -163,6 +164,10 @@
 
     .inputStyle, .textarea {
         width: 20rem;
+    }
+
+    .tinyInput {
+        margin-left: 16rem;
     }
 
     .indentedInput {
