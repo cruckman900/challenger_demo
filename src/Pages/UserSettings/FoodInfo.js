@@ -73,7 +73,7 @@ const FoodInfo = (props) => {
             russian: chkRussian,
             slavic: chkSlavic,
             cookies: chkCookies,
-            foods_other: chkFoodsOther
+            other: chkFoodsOther
         }
 
         if (transactionState === 'INSERT') {
