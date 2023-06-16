@@ -7,9 +7,11 @@ import Button from '../../UI/Button/Button'
 import labeledInputs from '../../builders/LabeledInputs/labeledInputs'
 import AuthContext from '../../store/auth-context'
 import classes from './UserSettings.module.css'
+import { getUserInfoById } from '../../DataHandlers/AccountInfoDataHandler'
 
 const FoodInfo = (props) => {
     const authCtx = useContext(AuthContext)
+    const [user, setUser] = useState(null)
 
     const [fID, setFID] = useState(null)
     const [transactionState, setTransactionState] = useState('INSERT')
@@ -31,22 +33,22 @@ const FoodInfo = (props) => {
 
     useEffect(() => {
         if (authCtx.isLoggedIn) {
-            setUserID(authCtx.userID)
-            setFID(authCtx.user.FID || null)
-            setChkAmerican(authCtx.user.american || null)
-            setChkAsian(authCtx.user.asian_indian || null)
-            setChkCajun(authCtx.user.cajun || null)
-            setChkFrench(authCtx.user.french || null)
-            setChkHungarian(authCtx.user.hungarian || null)
-            setChkItalian(authCtx.user.italian || null)
-            setChkMediterranean(authCtx.user.mediterranean || null)
-            setChkMexican(authCtx.user.latin_mexican || null)
-            setChkMiddleEastern(authCtx.user.middleeastern || null)
-            setChkRomanian(authCtx.user.romanian || null)
-            setChkRussian(authCtx.user.russian || null)
-            setChkSlavic(authCtx.user.slavic || null)
-            setChkCookies(authCtx.user.cookies || null)
-            setChkFoodsOther(authCtx.user.foods_other || null)
+            setUserID(user.USERID)
+            setFID(user.FID || null)
+            setChkAmerican(user.american || null)
+            setChkAsian(user.asian_indian || null)
+            setChkCajun(user.cajun || null)
+            setChkFrench(user.french || null)
+            setChkHungarian(user.hungarian || null)
+            setChkItalian(user.italian || null)
+            setChkMediterranean(user.mediterranean || null)
+            setChkMexican(user.latin_mexican || null)
+            setChkMiddleEastern(user.middleeastern || null)
+            setChkRomanian(user.romanian || null)
+            setChkRussian(user.russian || null)
+            setChkSlavic(user.slavic || null)
+            setChkCookies(user.cookies || null)
+            setChkFoodsOther(user.foods_other || null)
 
             if (fID !== null) {
                 setTransactionState('UPDATE')
@@ -54,11 +56,20 @@ const FoodInfo = (props) => {
                 setTransactionState('INSERT')
             }
         }
-    }, [authCtx.isLoggedIn])
+    }, [user])
+
+    useEffect(() => {
+        setUpdateAuthCtx()
+    }, [])
+
+    const setUpdateAuthCtx = () => {
+        const data = getUserInfoById(userID)
+        setUser(data)
+        authCtx.onLogin(userID, data)
+    }
 
     const onSubmitHandler = (event) => {
         event.preventDefault()
-        console.log('FoodInfo onSubmitHandler', event)
         const data = {
             id: fID,
             userid: userID,
@@ -80,18 +91,19 @@ const FoodInfo = (props) => {
 
         if (transactionState === 'INSERT') {
             // Do Insert
-            console.log('FoodInfo.js onSubmitHandler data', data)
             return new Promise(function () {
                 inputFoods(data)
-                    .then(result => console.log('FoodInfo.js onSubmitHandler insert result', result))
+                    .then(result => setFID(result.data.insertId))
+                    .then(data.id = fID)
+                    .then(() => setTransactionState('UPDATE'))
+                    .then(() => setUpdateAuthCtx(data))
                     .catch(err => console.log('FoodInfo.js onSubmitHandler insert err', err))
             })
         } else {
             // Do Update
-            console.log('FoodInfo.js onSubmitHandler data', data)
             return new Promise(function () {
                 updateFoods(data)
-                    .then(result => console.log('FoodInfo.js onSubmitHandler update result', result))
+                    .then(() => setUpdateAuthCtx(data))
                     .catch(err => console.log('FoodInfo.js onSubmitHandler update err', err))
             })
         }
