@@ -69,20 +69,18 @@ export default function SystemSettings () {
                         disabled={true}
                         labelText="Character Count"
                     />
-                    <div className={classes.row}>
-                        <LeftLabelInput
-                            id="txtBlurb"
-                            placeholder="Up to 500 characters"
-                            inputType="textarea"
-                            labelText="Blurb"
-                            labelClassName={classes.labelText}
-                            inputClassName={classes.textarea}
-                            readOnly={false}
-                            disabled={blurbDisabled}
-                            onChange={blurbChangeHandler}
-                            value={blurb}
-                        />
-                    </div>
+                    <LeftLabelInput
+                        id="txtBlurb"
+                        placeholder="Up to 500 characters"
+                        inputType="textarea"
+                        labelText="Blurb"
+                        labelClassName={classes.labelText}
+                        inputClassName={classes.textarea}
+                        readOnly={false}
+                        disabled={blurbDisabled}
+                        onChange={blurbChangeHandler}
+                        value={blurb}
+                    />
                 </div>
                 <div className={classes.row}>
                     <div>
@@ -107,7 +105,7 @@ export default function SystemSettings () {
                             onChange={(event) => setSecondaryColor(event.target.value)}
                         />
                     </div>
-                    <div className={classes.row}>
+                    <div>
                         <Label text="Preview" className={classes.Label} />
                         <div>
                             <div className={classes.span}>
