@@ -3,7 +3,6 @@ import RightContainer from './RightContainer/RightContainer'
 import Card from '../../UI/Card/Card'
 import Button from '../../UI/Button/Button'
 import classes from './right.module.css'
-import wClasses from '../../builders/widget.module.css'
 import AuthContext from '../../store/auth-context'
 import NavContext from '../../store/nav-context'
 import NavLocations from '../../builders/NavLocations/NavLocations'
@@ -77,14 +76,12 @@ const Right = (props) => {
                         NavLocations(myCommunitiesArray, 'community', onClickHandler, selectedID)
                     )}
                 </Card>
-                <hr className={wClasses.br} />
                 <Card headerText="Groups" className={classes.card}>
                     {!authCtx.isLoggedIn && <div style={{ margin: '.25rem' }}>You can set up a group of friends for communications amongst each other.</div>}
                     {authCtx.isLoggedIn && (
                         NavLocations(myGroupsArray, 'group', onClickHandler, selectedID)
                     )}
                 </Card>
-                <hr className={wClasses.br} />
                 <Card headerText="People" className={classes.card}>
                     {!authCtx.isLoggedIn && <div style={{ margin: '.25rem' }}>Here will be individuals (friends, family members, etc.) that you can message privately.</div>}
                     {authCtx.isLoggedIn && (

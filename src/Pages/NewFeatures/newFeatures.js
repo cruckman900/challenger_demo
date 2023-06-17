@@ -4,12 +4,11 @@ import DefaultPage from '../../UI/DefaultPage/DefaultPage'
 import BodyHeader from '../../UI/BodyHeader/BodyHeader'
 import Card from '../../UI/Card/Card'
 import classes from './newFeatures.module.css'
-import wClasses from '../../builders/widget.module.css'
 
 export default function NewFeatures () {
     return (
         <DefaultPage headerText="Features & Updates Log">
-            <Card headerText="June 2023">
+            <Card headerText="June 2023" className={classes.card}>
                 <BodyHeader className={classes.header}>6/14/2023</BodyHeader>
                 <div className={classes.updateBody}>
                     Created DataHandlers to make API requests.
@@ -40,8 +39,7 @@ export default function NewFeatures () {
                     work on the backend has been completed.  I will be rearranging files and folders soon.
                 </div>
             </Card>
-            <hr className={wClasses.br} />
-            <Card headerText="May 2023">
+            <Card headerText="May 2023" className={classes.card}>
                 <BodyHeader className={classes.header}>5/31/2023</BodyHeader>
                 <div className={classes.updateBody}>
                     Been really busy trying to get Insert and Update user info working.  I finally having it connecting to the live database and
@@ -92,8 +90,7 @@ export default function NewFeatures () {
                     Added onChange handler for Age in UserSettings.js.
                 </div>
             </Card>
-            <hr className={wClasses.br} />
-            <Card headerText="April 2023">
+            <Card headerText="April 2023" className={classes.card}>
                 <BodyHeader className={classes.header}>4/24/2023</BodyHeader>
                 <div className={classes.updateBody}>
                     Massive styles overhaul: font spacing, color, sizing.  Created a top navigation bar.  Added all pages belonging to the navigation system.
