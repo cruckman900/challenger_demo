@@ -25,7 +25,7 @@ function Card (props) {
     }, [props.isOpened])
 
     return (
-        <Container className={`${classes.card} ${isOpened === 'none' && classes.minified}`}>
+        <Container className={`${classes.card} ${props.className} ${isOpened === 'none' && classes.minified}`}>
             {!props.isOpened && (
                 <Row className={`${classes.header} ${classes['with-cursor']} ${classes.noSelect}`} onClick={() => toggleIsOpened()}>
                     <Col className={classes.noSelect}>{props.headerText}<span className={classes.toggle}>{toggle}</span></Col>
