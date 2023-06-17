@@ -67,7 +67,7 @@ export default function SystemSettings () {
                         inputClassName={classes.tinyInput}
                         readOnly={true}
                         disabled={true}
-                        labelText="Character Count"
+                        labelText="Chars"
                     />
                     <LeftLabelInput
                         id="txtBlurb"
@@ -110,7 +110,7 @@ export default function SystemSettings () {
                         <div>
                             <div className={classes.span}>
                                 <div style={{ color: `${primaryColor}` }}>Your Name:</div>
-                                <div style={{ color: `${secondaryColor}` }}>Your Message Here.</div>
+                                <div style={{ color: `${secondaryColor}` }}>Your Message here.</div>
                             </div>
                         </div>
                     </div>

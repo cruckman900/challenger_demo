@@ -668,7 +668,7 @@ const AccountInfo = (props) => {
                     inputClassName={classes.tinyInput}
                     readOnly={true}
                     disabled={true}
-                    labelText="Character Count"
+                    labelText="Chars"
                 />
                 <div className={classes.formRow}>
                     <LeftLabelInput
