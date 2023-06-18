@@ -1,13 +1,13 @@
 /* eslint-disable object-shorthand */
 /* eslint-disable react/prop-types */
 import React, { useState, useEffect, useContext } from 'react'
+import AuthContext from '../../store/auth-context'
+import { getUserInfoById } from '../../DataHandlers/AccountInfoDataHandler'
 import { inputFoods, updateFoods } from '../../DataHandlers/FoodsDataHandler'
 import BodyHeader from '../../UI/BodyHeader/BodyHeader'
 import Button from '../../UI/Button/Button'
 import labeledInputs from '../../builders/LabeledInputs/labeledInputs'
-import AuthContext from '../../store/auth-context'
 import classes from './UserSettings.module.css'
-import { getUserInfoById } from '../../DataHandlers/AccountInfoDataHandler'
 
 const FoodInfo = (props) => {
     const authCtx = useContext(AuthContext)
@@ -30,11 +30,12 @@ const FoodInfo = (props) => {
     const [chkSlavic, setChkSlavic] = useState(false)
     const [chkFoodsOther, setChkFoodsOther] = useState(false)
 
-    const setUpdateAuthCtx = () => {
+    const setUpdateState = () => {
         getUserInfoById(authCtx.userID)
             .then((user) => {
                 const thisUser = user.data[0]
                 setUserFoods(thisUser)
+
                 if (!thisUser.FID) {
                     setTransactionState('INSERT')
                 } else {
@@ -44,7 +45,7 @@ const FoodInfo = (props) => {
     }
 
     useEffect(() => {
-        if (authCtx.isLoggedIn) setUpdateAuthCtx()
+        if (authCtx.isLoggedIn) setUpdateState()
         if (!authCtx.isLoggedIn) setUserFoods(null)
     }, [authCtx.isLoggedIn])
 
@@ -100,14 +101,14 @@ const FoodInfo = (props) => {
                     .then(result => setFID(result.data.insertId))
                     .then(data.id = fID)
                     .then(() => setTransactionState('UPDATE'))
-                    .then(() => setUpdateAuthCtx())
+                    .then(() => setUpdateState())
                     .catch(err => console.log('FoodInfo.js onSubmitHandler insert err', err))
             })
         } else {
             // Do Update
             return new Promise(function () {
                 updateFoods(data)
-                    .then(() => setUpdateAuthCtx())
+                    .then(() => setUpdateState())
                     .catch(err => console.log('FoodInfo.js onSubmitHandler update err', err))
             })
         }
