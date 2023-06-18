@@ -53,22 +53,22 @@ const MovieInfo = (props) => {
 
     const setUserMovies = (user) => {
         setMovID(user !== null ? user.MOVID : null)
-        setChkAction(user !== null ? user.action : null)
-        setChkComedy(user !== null ? user.comedy : null)
-        setChkAnimation(user !== null ? user.comics_animation : null)
-        setChkDocumentary(user !== null ? user.documentary : null)
-        setChkDrama(user !== null ? user.drama : null)
-        setChkHistory(user !== null ? user.history : null)
-        setChkMystery(user !== null ? user.mystery : null)
-        setChkNature(user !== null ? user.nature : null)
-        setChkNews(user !== null ? user.news_worldaffairs : null)
-        setChkReligion(user !== null ? user.religion : null)
-        setChkRomance(user !== null ? user.romance : null)
-        setChkSciFi(user !== null ? user.scifi : null)
-        setChkSports(user !== null ? user.sports : null)
-        setChkThriller(user !== null ? user.suspense_thriller : null)
-        setChkWestern(user !== null ? user.western : null)
-        setChkMoviesOther(user !== null ? user.movies_other : null)
+        setChkAction(user !== null ? user.action : false)
+        setChkComedy(user !== null ? user.comedy : false)
+        setChkAnimation(user !== null ? user.comics_animation : false)
+        setChkDocumentary(user !== null ? user.documentary : false)
+        setChkDrama(user !== null ? user.drama : false)
+        setChkHistory(user !== null ? user.history : false)
+        setChkMystery(user !== null ? user.mystery : false)
+        setChkNature(user !== null ? user.nature : false)
+        setChkNews(user !== null ? user.news_worldaffairs : false)
+        setChkReligion(user !== null ? user.religion : false)
+        setChkRomance(user !== null ? user.romance : false)
+        setChkSciFi(user !== null ? user.scifi : false)
+        setChkSports(user !== null ? user.sports : false)
+        setChkThriller(user !== null ? user.suspense_thriller : false)
+        setChkWestern(user !== null ? user.western : false)
+        setChkMoviesOther(user !== null ? user.movies_other : false)
 
         if (movID !== null) {
             setTransactionState('UPDATE')
@@ -105,6 +105,8 @@ const MovieInfo = (props) => {
             return new Promise(function () {
                 inputMovies(data)
                     .then(result => {
+                        console.log('MovieInfo.js onSubmitHandler insert data', data)
+                        console.log('MovieInfo.js onSubmitHandler insert result', result)
                         setMovID(result.data.insertId)
                         if (result.affectedRows > 0) {
                             console.log('MovieInfo.js', 'Insert Successful!')
@@ -122,6 +124,8 @@ const MovieInfo = (props) => {
             return new Promise(function () {
                 updateMovies(data)
                     .then(result => {
+                        console.log('MovieInfo.js onSubmitHandler update data', data)
+                        console.log('MovieInfo.js onSubmitHandler update result', result)
                         if (result.affectedRows > 0) {
                             console.log('MovieInfo.js', 'Update Successful!')
                         } else {
@@ -135,22 +139,22 @@ const MovieInfo = (props) => {
     }
 
     const inputs = [
-        { id: 'chkAction', name: 'literaturetypes', className: classes.smallInputStyle, inputType: 'checkbox', required: false, labelText: 'Action', checked: chkAction, onChange: () => setChkAction(!chkAction) },
-        { id: 'chkComedy', name: 'literaturetypes', className: classes.smallInputStyle, inputType: 'checkbox', required: false, labelText: 'Comedy', checked: chkComedy, onChange: () => setChkComedy(!chkComedy) },
-        { id: 'chkAnimation', name: 'literaturetypes', className: classes.smallInputStyle, inputType: 'checkbox', required: false, labelText: 'Comics / Animation', checked: chkAnimation, onChange: () => setChkAnimation(!chkAnimation) },
-        { id: 'chkDocumentary', name: 'literaturetypes', className: classes.smallInputStyle, inputType: 'checkbox', required: false, labelText: 'Documentary', checked: chkDocumentary, onChange: () => setChkDocumentary(!chkDocumentary) },
-        { id: 'chkDrama', name: 'literaturetypes', className: classes.smallInputStyle, inputType: 'checkbox', required: false, labelText: 'Drama', checked: chkDrama, onChange: () => setChkDrama(!chkDrama) },
-        { id: 'chkHistory', name: 'literaturetypes', className: classes.smallInputStyle, inputType: 'checkbox', required: false, labelText: 'History', checked: chkHistory, onChange: () => setChkHistory(!chkHistory) },
-        { id: 'chkMystery', name: 'literaturetypes', className: classes.smallInputStyle, inputType: 'checkbox', required: false, labelText: 'Mystery', checked: chkMystery, onChange: () => setChkMystery(!chkMystery) },
-        { id: 'chkNature', name: 'literaturetypes', className: classes.smallInputStyle, inputType: 'checkbox', required: false, labelText: 'Nature', checked: chkNature, onChange: () => setChkNature(!chkNature) },
-        { id: 'chkNews', name: 'literaturetypes', className: classes.smallInputStyle, inputType: 'checkbox', required: false, labelText: 'News / World Affairs', checked: chkNews, onChange: () => setChkNews(!chkNews) },
-        { id: 'chkReligion', name: 'literaturetypes', className: classes.smallInputStyle, inputType: 'checkbox', required: false, labelText: 'Religion', checked: chkReligion, onChange: () => setChkReligion(!chkReligion) },
-        { id: 'chkRomance', name: 'literaturetypes', className: classes.smallInputStyle, inputType: 'checkbox', required: false, labelText: 'Romance', checked: chkRomance, onChange: () => setChkRomance(!chkRomance) },
-        { id: 'chkSciFi', name: 'literaturetypes', className: classes.smallInputStyle, inputType: 'checkbox', required: false, labelText: 'Sci-Fi', checked: chkSciFi, onChange: () => setChkSciFi(!chkSciFi) },
-        { id: 'chkSports', name: 'literaturetypes', className: classes.smallInputStyle, inputType: 'checkbox', required: false, labelText: 'Sports', checked: chkSports, onChange: () => setChkSports(!chkSports) },
-        { id: 'chkThriller', name: 'literaturetypes', className: classes.smallInputStyle, inputType: 'checkbox', required: false, labelText: 'Suspense / Thriller', checked: chkThriller, onChange: () => setChkThriller(!chkThriller) },
-        { id: 'chkWestern', name: 'literaturetypes', className: classes.smallInputStyle, inputType: 'checkbox', required: false, labelText: 'Western', checked: chkWestern, onChange: () => setChkWestern(!chkWestern) },
-        { id: 'chkMoviesOther', name: 'literaturetypes', className: classes.smallInputStyle, inputType: 'checkbox', required: false, labelText: 'Other', checked: chkMoviesOther, onChange: () => setChkMoviesOther(!chkMoviesOther) }
+        { id: 'chkAction', name: 'literaturetypes', inputType: 'checkbox', required: false, labelText: 'Action', checked: chkAction, onChange: () => setChkAction(!chkAction) },
+        { id: 'chkComedy', name: 'literaturetypes', inputType: 'checkbox', required: false, labelText: 'Comedy', checked: chkComedy, onChange: () => setChkComedy(!chkComedy) },
+        { id: 'chkAnimation', name: 'literaturetypes', inputType: 'checkbox', required: false, labelText: 'Comics / Animation', checked: chkAnimation, onChange: () => setChkAnimation(!chkAnimation) },
+        { id: 'chkDocumentary', name: 'literaturetypes', inputType: 'checkbox', required: false, labelText: 'Documentary', checked: chkDocumentary, onChange: () => setChkDocumentary(!chkDocumentary) },
+        { id: 'chkDrama', name: 'literaturetypes', inputType: 'checkbox', required: false, labelText: 'Drama', checked: chkDrama, onChange: () => setChkDrama(!chkDrama) },
+        { id: 'chkHistory', name: 'literaturetypes', inputType: 'checkbox', required: false, labelText: 'History', checked: chkHistory, onChange: () => setChkHistory(!chkHistory) },
+        { id: 'chkMystery', name: 'literaturetypes', inputType: 'checkbox', required: false, labelText: 'Mystery', checked: chkMystery, onChange: () => setChkMystery(!chkMystery) },
+        { id: 'chkNature', name: 'literaturetypes', inputType: 'checkbox', required: false, labelText: 'Nature', checked: chkNature, onChange: () => setChkNature(!chkNature) },
+        { id: 'chkNews', name: 'literaturetypes', inputType: 'checkbox', required: false, labelText: 'News / World Affairs', checked: chkNews, onChange: () => setChkNews(!chkNews) },
+        { id: 'chkReligion', name: 'literaturetypes', inputType: 'checkbox', required: false, labelText: 'Religion', checked: chkReligion, onChange: () => setChkReligion(!chkReligion) },
+        { id: 'chkRomance', name: 'literaturetypes', inputType: 'checkbox', required: false, labelText: 'Romance', checked: chkRomance, onChange: () => setChkRomance(!chkRomance) },
+        { id: 'chkSciFi', name: 'literaturetypes', inputType: 'checkbox', required: false, labelText: 'Sci-Fi', checked: chkSciFi, onChange: () => setChkSciFi(!chkSciFi) },
+        { id: 'chkSports', name: 'literaturetypes', inputType: 'checkbox', required: false, labelText: 'Sports', checked: chkSports, onChange: () => setChkSports(!chkSports) },
+        { id: 'chkThriller', name: 'literaturetypes', inputType: 'checkbox', required: false, labelText: 'Suspense / Thriller', checked: chkThriller, onChange: () => setChkThriller(!chkThriller) },
+        { id: 'chkWestern', name: 'literaturetypes', inputType: 'checkbox', required: false, labelText: 'Western', checked: chkWestern, onChange: () => setChkWestern(!chkWestern) },
+        { id: 'chkMoviesOther', name: 'literaturetypes', inputType: 'checkbox', required: false, labelText: 'Other', checked: chkMoviesOther, onChange: () => setChkMoviesOther(!chkMoviesOther) }
     ]
 
     const formInputs = labeledInputs(inputs)
