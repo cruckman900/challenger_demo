@@ -53,7 +53,7 @@ const MusicInfo = (props) => {
 
     const setUserMusic = (user) => {
         setMusID(user !== null ? user.MUSID : false)
-        setChkPop(user !== null ? user.pop : false)
+        setChkPop(user !== null ? user.americanpop : false)
         setChkBlues(user !== null ? user.blues : false)
         setChkClassical(user !== null ? user.classical : false)
         setChkCountry(user !== null ? user.country_bluegrass : false)
@@ -68,7 +68,7 @@ const MusicInfo = (props) => {
         setChkRegae(user !== null ? user.regae : false)
         setChkRock(user !== null ? user.rock : false)
         setChkTribal(user !== null ? user.tribal : false)
-        setChkMusicOther(user !== null ? user.other : false)
+        setChkMusicOther(user !== null ? user.music_other : false)
 
         if (musID !== null) {
             setTransactionState('UPDATE')
@@ -106,7 +106,7 @@ const MusicInfo = (props) => {
                 inputMusic(data)
                     .then(result => {
                         setMusID(result.data.insertid)
-                        if (result.affectedRows > 0) {
+                        if (result.data.affectedRows > 0) {
                             console.log('MusicInfo.js', 'Insert Successful!')
                         } else {
                             console.log('MusicInfo.js', 'Insert Failed!')
@@ -122,6 +122,7 @@ const MusicInfo = (props) => {
             return new Promise(function () {
                 updateMusic(data)
                     .then(result => {
+                        console.log('MusicInfo.js onSubmitHandler update', result)
                         if (result.affectedRows > 0) {
                             console.log('MusicInfo.js', 'Update Successful!')
                         } else {

@@ -98,7 +98,14 @@ const FoodInfo = (props) => {
             // Do Insert
             return new Promise(function () {
                 inputFoods(data)
-                    .then(result => setFID(result.data.insertId))
+                    .then(result => {
+                        setFID(result.data.insertId)
+                        if (result.data.affectedRows > 0) {
+                            console.log('MusicInfo.js', 'Insert Successful!')
+                        } else {
+                            console.log('MusicInfo.js', 'Insert Failed!')
+                        }
+                    })
                     .then(data.id = fID)
                     .then(() => setTransactionState('UPDATE'))
                     .then(() => setUpdateState())

@@ -108,7 +108,7 @@ const MovieInfo = (props) => {
                         console.log('MovieInfo.js onSubmitHandler insert data', data)
                         console.log('MovieInfo.js onSubmitHandler insert result', result)
                         setMovID(result.data.insertId)
-                        if (result.affectedRows > 0) {
+                        if (result.data.affectedRows > 0) {
                             console.log('MovieInfo.js', 'Insert Successful!')
                         } else {
                             console.log('MovieInfo.js', 'Insert Failed!')
