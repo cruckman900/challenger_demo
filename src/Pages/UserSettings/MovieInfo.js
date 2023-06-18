@@ -104,7 +104,14 @@ const MovieInfo = (props) => {
             // Do Insert
             return new Promise(function () {
                 inputMovies(data)
-                    .then(result => setMovID(result.data.insertId))
+                    .then(result => {
+                        setMovID(result.data.insertId)
+                        if (result.affectedRows > 0) {
+                            console.log('MovieInfo.js', 'Insert Successful!')
+                        } else {
+                            console.log('MovieInfo.js', 'Insert Failed!')
+                        }
+                    })
                     .then(data.id = movID)
                     .then(() => setTransactionState('UPDATE'))
                     .then(() => setUpdateState())
@@ -114,6 +121,13 @@ const MovieInfo = (props) => {
             // Do Update
             return new Promise(function () {
                 updateMovies(data)
+                    .then(result => {
+                        if (result.affectedRows > 0) {
+                            console.log('MovieInfo.js', 'Update Successful!')
+                        } else {
+                            console.log('MovieInfo.js', 'Update Failed!')
+                        }
+                    })
                     .then(() => setUpdateState())
                     .catch(err => console.log('MovieInfo.js onSubmitHandler update err', err))
             })
