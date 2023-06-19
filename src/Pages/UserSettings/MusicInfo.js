@@ -38,7 +38,7 @@ const MusicInfo = (props) => {
                 const thisUser = user.data[0]
                 setUserMusic(thisUser)
 
-                if (!thisUser.MUSID) {
+                if (thisUser.FID !== null) {
                     setTransactionState('INSERT')
                 } else {
                     setTransactionState('UPDATE')
