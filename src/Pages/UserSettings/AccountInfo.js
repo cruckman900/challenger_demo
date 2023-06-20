@@ -145,27 +145,32 @@ const AccountInfo = (props) => {
     }, [firstNameIsValid, lastNameIsValid, emailIsValid, usernameIsValid, passwordIsValid])
 
     const firstNameChangeHandler = (event) => {
+        setFName(event.target.value)
         dispatchFirstName({ type: 'USER_INPUT', value: event.target.value })
-        setFName(firstNameState.value)
     }
 
     const middleNameChangeHandler = (event) => {
+        setMName(event.target.value)
         setMiddleName(event.target.value)
     }
 
     const lastNameChangeHandler = (event) => {
+        setLName(event.target.value)
         dispatchLastName({ type: 'USER_INPUT', value: event.target.value })
     }
 
     const usernameChangeHandler = (event) => {
+        setUName(event.target.value)
         dispatchUsername({ type: 'USER_INPUT', value: event.target.value })
     }
 
     const emailChangeHandler = (event) => {
+        setEmail(event.target.value)
         dispatchEmail({ type: 'USER_INPUT', value: event.target.value })
     }
 
     const passwordChangeHandler = (event) => {
+        setPassword(event.target.value)
         dispatchPassword({ type: 'USER_INPUT', value: event.target.value })
     }
 
@@ -207,6 +212,7 @@ const AccountInfo = (props) => {
     const [descDisabled, setDescDisabled] = useState(false)
 
     const descriptionChangeHandler = (event) => {
+        setDesc(event.target.value)
         setDescription(event.target.value)
         setDescWordCount(event.target.value.length)
     }
