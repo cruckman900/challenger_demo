@@ -146,6 +146,7 @@ const AccountInfo = (props) => {
 
     const firstNameChangeHandler = (event) => {
         dispatchFirstName({ type: 'USER_INPUT', value: event.target.value })
+        setFName(firstNameState.value)
     }
 
     const middleNameChangeHandler = (event) => {
