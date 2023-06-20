@@ -205,6 +205,7 @@ const AccountInfo = (props) => {
     }
 
     const screenNameChangeHandler = (event) => {
+        setSName(event.target.value)
         setScreenName(event.target.value)
     }
 
