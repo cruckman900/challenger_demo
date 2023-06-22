@@ -39,10 +39,10 @@ const ActivityInfo = (props) => {
     const setUpdateState = () => {
         getActivitiesByUserID(authCtx.userID)
             .then((user) => {
-                const thisUser = user.data[0]
-                setUserActivites(thisUser)
+                const thisUserActivities = user.data.length > 0 ? user.data[0] : null
+                setUserActivites(thisUserActivities)
 
-                if (thisUser.id !== null) {
+                if (thisUserActivities === null) {
                     setTransactionState('INSERT')
                 } else {
                     setTransactionState('UPDATE')
@@ -53,31 +53,31 @@ const ActivityInfo = (props) => {
     useEffect(() => {
         if (authCtx.isLoggedIn) setUpdateState()
         if (!authCtx.isLoggedIn) setUserActivites(null)
-    }, authCtx.isLoggedIn)
+    }, [authCtx.isLoggedIn])
 
-    const setUserActivites = (user) => {
-        setActID(user !== null ? user.id : false)
-        setChkArcheryGuns(user !== null ? user.archery_guns : false)
-        setChkArtsCrafts(user !== null ? user.arts_crafts : false)
-        setChkBarsClubs(user !== null ? user.bars_clubs : false)
-        setChkBilliardsDarts(user !== null ? user.billiards_darts : false)
-        setChkBoatingCamping(user !== null ? user.boating_camping : false)
-        setChkBoxingWrestling(user !== null ? user.boxing_wrestling : false)
-        setChkClassicSports(user !== null ? user.classicsports : false)
-        setChkCycling(user !== null ? user.cycling : false)
-        setChkFishingHunting(user !== null ? user.fishing_hunting : false)
-        setChkHikingClimbing(user !== null ? user.hiking_climbing : false)
-        setChkMachinesElectronics(user !== null ? user.machines_electronics : false)
-        setChkMartialArts(user !== null ? user.martialarts : false)
-        setChkMusicInstr(user !== null ? user.musicalinstruments : false)
-        setChkPuzzlesGames(user !== null ? user.puzzles_games : false)
-        setChkReadingWriting(user !== null ? user.reading_writing : false)
-        setChkSingingDancing(user !== null ? user.singing_dancing : false)
-        setChkSwimming(user !== null ? user.swimming : false)
-        setChkVideoGames(user !== null ? user.videogames : false)
-        setChkWalkingRunning(user !== null ? user.walking_running : false)
-        setChkWatchingTv(user !== null ? user.watchingtv : false)
-        setChkActivityOther(user !== null ? user.other : false)
+    const setUserActivites = (userActivities) => {
+        setActID(userActivities !== null ? userActivities.id : null)
+        setChkArcheryGuns(userActivities !== null ? userActivities.archery_guns : false)
+        setChkArtsCrafts(userActivities !== null ? userActivities.arts_crafts : false)
+        setChkBarsClubs(userActivities !== null ? userActivities.bars_clubs : false)
+        setChkBilliardsDarts(userActivities !== null ? userActivities.billiards_darts : false)
+        setChkBoatingCamping(userActivities !== null ? userActivities.boating_camping : false)
+        setChkBoxingWrestling(userActivities !== null ? userActivities.boxing_wrestling : false)
+        setChkClassicSports(userActivities !== null ? userActivities.classicsports : false)
+        setChkCycling(userActivities !== null ? userActivities.cycling : false)
+        setChkFishingHunting(userActivities !== null ? userActivities.fishing_hunting : false)
+        setChkHikingClimbing(userActivities !== null ? userActivities.hiking_climbing : false)
+        setChkMachinesElectronics(userActivities !== null ? userActivities.machines_electronics : false)
+        setChkMartialArts(userActivities !== null ? userActivities.martialarts : false)
+        setChkMusicInstr(userActivities !== null ? userActivities.musicalinstruments : false)
+        setChkPuzzlesGames(userActivities !== null ? userActivities.puzzles_games : false)
+        setChkReadingWriting(userActivities !== null ? userActivities.reading_writing : false)
+        setChkSingingDancing(userActivities !== null ? userActivities.singing_dancing : false)
+        setChkSwimming(userActivities !== null ? userActivities.swimming : false)
+        setChkVideoGames(userActivities !== null ? userActivities.videogames : false)
+        setChkWalkingRunning(userActivities !== null ? userActivities.walking_running : false)
+        setChkWatchingTv(userActivities !== null ? userActivities.watchingtv : false)
+        setChkActivityOther(userActivities !== null ? userActivities.other : false)
 
         if (actID !== null) {
             setTransactionState('UPDATE')
@@ -119,7 +119,6 @@ const ActivityInfo = (props) => {
             return new Promise(function () {
                 inputActivities(data)
                     .then(result => {
-                        console.log('ActivityInfo.js onSubmitHandler', 'data', data, 'result', result)
                         setActID(result.data.insertid)
                         if (result.data.affectedRows > 0) {
                             console.log('ActivityInfo.js', 'Insert Successful!')
@@ -137,8 +136,7 @@ const ActivityInfo = (props) => {
             return new Promise(function () {
                 updateActivities(data)
                     .then(result => {
-                        console.log('ActivityInfo.js onSubmitHandler update', result)
-                        if (result.affectedRows > 0) {
+                        if (result.data.affectedRows > 0) {
                             console.log('ActivityInfo.js', 'Update Successful!')
                         } else {
                             console.log('ActivityInfo.js', 'Update Failed')
