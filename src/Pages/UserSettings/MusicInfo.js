@@ -2,8 +2,7 @@
 /* eslint-disable react/prop-types */
 import React, { useState, useEffect, useContext } from 'react'
 import AuthContext from '../../store/auth-context'
-import { getUserInfoById } from '../../DataHandlers/AccountInfoDataHandler'
-import { inputMusic, updateMusic } from '../../DataHandlers/MusicDataHandler'
+import { getMusicByUserID, inputMusic, updateMusic } from '../../DataHandlers/MusicDataHandler'
 import BodyHeader from '../../UI/BodyHeader/BodyHeader'
 import Button from '../../UI/Button/Button'
 import labeledInputs from '../../builders/LabeledInputs/labeledInputs'
@@ -33,12 +32,12 @@ const MusicInfo = (props) => {
     const [chkMusicOther, setChkMusicOther] = useState(false)
 
     const setUpdateState = () => {
-        getUserInfoById(authCtx.userID)
+        getMusicByUserID(authCtx.userID)
             .then((user) => {
-                const thisUser = user.data[0]
-                setUserMusic(thisUser)
+                const thisUserMusic = user.data.length > 0 ? user.data[0] : null
+                setUserMusic(thisUserMusic)
 
-                if (thisUser.FID !== null) {
+                if (thisUserMusic === null) {
                     setTransactionState('INSERT')
                 } else {
                     setTransactionState('UPDATE')
@@ -51,24 +50,24 @@ const MusicInfo = (props) => {
         if (!authCtx.isLoggedIn) setUserMusic(null)
     }, [authCtx.isLoggedIn])
 
-    const setUserMusic = (user) => {
-        setMusID(user !== null ? user.MUSID : false)
-        setChkPop(user !== null ? user.americanpop : false)
-        setChkBlues(user !== null ? user.blues : false)
-        setChkClassical(user !== null ? user.classical : false)
-        setChkCountry(user !== null ? user.country_bluegrass : false)
-        setChkDisco(user !== null ? user.disco : false)
-        setChkFlamenco(user !== null ? user.flamenco_mariachi : false)
-        setChkFolk(user !== null ? user.folk : false)
-        setChkJazz(user !== null ? user.jazz : false)
-        setChkJKPop(user !== null ? user.jpop_kpop : false)
-        setChkMetal(user !== null ? user.metal : false)
-        setChkPolka(user !== null ? user.polka : false)
-        setChkRap(user !== null ? user.rap_hiphop : false)
-        setChkRegae(user !== null ? user.regae : false)
-        setChkRock(user !== null ? user.rock : false)
-        setChkTribal(user !== null ? user.tribal : false)
-        setChkMusicOther(user !== null ? user.music_other : false)
+    const setUserMusic = (userMusic) => {
+        setMusID(userMusic !== null ? userMusic.MUSID : false)
+        setChkPop(userMusic !== null ? userMusic.americanpop : false)
+        setChkBlues(userMusic !== null ? userMusic.blues : false)
+        setChkClassical(userMusic !== null ? userMusic.classical : false)
+        setChkCountry(userMusic !== null ? userMusic.country_bluegrass : false)
+        setChkDisco(userMusic !== null ? userMusic.disco : false)
+        setChkFlamenco(userMusic !== null ? userMusic.flamenco_mariachi : false)
+        setChkFolk(userMusic !== null ? userMusic.folk : false)
+        setChkJazz(userMusic !== null ? userMusic.jazz : false)
+        setChkJKPop(userMusic !== null ? userMusic.jpop_kpop : false)
+        setChkMetal(userMusic !== null ? userMusic.metal : false)
+        setChkPolka(userMusic !== null ? userMusic.polka : false)
+        setChkRap(userMusic !== null ? userMusic.rap_hiphop : false)
+        setChkRegae(userMusic !== null ? userMusic.regae : false)
+        setChkRock(userMusic !== null ? userMusic.rock : false)
+        setChkTribal(userMusic !== null ? userMusic.tribal : false)
+        setChkMusicOther(userMusic !== null ? userMusic.music_other : false)
 
         if (musID !== null) {
             setTransactionState('UPDATE')
@@ -122,8 +121,7 @@ const MusicInfo = (props) => {
             return new Promise(function () {
                 updateMusic(data)
                     .then(result => {
-                        console.log('MusicInfo.js onSubmitHandler update', result)
-                        if (result.affectedRows > 0) {
+                        if (result.data.affectedRows > 0) {
                             console.log('MusicInfo.js', 'Update Successful!')
                         } else {
                             console.log('MusicInfo.js', 'Update Failed!')
