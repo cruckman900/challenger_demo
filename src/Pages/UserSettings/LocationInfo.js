@@ -1,17 +1,22 @@
-import React, { useState } from 'react'
+/* eslint-disable object-shorthand */
+/* eslint-disable react/prop-types */
+import React, { useState, useEffect, useContext } from 'react'
+import AuthContext from '../../store/auth-context'
+import { getLocationByUserID, inputLocations, updateLocations } from '../../DataHandlers/LocationsDataHandler'
 import BodyHeader from '../../UI/BodyHeader/BodyHeader'
 import LeftLabelInput from '../../UI/LeftLabelInput/LeftLabelInput'
 import Button from '../../UI/Button/Button'
 import classes from './UserSettings.module.css'
 
 const LocationInfo = (props) => {
-    const onSubmitHandler = (event) => {
-        event.preventDefault()
-    }
+    const authCtx = useContext(AuthContext)
 
-    const [city, setCity] = useState('')
-    const [state, setState] = useState('')
-    const [country, setCountry] = useState('')
+    const [transactionState, setTransactionState] = useState('INSERT')
+
+    const [locationID, setLocationID] = useState(null)
+    const [city, setCity] = useState(null)
+    const [state, setState] = useState(null)
+    const [country, setCountry] = useState(null)
 
     const cityChangeHandler = (event) => {
         setCity(event.target.value)
@@ -23,6 +28,82 @@ const LocationInfo = (props) => {
 
     const countryChangeHandler = (event) => {
         setCountry(event.target.value)
+    }
+
+    const setUpdateState = () => {
+        getLocationByUserID(authCtx.userID)
+            .then((user) => {
+                const thisUserLocation = user.data.length > 0 ? user.data[0] : null
+                setUserLocation(thisUserLocation)
+
+                if (thisUserLocation === null) {
+                    setTransactionState('INSERT')
+                } else {
+                    setTransactionState('UPDATE')
+                }
+            })
+    }
+
+    useEffect(() => {
+        if (authCtx.isLoggedIn) setUpdateState()
+        if (!authCtx.isLoggedIn) setUserLocation(null)
+    }, [authCtx.isLoggedIn])
+
+    const setUserLocation = (userLocation) => {
+        setLocationID(userLocation !== null ? userLocation.id : null)
+        setCity(userLocation !== null ? userLocation.city : null)
+        setState(userLocation !== null ? userLocation.state : null)
+        setCountry(userLocation !== null ? userLocation.country : null)
+
+        if (locationID !== null) {
+            setTransactionState('UPDATE')
+        } else {
+            setTransactionState('INSERT')
+        }
+    }
+
+    const onSubmitHandler = (event) => {
+        event.preventDefault()
+        const data = {
+            id: locationID,
+            userid: authCtx.userID,
+            city: city,
+            state: state,
+            country: country
+        }
+
+        if (transactionState === 'INSERT') {
+            // Do Insert
+            return new Promise(function () {
+                inputLocations(data)
+                    .then(result => {
+                        setLocationID(result.data.insertid)
+                        if (result.data.affectedRows > 0) {
+                            console.log('LocationInfo.js', 'Insert Successful!')
+                        } else {
+                            console.log('LocationInfo.js', 'Insert Failed!')
+                        }
+                    })
+                    .then(data.id = locationID)
+                    .then(() => setTransactionState('UPDATE'))
+                    .then(() => setUpdateState())
+                    .catch(err => console.log('LocationInfo.js onSubmitHandler insert err', err))
+            })
+        } else {
+            // Do Update
+            return new Promise(function () {
+                updateLocations(data)
+                    .then(result => {
+                        if (result.data.affectedRows > 0) {
+                            console.log('LocationInfo.js', 'Update Successful!')
+                        } else {
+                            console.log('LocationInfo.js', 'Update Failed!')
+                        }
+                    })
+                    .then(() => setUpdateState())
+                    .catch(err => console.log('LocationInfo.js onSubmitHandler update err', err))
+            })
+        }
     }
 
     return (
