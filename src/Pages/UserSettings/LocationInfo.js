@@ -77,6 +77,7 @@ const LocationInfo = (props) => {
             return new Promise(function () {
                 inputLocations(data)
                     .then(result => {
+                        console.log(result)
                         setLocationID(result.data.insertid)
                         if (result.data.affectedRows > 0) {
                             console.log('LocationInfo.js', 'Insert Successful!')
@@ -94,6 +95,7 @@ const LocationInfo = (props) => {
             return new Promise(function () {
                 updateLocations(data)
                     .then(result => {
+                        console.log(result)
                         if (result.data.affectedRows > 0) {
                             console.log('LocationInfo.js', 'Update Successful!')
                         } else {
@@ -116,7 +118,7 @@ const LocationInfo = (props) => {
                     labelText="City"
                     labelClassName={classes.labelText}
                     inputClassName={classes.inputStyle}
-                    value={city.value}
+                    value={city}
                     onChange={cityChangeHandler}
                 />
             </div>
@@ -127,7 +129,7 @@ const LocationInfo = (props) => {
                     labelText="State / Province"
                     labelClassName={classes.labelText}
                     inputClassName={classes.inputStyle}
-                    value={state.value}
+                    value={state}
                     onChange={stateChangeHandler}
                 />
             </div>
@@ -138,7 +140,7 @@ const LocationInfo = (props) => {
                     labelText="Country"
                     labelClassName={classes.labelText}
                     inputClassName={classes.inputStyle}
-                    value={country.value}
+                    value={country}
                     onChange={countryChangeHandler}
                 />
             </div>
