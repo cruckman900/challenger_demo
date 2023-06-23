@@ -2,8 +2,7 @@
 /* eslint-disable react/prop-types */
 import React, { useState, useEffect, useContext } from 'react'
 import AuthContext from '../../store/auth-context'
-import { getUserInfoById } from '../../DataHandlers/AccountInfoDataHandler'
-import { inputFoods, updateFoods } from '../../DataHandlers/FoodsDataHandler'
+import { getFoodsByUserID, inputFoods, updateFoods } from '../../DataHandlers/FoodsDataHandler'
 import BodyHeader from '../../UI/BodyHeader/BodyHeader'
 import Button from '../../UI/Button/Button'
 import labeledInputs from '../../builders/LabeledInputs/labeledInputs'
@@ -31,12 +30,12 @@ const FoodInfo = (props) => {
     const [chkFoodsOther, setChkFoodsOther] = useState(false)
 
     const setUpdateState = () => {
-        getUserInfoById(authCtx.userID)
+        getFoodsByUserID(authCtx.userID)
             .then((user) => {
-                const thisUser = user.data[0]
-                setUserFoods(thisUser)
+                const thisUserFoods = user.data.length > 0 ? user.data[0] : null
+                setUserFoods(thisUserFoods)
 
-                if (thisUser.FID !== null) {
+                if (thisUserFoods.FID === null) {
                     setTransactionState('INSERT')
                 } else {
                     setTransactionState('UPDATE')
@@ -49,22 +48,22 @@ const FoodInfo = (props) => {
         if (!authCtx.isLoggedIn) setUserFoods(null)
     }, [authCtx.isLoggedIn])
 
-    const setUserFoods = (user) => {
-        setFID(user !== null ? user.FID : null)
-        setChkAmerican(user !== null ? user.american : false)
-        setChkAsian(user !== null ? user.asian_indian : false)
-        setChkCajun(user !== null ? user.cajun : false)
-        setChkFrench(user !== null ? user.french : false)
-        setChkHungarian(user !== null ? user.hungarian : false)
-        setChkItalian(user !== null ? user.italian : false)
-        setChkMediterranean(user !== null ? user.mediterranean : false)
-        setChkMexican(user !== null ? user.latin_mexican : false)
-        setChkMiddleEastern(user !== null ? user.middleeastern : false)
-        setChkRomanian(user !== null ? user.romanian : false)
-        setChkRussian(user !== null ? user.russian : false)
-        setChkSlavic(user !== null ? user.slavic : false)
-        setChkCookies(user !== null ? user.cookies : false)
-        setChkFoodsOther(user !== null ? user.foods_other : false)
+    const setUserFoods = (userFoods) => {
+        setFID(userFoods !== null ? userFoods.id : null)
+        setChkAmerican(userFoods !== null ? userFoods.american : false)
+        setChkAsian(userFoods !== null ? userFoods.asian_indian : false)
+        setChkCajun(userFoods !== null ? userFoods.cajun : false)
+        setChkFrench(userFoods !== null ? userFoods.french : false)
+        setChkHungarian(userFoods !== null ? userFoods.hungarian : false)
+        setChkItalian(userFoods !== null ? userFoods.italian : false)
+        setChkMediterranean(userFoods !== null ? userFoods.mediterranean : false)
+        setChkMexican(userFoods !== null ? userFoods.latin_mexican : false)
+        setChkMiddleEastern(userFoods !== null ? userFoods.middleeastern : false)
+        setChkRomanian(userFoods !== null ? userFoods.romanian : false)
+        setChkRussian(userFoods !== null ? userFoods.russian : false)
+        setChkSlavic(userFoods !== null ? userFoods.slavic : false)
+        setChkCookies(userFoods !== null ? userFoods.cookies : false)
+        setChkFoodsOther(userFoods !== null ? userFoods.other : false)
 
         if (fID !== null) {
             setTransactionState('UPDATE')
@@ -115,6 +114,13 @@ const FoodInfo = (props) => {
             // Do Update
             return new Promise(function () {
                 updateFoods(data)
+                    .then(result => {
+                        if (result.data.affectedRows > 0) {
+                            console.log('FoodInfo.js', 'Update Successful!')
+                        } else {
+                            console.log('FoodInfo.js', 'Update Failed')
+                        }
+                    })
                     .then(() => setUpdateState())
                     .catch(err => console.log('FoodInfo.js onSubmitHandler update err', err))
             })
