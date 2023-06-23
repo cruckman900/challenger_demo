@@ -2,9 +2,9 @@
 /* eslint-disable react/prop-types */
 import React, { useState, useEffect, useContext } from 'react'
 import AuthContext from '../../store/auth-context'
-import { getUserInfoById } from '../../DataHandlers/AccountInfoDataHandler'
-import { inputFoods, updateFoods } from '../../DataHandlers/FoodsDataHandler'
+import { getFoodsByUserID, inputFoods, updateFoods } from '../../DataHandlers/FoodsDataHandler'
 import BodyHeader from '../../UI/BodyHeader/BodyHeader'
+import Note from '../../UI/Note/Note'
 import Button from '../../UI/Button/Button'
 import labeledInputs from '../../builders/LabeledInputs/labeledInputs'
 import classes from './UserSettings.module.css'
@@ -13,6 +13,7 @@ const FoodInfo = (props) => {
     const authCtx = useContext(AuthContext)
 
     const [transactionState, setTransactionState] = useState('INSERT')
+    const [message, setMessage] = useState('')
 
     const [fID, setFID] = useState(null)
     const [chkAmerican, setChkAmerican] = useState(false)
@@ -31,12 +32,12 @@ const FoodInfo = (props) => {
     const [chkFoodsOther, setChkFoodsOther] = useState(false)
 
     const setUpdateState = () => {
-        getUserInfoById(authCtx.userID)
+        getFoodsByUserID(authCtx.userID)
             .then((user) => {
-                const thisUser = user.data[0]
-                setUserFoods(thisUser)
+                const thisUserFoods = user.data.length > 0 ? user.data[0] : null
+                setUserFoods(thisUserFoods)
 
-                if (thisUser.FID !== null) {
+                if (thisUserFoods === null) {
                     setTransactionState('INSERT')
                 } else {
                     setTransactionState('UPDATE')
@@ -49,27 +50,43 @@ const FoodInfo = (props) => {
         if (!authCtx.isLoggedIn) setUserFoods(null)
     }, [authCtx.isLoggedIn])
 
-    const setUserFoods = (user) => {
-        setFID(user !== null ? user.FID : null)
-        setChkAmerican(user !== null ? user.american : false)
-        setChkAsian(user !== null ? user.asian_indian : false)
-        setChkCajun(user !== null ? user.cajun : false)
-        setChkFrench(user !== null ? user.french : false)
-        setChkHungarian(user !== null ? user.hungarian : false)
-        setChkItalian(user !== null ? user.italian : false)
-        setChkMediterranean(user !== null ? user.mediterranean : false)
-        setChkMexican(user !== null ? user.latin_mexican : false)
-        setChkMiddleEastern(user !== null ? user.middleeastern : false)
-        setChkRomanian(user !== null ? user.romanian : false)
-        setChkRussian(user !== null ? user.russian : false)
-        setChkSlavic(user !== null ? user.slavic : false)
-        setChkCookies(user !== null ? user.cookies : false)
-        setChkFoodsOther(user !== null ? user.foods_other : false)
+    const setUserFoods = (userFoods) => {
+        setFID(userFoods !== null ? userFoods.id : null)
+        setChkAmerican(userFoods !== null ? userFoods.american : false)
+        setChkAsian(userFoods !== null ? userFoods.asian_indian : false)
+        setChkCajun(userFoods !== null ? userFoods.cajun : false)
+        setChkFrench(userFoods !== null ? userFoods.french : false)
+        setChkHungarian(userFoods !== null ? userFoods.hungarian : false)
+        setChkItalian(userFoods !== null ? userFoods.italian : false)
+        setChkMediterranean(userFoods !== null ? userFoods.mediterranean : false)
+        setChkMexican(userFoods !== null ? userFoods.latin_mexican : false)
+        setChkMiddleEastern(userFoods !== null ? userFoods.middleeastern : false)
+        setChkRomanian(userFoods !== null ? userFoods.romanian : false)
+        setChkRussian(userFoods !== null ? userFoods.russian : false)
+        setChkSlavic(userFoods !== null ? userFoods.slavic : false)
+        setChkCookies(userFoods !== null ? userFoods.cookies : false)
+        setChkFoodsOther(userFoods !== null ? userFoods.other : false)
 
         if (fID !== null) {
             setTransactionState('UPDATE')
         } else {
             setTransactionState('INSERT')
+        }
+    }
+
+    const setSuccessMessage = (valid) => {
+        if (valid) {
+            setMessage({
+                noteType: 'success',
+                headerText: 'Form submitted',
+                messageText: 'Account information saved!'
+            })
+        } else {
+            setMessage({
+                noteType: 'success',
+                headerText: 'Error',
+                messageText: 'Form values were not saved!'
+            })
         }
     }
 
@@ -101,9 +118,9 @@ const FoodInfo = (props) => {
                     .then(result => {
                         setFID(result.data.insertId)
                         if (result.data.affectedRows > 0) {
-                            console.log('MusicInfo.js', 'Insert Successful!')
+                            setSuccessMessage(true)
                         } else {
-                            console.log('MusicInfo.js', 'Insert Failed!')
+                            setSuccessMessage(false)
                         }
                     })
                     .then(data.id = fID)
@@ -115,6 +132,13 @@ const FoodInfo = (props) => {
             // Do Update
             return new Promise(function () {
                 updateFoods(data)
+                    .then(result => {
+                        if (result.data.affectedRows > 0) {
+                            setSuccessMessage(true)
+                        } else {
+                            setSuccessMessage(false)
+                        }
+                    })
                     .then(() => setUpdateState())
                     .catch(err => console.log('FoodInfo.js onSubmitHandler update err', err))
             })
@@ -143,6 +167,7 @@ const FoodInfo = (props) => {
     return (
         <form onSubmit={onSubmitHandler}>
             <BodyHeader>Favorite Types of Food</BodyHeader>
+            {message && <Note noteType={message.noteType} headerText={message.headerText}>{message.messageText}</Note>}
             {formInputs}
             <BodyHeader>&nbsp;</BodyHeader>
             <div className={classes.formRow}>

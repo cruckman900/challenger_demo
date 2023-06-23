@@ -2,9 +2,9 @@
 /* eslint-disable react/prop-types */
 import React, { useState, useEffect, useContext } from 'react'
 import AuthContext from '../../store/auth-context'
-import { getUserInfoById } from '../../DataHandlers/AccountInfoDataHandler'
-import { inputMovies, updateMovies } from '../../DataHandlers/MoviesDataHandler'
+import { getMoviesByUserID, inputMovies, updateMovies } from '../../DataHandlers/MoviesDataHandler'
 import BodyHeader from '../../UI/BodyHeader/BodyHeader'
+import Note from '../../UI/Note/Note'
 import Button from '../../UI/Button/Button'
 import labeledInputs from '../../builders/LabeledInputs/labeledInputs'
 import classes from './UserSettings.module.css'
@@ -13,6 +13,7 @@ const MovieInfo = (props) => {
     const authCtx = useContext(AuthContext)
 
     const [transactionState, setTransactionState] = useState('INSERT')
+    const [message, setMessage] = useState('')
 
     const [movID, setMovID] = useState(null)
     const [chkAction, setChkAction] = useState(false)
@@ -33,12 +34,12 @@ const MovieInfo = (props) => {
     const [chkMoviesOther, setChkMoviesOther] = useState(false)
 
     const setUpdateState = () => {
-        getUserInfoById(authCtx.userID)
+        getMoviesByUserID(authCtx.userID)
             .then((user) => {
-                const thisUser = user.data[0]
-                setUserMovies(thisUser)
+                const thisUserMovies = user.data.length > 0 ? user.data[0] : null
+                setUserMovies(thisUserMovies)
 
-                if (thisUser.MOVID !== null) {
+                if (thisUserMovies === null) {
                     setTransactionState('INSERT')
                 } else {
                     setTransactionState('UPDATE')
@@ -51,29 +52,45 @@ const MovieInfo = (props) => {
         if (!authCtx.isLoggedIn) setUserMovies(null)
     }, [authCtx.isLoggedIn])
 
-    const setUserMovies = (user) => {
-        setMovID(user !== null ? user.MOVID : null)
-        setChkAction(user !== null ? user.action : false)
-        setChkComedy(user !== null ? user.comedy : false)
-        setChkAnimation(user !== null ? user.comics_animation : false)
-        setChkDocumentary(user !== null ? user.documentary : false)
-        setChkDrama(user !== null ? user.drama : false)
-        setChkHistory(user !== null ? user.history : false)
-        setChkMystery(user !== null ? user.mystery : false)
-        setChkNature(user !== null ? user.nature : false)
-        setChkNews(user !== null ? user.news_worldaffairs : false)
-        setChkReligion(user !== null ? user.religion : false)
-        setChkRomance(user !== null ? user.romance : false)
-        setChkSciFi(user !== null ? user.scifi : false)
-        setChkSports(user !== null ? user.sports : false)
-        setChkThriller(user !== null ? user.suspense_thriller : false)
-        setChkWestern(user !== null ? user.western : false)
-        setChkMoviesOther(user !== null ? user.movies_other : false)
+    const setUserMovies = (userMovies) => {
+        setMovID(userMovies !== null ? userMovies.id : null)
+        setChkAction(userMovies !== null ? userMovies.action : false)
+        setChkComedy(userMovies !== null ? userMovies.comedy : false)
+        setChkAnimation(userMovies !== null ? userMovies.comics_animation : false)
+        setChkDocumentary(userMovies !== null ? userMovies.documentary : false)
+        setChkDrama(userMovies !== null ? userMovies.drama : false)
+        setChkHistory(userMovies !== null ? userMovies.history : false)
+        setChkMystery(userMovies !== null ? userMovies.mystery : false)
+        setChkNature(userMovies !== null ? userMovies.nature : false)
+        setChkNews(userMovies !== null ? userMovies.news_worldaffairs : false)
+        setChkReligion(userMovies !== null ? userMovies.religion : false)
+        setChkRomance(userMovies !== null ? userMovies.romance : false)
+        setChkSciFi(userMovies !== null ? userMovies.scifi : false)
+        setChkSports(userMovies !== null ? userMovies.sports : false)
+        setChkThriller(userMovies !== null ? userMovies.suspense_thriller : false)
+        setChkWestern(userMovies !== null ? userMovies.western : false)
+        setChkMoviesOther(userMovies !== null ? userMovies.other : false)
 
         if (movID !== null) {
             setTransactionState('UPDATE')
         } else {
             setTransactionState('INSERT')
+        }
+    }
+
+    const setSuccessMessage = (valid) => {
+        if (valid) {
+            setMessage({
+                noteType: 'success',
+                headerText: 'Form submitted',
+                messageText: 'Account information saved!'
+            })
+        } else {
+            setMessage({
+                noteType: 'success',
+                headerText: 'Error',
+                messageText: 'Form values were not saved!'
+            })
         }
     }
 
@@ -105,13 +122,11 @@ const MovieInfo = (props) => {
             return new Promise(function () {
                 inputMovies(data)
                     .then(result => {
-                        console.log('MovieInfo.js onSubmitHandler insert data', data)
-                        console.log('MovieInfo.js onSubmitHandler insert result', result)
                         setMovID(result.data.insertId)
                         if (result.data.affectedRows > 0) {
-                            console.log('MovieInfo.js', 'Insert Successful!')
+                            setSuccessMessage(true)
                         } else {
-                            console.log('MovieInfo.js', 'Insert Failed!')
+                            setSuccessMessage(false)
                         }
                     })
                     .then(data.id = movID)
@@ -124,12 +139,10 @@ const MovieInfo = (props) => {
             return new Promise(function () {
                 updateMovies(data)
                     .then(result => {
-                        console.log('MovieInfo.js onSubmitHandler update data', data)
-                        console.log('MovieInfo.js onSubmitHandler update result', result)
-                        if (result.affectedRows > 0) {
-                            console.log('MovieInfo.js', 'Update Successful!')
+                        if (result.data.affectedRows > 0) {
+                            setSuccessMessage(true)
                         } else {
-                            console.log('MovieInfo.js', 'Update Failed!')
+                            setSuccessMessage(false)
                         }
                     })
                     .then(() => setUpdateState())
@@ -162,6 +175,7 @@ const MovieInfo = (props) => {
     return (
         <form onSubmit={onSubmitHandler}>
             <BodyHeader>Favorite Movie/TV/Literature Types</BodyHeader>
+            {message && <Note noteType={message.noteType} headerText={message.headerText}>{message.messageText}</Note>}
             {formInputs}
             <BodyHeader>&nbsp;</BodyHeader>
             <div className={classes.formRow}>
