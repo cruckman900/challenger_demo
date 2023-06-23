@@ -283,6 +283,7 @@ const AccountInfo = (props) => {
                     const thisUser = user.data[0]
                     if (thisUser.USERID) {
                         setUser(thisUser)
+                        setQueryType('update')
                         setDisabled(true)
 
                         setFName(thisUser.firstname)
@@ -369,6 +370,22 @@ const AccountInfo = (props) => {
         setConfirmationIsShown(false)
     };
 
+    const setSuccessMessage = (valid) => {
+        if (valid) {
+            setMessage({
+                noteType: 'success',
+                headerText: 'Form submitted',
+                messageText: 'Account information saved!'
+            })
+        } else {
+            setMessage({
+                noteType: 'success',
+                headerText: 'Error',
+                messageText: 'Form values were not saved!'
+            })
+        }
+    }
+
     async function onSubmitHandler (event) {
         event.preventDefault()
         if (formIsValid) {
@@ -385,23 +402,25 @@ const AccountInfo = (props) => {
                 password: passwordState.value,
                 description,
                 verificationcode,
-                validated
+                validated,
+                isLoggedIn: authCtx.isLoggedIn
             }
 
             if (queryType === 'insert') {
                 /* POST user */
                 await inputUserInfo(data)
-                    .then((result) => console.log('AccountInfo.js onSubmitHandler result', result))
-                    .catch((err) => console.log('AccountInfo.js onSubmitHander err:', err))
+                    .then(() => {
+                        setSuccessMessage(true)
+                        setFormSubmitted(true)
+                    })
+                    .catch(() => setSuccessMessage(false))
             } else if (queryType === 'update') {
                 /* PUT user */
                 data.id = authCtx.userID || 0
                 data.verificationcode = verificationcode
                 await updateUserInfo(data)
-                    .then(() => {
-                        setFormSubmitted(true)
-                    })
-                    .catch((err) => console.log('AccountInfo.js onSubmitHander update err:', err))
+                    .then(() => setSuccessMessage(true))
+                    .catch(() => setSuccessMessage(false))
             }
 
             /* GET user */
@@ -410,6 +429,7 @@ const AccountInfo = (props) => {
                     if (user.data[0].USERID !== null) {
                         const thisUser = user.data[0]
                         setUser(thisUser)
+                        setQueryType('update')
                         setDisabled(true)
                         props.setAccountID(thisUser.USERID)
                         props.setAgeRange(thisUser.agerange)

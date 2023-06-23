@@ -4,6 +4,7 @@ import React, { useState, useEffect, useContext } from 'react'
 import AuthContext from '../../store/auth-context'
 import { getLocationByUserID, inputLocations, updateLocations } from '../../DataHandlers/LocationsDataHandler'
 import BodyHeader from '../../UI/BodyHeader/BodyHeader'
+import Note from '../../UI/Note/Note'
 import LeftLabelInput from '../../UI/LeftLabelInput/LeftLabelInput'
 import Button from '../../UI/Button/Button'
 import classes from './UserSettings.module.css'
@@ -12,6 +13,7 @@ const LocationInfo = (props) => {
     const authCtx = useContext(AuthContext)
 
     const [transactionState, setTransactionState] = useState('INSERT')
+    const [message, setMessage] = useState('')
 
     const [locationID, setLocationID] = useState(null)
     const [city, setCity] = useState(null)
@@ -62,6 +64,22 @@ const LocationInfo = (props) => {
         }
     }
 
+    const setSuccessMessage = (valid) => {
+        if (valid) {
+            setMessage({
+                noteType: 'success',
+                headerText: 'Form submitted',
+                messageText: 'Account information saved!'
+            })
+        } else {
+            setMessage({
+                noteType: 'success',
+                headerText: 'Error',
+                messageText: 'Form values were not saved!'
+            })
+        }
+    }
+
     const onSubmitHandler = (event) => {
         event.preventDefault()
         const data = {
@@ -80,9 +98,9 @@ const LocationInfo = (props) => {
                         console.log(result)
                         setLocationID(result.data.insertid)
                         if (result.data.affectedRows > 0) {
-                            console.log('LocationInfo.js', 'Insert Successful!')
+                            setSuccessMessage(true)
                         } else {
-                            console.log('LocationInfo.js', 'Insert Failed!')
+                            setSuccessMessage(false)
                         }
                     })
                     .then(data.id = locationID)
@@ -111,6 +129,7 @@ const LocationInfo = (props) => {
     return (
         <form onSubmit={onSubmitHandler}>
             <BodyHeader>Location (Optional)</BodyHeader>
+            {message && <Note noteType={message.noteType} headerText={message.headerText}>{message.messageText}</Note>}
             <div className={classes.formRow}>
                 <LeftLabelInput
                     id="txtCity"

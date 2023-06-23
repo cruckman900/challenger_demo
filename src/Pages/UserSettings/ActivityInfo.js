@@ -4,6 +4,7 @@ import React, { useState, useEffect, useContext } from 'react'
 import AuthContext from '../../store/auth-context'
 import { getActivitiesByUserID, inputActivities, updateActivities } from '../../DataHandlers/ActivitiesDataHandler'
 import BodyHeader from '../../UI/BodyHeader/BodyHeader'
+import Note from '../../UI/Note/Note'
 import Button from '../../UI/Button/Button'
 import labeledInputs from '../../builders/LabeledInputs/labeledInputs'
 import classes from './UserSettings.module.css'
@@ -12,6 +13,7 @@ const ActivityInfo = (props) => {
     const authCtx = useContext(AuthContext)
 
     const [transactionState, setTransactionState] = useState('INSERT')
+    const [message, setMessage] = useState('')
 
     const [actID, setActID] = useState(null)
     const [chkArcheryGuns, setChkArcheryGuns] = useState(false)
@@ -86,6 +88,22 @@ const ActivityInfo = (props) => {
         }
     }
 
+    const setSuccessMessage = (valid) => {
+        if (valid) {
+            setMessage({
+                noteType: 'success',
+                headerText: 'Form submitted',
+                messageText: 'Account information saved!'
+            })
+        } else {
+            setMessage({
+                noteType: 'success',
+                headerText: 'Error',
+                messageText: 'Form values were not saved!'
+            })
+        }
+    }
+
     const onSubmitHandler = (event) => {
         event.preventDefault()
         const data = {
@@ -121,9 +139,9 @@ const ActivityInfo = (props) => {
                     .then(result => {
                         setActID(result.data.insertid)
                         if (result.data.affectedRows > 0) {
-                            console.log('ActivityInfo.js', 'Insert Successful!')
+                            setSuccessMessage(true)
                         } else {
-                            console.log('ActivityInfo.js', 'Insert Failed!')
+                            setSuccessMessage(false)
                         }
                     })
                     .then(data.id = actID)
@@ -137,9 +155,9 @@ const ActivityInfo = (props) => {
                 updateActivities(data)
                     .then(result => {
                         if (result.data.affectedRows > 0) {
-                            console.log('ActivityInfo.js', 'Update Successful!')
+                            setSuccessMessage(true)
                         } else {
-                            console.log('ActivityInfo.js', 'Update Failed')
+                            setSuccessMessage(false)
                         }
                     })
                     .then(() => setUpdateState())
@@ -177,6 +195,7 @@ const ActivityInfo = (props) => {
     return (
         <form onSubmit={onSubmitHandler}>
             <BodyHeader>Favorite Activities</BodyHeader>
+            {message && <Note noteType={message.noteType} headerText={message.headerText}>{message.messageText}</Note>}
             {formInputs}
             <BodyHeader>&nbsp;</BodyHeader>
             <div className={classes.formRow}>

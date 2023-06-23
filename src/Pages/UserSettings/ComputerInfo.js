@@ -4,6 +4,7 @@ import React, { useState, useEffect, useContext } from 'react'
 import AuthContext from '../../store/auth-context'
 import { getTechnicalByUserID, inputTechnical, updateTechnical } from '../../DataHandlers/TechnicalAptitudeDataHandler'
 import BodyHeader from '../../UI/BodyHeader/BodyHeader'
+import Note from '../../UI/Note/Note'
 import Button from '../../UI/Button/Button'
 import labeledInputs from '../../builders/LabeledInputs/labeledInputs'
 import classes from './UserSettings.module.css'
@@ -12,6 +13,7 @@ const ComputerInfo = (props) => {
     const authCtx = useContext(AuthContext)
 
     const [transactionState, setTransactionState] = useState('INSERT')
+    const [message, setMessage] = useState('')
 
     const [techID, setTechID] = useState(null)
     const [chkDigitalMedia, setChkDigitalMedia] = useState(false)
@@ -56,6 +58,22 @@ const ComputerInfo = (props) => {
         }
     }
 
+    const setSuccessMessage = (valid) => {
+        if (valid) {
+            setMessage({
+                noteType: 'success',
+                headerText: 'Form submitted',
+                messageText: 'Account information saved!'
+            })
+        } else {
+            setMessage({
+                noteType: 'success',
+                headerText: 'Error',
+                messageText: 'Form values were not saved!'
+            })
+        }
+    }
+
     const onSubmitHandler = (event) => {
         event.preventDefault()
         const data = {
@@ -76,9 +94,9 @@ const ComputerInfo = (props) => {
                     .then(result => {
                         setTechID(result.data.insertid)
                         if (result.data.affectedRows > 0) {
-                            console.log('ComputerInfo.js', 'Insert Successful!')
+                            setSuccessMessage(true)
                         } else {
-                            console.log('ComputerInfo', 'Insert Failed!')
+                            setSuccessMessage(false)
                         }
                     })
                     .then(data.id = techID)
@@ -92,9 +110,9 @@ const ComputerInfo = (props) => {
                 updateTechnical(data)
                     .then(result => {
                         if (result.data.affectedRows > 0) {
-                            console.log('ComputerInfo', 'Update Successful!')
+                            setSuccessMessage(true)
                         } else {
-                            console.log('ComputerInfo.js', 'Update Failed!')
+                            setSuccessMessage(false)
                         }
                     })
                     .then(() => setUpdateState())
@@ -117,6 +135,7 @@ const ComputerInfo = (props) => {
     return (
         <form onSubmit={onSubmitHandler}>
             <BodyHeader>Technical Aptitude</BodyHeader>
+            {message && <Note noteType={message.noteType} headerText={message.headerText}>{message.messageText}</Note>}
             {formInputs}
             <BodyHeader>&nbsp;</BodyHeader>
             <div className={classes.formRow}>

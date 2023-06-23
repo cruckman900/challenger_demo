@@ -4,6 +4,7 @@ import React, { useState, useEffect, useContext } from 'react'
 import AuthContext from '../../store/auth-context'
 import { getFoodsByUserID, inputFoods, updateFoods } from '../../DataHandlers/FoodsDataHandler'
 import BodyHeader from '../../UI/BodyHeader/BodyHeader'
+import Note from '../../UI/Note/Note'
 import Button from '../../UI/Button/Button'
 import labeledInputs from '../../builders/LabeledInputs/labeledInputs'
 import classes from './UserSettings.module.css'
@@ -12,6 +13,7 @@ const FoodInfo = (props) => {
     const authCtx = useContext(AuthContext)
 
     const [transactionState, setTransactionState] = useState('INSERT')
+    const [message, setMessage] = useState('')
 
     const [fID, setFID] = useState(null)
     const [chkAmerican, setChkAmerican] = useState(false)
@@ -72,6 +74,22 @@ const FoodInfo = (props) => {
         }
     }
 
+    const setSuccessMessage = (valid) => {
+        if (valid) {
+            setMessage({
+                noteType: 'success',
+                headerText: 'Form submitted',
+                messageText: 'Account information saved!'
+            })
+        } else {
+            setMessage({
+                noteType: 'success',
+                headerText: 'Error',
+                messageText: 'Form values were not saved!'
+            })
+        }
+    }
+
     const onSubmitHandler = (event) => {
         event.preventDefault()
         const data = {
@@ -100,9 +118,9 @@ const FoodInfo = (props) => {
                     .then(result => {
                         setFID(result.data.insertId)
                         if (result.data.affectedRows > 0) {
-                            console.log('MusicInfo.js', 'Insert Successful!')
+                            setSuccessMessage(true)
                         } else {
-                            console.log('MusicInfo.js', 'Insert Failed!')
+                            setSuccessMessage(false)
                         }
                     })
                     .then(data.id = fID)
@@ -116,9 +134,9 @@ const FoodInfo = (props) => {
                 updateFoods(data)
                     .then(result => {
                         if (result.data.affectedRows > 0) {
-                            console.log('FoodInfo.js', 'Update Successful!')
+                            setSuccessMessage(true)
                         } else {
-                            console.log('FoodInfo.js', 'Update Failed')
+                            setSuccessMessage(false)
                         }
                     })
                     .then(() => setUpdateState())
@@ -149,6 +167,7 @@ const FoodInfo = (props) => {
     return (
         <form onSubmit={onSubmitHandler}>
             <BodyHeader>Favorite Types of Food</BodyHeader>
+            {message && <Note noteType={message.noteType} headerText={message.headerText}>{message.messageText}</Note>}
             {formInputs}
             <BodyHeader>&nbsp;</BodyHeader>
             <div className={classes.formRow}>

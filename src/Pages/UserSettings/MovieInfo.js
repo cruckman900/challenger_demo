@@ -4,6 +4,7 @@ import React, { useState, useEffect, useContext } from 'react'
 import AuthContext from '../../store/auth-context'
 import { getMoviesByUserID, inputMovies, updateMovies } from '../../DataHandlers/MoviesDataHandler'
 import BodyHeader from '../../UI/BodyHeader/BodyHeader'
+import Note from '../../UI/Note/Note'
 import Button from '../../UI/Button/Button'
 import labeledInputs from '../../builders/LabeledInputs/labeledInputs'
 import classes from './UserSettings.module.css'
@@ -12,6 +13,7 @@ const MovieInfo = (props) => {
     const authCtx = useContext(AuthContext)
 
     const [transactionState, setTransactionState] = useState('INSERT')
+    const [message, setMessage] = useState('')
 
     const [movID, setMovID] = useState(null)
     const [chkAction, setChkAction] = useState(false)
@@ -76,6 +78,22 @@ const MovieInfo = (props) => {
         }
     }
 
+    const setSuccessMessage = (valid) => {
+        if (valid) {
+            setMessage({
+                noteType: 'success',
+                headerText: 'Form submitted',
+                messageText: 'Account information saved!'
+            })
+        } else {
+            setMessage({
+                noteType: 'success',
+                headerText: 'Error',
+                messageText: 'Form values were not saved!'
+            })
+        }
+    }
+
     const onSubmitHandler = (event) => {
         event.preventDefault()
         const data = {
@@ -106,9 +124,9 @@ const MovieInfo = (props) => {
                     .then(result => {
                         setMovID(result.data.insertId)
                         if (result.data.affectedRows > 0) {
-                            console.log('MovieInfo.js', 'Insert Successful!')
+                            setSuccessMessage(true)
                         } else {
-                            console.log('MovieInfo.js', 'Insert Failed!')
+                            setSuccessMessage(false)
                         }
                     })
                     .then(data.id = movID)
@@ -122,9 +140,9 @@ const MovieInfo = (props) => {
                 updateMovies(data)
                     .then(result => {
                         if (result.data.affectedRows > 0) {
-                            console.log('MovieInfo.js', 'Update Successful!')
+                            setSuccessMessage(true)
                         } else {
-                            console.log('MovieInfo.js', 'Update Failed!')
+                            setSuccessMessage(false)
                         }
                     })
                     .then(() => setUpdateState())
@@ -157,6 +175,7 @@ const MovieInfo = (props) => {
     return (
         <form onSubmit={onSubmitHandler}>
             <BodyHeader>Favorite Movie/TV/Literature Types</BodyHeader>
+            {message && <Note noteType={message.noteType} headerText={message.headerText}>{message.messageText}</Note>}
             {formInputs}
             <BodyHeader>&nbsp;</BodyHeader>
             <div className={classes.formRow}>

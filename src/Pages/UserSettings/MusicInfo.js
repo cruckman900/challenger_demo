@@ -4,6 +4,7 @@ import React, { useState, useEffect, useContext } from 'react'
 import AuthContext from '../../store/auth-context'
 import { getMusicByUserID, inputMusic, updateMusic } from '../../DataHandlers/MusicDataHandler'
 import BodyHeader from '../../UI/BodyHeader/BodyHeader'
+import Note from '../../UI/Note/Note'
 import Button from '../../UI/Button/Button'
 import labeledInputs from '../../builders/LabeledInputs/labeledInputs'
 import classes from './UserSettings.module.css'
@@ -12,6 +13,7 @@ const MusicInfo = (props) => {
     const authCtx = useContext(AuthContext)
 
     const [transactionState, setTransactionState] = useState('INSERT')
+    const [message, setMessage] = useState('')
 
     const [musID, setMusID] = useState(null)
     const [chkPop, setChkPop] = useState(false)
@@ -76,6 +78,22 @@ const MusicInfo = (props) => {
         }
     }
 
+    const setSuccessMessage = (valid) => {
+        if (valid) {
+            setMessage({
+                noteType: 'success',
+                headerText: 'Form submitted',
+                messageText: 'Account information saved!'
+            })
+        } else {
+            setMessage({
+                noteType: 'success',
+                headerText: 'Error',
+                messageText: 'Form values were not saved!'
+            })
+        }
+    }
+
     const onSubmitHandler = (event) => {
         event.preventDefault()
         const data = {
@@ -106,9 +124,9 @@ const MusicInfo = (props) => {
                     .then(result => {
                         setMusID(result.data.insertid)
                         if (result.data.affectedRows > 0) {
-                            console.log('MusicInfo.js', 'Insert Successful!')
+                            setSuccessMessage(true)
                         } else {
-                            console.log('MusicInfo.js', 'Insert Failed!')
+                            setSuccessMessage(false)
                         }
                     })
                     .then(data.id = musID)
@@ -122,9 +140,17 @@ const MusicInfo = (props) => {
                 updateMusic(data)
                     .then(result => {
                         if (result.data.affectedRows > 0) {
-                            console.log('MusicInfo.js', 'Update Successful!')
+                            setMessage({
+                                noteType: 'success',
+                                headerText: 'Form submitted',
+                                messageText: 'Account information saved!'
+                            })
                         } else {
-                            console.log('MusicInfo.js', 'Update Failed!')
+                            setMessage({
+                                noteType: 'success',
+                                headerText: 'Error',
+                                messageText: 'Form values were not saved!'
+                            })
                         }
                     })
                     .then(() => setUpdateState())
@@ -157,6 +183,7 @@ const MusicInfo = (props) => {
     return (
         <form onSubmit={onSubmitHandler}>
             <BodyHeader>Favorite Music Types</BodyHeader>
+            {message && <Note noteType={message.noteType} headerText={message.headerText}>{message.messageText}</Note>}
             {formInputs}
             <BodyHeader>&nbsp;</BodyHeader>
             <div className={classes.formRow}>

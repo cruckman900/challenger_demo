@@ -15,7 +15,7 @@ const mailer = axios.create({
 })
 
 function sendVerifyMail (email, username, code) {
-    const result = mailer.get('/', {
+    mailer.get('/', {
         params: {
             action: 'verifyUser',
             e: email,
@@ -23,8 +23,6 @@ function sendVerifyMail (email, username, code) {
             vc: code
         }
     })
-
-    console.log('AccountInfoDataHandler.js sendVerifyMail result', result)
 }
 
 /* GET user by id */
