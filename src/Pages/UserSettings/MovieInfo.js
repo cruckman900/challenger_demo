@@ -37,7 +37,7 @@ const MovieInfo = (props) => {
                 const thisUserMovies = user.data.length > 0 ? user.data[0] : null
                 setUserMovies(thisUserMovies)
 
-                if (thisUserMovies.MOVID === null) {
+                if (thisUserMovies === null) {
                     setTransactionState('INSERT')
                 } else {
                     setTransactionState('UPDATE')

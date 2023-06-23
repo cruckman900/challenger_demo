@@ -35,7 +35,7 @@ const FoodInfo = (props) => {
                 const thisUserFoods = user.data.length > 0 ? user.data[0] : null
                 setUserFoods(thisUserFoods)
 
-                if (thisUserFoods.FID === null) {
+                if (thisUserFoods === null) {
                     setTransactionState('INSERT')
                 } else {
                     setTransactionState('UPDATE')
