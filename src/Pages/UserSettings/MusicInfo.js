@@ -51,7 +51,7 @@ const MusicInfo = (props) => {
     }, [authCtx.isLoggedIn])
 
     const setUserMusic = (userMusic) => {
-        setMusID(userMusic !== null ? userMusic.MUSID : false)
+        setMusID(userMusic !== null ? userMusic.id : false)
         setChkPop(userMusic !== null ? userMusic.americanpop : false)
         setChkBlues(userMusic !== null ? userMusic.blues : false)
         setChkClassical(userMusic !== null ? userMusic.classical : false)
@@ -67,7 +67,7 @@ const MusicInfo = (props) => {
         setChkRegae(userMusic !== null ? userMusic.regae : false)
         setChkRock(userMusic !== null ? userMusic.rock : false)
         setChkTribal(userMusic !== null ? userMusic.tribal : false)
-        setChkMusicOther(userMusic !== null ? userMusic.music_other : false)
+        setChkMusicOther(userMusic !== null ? userMusic.other : false)
 
         if (musID !== null) {
             setTransactionState('UPDATE')
