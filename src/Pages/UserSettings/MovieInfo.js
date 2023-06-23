@@ -2,12 +2,12 @@
 /* eslint-disable react/prop-types */
 import React, { useState, useEffect, useContext } from 'react'
 import AuthContext from '../../store/auth-context'
-import { getUserInfoById } from '../../DataHandlers/AccountInfoDataHandler'
-import { inputMovies, updateMovies } from '../../DataHandlers/MoviesDataHandler'
+import { getMoviesByUserID, inputMovies, updateMovies } from '../../DataHandlers/MoviesDataHandler'
 import BodyHeader from '../../UI/BodyHeader/BodyHeader'
 import Button from '../../UI/Button/Button'
 import labeledInputs from '../../builders/LabeledInputs/labeledInputs'
 import classes from './UserSettings.module.css'
+import { getMusicByUserID } from '../../DataHandlers/MusicDataHandler'
 
 const MovieInfo = (props) => {
     const authCtx = useContext(AuthContext)
@@ -33,12 +33,12 @@ const MovieInfo = (props) => {
     const [chkMoviesOther, setChkMoviesOther] = useState(false)
 
     const setUpdateState = () => {
-        getUserInfoById(authCtx.userID)
+        getMusicByUserID(authCtx.userID)
             .then((user) => {
-                const thisUser = user.data[0]
-                setUserMovies(thisUser)
+                const thisUserMovies = user.data.length > 0 ? user.data[0] : null
+                setUserMovies(thisUserMovies)
 
-                if (thisUser.MOVID !== null) {
+                if (thisUserMovies.MOVID === null) {
                     setTransactionState('INSERT')
                 } else {
                     setTransactionState('UPDATE')
@@ -51,24 +51,24 @@ const MovieInfo = (props) => {
         if (!authCtx.isLoggedIn) setUserMovies(null)
     }, [authCtx.isLoggedIn])
 
-    const setUserMovies = (user) => {
-        setMovID(user !== null ? user.MOVID : null)
-        setChkAction(user !== null ? user.action : false)
-        setChkComedy(user !== null ? user.comedy : false)
-        setChkAnimation(user !== null ? user.comics_animation : false)
-        setChkDocumentary(user !== null ? user.documentary : false)
-        setChkDrama(user !== null ? user.drama : false)
-        setChkHistory(user !== null ? user.history : false)
-        setChkMystery(user !== null ? user.mystery : false)
-        setChkNature(user !== null ? user.nature : false)
-        setChkNews(user !== null ? user.news_worldaffairs : false)
-        setChkReligion(user !== null ? user.religion : false)
-        setChkRomance(user !== null ? user.romance : false)
-        setChkSciFi(user !== null ? user.scifi : false)
-        setChkSports(user !== null ? user.sports : false)
-        setChkThriller(user !== null ? user.suspense_thriller : false)
-        setChkWestern(user !== null ? user.western : false)
-        setChkMoviesOther(user !== null ? user.movies_other : false)
+    const setUserMovies = (userMovies) => {
+        setMovID(userMovies !== null ? userMovies.getMusicByUserID : null)
+        setChkAction(userMovies !== null ? userMovies.action : false)
+        setChkComedy(userMovies !== null ? userMovies.comedy : false)
+        setChkAnimation(userMovies !== null ? userMovies.comics_animation : false)
+        setChkDocumentary(userMovies !== null ? userMovies.documentary : false)
+        setChkDrama(userMovies !== null ? userMovies.drama : false)
+        setChkHistory(userMovies !== null ? userMovies.history : false)
+        setChkMystery(userMovies !== null ? userMovies.mystery : false)
+        setChkNature(userMovies !== null ? userMovies.nature : false)
+        setChkNews(userMovies !== null ? userMovies.news_worldaffairs : false)
+        setChkReligion(userMovies !== null ? userMovies.religion : false)
+        setChkRomance(userMovies !== null ? userMovies.romance : false)
+        setChkSciFi(userMovies !== null ? userMovies.scifi : false)
+        setChkSports(userMovies !== null ? userMovies.sports : false)
+        setChkThriller(userMovies !== null ? userMovies.suspense_thriller : false)
+        setChkWestern(userMovies !== null ? userMovies.western : false)
+        setChkMoviesOther(userMovies !== null ? userMovies.other : false)
 
         if (movID !== null) {
             setTransactionState('UPDATE')
