@@ -35,7 +35,6 @@ const MusicInfo = (props) => {
         getMusicByUserID(authCtx.userID)
             .then((user) => {
                 const thisUserMusic = user.data.length > 0 ? user.data[0] : null
-                console.log('MusicInfo.js setUpdateState thisUserMusic', thisUserMusic)
                 setUserMusic(thisUserMusic)
 
                 if (thisUserMusic === null) {
