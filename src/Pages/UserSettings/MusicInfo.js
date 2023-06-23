@@ -92,6 +92,7 @@ const MusicInfo = (props) => {
                 messageText: 'Form values were not saved!'
             })
         }
+        window.scrollTo(0, -50)
     }
 
     const onSubmitHandler = (event) => {
@@ -140,17 +141,9 @@ const MusicInfo = (props) => {
                 updateMusic(data)
                     .then(result => {
                         if (result.data.affectedRows > 0) {
-                            setMessage({
-                                noteType: 'success',
-                                headerText: 'Form submitted',
-                                messageText: 'Account information saved!'
-                            })
+                            setSuccessMessage(true)
                         } else {
-                            setMessage({
-                                noteType: 'success',
-                                headerText: 'Error',
-                                messageText: 'Form values were not saved!'
-                            })
+                            setSuccessMessage(false)
                         }
                     })
                     .then(() => setUpdateState())
