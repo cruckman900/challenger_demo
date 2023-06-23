@@ -24,10 +24,8 @@ const ComputerInfo = (props) => {
     const setUpdateState = () => {
         getTechnicalByUserID(authCtx.userID)
             .then((user) => {
-                console.log('user', user)
                 const thisUserTechnical = user.data.length > 0 ? user.data[0] : null
                 setUserTechnical(thisUserTechnical)
-                console.log('thisUserTechnical', thisUserTechnical)
 
                 if (thisUserTechnical === null) {
                     setTransactionState('INSERT')
