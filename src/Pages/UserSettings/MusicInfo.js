@@ -51,7 +51,7 @@ const MusicInfo = (props) => {
     }, [authCtx.isLoggedIn])
 
     const setUserMusic = (userMusic) => {
-        setMusID(userMusic !== null ? userMusic.id : false)
+        setMusID(userMusic !== null ? userMusic.id : null)
         setChkPop(userMusic !== null ? userMusic.americanpop : false)
         setChkBlues(userMusic !== null ? userMusic.blues : false)
         setChkClassical(userMusic !== null ? userMusic.classical : false)

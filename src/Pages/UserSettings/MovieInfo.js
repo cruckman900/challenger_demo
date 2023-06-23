@@ -7,7 +7,6 @@ import BodyHeader from '../../UI/BodyHeader/BodyHeader'
 import Button from '../../UI/Button/Button'
 import labeledInputs from '../../builders/LabeledInputs/labeledInputs'
 import classes from './UserSettings.module.css'
-import { getMusicByUserID } from '../../DataHandlers/MusicDataHandler'
 
 const MovieInfo = (props) => {
     const authCtx = useContext(AuthContext)
@@ -33,7 +32,7 @@ const MovieInfo = (props) => {
     const [chkMoviesOther, setChkMoviesOther] = useState(false)
 
     const setUpdateState = () => {
-        getMusicByUserID(authCtx.userID)
+        getMoviesByUserID(authCtx.userID)
             .then((user) => {
                 const thisUserMovies = user.data.length > 0 ? user.data[0] : null
                 setUserMovies(thisUserMovies)
@@ -52,7 +51,7 @@ const MovieInfo = (props) => {
     }, [authCtx.isLoggedIn])
 
     const setUserMovies = (userMovies) => {
-        setMovID(userMovies !== null ? userMovies.getMusicByUserID : null)
+        setMovID(userMovies !== null ? userMovies.id : null)
         setChkAction(userMovies !== null ? userMovies.action : false)
         setChkComedy(userMovies !== null ? userMovies.comedy : false)
         setChkAnimation(userMovies !== null ? userMovies.comics_animation : false)
@@ -105,8 +104,6 @@ const MovieInfo = (props) => {
             return new Promise(function () {
                 inputMovies(data)
                     .then(result => {
-                        console.log('MovieInfo.js onSubmitHandler insert data', data)
-                        console.log('MovieInfo.js onSubmitHandler insert result', result)
                         setMovID(result.data.insertId)
                         if (result.data.affectedRows > 0) {
                             console.log('MovieInfo.js', 'Insert Successful!')
@@ -124,9 +121,7 @@ const MovieInfo = (props) => {
             return new Promise(function () {
                 updateMovies(data)
                     .then(result => {
-                        console.log('MovieInfo.js onSubmitHandler update data', data)
-                        console.log('MovieInfo.js onSubmitHandler update result', result)
-                        if (result.affectedRows > 0) {
+                        if (result.data.affectedRows > 0) {
                             console.log('MovieInfo.js', 'Update Successful!')
                         } else {
                             console.log('MovieInfo.js', 'Update Failed!')
