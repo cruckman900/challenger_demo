@@ -9,6 +9,13 @@ export default function NewFeatures () {
     return (
         <DefaultPage headerText="Features & Updates Log">
             <Card headerText="June 2023" className={classes.card}>
+                <BodyHeader className={classes.header}>6/18/2023 - 6/23/2022</BodyHeader>
+                <div className={classes.updateBody}>
+                    Been playing with Jira and GitHub to get them working together.  Also, I've been researching Jenkins and
+                    CircleCI.  I am going to go with CircleCI for automation.  I finished the User Information section
+                    of the site.  Everything works the way it should.  I've even added the success/fail messages to each
+                    section.  Since I've bound GitHub to Jira, I am now feature branching in Git.
+                </div>
                 <BodyHeader className={classes.header}>6/17/2023</BodyHeader>
                 <div className={classes.updateBody}>
                     Finished the MovieInfo page.  Did some minor touch ups with right column and inside newFeatures.
