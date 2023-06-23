@@ -102,7 +102,6 @@ const ActivityInfo = (props) => {
                 messageText: 'Form values were not saved!'
             })
         }
-        window.scrollTo(0, -50)
     }
 
     const onSubmitHandler = (event) => {
