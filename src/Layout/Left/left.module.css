@@ -5,10 +5,16 @@
 }
 
 .menuButton {
-    padding: .5rem 0;
-    padding-left: .3rem;
+    position: relative;
+    top: calc(100% / 2 - .75rem);
+    left: calc(100% / 2 - .75rem);
     font-size: 1.5rem;
     color: rgba(255, 69, 0, .8);
+}
+
+.svgContainer {
+    width: 2.5rem;
+    height: 2.5rem;
 }
 
 .menuButton:hover, .menuButton:active {
@@ -32,10 +38,5 @@
     .left {
         padding-top: 2rem;
         height: calc(100vh - 8.5rem);
-    }
-
-    .menuButton {
-        padding-left: .35rem;
-        padding-right: .5rem;
     }
 }

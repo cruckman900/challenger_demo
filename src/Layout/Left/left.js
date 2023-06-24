@@ -27,29 +27,29 @@ const Left = () => {
             <Navbar key="left" className={`${classes.left} ${classes.scrollable} ${classes.noScrollbars}`}>
                 <Nav defaultActiveKey="#" activeKey={location.pathname}>
                     <Nav.Link as={Link} to={'/'} eventKey="/" href="#" alt="Home">
-                        <p className={classes.menuButtonBackground}><FontAwesomeIcon className={classes.menuButton} icon={myIcons.house} /></p>
+                        <p className={classes.menuButtonBackground}><div className={classes.svgContainer}><FontAwesomeIcon className={classes.menuButton} icon={myIcons.house} /></div></p>
                     </Nav.Link>
                     <Nav.Link as={Link} to={'/userSettings'} eventKey="/userSettings" href="#userSettings">
-                        <p className={classes.menuButtonBackground}><FontAwesomeIcon className={classes.menuButton} icon={myIcons.userGear} /></p>
+                        <p className={classes.menuButtonBackground}><div className={classes.svgContainer}><FontAwesomeIcon className={classes.menuButton} icon={myIcons.userGear} /></div></p>
                     </Nav.Link>
                     {ctx.isLoggedIn &&
                         <>
                             <Nav.Link as={Link} to={'/friendSettings'} eventKey="/friendSettings" href="#friendSettings">
-                                <p className={classes.menuButtonBackground}><FontAwesomeIcon className={classes.menuButton} icon={myIcons.usersGear} /></p>
+                                <p className={classes.menuButtonBackground}><div className={classes.svgContainer}><FontAwesomeIcon className={classes.menuButton} icon={myIcons.usersGear} /></div></p>
                             </Nav.Link>
                             <Nav.Link as={Link} to={'/groupSettings'} eventKey="/groupSettings" href="#groupSettings">
-                                <p className={classes.menuButtonBackground}><FontAwesomeIcon className={classes.menuButton} icon={myIcons.peopleGroup} /></p>
+                                <p className={classes.menuButtonBackground}><div className={classes.svgContainer}><FontAwesomeIcon className={classes.menuButton} icon={myIcons.peopleGroup} /></div></p>
                             </Nav.Link>
                             <Nav.Link as={Link} to={'/communitySettings'} eventKey="/communitySettings" href="#communitySettings">
-                                <p className={classes.menuButtonBackground}><FontAwesomeIcon className={classes.menuButton} icon={myIcons.peopleRoof} /></p>
+                                <p className={classes.menuButtonBackground}><div className={classes.svgContainer}><FontAwesomeIcon className={classes.menuButton} icon={myIcons.peopleRoof} /></div></p>
                             </Nav.Link>
                             <Nav.Link as={Link} to={'/systemSettings'} eventKey="/systemSettings" href="#systemSettings">
-                                <p className={classes.menuButtonBackground}><FontAwesomeIcon className={classes.menuButton} icon={myIcons.gear} /></p>
+                                <p className={classes.menuButtonBackground}><div className={classes.svgContainer}><FontAwesomeIcon className={classes.menuButton} icon={myIcons.gear} /></div></p>
                             </Nav.Link>
                         </>
                     }
                     <Nav.Link as={Link} to={'/newFeatures'} eventKey="/newFeatures" href="#newFeatures">
-                        <p className={classes.menuButtonBackground}><FontAwesomeIcon className={classes.menuButton} icon={myIcons.newspaper} /></p>
+                        <p className={classes.menuButtonBackground}><div className={classes.svgContainer}><FontAwesomeIcon className={classes.menuButton} icon={myIcons.newspaper} /></div></p>
                     </Nav.Link>
                 </Nav>
             </Navbar>
