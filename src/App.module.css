@@ -9,6 +9,12 @@
   -ms-overflow-style: none;
 }
 
+.error {
+  position: absolute;
+  top: 4rem;
+  height: calc(100vh - 7.25rem);
+}
+
 .horizRowContainer {
   display: flex;
 }
@@ -25,6 +31,11 @@
 }
 
 @media only screen and (max-width:767px) and (orientation:portrait) {
+  .error {
+    position: relative;
+    top: 1.25rem;
+  }
+  
   .horizRowContainer {
     position: absolute;
     left: 0;

@@ -43,33 +43,25 @@ export default function Home () {
                 messageText: `This place is for communities and groups to be created and joined by all that wish to be welcomed in.
                     You can join communities, create a friend's group,or talk individually with friends that you make, all in one spot!`
             })
-        }
-        if (authCtx.isLoggedIn && navCtx.channelLocation && hasChatMessages === false) {
-            setChatMessages('There are no messages here yet.  Be the first!')
-        }
-        if (authCtx.isLoggedIn && !navCtx.channelLocation) {
-            setHeaderText('What do you want to do next?')
+        } else if (authCtx.isLoggedIn) {
+            setHeaderText('Idling')
             setMessage({
-                noteType: 'info',
+                noteType: 'warning',
                 headerText: 'Communities, Groups, and People',
                 messageText: `If you don't have anyone or anywhere set up to talk to, the icon bar to the left should get you started.
                 Otherwise, jump on in on some conversation!  The idea is to take your conversations to communities, but groups and 
                 friends are really nice too!`
             })
+
+            if (navCtx.channelLocation && (navCtx.channelLocation.navTitle || navCtx.channelLocation.navName)) {
+                setHeaderText(`${navCtx.channelLocation.navTitle ? navCtx.channelLocation.navTitle : navCtx.channelLocation.navName}`)
+                setMessage(null)
+                if (navCtx.channelLocation && hasChatMessages === false) {
+                    setChatMessages('There are no messages here yet.  Be the first!')
+                }
+            }
         }
-        if (navCtx.channelLocation && (navCtx.channelLocation.navTitle || navCtx.channelLocation.navName)) {
-            setHeaderText(`${navCtx.channelLocation.navTitle ? navCtx.channelLocation.navTitle : navCtx.channelLocation.navName}`)
-            setMessage(null)
-        }
-        if (authCtx.isLoggedIn && headerText === 'Welcome Home!') {
-            setHeaderText('Idling...')
-            setMessage({
-                noteType: 'warning',
-                headerText: 'You haven\'t selected a conversation to get engaged with!',
-                messageText: 'It\'s never too late to start up a conversation... but it could very well be too early!  Coffee first could be good.'
-            })
-        }
-    }, [authCtx.isLoggedIn, navCtx.channelLocation, headerText, hasChatMessages])
+    }, [authCtx.isLoggedIn, navCtx.channelLocation])
 
     return (
         <Fragment>
