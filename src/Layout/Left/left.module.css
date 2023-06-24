@@ -7,7 +7,7 @@
 .menuButton {
     position: relative;
     top: calc(100% / 2 - .75rem);
-    left: calc(100% / 2 - .75rem);
+    left: calc(100% / 2 - .85rem);
     font-size: 1.5rem;
     color: rgba(255, 69, 0, .8);
 }
