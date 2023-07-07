@@ -25,6 +25,16 @@ function sendVerifyMail (email, username, code) {
     })
 }
 
+function sendResetPasswordMail (email, username) {
+    mailer.get('/', {
+        params: {
+            action: 'resetPass',
+            e: email,
+            un: username
+        }
+    })
+}
+
 /* GET user by id */
 async function getUserInfoById (id) {
     return new Promise(function (resolve, reject) {
@@ -47,6 +57,21 @@ async function getUserInfoByUserAndPass (username, password) {
                 action: 'getUserByUsernameAndPassword',
                 username: username,
                 password: password
+            }
+        })
+            .then(row => resolve(row))
+            .catch(err => reject(err))
+    })
+}
+
+/* GET user by email and username */
+async function getUserInfoByEmailAndUsername (email, username) {
+    return new Promise(function (resolve, reject) {
+        api.get('/users', {
+            params: {
+                action: 'getUserByEmailAndUsername',
+                email: email,
+                username: username
             }
         })
             .then(row => resolve(row))
@@ -109,9 +134,11 @@ export {
     getRandomInt,
     getUserInfoById,
     getUserInfoByUserAndPass,
+    getUserInfoByEmailAndUsername,
     getUserCount,
     getUserCountIsLoggedIn,
     inputUserInfo,
     updateUserInfo,
-    sendVerifyMail
+    sendVerifyMail,
+    sendResetPasswordMail
 }
