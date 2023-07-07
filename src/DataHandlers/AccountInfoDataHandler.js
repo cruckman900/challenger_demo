@@ -130,6 +130,18 @@ async function updateUserInfo (data) {
     })
 }
 
+/* PATCH user */
+async function updateUserPassword (data) {
+    return new Promise(function (resolve, reject) {
+        api.patch('/users', {
+            method: 'PATCH',
+            data: data
+        })
+            .then(result => resolve(result))
+            .catch(err => reject(err))
+    })
+}
+
 export {
     getRandomInt,
     getUserInfoById,
@@ -139,6 +151,7 @@ export {
     getUserCountIsLoggedIn,
     inputUserInfo,
     updateUserInfo,
+    updateUserPassword,
     sendVerifyMail,
     sendResetPasswordMail
 }
