@@ -150,18 +150,22 @@ export default function Login (props) {
 
     const emailSubmitHandler = (event) => {
         event.preventDefault()
-        const user = getUserInfoByEmailAndUsername(emailState.value, usernameState.value)
-        console.log('login.js emailSubmitHandler user', user)
-        if (user !== null) {
-            sendResetPasswordMail(emailState.value, usernameState.value)
-            props.onClose()
-        } else {
-            setMessage({
-                noteType: 'error',
-                headerText: 'Validation Error!',
-                messageText: 'The email address or username that you supplied is invalid.'
+        getUserInfoByEmailAndUsername(emailState.value, usernameState.value)
+            .then(result => {
+                console.log('login.js emailSubmitHandler result', result)
+                if (user !== null) {
+                    sendResetPasswordMail(emailState.value, usernameState.value)
+                    props.onClose()
+                }
             })
-        }
+            .catch(err => {
+                console.log('login.js emailSubmitHandler err', err)
+                setMessage({
+                    noteType: 'error',
+                    headerText: 'Validation Error!',
+                    messageText: 'The email address or username that you supplied is invalid.'
+                })
+            })
     }
 
     const logoutAndClose = () => {
