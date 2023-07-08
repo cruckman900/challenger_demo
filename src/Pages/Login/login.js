@@ -153,7 +153,7 @@ export default function Login (props) {
         const user = getUserInfoByEmailAndUsername(emailState.value, usernameState.value)
         console.log('login.js emailSubmitHandler user', user)
         if (user !== null) {
-            sendResetPasswordMail(emailState.value, usernameState.value, 'https://chatterboxsm.com/PasswordReset/')
+            sendResetPasswordMail(emailState.value, usernameState.value)
             props.onClose()
         } else {
             setMessage({
