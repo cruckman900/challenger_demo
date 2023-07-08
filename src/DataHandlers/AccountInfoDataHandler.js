@@ -65,13 +65,14 @@ async function getUserInfoByUserAndPass (username, password) {
 }
 
 /* GET user by email and username */
-async function getUserInfoByEmailAndUsername (email, username) {
+async function getUserInfoByEmailAndUsername (email, username, link) {
     return new Promise(function (resolve, reject) {
         api.get('/users', {
             params: {
                 action: 'getUserByEmailAndUsername',
                 email: email,
-                username: username
+                username: username,
+                link: link
             }
         })
             .then(row => resolve(row))
