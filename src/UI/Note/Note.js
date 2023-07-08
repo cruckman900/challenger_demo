@@ -12,7 +12,7 @@ export default function Note (props) {
     }, [props.noteType])
 
     return (
-        <div className={classes.note}>
+        <div className={`${classes.note} ${props.className}`}>
             <div className={`${classes.noteHeader} ${classes[headerStyle]}`}>{props.headerText}</div>
             <div className={`${classes.noteBody} ${classes[bodyStyle]}`} style={{ bodyStyle }}>{props.children}</div>
         </div>

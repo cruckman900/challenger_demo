@@ -4,6 +4,10 @@
     display: block;
 }
 
+.note {
+    margin: 0 .5rem;
+}
+
 .labelText {
     width: 10rem;
 }

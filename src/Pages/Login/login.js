@@ -250,7 +250,15 @@ export default function Login (props) {
                     <Fragment>
                         {showForgotScreen &&
                             <form onSubmit={emailSubmitHandler}>
-                                {message && <Note noteType={message.noteType} headerText={message.headerText}>{message.messageText}</Note>}
+                                {message &&
+                                    <Note
+                                        noteType={message.noteType}
+                                        headerText={message.headerText}
+                                        className={classes.note}
+                                    >
+                                        {message.messageText}
+                                    </Note>
+                                }
                                 <div className={classes.formRow}>
                                     <LeftLabelInput
                                         id="txtEmail"
