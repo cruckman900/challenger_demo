@@ -426,7 +426,7 @@ const AccountInfo = (props) => {
             /* GET user */
             getUserInfoByUserAndPass(usernameState.value, data.password)
                 .then((user) => {
-                    if (user.data[0].USERID !== null) {
+                    if (user.data.length > 0) {
                         const thisUser = user.data[0]
                         setUser(thisUser)
                         setQueryType('update')
