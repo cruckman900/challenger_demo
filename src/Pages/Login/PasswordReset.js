@@ -190,7 +190,7 @@ const PasswordReset = () => {
                         placeholder="8+ chars with numbers"
                         inputType="password"
                         required={true}
-                        labelText="Pass"
+                        labelText="Password"
                         labelClassName={classes.labelText}
                         inputClassName={classes.inputStyle}
                         maxLength="45"
