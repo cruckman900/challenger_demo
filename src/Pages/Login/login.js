@@ -2,13 +2,19 @@
 import React, { Fragment, useState, useEffect, useReducer, useContext } from 'react'
 import AuthContext from '../../store/auth-context'
 import Modal from '../../UI/Modal/Modal'
+import Note from '../../UI/Note/Note'
 import Card from '../../UI/Card/Card'
 import LeftLabelInput from '../../UI/LeftLabelInput/LeftLabelInput'
 import Button from '../../UI/Button/Button'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faHand } from '@fortawesome/free-solid-svg-icons'
 
-import { getUserInfoByUserAndPass, updateUserInfo } from '../../DataHandlers/AccountInfoDataHandler'
+import {
+    getUserInfoByUserAndPass,
+    getUserInfoByEmailAndUsername,
+    updateUserInfo,
+    sendResetPasswordMail
+} from '../../DataHandlers/AccountInfoDataHandler'
 import classes from './login.module.css'
 
 const hasNumber = (val) => {
@@ -140,9 +146,30 @@ export default function Login (props) {
         setShowForgotScreen(true)
     }
 
+    const [message, setMessage] = useState(null)
+
     const emailSubmitHandler = (event) => {
         event.preventDefault()
-        props.onClose()
+        getUserInfoByEmailAndUsername(emailState.value, usernameState.value)
+            .then(result => {
+                if (result.data.length > 0) {
+                    sendResetPasswordMail(emailState.value, usernameState.value)
+                    props.onClose()
+                } else {
+                    setMessage({
+                        noteType: 'error',
+                        headerText: 'Validation Error',
+                        messageText: 'Invalid email or username.'
+                    })
+                }
+            })
+            .catch(err => {
+                setMessage({
+                    noteType: 'error',
+                    headerText: 'Unhandled Error!',
+                    messageText: `An error has occured in the application: ${err}`
+                })
+            })
     }
 
     const logoutAndClose = () => {
@@ -223,6 +250,15 @@ export default function Login (props) {
                     <Fragment>
                         {showForgotScreen &&
                             <form onSubmit={emailSubmitHandler}>
+                                {message &&
+                                    <Note
+                                        noteType={message.noteType}
+                                        headerText={message.headerText}
+                                        className={classes.note}
+                                    >
+                                        {message.messageText}
+                                    </Note>
+                                }
                                 <div className={classes.formRow}>
                                     <LeftLabelInput
                                         id="txtEmail"
@@ -238,11 +274,27 @@ export default function Login (props) {
                                         valid={emailIsValid}
                                         error={!emailIsValid}
                                     />
-                                    <br />
-                                    <div className={classes.formRow}>
-                                        <Button className={classes.primaryBtn} type="submit" name="btnSubmitEmail" value="Submit" disabled={!emailIsValid} />
-                                        <Button type="button" name="btnCancel" value="Cancel" onClick={props.onClose} />
-                                    </div>
+                                </div>
+                                <div className={classes.formRow}>
+                                    <LeftLabelInput
+                                        id="txtUsername"
+                                        placeholder="8+ characters"
+                                        inputType="text"
+                                        required={true}
+                                        labelText="Username"
+                                        labelClassName={classes.labelText}
+                                        inputClassName={classes.inputStyle}
+                                        value={usernameState.value}
+                                        onChange={usernameChangeHandler}
+                                        onBlur={validateUsernameHandler}
+                                        valid={usernameIsValid}
+                                        error={!usernameIsValid}
+                                    />
+                                </div>
+                                <br />
+                                <div className={classes.formRow}>
+                                    <Button className={classes.primaryBtn} type="submit" name="btnSubmitEmail" value="Submit" disabled={!emailIsValid} />
+                                    <Button type="button" name="btnCancel" value="Cancel" onClick={props.onClose} />
                                 </div>
                             </form>
                         }
