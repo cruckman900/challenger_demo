@@ -8,6 +8,15 @@ import classes from './newFeatures.module.css'
 export default function NewFeatures () {
     return (
         <DefaultPage headerText="Features & Updates Log">
+            <Card headerText="July 2023" className={classes.card}>
+                <BodyHeader className={classes.header}>7/04/2023 - 7/24/2022</BodyHeader>
+                <div className={classes.updateBody}>
+                    Spent most of the month walking through course tutorials - NodeJS and iOS development using Swift.
+                    I just finished Password Reset functionality.  I reworked the mailer.  I broke it into MVC and am
+                    using Pug as the templating engine for the actual emails being sent.  I also created a logo for the
+                    emails so that the font is similar to that of the application.
+                </div>
+            </Card>
             <Card headerText="June 2023" className={classes.card}>
                 <BodyHeader className={classes.header}>6/18/2023 - 6/23/2022</BodyHeader>
                 <div className={classes.updateBody}>
