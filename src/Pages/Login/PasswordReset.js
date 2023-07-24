@@ -113,7 +113,7 @@ const PasswordReset = () => {
                     }
                     updateUserPassword(data)
                         .then(result => {
-                            if (result.data.rowsAffected > 0) {
+                            if (result.data.affectedRows > 0) {
                                 setMessage({
                                     noteType: 'success',
                                     headerText: 'Password Updated!',
