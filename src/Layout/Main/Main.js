@@ -10,6 +10,7 @@ import GroupSettings from '../../Pages/GroupSettings/groupSettings'
 import CommunitySettings from '../../Pages/CommunitySettings/communitySettings'
 import NewFeatures from '../../Pages/NewFeatures/newFeatures'
 import SystemSettings from '../../Pages/SystemSettings/systemSettings'
+import PasswordReset from '../../Pages/Login/PasswordReset'
 import classes from './main.module.css'
 
 class Main extends Component {
@@ -27,6 +28,7 @@ class Main extends Component {
                     <Route path="/communitySettings" element={ <CommunitySettings /> } />
                     <Route path="/newFeatures" element={ <NewFeatures /> } />
                     <Route path="/systemSettings" element={ <SystemSettings /> } />
+                    <Route path="/PasswordReset" element={ <PasswordReset /> } />
                 </Routes>
             </div>
         )
