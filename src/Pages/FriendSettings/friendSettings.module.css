@@ -6,10 +6,17 @@
     overflow-y: auto;
 }
 
+
 .sticky {
     position: sticky;
     top: 0;
     padding: 0;
     margin: 0;
     background: rgba(0, 0, 0, .75);
+}
+
+@media screen and (max-width: 799px) and (orientation: portrait) {
+    .friendSettings {
+        width: calc(100vw - 6rem);
+    }
 }
