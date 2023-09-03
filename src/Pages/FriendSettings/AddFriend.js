@@ -1,12 +1,12 @@
 import React from 'react'
 
-import DefaultPage from '../../UI/DefaultPage/DefaultPage'
+import BodyHeader from '../../UI/BodyHeader/BodyHeader'
 
 // eslint-disable-next-line no-unused-vars
 import classes from './friendSettings.module.css'
 
 export default function AddFriends () {
     return (
-        <DefaultPage headerText="Add People"></DefaultPage>
+        <BodyHeader>Add People</BodyHeader>
     )
 }
