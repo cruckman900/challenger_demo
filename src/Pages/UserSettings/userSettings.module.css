@@ -14,53 +14,6 @@
     background: rgba(0, 0, 0, .75);
 }
 
-.tabList {
-    display: inline-block;
-    position: sticky;
-    top: 0;
-    margin: 0;
-    padding: 0;
-    width: 100%;
-    background: black;
-    border-bottom: solid 1px rgba(255, 69, 0, 0.8);
-    list-style-type: none;
-    z-index: 1;
-}
-
-.tab {
-    padding-top: .25rem;
-    padding-left: .5rem;
-    padding-right: .5rem;
-    float: left;
-}
-
-.tab:hover {
-    cursor: pointer;
-}
-
-.tabIcon {
-    font-size: 1rem;
-    margin: 0 .15rem;
-    padding: 0;
-}
-
-.tabIcon:hover {
-    color: rgba(255, 120, 0, 1);
-}
-
-.selectedTab {
-    background: rgba(255, 69, 0, 0.5);
-    outline: none;
-    color: rgba(255, 120, 0, 1);
-    border-top-left-radius: 6px;
-    border-top-right-radius: 6px;
-    border-bottom: solid 1px rgba(255, 120, 0, 1);
-}
-
-.selectedTab::after {
-    display: none;
-}
-
 .primaryBtn {
     background: rgba(255, 69, 0, .5);
     color: rgba(255, 120, 50, .8);

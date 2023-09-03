@@ -4,7 +4,6 @@ import React from 'react'
 import Modal from '../../UI/Modal/Modal'
 import Card from '../../UI/Card/Card'
 import classes from './Agreements.module.css'
-import wClasses from '../../builders/widget.module.css'
 import Label from '../../UI/Label/Label'
 import Button from '../../UI/Button/Button'
 
@@ -29,7 +28,7 @@ const TermsOfUse = (props) => {
                     information happens to fall into the wrong hands from some unforeseen event, the creator(s) of this site cannot in any way
                     be held liable.
                 </div>
-                <hr className={wClasses.br} />
+                <br />
                 <Button onClick={props.onClose} value="Close" />
             </Card>
         </Modal>

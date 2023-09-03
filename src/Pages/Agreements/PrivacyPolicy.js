@@ -5,7 +5,6 @@ import Modal from '../../UI/Modal/Modal'
 import Card from '../../UI/Card/Card'
 import Label from '../../UI/Label/Label'
 import classes from './Agreements.module.css'
-import wClasses from '../../builders/widget.module.css'
 import Button from '../../UI/Button/Button'
 
 const PrivacyPolicy = (props) => {
@@ -46,7 +45,7 @@ const PrivacyPolicy = (props) => {
                     etc., will most likely find its' way to you or someone you know.  Be careful of what information you are willing to provide to others on this site, even
                     if the person or community seems 'OK'.  With the right information in the wrong hands, bad things can happen.
                 </div>
-                <hr className={wClasses.br} />
+                <br />
                 <Button onClick={props.onClose} value="Close" />
             </Card>
         </Modal>

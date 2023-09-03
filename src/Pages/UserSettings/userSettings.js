@@ -20,6 +20,7 @@ import ActivityInfo from './ActivityInfo'
 
 import AuthContext from '../../store/auth-context'
 import classes from './UserSettings.module.css'
+import widgetClasses from '../../builders/widget.module.css'
 
 export default function UserSettings (props) {
     const authCtx = useContext(AuthContext)
@@ -66,28 +67,28 @@ export default function UserSettings (props) {
     return (
         <div>
             <DefaultPage headerText="User Information">
-                <Tabs className={classes.userSettings} selectedTabClassName={classes.selectedTab}>
-                    <TabList className={`${classes.tabList} ${classes.sticky}`}>
-                        <Tab id="tab1" className={classes.tab}>
-                            <FontAwesomeIcon className={classes.tabIcon} icon={myIcons.userPlus} />
+                <Tabs className={classes.userSettings} selectedTabClassName={widgetClasses.selectedTab}>
+                    <TabList className={`${widgetClasses.tabList} ${classes.sticky}`}>
+                        <Tab id="tab1" className={widgetClasses.tab}>
+                            <FontAwesomeIcon className={widgetClasses.tabIcon} icon={myIcons.userPlus} />
                         </Tab>
-                        <Tab id="tab3" className={classes.tab} disabled={!accountID && true}>
-                            <FontAwesomeIcon className={classes.tabIcon} icon={myIcons.utensils} />
+                        <Tab id="tab3" className={widgetClasses.tab} disabled={!accountID && true}>
+                            <FontAwesomeIcon className={widgetClasses.tabIcon} icon={myIcons.utensils} />
                         </Tab>
-                        <Tab id="tab4" className={classes.tab} disabled={!accountID && true}>
-                            <FontAwesomeIcon className={classes.tabIcon} icon={myIcons.television} />
+                        <Tab id="tab4" className={widgetClasses.tab} disabled={!accountID && true}>
+                            <FontAwesomeIcon className={widgetClasses.tabIcon} icon={myIcons.television} />
                         </Tab>
-                        <Tab id="tab5" className={classes.tab} disabled={!accountID && true}>
-                            <FontAwesomeIcon className={classes.tabIcon} icon={myIcons.radio} />
+                        <Tab id="tab5" className={widgetClasses.tab} disabled={!accountID && true}>
+                            <FontAwesomeIcon className={widgetClasses.tabIcon} icon={myIcons.radio} />
                         </Tab>
-                        <Tab id="tab6" className={classes.tab} disabled={!accountID && true}>
-                            <FontAwesomeIcon className={classes.tabIcon} icon={myIcons.football} />
+                        <Tab id="tab6" className={widgetClasses.tab} disabled={!accountID && true}>
+                            <FontAwesomeIcon className={widgetClasses.tabIcon} icon={myIcons.football} />
                         </Tab>
-                        <Tab id="tab7" className={classes.tab} disabled={!accountID && true}>
-                            <FontAwesomeIcon className={classes.tabIcon} icon={myIcons.computer} />
+                        <Tab id="tab7" className={widgetClasses.tab} disabled={!accountID && true}>
+                            <FontAwesomeIcon className={widgetClasses.tabIcon} icon={myIcons.computer} />
                         </Tab>
-                        <Tab id="tab2" className={classes.tab} disabled={!showLocation && true}>
-                            <FontAwesomeIcon className={classes.tabIcon} icon={myIcons.locationDot} />
+                        <Tab id="tab2" className={widgetClasses.tab} disabled={!showLocation && true}>
+                            <FontAwesomeIcon className={widgetClasses.tabIcon} icon={myIcons.locationDot} />
                         </Tab>
                     </TabList>
 
