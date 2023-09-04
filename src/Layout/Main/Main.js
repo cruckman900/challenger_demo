@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { Routes, Route } from 'react-router-dom'
+import Admin from '../../Pages/Administrator/admin'
 import Home from '../../Pages/Home/home'
 import Login from '../../Pages/Login/login'
 import Donations from '../../Pages/Donations/donations'
@@ -18,6 +19,7 @@ class Main extends Component {
         return (
             <div className={`${classes.main} ${classes.scrollable} ${classes.noScrollbars}`}>
                 <Routes>
+                    <Route exact path="/admin" element={ <Admin /> } />
                     <Route exact path="/" element={ <Home /> } />
                     <Route path="/login" element={ <Login /> } />
                     <Route path="/donations" element={ <Donations /> } />
