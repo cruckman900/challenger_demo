@@ -8,6 +8,14 @@ import classes from './newFeatures.module.css'
 export default function NewFeatures () {
     return (
         <DefaultPage headerText="Features & Updates Log">
+            <Card headerText="September 2023" className={classes.card}>
+                <BodyHeader className={classes.header}>09/02/2023 - 09/03/2023</BodyHeader>
+                <div className={classes.updateBody}>
+                    Began implementing the pages for People and Community Settings.  I have the tab panels set to
+                    go.  Added an isAdmin field in the users table and added it to the AuthContext.  Created a nav item in
+                    the side menu that will lead to a tab group for Admins when logged in with admin privs.
+                </div>
+            </Card>
             <Card headerText="July 2023" className={classes.card}>
                 <BodyHeader className={classes.header}>7/04/2023 - 7/24/2022</BodyHeader>
                 <div className={classes.updateBody}>
